@@ -1,0 +1,58 @@
+\def\xs{1}
+\def\ys{1.5}
+
+\begin{tikzpicture}[domain=0:5, xscale=\xs, yscale=\ys, >=latex]
+  \def\ty{2}
+  \def\tx{3.3}
+  \def\tc{-1.2}
+  \def\ta{-0.37}
+
+  \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+  \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x)$};
+  \foreach \tty in {2,2.25,2.5}
+  \draw[color=darkgreen, thick, smooth, samples=100]
+    plot[id=x, domain=0.1:4.4]
+    function{\tty+\tc*(x-\tx)**2+\ta*(x-\tx)**3};
+  \draw[->,xshift=\tx cm] (0,1.5) -- (0,2.8)
+    node[above] {$\vartheta_y$};
+  \draw (\tx,0) node {\tiny $|$} node[below] {$\vartheta_x$};
+
+  \begin{scope}[xshift=6cm]
+    \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x)$};
+    \foreach \ttx in {2.7,3,3.3}
+    \draw[color=darkgreen, thick, smooth, samples=100]
+      plot[id=x, domain=0.1:3.8]
+      function{\ty+\tc*(x-\ttx)**2+\ta*(x-\ttx)**3};
+    \draw[->,xshift=2cm,yshift=0.1cm] (0,\ty) -- (2,\ty)
+      node[midway,above] {$\vartheta_x$};
+    \draw (0, \ty) node {--} node[left] {$\vartheta_y$};
+  \end{scope}
+
+  \begin{scope}[yshift=-3.5cm]
+    \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x)$};
+    \foreach \ttc in {-1.1,-1.15,-1.2}
+    \draw[color=darkgreen, thick, smooth, samples=100]
+      plot[id=x, domain=0.1:4.4]
+      function{\ty+\ttc*(x-\tx)**2+\ta*(x-\tx)**3};
+    \draw[->,xscale=1/\xs, yscale=1/\ys] (2.0,0.6) arc (250:200:1cm)
+      node[above] {$\theta_2^{*}$};
+    \draw (0, \ty) node {--} node[left] {$\vartheta_y$};
+    \draw (\tx,0) node {\tiny $|$} node[below] {$\vartheta_x$};
+  \end{scope}
+
+  \begin{scope}[yshift=-3.5cm, xshift=6cm]
+    \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x)$};
+    \foreach \tta in {-0.36,-0.38,-0.40}
+    \draw[color=darkgreen, thick, smooth, samples=100]
+      plot[id=x, domain=0.1:4.4]
+      function{\ty+\tc*(x-\tx)**2+\tta*(x-\tx)**3};
+    \draw (0, \ty) node {--} node[left] {$\vartheta_y$};
+    \draw[<-,xscale=1/\xs, yscale=1/\ys] (1.9,0.3) arc (250:200:1cm)
+      node[above] {$\theta_3$};
+    \draw (\tx,0) node {\tiny $|$} node[below] {$\vartheta_x$};
+  \end{scope}
+
+\end{tikzpicture}

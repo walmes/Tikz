@@ -1,0 +1,51 @@
+\begin{tikzpicture}[
+  >=stealth,
+  declare function={
+    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  declare function={
+    reg(\x,\a,\b)=\a+\b*\x;
+  }]
+
+  \begin{axis}[
+    width=9cm,
+    height=7cm,
+    view={45}{50},
+    xlabel=$x$: preditora,
+    ylabel=$y$: resposta,
+    zlabel=densidade,
+    xlabel style={rotate=-25},
+    ylabel style={rotate=25},
+    zlabel style={rotate=0},
+    samples=60,
+    domain=-4:12,
+    % title=Regress\~{a}o linear simples,
+    % grid=both,
+    % minor tick num=2,
+    % xtick={1,3,5,7},
+    % xticklabel=\empty,
+    xtick=\empty,
+    ztick=\empty,
+    ytick=\empty,
+    samples y=0,
+    zmin=0,
+    area plot/.style={
+      fill opacity=0.5,
+      draw=none,
+      fill=darkgreen,
+      mark=none,
+      smooth
+    }]
+
+    \addplot3[smooth, mark=none, color=black, thick,
+      domain=0:8, samples=10] (x,{reg(x,0,1)},0);
+    \pgfplotsinvokeforeach{1,3,...,7}{
+      \addplot3 [area plot] (#1,x,{normal(#1,1)});
+      \draw [dashed] (axis cs:#1,#1,0) -- (axis cs:#1,#1,0.28);
+      \draw [gray, dashed] (axis cs:#1,-4,0) -- (axis cs:#1,12,0);
+    }
+    \draw[<-, shorten <=2pt, shorten >=0pt]
+      (axis cs:6,6,0) -- (axis cs:6,6,0.3)
+      node[above] {$E(Y)=X\beta$};
+  \end{axis}
+\end{tikzpicture}

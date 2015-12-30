@@ -1,0 +1,39 @@
+\def\A{\clubsuit}
+\def\B{\heartsuit}
+
+\begin{tikzpicture}
+  \draw (-2,0) rectangle (7,3) node[above right] at (-2,0) {$\Omega$};
+  \node[above] at (2.5,3) {elementos de $\Omega$};
+  \node (111) at (6,2) {};
+  \node (110) at (5,1) {};
+  \node (011) at (4,2) {};
+  \node (101) at (3,1) {};
+  \node (001) at (2,2) {};
+  \node (100) at (1,1) {};
+  \node (010) at (0,2) {};
+  \node (000) at (-1,1) {};
+  \node[left, text width=3em, text centered] (arrowstart) at (-2,-2)
+    {valores de $X$ (U\$)};
+  \node (arrowend) at (7,-2) {$\mathbb{R}$};
+  \draw (111) circle (2pt) node[above] {$\A\A\A$};
+  \draw (110) circle (2pt) node[above] {$\A\A\B$};
+  \draw (011) circle (2pt) node[above] {$\B\A\A$};
+  \draw (101) circle (2pt) node[above] {$\A\B\A$};
+  \draw (001) circle (2pt) node[above] {$\B\B\A$};
+  \draw (100) circle (2pt) node[above] {$\A\B\B$};
+  \draw (010) circle (2pt) node[above] {$\B\A\B$};
+  \draw (000) circle (2pt) node[above] {$\B\B\B$};
+  \draw[->] (arrowstart) -- (arrowend);
+  \foreach \x/\y in {0/0,1/50,2/100,3/250,4/500,5/1000}{
+    \draw (\x,-1.8) -- (\x,-2) node[anchor=north] {\y};
+  }
+  \path [->,>=stealth']
+    (111) edge[bend left] (5,-2)
+    (110) edge[bend left] (4,-2)
+    (011) edge[bend left] (4,-2)
+    (101) edge[bend left] (3,-2)
+    (001) edge[bend left] (2,-2)
+    (100) edge[bend right] (2,-2)
+    (010) edge[bend right] (1,-2)
+    (000) edge[bend right] (0,-2);
+\end{tikzpicture}

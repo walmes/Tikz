@@ -1,0 +1,32 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black,
+    thick, minimum height=2em,
+    inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \node[state] (pr0) {
+    $\theta_r+\displaystyle\frac{\theta_s-\theta_r}{
+      (1+(\alpha\exp\{x\})^n)^m}$\\
+  };
+  \node[state, xshift=-3cm, below of=pr0,
+  node distance=3cm, anchor=center] (pr1) {
+    $\theta_r-S\cdot\displaystyle\frac{(1+1/m)^{m+1}}{
+      n(1+\exp\{n(x-I)\}/m)^m}$\\
+  };
+  \node[state, xshift=3cm, below of=pr0,
+  node distance=6cm, anchor=center] (pr2) {
+    $\theta_r+\displaystyle\frac{\theta_s-\theta_r}{
+      \left(1+\exp\left\{\displaystyle\frac{-S(x-I)(1+1/m)^{m+1}}{
+            \theta_s-\theta_r}\right\}/m\right)^m}$\\
+  };
+  \path (pr0) edge[bend right=30]
+    node[midway, right, align=center, anchor=east]
+    {$\theta_s \rightleftharpoons S$ \\
+      $\alpha \rightleftharpoons I $} (pr1)
+    (pr0) edge[bend left=30]
+    node[midway, left, align=center, anchor=west]
+    {$n \rightleftharpoons S$\\ $\alpha \rightleftharpoons I $} (pr2);
+\end{tikzpicture}

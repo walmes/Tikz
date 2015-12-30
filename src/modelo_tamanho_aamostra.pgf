@@ -1,0 +1,186 @@
+\tikzset{
+  aponta/.style={-latex, dashed},
+  eixos/.style={-latex},
+  fun/.style={very thick}
+}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{8}; \def\B{-1}; \def\C{4};
+  \draw[fun]
+    plot[id=x, samples=100] function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
+  \coordinate (b) at (\C,\A+\B*\C);
+  \draw (0,\A) circle (3pt) node[left] {$\beta_0$};
+  \draw (b) circle (3pt);
+  \draw[aponta] (b) -- (\C,0) node[below] {$x_b$};
+  \draw[|<->|] (1,7) -- (3,7)
+    node[midway, above, fill=white] {$\Delta y$};
+  \draw[|<->|] (3,7) -- (3,5)
+    node[midway, right, fill=white] {$\Delta x$};
+  \node[fill=white] (b1) at (5,8)
+    {$\beta_1 = \frac{\Delta y}{\Delta x}$};
+  \def\desc{-0.8}
+  \draw[->|] (1,\desc) -- (\C,\desc) node[midway, below=3pt] {linear};
+  \draw[dashed] (0,\desc) -- (1,\desc);
+  \draw[|<-] (\C,\desc) -- (9,\desc)
+    node[midway, below=3pt] {plat{\^o}};
+  \draw[dashed] (9,\desc) -- (10,\desc);
+  \node[above] (titulo) at (5,10) {Modelo linear-plat{\^o}};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\Y{3}; \def\X{5}; \def\C{0.2};
+  \draw[fun] plot[id=x, samples=100] function{\Y+\C*(x-\X)**2*(x<\X)};
+  \coordinate (b) at (\X,\Y);
+  \draw (0,8) circle (3pt) node[left] {$\beta_0$};
+  \draw (b) circle (3pt);
+  \draw[aponta] (b) -- (\X,0) node[below] {$x_b$};
+  \def\Xe{1.5}
+  \coordinate (ye) at (\Xe,{\Y+\C*(\X-\Xe)^2});
+  \draw[aponta] (ye) -- (\Xe,0) node[below] {$x_b-1$};
+  \draw[|<->|] (ye) -- ++(\X-\Xe,0) node[midway, above, fill=white] {};
+  \draw[|<->|] (\X,3) -- (\X,5.45)
+    node[midway, right, fill=white] {$\beta_2 = \Delta y$};
+  \def\desc{-0.8}
+  \draw[->|] (1,\desc) -- (\X,\desc)
+    node[midway, below=3pt] {quadr{\'a}tico};
+  \draw[dashed] (0,\desc) -- (1,\desc);
+  \draw[|<-] (\X,\desc) -- (9,\desc)
+    node[midway, below=3pt] {plat{\^o}};
+  \draw[dashed] (9,\desc) -- (10,\desc);
+  \node[above] (titulo) at (5,10) {Modelo quadr{\'a}tico-plat{\^o}};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{4}; \def\B{0.35};
+  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
+  % \begin{scope}[yscale=1]
+  %   \draw[fun, dashed]
+  %     plot[id=x, samples=100]
+  %     function{abs(-\A*\B*x**(-\B))/(1+(-\A*\B*(\B-1)*
+  %       x**(-\B-2))**2)**(3/2)};
+  %   \draw[fun, dashed]
+  %     plot[id=x, samples=100]
+  %     function{(abs(\A*(-\B)*(-\B-1)*x**(-\B-2)))/((1+(\A*(-\B)*
+  %       x**(-\B-1))**2)**(3/2))};
+  % \end{scope}
+  \def\xmc{1.138}; \def\ymc{3.823}
+  \draw[aponta] (\xmc,\ymc) -- (\xmc,0) node[below] {pmc}; 
+  \coordinate (pmc) at (\xmc, \ymc);
+  \begin{scope}[xshift=1pt, yshift=1pt]
+    \draw[dotted, color=black, fill=gray, fill opacity=0.1]
+      (pmc) arc (220:-135:3cm);
+    \draw[|<->|] (pmc) -- ++(40:3)
+      node [midway, below right] {$r=1/c$};
+  \end{scope}
+  \begin{scope}[yscale=5]
+    \draw[thick] plot coordinates {
+      (0.0526, 0.0046)
+      (0.1053, 0.015)
+      (0.1579, 0.0297)
+      (0.2105, 0.0482)
+      (0.2632, 0.0697)
+      (0.3158, 0.0938)
+      (0.3684, 0.1199)
+      (0.4211, 0.1473)
+      (0.4737, 0.1752)
+      (0.5263, 0.2032)
+      (0.5789, 0.2305)
+      (0.6316, 0.2565)
+      (0.6842, 0.2808)
+      (0.7368, 0.3028)
+      (0.7895, 0.3222)
+      (0.8421, 0.3388)
+      (0.8947, 0.3525)
+      (0.9474, 0.3633)
+      (1, 0.3711)
+      (1, 0.3711)
+      (1.069, 0.3773)
+      (1.1379, 0.3793)
+      (1.2069, 0.3775)
+      (1.2759, 0.3727)
+      (1.3448, 0.3653)
+      (1.4138, 0.3559)
+      (1.4828, 0.345)
+      (1.5517, 0.333)
+      (1.6207, 0.3204)
+      (1.6897, 0.3074)
+      (1.7586, 0.2943)
+      (1.8276, 0.2812)
+      (1.8966, 0.2683)
+      (1.9655, 0.2558)
+      (2, 0.2496)
+      (2.0345, 0.2436)
+      (2.1034, 0.2319)
+      (2.1724, 0.2207)
+      (2.2414, 0.21)
+      (2.3103, 0.1998)
+      (2.3793, 0.1902)
+      (2.4211, 0.1846)
+      (2.4483, 0.181)
+      (2.5172, 0.1724)
+      (2.5862, 0.1642)
+      (2.6552, 0.1564)
+      (2.7241, 0.1491)
+      (2.7931, 0.1422)
+      (2.8421, 0.1375)
+      (2.8621, 0.1357)
+      (2.931, 0.1296)
+      (3, 0.1238)
+      (3.2632, 0.1045)
+      (3.6842, 0.0811)
+      (4.1053, 0.0642)
+      (4.5263, 0.0518)
+      (4.9474, 0.0424)
+      (5.3684, 0.0353)
+      (5.7895, 0.0297)
+      (6.2105, 0.0253)
+      (6.6316, 0.0218)
+      (7.0526, 0.0189)
+      (7.4737, 0.0165)
+      (7.8947, 0.0146)
+      (8.3158, 0.0129)
+      (8.7368, 0.0115)
+      (9.1579, 0.0103)
+      (9.5789, 0.0093)
+      (10, 0.0084)
+    };
+    \coordinate (sai) at (3, 0.1238);
+  \end{scope}
+  \draw[aponta] (sai) |- ++(1,0.5) node[right]
+    {$c(x) = \frac{|f''(x)|}{(1+(f'(x))^2)^{3/2}}$};
+  \node[above] (titulo) at (5,10)
+    {Modelo potencial e m{\'a}xima curvatura};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{4}; \def\B{0.35};
+  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
+  \def\C{7}; \def\D{-0.7};
+  \draw[fun, dashed]
+    plot[id=x, samples=100, domain=0:8] function{\C+\D*x};
+  \draw (0.22,6.85) circle (4pt);
+  \draw (7.1,2) circle (4pt);
+  \draw[aponta] (1,\A) -| (2.8,9);
+  \draw[aponta] (3.5,\C+\D*3.5) -| (4.5,9);
+  \begin{scope}[xshift=5.25cm, yshift=5.5cm, scale=0.5]
+    \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+    \draw[-latex] (0,-3.2) -- (0,8) node[left] (E) {$f(x)-g(x)$};
+    \draw[aponta] (1.59,-2.3) -- (1.59,0) node[above] {pmc};
+    \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)-\C-\D*x};
+  \end{scope}
+  \node[above] (titulo) at (5,10)
+    {Modelo potencial de Barros e Tavares (1995)};
+\end{tikzpicture}
+

@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+  \draw (0,0) rectangle (3,3) node[above right] at (0,0) {$\Omega$};
+  \node[above] at (1.5,3) {elementos de $\Omega$};
+  \node (CC) at (2,2) {};
+  \node (CK) at (1,2) {};
+  \node (KC) at (2,1) {};
+  \node (KK) at (1,1) {};
+  \node[left, text width=3em, text centered] (arrowstart) at (-2,-2)
+    {valores de $X$};
+  \node (arrowend) at (5,-2) {$\mathbb{R}$};
+  \draw (CC) circle (2pt) node[above] {CC};
+  \draw (KC) circle (2pt) node[above] {KC};
+  \draw (CK) circle (2pt) node[above] {CK};
+  \draw (KK) circle (2pt) node[above] {KK};
+  \draw[->] (arrowstart) -- (arrowend);
+  \foreach \x/\y in {0/0,2/1,4/2}
+  \draw (\x,-1.8) -- (\x,-2) node[anchor=north] {\y};
+  \path[->,>=stealth']
+    (CC) edge[bend left] (4,-2)
+    (CK) edge[bend left=25] (2,-2)
+    (KC) edge[bend left] (2,-2)
+    (KK) edge[bend left] (0,-2);
+\end{tikzpicture}

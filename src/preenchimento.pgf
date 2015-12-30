@@ -1,0 +1,46 @@
+\makeatletter
+\pgfdeclarepatternformonly[%
+\hatchdistance,\hatchthickness]{flexible hatch}
+{\pgfqpoint{0pt}{0pt}}
+{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+{\pgfpoint{\hatchdistance-1pt}{\hatchdistance-1pt}}%
+{
+  \pgfsetcolor{\tikz@pattern@color}
+  \pgfsetlinewidth{\hatchthickness}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+  \pgfusepath{stroke}
+}
+\makeatother
+
+\begin{tikzpicture}[
+  hatch distance/.store in=\hatchdistance,
+  hatch distance=10pt,
+  hatch thickness/.store in=\hatchthickness,
+  hatch thickness=2pt]
+
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel={z},
+    axis on top,
+    legend style={
+      draw=none, legend cell align=left, legend plot pos=left}]
+
+    \addplot [mark=none, domain=0:1, samples=100,
+    pattern=flexible hatch, hatch distance=10pt,
+    hatch thickness=2pt, draw=darkgreen, pattern color=darkgreen,
+    area legend] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+    \addlegendentry{Intervalo 1}
+
+    \addplot [mark=none, domain=-2:-0.5, samples=100,
+    pattern=flexible hatch, hatch distance=5pt,
+    hatch thickness=0.75pt, draw=darkgreen, pattern color=darkgreen,
+    area legend] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;    
+    \addlegendentry{Intervalo 2}
+
+    \addplot[color=black, thick, domain=-5:5, samples=100]
+    {1/sqrt(2*pi)*exp(-x^2/2)};
+    \addlegendentry{z}
+
+  \end{axis}
+\end{tikzpicture}

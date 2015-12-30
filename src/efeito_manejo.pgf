@@ -1,0 +1,35 @@
+\def\xs{1}
+\def\ys{10}
+
+\begin{tikzpicture}[xscale=\xs, yscale=\ys, >=latex]
+  % definicoes dos valores dos parametros e outras quantidades
+  \def\al{1.3}
+  \def\all{0.5}
+  \def\n{1.6}
+  \def\nn{1.9}
+
+  % grid, eixos e anotacoes
+  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+    grid[xstep=0.5, ystep=0.05] (5+0.2/\xs,0.4+0.2/\ys);
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0) node[below] {$r$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.43) node[left] {$f(r)$};
+  \node[left] at (-3,0) {$0$};
+
+  % funcoes
+  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\n*(1-1/\n)*\al**\n*exp(\n*x)*
+      (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
+  \draw[color=red!30!black, thick, smooth] plot[id=x, domain=-3:5]
+    function{\nn*(1-1/\nn)*\all**\nn*exp(\nn*x)*
+      (1+(\all*exp(x))**\nn)**(-1+1/\nn-1)};
+
+  % textos
+  \path[->, draw] (-0.5,0.2) to[out=180, in=0] ++(-0.75,0.05)
+    node[anchor=east, text ragged left, text width=9ex,
+    fill=white, inner sep=0pt]
+    {antes do manejo};
+  \path[->, draw] (2,0.25) to[out=0, in=180] ++(0.75,0.05)
+    node[anchor=west, text ragged, text width=8ex,
+    fill=white, inner sep=0pt]
+    {ap\'os o manejo};
+\end{tikzpicture}  

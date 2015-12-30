@@ -1,0 +1,53 @@
+% requires \usepackage{booktabs,colortbl}
+
+% Tabela em linha. Separador de campo eh o espaco.
+\pgfplotstableread{
+level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(error1)    
+1       4       2.50000000e-01  7.57858283e-01  48      0                   0   
+2       16      6.25000000e-02  5.00000000e-01  25      -3.00000000e-01 4       
+3       64      1.56250000e-02  2.87174589e-01  41      -3.99999999e-01 4       
+4       256     3.90625000e-03  1.43587294e-01  8       -5.00000003e-01 4       
+5       1024    9.76562500e-04  4.41941738e-02  22      -8.49999999e-01 4       
+6       4096    2.44140625e-04  1.69802322e-02  46      -6.90000001e-01 4       
+7       16384   6.10351562e-05  8.20091159e-03  40      -5.24999999e-01 4       
+8       65536   1.52587891e-05  3.90625000e-03  48      -5.35000000e-01 3.99999999e+00  
+9       262144  3.81469727e-06  1.95312500e-03  33      -5.00000000e-01 4.00000001e+00  
+10      1048576 9.53674316e-07  9.76562500e-04  2       -5.00000000e-01 4.00000001e+00  
+}\loadedtable
+
+\pgfplotstabletypeset[
+  columns={dof, error1, error2},
+  columns/error1/.style={
+    column name=$L_2$,
+    sci, sci zerofill,
+    precision=3
+  },
+  columns/error2/.style={
+    column name=$A$,
+    sci, sci zerofill, sci superscript,
+    precision=2
+  },
+  every head row/.style={
+    before row=\toprule,
+    after row=\midrule
+  },
+  every last row/.style={
+    after row=\bottomrule
+  },
+  every even column/.style={
+    column type/.add={>{\columncolor[gray]{.8}}}{}
+  }]\loadedtable
+
+\hspace{1cm}
+
+\pgfplotstabletypeset[
+  columns={dof, error1, error2},
+  every even row/.style={
+    before row={\rowcolor[gray]{0.7}}
+  },
+  every head row/.style={
+    before row=\toprule,after row=\midrule
+  },
+  every last row/.style={
+    after row=\bottomrule
+  }]\loadedtable

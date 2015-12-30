@@ -1,0 +1,59 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=gray!80, fill=gray!20, thick,
+    minimum height=2em, inner sep=10pt, text centered},
+  state2/.style={
+    rectangle, rounded corners, draw=black, fill=gray!70, thick,
+    minimum height=2em, inner sep=10pt, text centered}
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \draw[fill=white, color=white] (-10.8,-4.5) rectangle (9.2,4.5);
+  \node[text width=2cm] (mug) at (-8.6,-0.7) {\Huge INLA\\ MUG};
+  \node[rotate=90] (site) at (-10.4,0) {
+    \large  www.r-inla.org \hspace{3ex} www.leg.ufpr.br
+  };
+  \node[state2, text width=13cm, text ragged] (inla) at (-0.4,-0.7) {
+    \texttt{inla(formula, family=".", data,
+      \\ \hspace{5ex} control.compute, control.predictor, control.inla, ...)
+    }\\
+  };
+  \node[state] (formula) at (-6,1.25) {
+    \verb|y~predictor+f(z, model=".", ...)| \\
+  };
+  \node[state, text width=9cm, text ragged] (model) at (-5,3.3) {
+    {\tt iid, rw1, rw2, crw2, seasonal,
+      besag, besagproper, besag2, byn,
+      arp, mec, meb, generic(0,1,2), iid(1-5)d, rw2d,
+      matern2d}\\
+  };
+  \node[state, text width=6.4cm, text ragged] (family) at (3.9,2.8) {
+    {\tt nbinomial, poisson, binomial, cbinomial, gaussian, sn, gev,
+      stochvol, zero.inflated, beta, gamma, betabinomial, logistic,
+      weibull, lognormal, coxph}\\
+  };
+  \node[state, text width=3.2cm, text ragged]
+  (controlcompute) at (-7.9,-3.2) {
+    {\tt list(hyperpar, \\ \hspace{5ex} dic,  mlik, \\ \hspace{5ex} cpo, ...)}\\
+  };
+  \node[state, text width=4.3cm, text ragged]
+  (controlpredictor) at (-3,-3.2) {
+    {\tt list(hyper, compute, \\ \hspace{5ex} cdf, quatiles,
+      \\ \hspace{5ex} link, ...)}\\
+  };
+  \node[state, text width=8.3cm, text ragged]
+  (controlinla) at (4.5,-3.2) {
+    {\tt list(int.strategy=c("ccd","grid","eb"),\\
+      \hspace{5ex} strategy=c("simplified.laplace",\\
+      \hspace{5ex} "gaussian","laplace"))}\\
+  };
+  \draw[<-, rounded corners] (-5,-0.2) |- ++(-0.5,0.5) -| (formula);
+  \draw[<-, rounded corners] (-4.15,1.5) |- ++(-0.5,0.5) -| (model);
+  \draw[<-, rounded corners] (-2.1,-0.2) |- ++(0.5,0.7) -| (family);
+  \draw[<-, rounded corners] (-4.15,-1.2) |- ++(-0.5,-0.7)
+    -| (controlcompute);
+  \draw[<-, rounded corners] (-0.55,-1.2) |- ++(-0.5,-0.7)
+    -| (controlpredictor);
+  \draw[<-, rounded corners] (3.48,-1.2) |- ++(0.5,-0.7)
+    -| (controlinla);
+\end{tikzpicture}

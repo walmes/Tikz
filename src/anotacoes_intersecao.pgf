@@ -1,0 +1,54 @@
+%% http://tex.stackexchange.com/questions/129571/add-variable-tick-in-axis
+
+\makeatletter
+\def\markxof#1{
+  \pgf@process{#1}
+  \pgfmathparse{
+    \pgf@x/\pgfplotsunitxlength+
+    \pgfplots@data@scale@trafo@SHIFT@x)/10^\pgfplots@data@scale@trafo@EXPONENT@x}
+}
+\makeatother
+
+\pgfplotsset{
+  every axis/.append style={font=\small},
+  mystyle/.style={%
+    clip=true,
+    axis x line=bottom,
+    axis y line=left,
+    xmin=1, xmax=64,
+    samples =32,
+    ymax = 1.6, ymin  = -0.2}
+}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    mystyle,
+    grid = major,
+    grid style={dashed},
+    xlabel={\emph{sample number}},
+    xlabel style={at={(1,-0.2)}, anchor=south},
+    legend cell align=left,
+    legend pos=outer north east]
+
+    \addplot[name path global=one,blue,mark=+,domain=1:64]
+      {exp(-log10(2)/(8^2/4)*(\x-32)^2)};
+    \addplot[name path global=two,red,domain=1:64] {0.5};
+    \path [name intersections={of=one and two, name=i}];
+    \pgfplotsextra{
+      \path (i-1) \pgfextra{\markxof{i-1}\xdef\mytick{\pgfmathresult}};
+    }
+    \path let \p1=($(i-1)$) in (\x1,\y1);
+    \draw[dashed] (i-1) -- ($(axis cs:0,-0.2)!(i-1)!(axis cs:64,-.2)$);
+    \legend{Sampled signal, Threshold}
+  \end{axis}
+
+  \begin{axis}[
+    mystyle,
+    xtick=\empty, ytick=\empty,
+    extra x ticks={\mytick},
+    extra x tick labels={$t_{step}$},
+    extra x tick style={
+      xticklabel style={yshift=-10}
+    }]
+  \end{axis}
+\end{tikzpicture} 

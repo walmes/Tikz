@@ -1,0 +1,16 @@
+\begin{tikzpicture}[
+  scale=0.5,
+  mycircle/.style={
+    draw, circle, fill=darkgreen, fill opacity=0.5, minimum width=2cm
+  }]
+  % \draw[help lines] (0,0) grid (8,6);
+  \draw (0,0) rectangle (8,6.5);
+  \node[mycircle, label={[anchor=north]above right:$A$}] at (5,3) {};
+  \node[mycircle, label={[anchor=north]below left:$B$}] at (3,3) {};
+  \fill[darkgreen] (2.5,4) circle (3pt) node [above, color=black] {$1$};
+  \fill[darkgreen] (2.5,2) circle (3pt) node [above, color=black] {$3$};
+  \fill[darkgreen] (5.5,3) circle (3pt) node [above, color=black] {$6$};
+  \fill[darkgreen] (4,2.5) circle (3pt) node [above, color=black] {$4$};
+  \fill[darkgreen] (4,3.5) circle (3pt) node [above, color=black] {$2$};
+  \fill[darkgreen] (3,5.5) circle (3pt) node [above, color=black] {$5$};
+\end{tikzpicture}

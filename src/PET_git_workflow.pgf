@@ -1,0 +1,126 @@
+\begin{tikzpicture}[
+  every path/.style={->, draw, >=stealth},
+  proc/.style={rounded corners=2pt, fill=gray!40}]
+
+  \def\radio{2}
+  % \draw[gray!30] (0,0) circle (\radio cm);
+  \coordinate (criaissue) at (45:\radio);
+  \node[proc, above right] at (criaissue)
+    {Criar \emph{issue\#X}};
+
+  \coordinate (atuadevel) at (0:\radio);
+  \node[proc, right, align=left] at (atuadevel)
+    {Atualizar\\ \emph{branch devel}};
+
+  \coordinate (criabranc) at (-45:\radio);
+  \node[proc, below right, align=left] at (criabranc)
+    {Criar \emph{branch issue\#X}\\ do \emph{devel}};
+
+  \coordinate (mergerequ) at (-135:\radio);
+  \node[proc, below left,  align=right] at (mergerequ)
+    {Fazer\\ \emph{merge request}};
+
+  \coordinate (mergeissu) at (180:\radio);
+  \node[proc, left, align=right] at (mergeissu)
+    {Fazer merge do\\ \emph{issue\#X} no \emph{devel}};
+
+  \coordinate (fechaissu) at (135:\radio);
+  \node[proc, above left, align=right] at (fechaissu)
+    {Fechar \emph{issue\#X} \\ e \emph{merge request}};
+
+  \foreach \s in {45,0,225,180}{
+    \draw[black] (\s:\radio) arc ({\s}:{\s-42}:\radio cm);
+  }
+  \draw[black] (135:\radio) arc ({135}:{135-87}:\radio cm);
+
+  \foreach \s in {
+    criaissue,atuadevel,criabranc,mergerequ,mergeissu,fechaissu}{
+    \draw[draw=none, fill=gray] (\s) circle (0.5 ex);
+  }
+
+  \begin{scope}[yshift=-4cm, xshift=1cm]
+    \def\radio{1.5}
+    % \draw[gray!30] (0,0) circle (\radio cm);
+    \coordinate (gitadd) at (180:\radio);
+    \node[proc, left, align=right] at (gitadd)
+      {Adicionar\\ modifica\c{c}\~{o}es\\ (\texttt{git add})};
+
+    \coordinate (gitcommit) at at (270:\radio);
+    \node[proc, below, align=center] at (gitcommit)
+      {Registrar modifica\c{c}\~{o}es\\ (\texttt{git commit})};
+
+    \coordinate (gitpush) at at (0:\radio);
+    \node[proc, right, align=left] at (gitpush)
+      {Enviar\\ modifica\c{c}\~{o}es\\ (\texttt{git push})};
+
+    \foreach \s in {180,270}{
+      \draw[black] (\s:\radio) arc ({\s}:{\s+86}:\radio cm);
+    }
+    \draw[black] (0:\radio) arc ({0}:{0+176}:\radio cm);
+
+    \foreach \s in {gitadd,gitcommit,gitpush}{
+      \draw[draw=none, fill=gray] (\s) circle (0.5 ex);
+    }
+  \end{scope}
+
+  \begin{scope}[yshift=4cm, xshift=1cm]
+    \def\radio{1.5}
+    % \draw[gray!30] (0,0) circle (\radio cm);
+
+    \coordinate (complemiles) at (-45:\radio);
+    \node[proc, below right] at (complemiles)
+      {\emph{Milestone} completa};
+
+    \coordinate (mergedevel) at (0:\radio);
+    \node[proc, right, align=left] at (mergedevel)
+      {Fazer merge do\\ \emph{devel} no \emph{master}};
+
+    \coordinate (gittag) at (45:\radio);
+    \node[proc, above right, align=left] at (gittag)
+      {Criar \emph{tag}\\ de vers\~{a}o};
+
+    \coordinate (criamiles) at (205:\radio);
+    \node[proc, below left] at (criamiles)
+      {Criar \emph{Milestone}};
+
+    \foreach \s in {-45,0}{
+      \draw[black] (\s:\radio) arc ({\s}:{\s+41}:\radio cm);
+    }
+    \draw[black] (45:\radio) arc ({45}:{45+156}:\radio cm);
+
+    \foreach \s in {complemiles,mergedevel,gittag,criamiles}{
+      \draw[draw=none, fill=gray] (\s) circle (0.5 ex);
+    }
+
+    \draw[-] (200:\radio) arc (20:60:\radio) node[proc, above left]
+      {Criar reposit\'{o}rio};
+    \draw[->] (90:\radio) arc (270:230:\radio) node[proc, above left]
+      {Projeto conclu\'{i}do};
+  \end{scope}
+
+  \path[shorten <=2pt, shorten >=2pt, -]
+    (mergerequ) .. controls (-2,0) and (0,1) .. (gitadd);
+  \path[shorten <=2pt, shorten >=2pt, -]
+    (criabranc) to[out=-135, in=90] (gitadd);
+  \path[shorten <=2pt, shorten >=2pt]
+    (gitpush) .. controls (2.5,-1.5) and (-0.25,-2.75) .. (mergerequ);
+  \path[shorten <=2pt, shorten >=2pt]
+    (fechaissu) to[out=45, in=225] (complemiles);
+  \path[shorten <=2pt, shorten >=2pt, -]
+    (criamiles) to[out=-65, in=135] (criaissue);
+
+  \draw[-, dashed] (-2.5,-1.25) -- (1.6,2.2);
+  \draw[-, dashed] (-2.5,2.5) -- (3,3.25);
+
+  \def\size{1.2}
+  \node[rounded corners=2pt, fill=yellow, align=center]
+    (devel) at (0.9,-0.9)
+    {\includegraphics[scale=\size]{/home/walmes/Dropbox/tikz/developer.png}};
+  \node[rounded corners=2pt, fill=yellow, align=center]
+    (master) at (-0.9,0.9)
+    {\includegraphics[scale=\size]{/home/walmes/Dropbox/tikz/master.png}};
+  \node[rounded corners=2pt, fill=yellow, align=center]
+    (owner) at (0.4,4.5)
+    {\includegraphics[scale=\size]{/home/walmes/Dropbox/tikz/owner.png}};
+
+\end{tikzpicture}

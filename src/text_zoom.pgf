@@ -1,0 +1,24 @@
+% http://tex.stackexchange.com/questions/184911/magnify-text-using-spy-library
+
+\tikzset{
+  fancytitle/.style={fill=red, text=white, rounded corners},
+  mybox/.style={
+    draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt
+  }
+}
+
+\begin{tikzpicture}[
+  spy using outlines={
+    rectangle, magnification=2, size=4.5cm, height=2cm, connect spies
+  }]
+  \node [mybox] (box){%
+    \begin{minipage}{0.50\textwidth}
+      The Indexed Web contains at least 4.96 billion
+      pages (as of Wednesday, 11 June, 2014). -- WorldWideWebSize.com
+    \end{minipage}
+  };
+  \node[fancytitle, right=10pt] at (box.north west) {Did you know?};
+  \node[fancytitle, rounded corners] at (box.east) {$\clubsuit$};
+  \spy[red] on (-2.1,.25) in node[right] at (-1,-2);
+\end{tikzpicture}%

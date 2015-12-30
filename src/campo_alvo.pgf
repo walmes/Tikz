@@ -1,0 +1,60 @@
+% http://tex.stackexchange.com/questions/159408/plotting-multivariable-functions-with-dependent-variables-in-domain
+
+\xdefinecolor{lightgrey}{RGB}{220,220,220}
+\xdefinecolor{goldenrod}{RGB}{255,223,66}
+\xdefinecolor{newblue}{RGB}{57,106,177}
+\xdefinecolor{newred}{RGB}{204,37,41}
+\xdefinecolor{newgreen}{RGB}{132,186,91}
+\xdefinecolor{newpurple}{RGB}{144,103,167}
+
+\begin{tikzpicture}[scale=1.2]
+  \begin{axis}[axis equal, view={0}{90}]
+    \addplot3[surf, shader=interp, opacity=0.5,
+      domain=-7:7, point meta min=1] {(50-x^2-y^2)};
+    \addplot [domain=0:2*pi,samples=50]
+      ({cos(deg(x))},{sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({2*cos(deg(x))},{2*sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({3*cos(deg(x))},{3*sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({4*cos(deg(x))},{4*sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({5*cos(deg(x))},{5*sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({6*cos(deg(x))},{6*sin(deg(x))});
+    \addplot [domain=0:2*pi,samples=50]
+      ({7*cos(deg(x))},{7*sin(deg(x))});
+    \addplot [newpurple,double=newpurple,->]
+      plot coordinates {
+        (0,0)
+        (-1,3)
+      };
+    \addplot [newblue,double=newblue,->]
+      plot coordinates {
+        (0,0)
+        (7,-1)
+      };
+    \addplot [newred,double=newred,->]
+      plot coordinates {
+        (7,-1)
+        (-1,3)
+      };
+    \addplot+[newred,double=newred]
+      plot coordinates {
+        (1,2)
+      };
+    \addplot [newgreen,double=newgreen]
+      plot coordinates {
+        (-3,-6)
+        (3,6)
+      };
+    \addplot3 [blue,/pgfplots/quiver,
+      quiver/u=-x/50,
+      quiver/v=-y/50,
+      quiver/scale arrows=0.1,
+      -stealth,samples=10] {1};
+    \fill [white] (rel axis cs:0,0)
+      rectangle (rel axis cs:1,1) (axis cs:0,0) circle [radius=7];         
+  \end{axis}
+\end{tikzpicture}

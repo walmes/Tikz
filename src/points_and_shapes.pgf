@@ -1,0 +1,149 @@
+% http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
+
+\def\ptsize{0.75pt}
+\tikzset{
+  mypoints/.style={fill=white,draw=black},
+  pil/.style={->, shorten <=2pt, shorten >=2pt,}
+}
+
+\begin{tikzpicture}[>=latex, xscale=3, yscale=3]
+
+  \begin{scope}
+    \def\thetas{5}; \def\thetav{0.4}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=-0.35:1]
+      function{1/(1+exp(-\thetas*(x-\thetav)))}
+      node[right, color=black] {MC};
+    \draw[dashed] (0,1) -- (1,1);
+    \fill[mypoints] (0,1) circle (\ptsize) node[left] {ASS};
+    \draw[dashed] (0,0) -- (-0.5,0) node[left] {ASI};
+    \fill[mypoints] (0,0) circle (\ptsize);
+    \draw[dashed] ($(-0.25,0)+1/(1+exp(\thetas*\thetav))*(0,1)$)
+      node[left] {PO} -- +(0.5,0);
+    \fill[mypoints] ($(0,0)+1/(1+exp(\thetas*\thetav))*(0,1)$)
+      circle (\ptsize);
+    \draw[dashed] (\thetav,0.25) -- +(0,0.5);
+    \fill[mypoints] (\thetav,0.5) circle (\ptsize)
+      node[right] {PS-PI-PF$_{0.5}$};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {A};
+  \end{scope}
+
+  \begin{scope}[xshift=2.0cm]
+    \def\tpo{1}; \def\tc{2.5}; \def\tv{0.4}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[color=green!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1]
+      function{\tpo/(1+(x/\tv)**\tc)}
+      node[right, black] {MD};
+    \draw[dashed] (\tv,0.5-0.25) -- +(0,0.5);
+    \fill[mypoints] (\tv,0.5) circle (\ptsize)
+      node[right] {PF$_{0.5}$};
+    \draw[dashed] (\tv-0.15,0.76-0.25) -- +(0,0.5);
+    \fill[mypoints] (\tv-0.15,0.76) circle (\ptsize)
+      node[right] {PI};
+    \fill[mypoints] (0,\tpo) circle (\ptsize)
+      node[left] {PO};
+    \draw[dashed] (0,0.03) -- +(1,0);
+    \fill[mypoints] (0,0.03) circle (\ptsize)
+      node[above left] {ASI};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {B};
+  \end{scope}
+
+  \begin{scope}[yshift=-1.6cm]
+    \def\thetah{0.3}; \def\thetac{3.6}; %\def\thetac{-2.8}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=-0.1:\thetah]
+      function{0};
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=\thetah:1]  
+      function{1-exp(-\thetac*(x-\thetah))} node[right, black] {MND-CON};
+    \draw[dashed] (0,1) -- (1,1);
+    \fill[mypoints] (0,1) circle (\ptsize)
+      node[left] {ASS};
+    \fill[mypoints] (0,0) circle (\ptsize)
+      node[below left] {PON};
+    \draw[dashed] (\thetah,0-0.25) -- +(0,0.5);
+    \fill[mypoints] (\thetah,0) circle (\ptsize)
+      node[below right] {POH-PZ-PD};
+    \draw[dashed] (0.5,0.5-0.25) -- +(0,0.5);
+    \fill[mypoints] (0.5,0.5) circle (\ptsize)
+      node[below right] {PF$_{0.5}$};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {C};
+  \end{scope}
+
+  \begin{scope}[xshift=2cm, yshift=-1.6cm]
+    \def\thetah{0.3}; \def\thetac{5.6}; %\def\thetac{-2.8}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=-0.1:\thetah]  
+      function{0.9};
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=\thetah:1]  
+      function{-0.1+exp(-\thetac*(x-\thetah))}
+      node[right, black] {MNC-CVX};
+    \draw[dashed] (0,-0.1) -- +(1,0);
+    \fill[mypoints] (0,-0.1) circle (\ptsize)
+      node[left] {ASI};
+    \draw[dashed] (\thetah,0.9-0.25) -- +(0,0.5);
+    \draw[dashed] (\thetah-0.25,0.9) -- +(0.5,0);
+    \fill[mypoints] (\thetah,0.9) circle (\ptsize)
+      node[above right] {PD-PO};
+    \draw[dashed] (0.71,0-0.25) -- +(0,0.5);
+    \fill[mypoints] (0.71,0) circle (\ptsize)
+      node[above right] {PZ};
+    \draw[dashed] (0.42,0.4-0.25) -- +(0,0.5);
+    \fill[mypoints] (0.42,0.4) circle (\ptsize)
+      node[right] {PF$_{0.5}$};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {D};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-3.2cm]
+    \def\ty{0.9}; \def\tx{0.2}; \def\tc{0.01}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[color=green!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1]
+      function{\ty*(x/\tx)*(1-\tc*(1-x/\tx))**(-1/\tc)}
+      node[right, black] {AAC};
+    \draw[dashed] (\tx,\ty-0.25) -- +(0,0.5);
+    \draw[dashed] (\tx-0.25,\ty) -- +(0.5,0);
+    \fill[mypoints] (\tx,\ty) circle (\ptsize)
+      node[above right] {PC};
+    \fill[mypoints] (0,0) circle (\ptsize)
+      node[above right] {PON};
+    \draw[dashed] (0.41,0.65-0.25) -- +(0,0.5);
+    \fill[mypoints] (0.41,0.65) circle (\ptsize)
+      node[right] {PI};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {E};
+  \end{scope}
+
+  \begin{scope}[xshift=2cm, yshift=-3.2cm]
+    \def\thetay{0.9}; \def\thetax{0.4}; \def\thetac{-2.8}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[-, color=green!60!black, very thick, samples=100]
+      plot[id=x, domain=-0.1:1]  
+      function{\thetay+\thetac*(x-\thetax)**2};
+    \node[left] at ($(-0.1,0)+{\thetay+\thetac*(-0.1-\thetax)^2}*(0,1)$)
+      {CON};
+    \draw[dashed] (\thetax-0.25,\thetay) -- +(0.5,0);
+    \draw[dashed] (\thetax,\thetay-0.25) -- +(0,0.5);
+    \fill[mypoints] (\thetax,\thetay) circle (\ptsize)
+      node[above right] {PC-PS};
+    \draw[dashed] ($(-0.25,0)+{\thetay+\thetac*(-\thetax)^2}*(0,1)$)
+      node[left] {PO} -- +(0.5,0);
+    \fill[mypoints] ($(0,0)+{\thetay+\thetac*(-\thetax)^2}*(0,1)$)
+      circle (\ptsize);
+    \draw[dashed] (0.965,0-0.25) -- +(0,0.5);
+    \fill[mypoints] (0.965,0) circle (\ptsize)
+      node[below left] {PZ};
+    \node[draw, circle, inner sep=1pt] at (0.5,1.2) {F};
+  \end{scope}
+
+\end{tikzpicture}

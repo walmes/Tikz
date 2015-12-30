@@ -1,0 +1,52 @@
+\def\hscale{-1.2}
+\def\size{25}
+\def\bzero{4}
+\def\bone{-2}
+
+\newcommand*{\ListXYvalues}{0.5, 1, 1.5, 2, 2.5, 3, 3.5}
+\newcommand*\pgfplotsinvokeforeachmacro[1]{
+  \expandafter\pgfplotsinvokeforeach\expandafter{#1}}
+
+\tikzset{
+  declare function={
+    binompf(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);
+  },
+  declare function={
+    eta(\x,\bzero,\bone)=1/(1+exp(\bzero+\bone*\x));
+  },
+  hplot/.style={ycomb, mark=o, samples at={0,1,...,20}},
+  vplot/.style={
+    xcomb, no marks,
+    very thick, line cap=round,
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none}
+}
+
+\pgfplotsset{
+  my plot/.code args={#1}{%
+    \addplot [
+      vplot, restrict x to domain=-1:-0.005,
+      samples at={0,1,...,\size},
+      shift={(axis direction cs: #1, 0)},
+    ] ({\hscale*binompf(x, \size, 1/(1+exp(\bzero+\bone*#1)))}, x);
+  }
+}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel=$x$,
+    ylabel={$\text{E}(Y|x) = n\cdot p(x)$},
+    xmin=-0.25]
+
+    \addplot[domain=0:3.75, samples=30, smooth]
+      (x, {\size*eta(x, \bzero, \bone)});
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot={#1}}
+    }
+
+  \end{axis}
+\end{tikzpicture}

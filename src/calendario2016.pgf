@@ -1,0 +1,131 @@
+\makeatletter
+% Define our own style
+\tikzstyle{week list sunday}=[
+  % Note that we cannot extend from week list,
+  % the execute before day scope is cumulative
+  execute before day scope={%
+    \ifdate{day of month=1}{\ifdate{equals=\pgfcalendarbeginiso}{}{
+        % On first of month, except when first date in calendar.
+        \pgfmathsetlength{\pgf@y}{\tikz@lib@cal@month@yshift}%
+        \pgftransformyshift{-\pgf@y}
+      }}{}%
+  },
+  execute at begin day scope={%
+    % Because for TikZ Monday is 0 and Sunday is 6,
+    % we can't directly use \pgfcalendercurrentweekday,
+    % but instead we define \c@pgf@counta (basically) as:
+    % (\pgfcalendercurrentweekday + 1) % 7
+    \pgfmathsetlength\pgf@x{\tikz@lib@cal@xshift}%
+    \ifnum\pgfcalendarcurrentweekday=6
+    \c@pgf@counta=0
+    \else
+    \c@pgf@counta=\pgfcalendarcurrentweekday
+    \advance\c@pgf@counta by 1
+    \fi
+    \pgf@x=\c@pgf@counta\pgf@x
+    % Shift to the right position for the day.
+    \pgftransformxshift{\pgf@x}
+  },
+  execute after day scope={
+    % Week is done, shift to the next line.
+    \ifdate{Saturday}{
+      \pgfmathsetlength{\pgf@y}{\tikz@lib@cal@yshift}%
+      \pgftransformyshift{-\pgf@y}
+    }{}%
+  },
+  % This should be defined, glancing from the source code.
+  tikz@lib@cal@width=7
+]
+\tikzoption{day headings}{\tikzstyle{day heading}=[#1]}
+\tikzstyle{day heading}=[]
+\tikzstyle{day letter headings}=[
+  execute before day scope={\ifdate{day of month=1}{%
+      \pgfmathsetlength{\pgf@ya}{\tikz@lib@cal@yshift}%
+      \pgfmathsetlength\pgf@xa{\tikz@lib@cal@xshift}%
+      \pgftransformyshift{-\pgf@ya}
+      \foreach \d/\l in {0/D,1/S,2/T,3/Q,4/Q,5/S,6/S} {
+        \pgf@xa=\d\pgf@xa%
+        \pgftransformxshift{\pgf@xa}%
+        \pgftransformyshift{\pgf@ya}%
+        \node[every day, day heading]{\tiny\l};%
+      } 
+    }{}%
+  }%
+]
+\makeatother
+
+\tikzstyle{labest}=[font=\footnotesize, fill=orange!50, inner sep=2pt]
+\tikzstyle{evento}=[font=\footnotesize, fill=red!50, inner sep=2pt]
+
+% The actual calendar is now rather easy:
+\begin{tikzpicture}[
+  every calendar/.style={
+    month label above centered,
+    % day letter headings,
+    month text={\textit{\%mt}},
+    if={(Sunday) [blue!75]},
+    if={(Saturday) [black!50]},
+    week list sunday,
+    day yshift=1em, day xshift=1.25em}]
+
+  % % Layout 3 colunas e 4 linhas.
+  % \matrix[column sep=0.1em, row sep=0.2em] {
+  %   \calendar[dates=2016-01-01 to 2016-01-last]; &
+  %   \calendar[dates=2016-02-01 to 2016-02-last]
+  %     if (equals=02-29) [orange]; &
+  %   \calendar[dates=2016-03-01 to 2016-03-last]; \\
+  %   \calendar[dates=2016-04-01 to 2016-04-last]; &
+  %   \calendar[dates=2016-05-01 to 2016-05-last]
+  %     if (between=05-23 and 05-25) [red]
+  %     if (equals=05-06) [orange]; &
+  %   \calendar[dates=2016-06-01 to 2016-06-last]; \\
+  %   \calendar[dates=2016-07-01 to 2016-07-last]
+  %     if (between=07-24 and 07-29) [red]; &
+  %   \calendar[dates=2016-08-01 to 2016-08-last]; &
+  %   \calendar[dates=2016-09-01 to 2016-09-last]; \\
+  %   \calendar[dates=2016-10-01 to 2016-10-last]
+  %     if (between=10-04 and 10-05) [red]; &
+  %   \calendar[dates=2016-11-01 to 2016-11-last]; &
+  %   \calendar[dates=2016-12-01 to 2016-12-last]; \\
+  % };
+
+  % Layout 4 colunas e 3 linhas.
+  \matrix[column sep=0.1em, row sep=0em] {
+    \calendar[dates=2016-01-01 to 2016-01-last]; &
+    \calendar (Fev) [dates=2016-02-01 to 2016-02-last]
+      if (equals=02-29) [orange]; &
+    \calendar[dates=2016-03-01 to 2016-03-last]; &
+    \calendar[dates=2016-04-01 to 2016-04-last]; \\
+    \calendar (Mai) [dates=2016-05-01 to 2016-05-last]
+      if (between=05-23 and 05-25) [red]
+      if (equals=05-06) [orange]; &
+    \calendar[dates=2016-06-01 to 2016-06-last]; &
+    \calendar (Jul) [dates=2016-07-01 to 2016-07-last]
+      if (between=07-24 and 07-29) [red]; &
+    \calendar (Ago) [dates=2016-08-01 to 2016-08-last]
+      if (equals=08-01) [orange]; \\
+    \calendar[dates=2016-09-01 to 2016-09-last]; &
+    \calendar (Out) [dates=2016-10-01 to 2016-10-last]
+      if (between=10-04 and 10-05) [red]
+      if (equals=10-07) [orange]; &
+    \calendar[dates=2016-11-01 to 2016-11-last]; &
+    \calendar[dates=2016-12-01 to 2016-12-last]; \\
+  };
+
+  \draw[black] (Fev-2016-02-29) |- +(0.3,-0.4)
+    node [labest, right] {$\blacktriangleright$ \textit{labest}};
+  \draw[black] (Mai-2016-05-06) |- +(0.3,0.4)
+    node [labest, right] {{\tiny $\blacksquare$} \textit{labest}};
+  \draw[black] (Ago-2016-08-01) -| +(-0.4,0.4)
+    node [labest, above] {$\blacktriangleright$ \textit{labest}};
+  \draw[black] (Out-2016-10-07) |- +(0.1,0.8)
+    node [labest, right] {{\tiny $\blacksquare$} \textit{labest}};
+
+  \draw[black] (Mai-2016-05-25) |- +(0.1,-0.5)
+    node [evento, right] {\textit{RBRAS}};
+  \draw[black] (Jul-2016-07-28) |- +(0.1,-0.4)
+    node [evento, right] {\textit{SINAPE}};
+  \draw[black] (Out-2016-10-04) |- +(-0.1,0.4)
+    node [evento, left] {\textit{SIEPE}};
+
+\end{tikzpicture}

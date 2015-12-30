@@ -1,0 +1,55 @@
+\begin{tikzpicture}[
+  >=stealth,
+  tx/.style={circle=1pt, inner sep=0pt, fill=red}]
+
+  \begin{axis}[
+    width=7cm, height=7cm,
+    xmin=-3, xmax=3,
+    ymin=-3, ymax=3,
+    extra x ticks={0,-1.8,1.8},
+    extra y ticks={0,-1.8,1.8},
+    extra x tick labels={$\hat{\beta}_0$},
+    extra y tick labels={$\hat{\beta}_1$},
+    extra tick style={grid=major},
+    xticklabels=\empty,
+    yticklabels=\empty]
+
+    \draw[fill=none, opacity=1, dashed, color=red]
+      (axis cs:-1.8,-1.8) rectangle (axis cs:1.8,1.8);
+    \draw[fill=none, opacity=1, dashed, color=blue]
+      (axis cs:-2,-2) rectangle (axis cs:2,2);
+    \path[draw, ->] (axis cs:1.8,1.6)
+      to[out=45, in=180] (axis cs:2.3,1.6)
+      node[right] {$t$};
+    \path[draw, ->] (axis cs:2,1)
+      to[out=45, in=90] (axis cs:2.5,0.8)
+      node[below] {$(pF)^{\frac{1}{2}}$};
+
+    \addplot[only marks, mark=o] coordinates { (0,0) };
+
+    \draw[darkgreen, fill, opacity=0.5]
+
+    \pgfextra{
+      \pgfpathellipse{\pgfplotspointaxisxy{0}{0}}
+      {\pgfplotspointaxisdirectionxy{-2}{1.75}}
+      {\pgfplotspointaxisdirectionxy{0}{1}}
+    };
+
+    \node[anchor=north east, fill=white] (eq)
+      at (axis description cs:0.98,0.98)
+      {$RC_{1-\alpha}(\beta_0,\beta_1)$};
+
+    \coordinate (in) at (axis description cs:0.55,0.55);
+    \path[draw, ->] (in) to[out=45, in=-90] (eq);
+    \draw[|<->|] (axis cs: -1.8,-2.2) -- node[below]
+      {$IC_{1-\alpha}(\beta_0)$} (axis cs:1.8,-2.2); 
+    \draw[|<->|] (axis cs: -2.2,-1.8) -- node[rotate=90, above]
+      {$IC_{1-\alpha}(\beta_1)$} (axis cs:-2.2,1.8); 
+
+    \node[tx] at (axis cs: 1.4,-1.4) {\tiny A};
+    \node[tx] at (axis cs: 1.4,0.4) {\tiny B};
+    \node[tx] at (axis cs: 1.9,-1.5) {\tiny C};
+    \node[tx] at (axis cs: 1.9,-1.9) {\tiny D};
+
+  \end{axis}
+\end{tikzpicture}

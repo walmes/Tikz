@@ -1,0 +1,58 @@
+\def\hscale{-1.7}
+\def\size{50}
+\def\bzero{0}
+\def\bone{1}
+
+\newcommand*{\ListXYvalues}{0.5, 1, 1.5, 2, 2.5, 3, 3.5}
+\newcommand*\pgfplotsinvokeforeachmacro[1]{
+  \expandafter\pgfplotsinvokeforeach\expandafter{#1}}
+
+\tikzset{
+  declare function={
+    poispf(\k,\l)=exp(-\l)*(\l^\k)/(\k!);
+  },
+  declare function={
+    eta(\x,\bzero,\bone)=exp(\bzero+\bone*\x);
+  },
+  vplot/.style={
+    xcomb, no marks,
+    very thick, line cap=round,
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none}
+}
+
+\pgfplotsset{
+  my plot/.code args={#1}{%
+    \addplot [
+      vplot, restrict x to domain=-1:-0.001,
+      samples at={0,1,...,\size},
+      shift={(axis direction cs: #1, 0)},
+    ] ({\hscale*poispf(x, exp(\bzero+\bone*#1))}, x);
+  }
+}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel=$x$,
+    ylabel={$\text{E}(Y|x) = \lambda(x)$},
+    xmin=-0.25]
+
+    \addplot[domain=0:3.75, samples=30, smooth]
+      (x, {eta(x, \bzero, \bone)});
+    \node[anchor=north west]
+    at (axis description cs: 0.05, 0.9){% <- importante!
+      $\begin{aligned}
+        \Pr(y|x) &= \dfrac{\lambda^y\text{e}^{-\lambda}}{y!}\\
+        \lambda &= \text{e}^\eta = \text{e}^{\beta_0+\beta_1 x}
+      \end{aligned}$
+    };
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot={#1}}
+    }
+
+  \end{axis}
+\end{tikzpicture}

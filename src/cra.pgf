@@ -1,0 +1,104 @@
+\def\xs{1}
+\def\ys{6}
+
+\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
+  % definicoes dos valores dos parametros e outras quantidades
+  \def\tr{0.1}
+  \def\ts{0.6}
+  \def\al{1.3}
+  \def\n{1.6}
+  \def\I{0.3506}
+  \def\ti{0.4071}
+  \def\S{-0.1340}
+  \def\Sangle{-42}
+  \def\f1{0.8}
+
+  % CRA
+  % grid e eixos
+  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+    node[below] {$\log(\psi)$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+    node[left] {$U(\psi)$};
+  % funcao
+  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\n)**(1-1/\n)};
+  % textos e chave
+  \draw[dashed] (\I,0) node[below] {$I$} -- (\I,\ti) -- (-3,\ti)
+    node[left] {$u_i$};
+  \draw [decorate, decoration={brace, amplitude=4pt}]
+    (-3.5,\tr) -- (-3.5,\ts) node [black,midway,left=3pt] {$\Delta$};
+  % texto
+  \path[->, draw]
+    (\I,\ti) to[out=0, in=180] ++(0.75,0.1)
+    node[anchor=west, text ragged, text width=1.6cm, fill=white]
+    {ponto de inflex\~ao};
+  \node[above] at (1,0.7)
+    {Curva de reten\c{c}\~ao de {\'a}gua do solo (CRA)};
+
+  % parametro S
+  \draw[color=darkgreen, dashed] plot[id=x, domain=-1.5:2.6]
+    function{\ti+\S*(x-\I)} node[below, fill=white] {reta tangente};
+  \draw[|<->|] (\I,\ti)++(1,0) arc (0:\Sangle:0.8 and 0.15);
+  \path (\I,\ti)++(0.5*1.5\Sangle/8:1)
+    node[right=2pt, fill=white, inner sep=1pt] {$\tan^{-1}(S)$};
+
+  % DRCA
+  \def\ys{3}
+  \begin{scope}[yshift=-0.3cm, domain=-3:5, >=latex, yscale=\ys]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,-0.15-0.15*0.2/\ys)
+      grid[xstep=0.5, ystep=0.03] (5+0.2/\xs,0.03+0.15*0.2/\ys);
+    \draw[->, line width=1pt] (-3,-0.15) -- (5.25,-0.15)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,-0.15) -- (-3,0.05)
+      node[left] {$U'(\psi)$};
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{-(\ts-\tr)*\n*(1-1/\n)*\al**\n*exp(\n*x)*
+        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
+    \node[left] at (-3,0) {$0$};
+    \draw[dashed] (\I,0.03) -- (\I,\S) -- (-3,\S) node[left] {$U'(I)$};
+    \path[->, draw]
+      (\I,\S) to[out=-2, in=180] ++(1.75,0.02)
+      node[anchor=west, fill=white] {$S$};
+    \node[above] at (1,0.03) {Derivada da CRA (DCRA)};
+  \end{scope}
+
+  % funcao densidade 
+  \def\ys{1.75}
+  \begin{scope}[yshift=-1.5cm,domain=-3:5, >=latex, yscale=\ys]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.025/\ys)
+      grid[xstep=0.5, ystep=0.05] (5+0.2/\xs,0.3+0.025/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$x=\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.33) node[left] {$f(x)$};
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\n*(1-1/\n)*\al**\n*exp(\n*x)*
+        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
+    \node[left] at (-3,0) {$0$};
+    \node[above] at (1,0.3) {Fun\c{c}\~ao densidade de probabilidade};
+    \draw[dashed] (\I,0) -- (\I,-2*\S);
+    \path[->, draw]
+      (\I+1,0.21) to[out=0, in=180] ++(0.75,0.05)
+      node[anchor=west, text ragged, text width=2.5cm, fill=white]
+      {$f(x) = -\frac{U'(x)}{\Delta}$};
+    \path[->, draw]
+      (\I,-\S*2) to[out=175, in=0] ++(-1.75,0)
+      node[anchor=east, fill=white] {$-S/\Delta$};
+    \node[above] at (\I+1.5, 0)
+      {$\displaystyle\int_{-\infty}^{\infty} f(x)\,\, dx=1$};
+  \end{scope}
+
+  % raios
+  \begin{scope}[yshift=-1.65cm, xscale=8, yscale=1.33]
+    \node[below right] at (\I-2.75cm/8,0) {$r$};
+    \node[below, text centered, text width=12em] at (1/8,-0.07)
+    {tamanho de poros ($r$)\\ $r = 2\gamma/\psi$};
+    \foreach \r/\x in {
+      10/\I-2.75cm, 7.5/\I-1.1cm, 5/\I, 3/\I+1.5cm,
+      2/\I+2.75cm, 1.5/\I+4cm, 1/\I+5cm}{
+      \draw (\x/8,0) circle (\r/150);
+      \draw (\x/8,0) -- ++(\r/150,0);
+    }
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,54 @@
+\tikzset{
+  level 1/.style={level distance=3.1cm, sibling distance=4.5cm},
+  level 2/.style={level distance=4.5cm, sibling distance=2.2cm},
+  bag/.style={text width=8em, text centered, anchor=west,
+    fill=gray!50, rounded corners, minimum height=3em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped]
+  \node[bag, text width=8em] {n\'ivel de \\ contamina\c{c}\~ao}
+  child {
+    node[bag] {falha?}
+    child {
+      node[end, label=right:
+      {$$}] {}
+      edge from parent
+      node[above] {n\~ao $(F^c)$}
+      node[below] {$\Pr(F^c|H^c)=?$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(F\cap H^c)= 0.8\cdot 0.005=0.004$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|H^c)=0.005$}
+    }
+    edge from parent 
+    node[above] {baixo ($H^c$)}
+    node[below] {$\Pr(H^c)=0.8$}
+  }
+  child {
+    node[bag] {falha?}        
+    child {
+      node[end, label=right:
+      {$$}] {}
+      edge from parent
+      node[above] {n\~ao ($F^c$)}
+      node[below] {$\Pr(F^c|H)=?$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(F\cap H) = 0.2\cdot 0.1= 0.02$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|H)=0.1$}
+    }
+    edge from parent         
+    node[above] {alto ($H$)}
+    node[below] {$\Pr(H)=0.2$}
+  };
+
+\end{tikzpicture}
+

@@ -1,0 +1,29 @@
+\begin{tikzpicture}[
+  domain=-0.25:9, xscale=0.8, yscale=0.25,
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick
+  }]
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,20) node[above] (E) {$\textrm{E}(Y|x)$};
+  \def\A{3}; \def\B{1.8};
+  \draw[color=black, thick]
+    plot[id=x] function{\A+\B*x}
+    node[right] (eta) {$\theta_0+\theta_1 x$};
+  \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
+  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$,$\sigma$)};
+  \path[aponta] (3.25,10) edge[bend left=10] (N);
+  \draw[aponta] (Q) -| (E);
+  \draw[aponta] (Q) -| (eta);
+  \foreach \x in {1, 3, 5, 7}{
+    \draw[color=gray, dashed] (\x,0) -- ++(0,20);
+    \def\sr{4.5}
+    \begin{scope}[
+      xshift=\x cm, yshift=\A cm+\B*\x cm,
+      rotate=-90, smooth, domain=-\sr:\sr]
+      % \draw[color=gray] (-\sr,0) -- (\sr,0);
+      % \draw[color=gray] (0,0) -- (0,1);
+      \filldraw[fill opacity=0.3, fill=gray!70!black]
+        plot[id=x] function{exp(-(x)**2/3)};
+    \end{scope}
+  }
+\end{tikzpicture}

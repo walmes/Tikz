@@ -1,0 +1,44 @@
+% http://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz
+
+\tikzset{
+  every node/.style={
+    thick, anchor=west, rounded corners,
+    font={\scriptsize\ttfamily}, inner sep=2.5pt},
+  selected/.style={draw=blue,fill=blue!10},
+  root/.style={selected, fill=blue!30}
+}
+
+\begin{tikzpicture}[%
+  scale=.7,
+  grow via three points={
+    one child at (0.5,-0.65) and two children
+    at (0.5,-0.65) and (0.5,-1.1)
+  },
+  edge from parent path={
+    (\tikzparentnode.south) |- (\tikzchildnode.west)
+  }]
+
+  \node [root] {src}
+  child { node [selected] {asf}
+    child { node [selected] {avr32}
+      child { node [selected] {drivers}
+        child { node [selected] {canif}
+          child { node {canif.h}}
+          child { node {canif.c}}
+        }
+      }
+    }
+  }       
+  child { node at (0,-3.5) [selected] {net}
+    child { node [selected] {can}
+      child { node {can.h}}
+      child { node {can\_mob.h}}
+      child { node {can\_mob.c}}
+      child { node {can\_port.h}}
+      child { node {can\_port.c}}
+      child { node {can\_trcv.h}}
+      child { node {can\_trcv.c}}
+    }
+  }
+  child { node at (0,-8) {\dots}};
+\end{tikzpicture}

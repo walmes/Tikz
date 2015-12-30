@@ -1,0 +1,22 @@
+\tikzstyle{vertex1}=[
+  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10]
+\tikzstyle{vertex2}=[
+  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!90]
+\tikzstyle{edge}=[draw,thick,-,black]
+
+\begin{tikzpicture}[
+  xscale=2.2, yscale=2.1, ->, thick,
+  z={(0.45,0.35)}, node distance=0.65cm]
+  \node[vertex1] (v0) at (0,0,0) {$(1) = 550$};
+  \node[vertex2] (v1) at (0,1,0) {$cd = 1075$};
+  \node[vertex2] (v2) at (1,0,0) {$ad = 749$};
+  \node[vertex1] (v3) at (1,1,0) {$ac = 642$};
+  \node[vertex2] (v4) at (0,0,1) {$bd = 1052$};
+  \node[vertex1] (v5) at (0,1,1) {$bc = 601$};
+  \node[vertex1] (v6) at (1,0,1) {$ab = 650$};
+  \node[vertex2] (v7) at (1,1,1) {$abcd = 729$};
+  \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+\end{tikzpicture}

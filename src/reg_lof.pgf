@@ -1,0 +1,45 @@
+\begin{tikzpicture}[
+  declare function={
+    normal(\m,\s)=
+    1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  declare function={
+    reg(\x,\a,\b)=\a+\b*\x;
+  },
+  declare function={
+    qua(\x,\a,\b,\c)=\a+\b*\x+\c*\x^2;
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen}]
+
+  \begin{axis}[
+    width=9cm, height=6cm,
+    xlabel=$x$: preditora,
+    ylabel=$y$: resposta,
+    xtick=\empty,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    extra x ticks={-0.9,-0.4,0.1,0.6},
+    extra x tick labels={$x_1$,$x_2$,$x_3$,$x_4$},
+    extra tick style={grid=major}]
+
+    \addplot[color=black, thick, domain=-1:1, samples=2]
+      (x, {reg(x,-0.75,3.5)});
+    \addplot[color=black, thick, domain=-1:1,
+      samples=20, color=darkgreen]
+      (x, {qua(x,0,3,-2)});
+
+    \draw[draw=red] (axis cs:9,9) -- node[pos=0.65, above, sloped]
+      {\footnotesize $E(y) = \beta_0+\beta_1 x$} ++(axis cs:1.5,1.5);
+
+    \pgfplotsinvokeforeach{-0.9,-0.4,0.1,0.6}{
+      \addplot[domain=-2:2, samples=30,
+        fill=darkgreen, fill opacity=0.25, draw=none]
+        ({#1+0.5*normal(0,0.5)}, {x+qua(#1,0,3,-2)});
+      \draw[dashed] (axis cs:#1, {qua(#1,0,3,-2)}) -- 
+        (axis cs:#1+0.28, {qua(#1,0,3,-2)});
+    }
+
+  \end{axis}
+\end{tikzpicture}

@@ -1,0 +1,34 @@
+\begin{tikzpicture}[
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[},
+    right delimiter={]}
+  },
+  subtxt/.style={below, font=\footnotesize}]
+
+  \matrix[mtx] (Y) {%
+    y_1 \\ y_2 \\ \vdots \\ y_n\\
+  };
+  \matrix[mtx, right=of Y] (X) {%
+    1      & x_{11} & \ldots & x_{1k} \\
+    1      & x_{21} & \ldots & x_{2k} \\
+    \vdots &        & \ddots & \vdots \\
+    1      & x_{n1} & \ldots & x_{nk} \\
+  };
+  \matrix[mtx, right=0.5cm of X] (beta) {%
+    \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k\\
+  };
+  \matrix[mtx, right=of beta] (E) {%
+    \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n\\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$=$};%
+  \node[above=2ex of X] (modmat) {$y = X \beta+\epsilon$};
+  \node[above=2ex of modmat] (mod)
+    {$y = \beta_0+\beta_1 x_1+\beta_2 x_2+\cdots+\beta_k x_k+\epsilon$};
+  \node[subtxt] at (Y.south) {$n\times 1$};
+  \node[subtxt, align=center] at (X.south) {$n\times p$\\ $(p=k+1)$};
+  \node[subtxt] at (beta.south) {$p\times 1$};
+  \node[subtxt] at (E.south) {$n\times 1$};
+\end{tikzpicture}

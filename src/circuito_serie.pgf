@@ -1,0 +1,13 @@
+\tikzset{
+  >=stealth',
+  node distance=2mm and 3mm,
+  every node/.style={draw},
+}
+
+\begin{tikzpicture}
+  \node (s1) at (0,0) {0.95};
+  \node (s2) [right=of s1] {0.85};
+  \draw (s1) -- (s2);
+  \draw (s1) -- ++(-0.8,0);
+  \draw [->] (s2) -- ++(0.8,0);
+\end{tikzpicture}

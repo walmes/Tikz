@@ -1,0 +1,29 @@
+% A centered fixed-width-column.
+\newcolumntype{C}{>{\centering\arraybackslash}p{6mm}}
+
+\pgfplotstabletypeset[
+  col sep=&, row sep=\\,
+  every head row/.style={
+    before row={
+      \hline
+      \rowcolor{lightgray}
+      \multicolumn{3}{|>{\columncolor{lightgray}}c|}{Quantenzahlen} & Term--\\
+      \rowcolor{lightgray}
+    },
+    after row=\hline,
+  },
+  every last row/.style={after row=\hline},
+  columns/n/.style={column type=|C,column name=$n$},
+  columns/l/.style={column type=|C,column name=$\ell$},
+  columns/lambda/.style={column type=|C,column name=$\lambda$},
+  columns/text/.style={column type=|c|,column name=bezeichnung,
+    string type
+  }]{
+  n & l & lambda & text        \\
+  1 & 0 & 0      & $1 s\sigma$ \\
+  2 & 0 & 0      & $2 s\sigma$ \\
+  2 & 1 & 0      & $2 p\sigma$ \\
+  2 & 1 & 1      & $2 p \pi $  \\
+  3 & 2 & 0      & $3 d\sigma$ \\
+  3 & 2 & 2      & $3 d\delta$ \\
+}

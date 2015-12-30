@@ -1,0 +1,17 @@
+\tikzset{
+  >=stealth',
+  node distance=2mm and 3mm,
+  every node/.style={draw},
+}
+
+\begin{tikzpicture}
+  \coordinate (c0) at (1.5,0);
+  \coordinate (x1) at ($(-0.8,0)+(c0)$);
+  \coordinate (x0) at ($(-0.5,0)+(x1)$);
+  \coordinate (x2) at ($(0.8,0)+(c0)$);
+  \coordinate (x3) at ($(0.5,0)+(x2)$);
+  \node (r1) [above=of c0] {0.95};
+  \draw[->] (x0) -- (x1) |- (r1) -| (x2) -- (x3);
+  \node (r2) [below=of c0] {0.85};
+  \draw (x1) |- (r2) -| (x2);
+\end{tikzpicture}

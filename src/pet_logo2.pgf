@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+  % Essas definicoes tem que ficar aqui para nao dar espaco extra.
+  \def\vone{0.4}
+  \def\fone{1.4}
+  \def\vtwo{0.105}
+  \def\ftwo{1.4}
+  \def\thecircle{(0,0.75) circle (1cm)}  
+  \def\thelowergauss{
+    plot[id=x, domain=-1:1]
+    function{\fone*(2*pi*\vone)**(-0.5)*exp(-(x)**2/(2*\vone))}
+    -- (1, -0.5) -- (-1,-0.5) -- cycle
+  }
+  \def\theuppergauss{
+    plot[id=x, domain=-1:1]
+    function{\ftwo*(2*pi*\vtwo)**(-0.5)*exp(-(x)**2/(2*\vtwo))}
+    -- (1, -0.5) -- (-1,-0.5) -- cycle
+  }
+
+  \draw[draw=none] (0,0.75) circle (1.5cm);
+  \begin{scope}
+    % Circulo azul.
+    \fill[blue] \thecircle;
+    % Gaussiana alta branca.
+    \clip \thecircle;
+    \fill[samples=100, white] \theuppergauss;
+  \end{scope}
+  % Gaussiana baixa branca.
+  \begin{scope}
+    \clip \thecircle;
+    \fill[samples=100, white] \thelowergauss;
+  \end{scope}
+  % Gaussiana baixa azul.
+  \begin{scope}
+    \clip \theuppergauss;
+    \clip \thecircle;
+    \fill[samples=100, blue] \thelowergauss;
+  \end{scope}
+  % Texto.
+  % \draw[yshift=0.75cm, red] (-0:1.2cm) arc (-0:180:1.2cm);
+  \path [
+    yshift=0.75cm,
+    postaction={decorate,
+      decoration={
+        raise=-1ex, text along path, reverse path, text align=center,
+        text={|\small\color{blue}|PET Estat{\'i}stica UFPR}
+      }
+    }] (-0:1.2cm) arc (-0:180:1.2cm);
+  \draw[white] \thecircle;
+\end{tikzpicture}

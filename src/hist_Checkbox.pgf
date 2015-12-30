@@ -1,0 +1,177 @@
+\tikzstyle{every picture}+=[remember picture]
+\newcommand{\NANN}[2]{% caixa alta para facilitar encontrar.
+  \tikz[baseline] {%
+    \node[%
+    anchor=base,%
+    inner sep=0pt,%
+    outer sep=0pt,%
+    % fill=gray!90
+    text opacity=1
+    ] (#1) {#2};%
+  }%
+}
+
+\tikzset{
+  >=stealth,
+  epath/.style={draw, <->, shorten <=1pt, shorten >=1pt},
+  fpath/.style={
+    draw, color=gray, rounded corners=2pt,
+    shorten <=3pt, shorten >=3pt},
+  cir/.style={draw, circle, fill, inner sep=0.5pt, text=white},
+  dir/.style={near start, right, font=\footnotesize}
+}
+
+% HEY, PAY ATTENTION HERE!
+\newif\ifopacity
+%\opacitytrue  %% Descomente para texto transparente.
+%\opacityfalse %% Ou descomente para texto forte.
+
+%-----------------------------------------------------------------------
+
+\opacityfalse % <- PAY ATTENTION HERE!
+\ifopacity
+  \tikzset{nodeR/.style={text opacity=0.2}}
+\else
+  \tikzset{nodeR/.style={text opacity=1}}
+\fi	
+
+\begin{tikzpicture}
+\node[nodeR] (slider) at (0,0) {
+
+\begin{minipage}{10cm}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{x} \hlkwb{<-} \hlstd{precip\NANN{pr1}{\phantom{1}}}
+\hlstd{ht} \hlkwb{<-} \hlkwd{hist}\hlstd{(x)}
+\hlstd{col} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlstr{"#3366CC"}\hlstd{,} \hlkwd{length}\hlstd{(ht}\hlopt{$}\hlstd{counts))\NANN{pr2}{\phantom{1}}}
+
+\hlstd{\NANN{hr1}{hist.reactive}} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{\NANN{in1}{input}}\hlstd{)\{\NANN{fc1}{\phantom{1}}}
+    \hlkwa{if}\hlstd{(\NANN{in2}{input}}\hlopt{$}\hlstd{\NANN{mo1}{modal})\{}
+        \hlstd{col[}\hlkwd{which.max}\hlstd{(ht}\hlopt{$}\hlstd{counts)]} \hlkwb{<-} \hlstr{"#142952"}
+    \hlstd{\}}
+    \hlkwd{plot}\hlstd{(ht,} \hlkwc{col}\hlstd{=col,} \hlkwc{main}\hlstd{=}\hlkwa{NULL}\hlstd{,}
+         \hlkwc{ylab}\hlstd{=}\hlstr{"Frequencia absoluta"}\hlstd{,}
+         \hlkwc{xlab}\hlstd{=}\hlstr{"Precipitacao"}\hlstd{)}
+    \hlkwa{if}\hlstd{(\NANN{in3}{input}}\hlopt{$}\hlstd{\NANN{rg1}{rg})\{}
+        \hlkwd{rug}\hlstd{(x)}
+    \hlstd{\}}
+    \hlkwd{return}\hlstd{(\NANN{in4}{input})}
+\hlstd{\}\NANN{fc2}{\phantom{1}}}
+
+\hlstd{panel} \hlkwb{<-} \hlkwd{rp.control}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Histograma"}\hlstd{\NANN{wg1}{)}}
+\hlkwd{rp.checkbox}\hlstd{(}\hlkwc{panel}\hlstd{=panel,} \hlkwc{variable}\hlstd{=\NANN{rg2}{rg},}
+            \hlkwc{title}\hlstd{=}\hlstr{"Marcar sobre eixo com os valores?"}\hlstd{,}
+            \hlkwc{initval}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{action}\hlstd{=\NANN{hr2}{hist.reactive})}
+\hlkwd{rp.checkbox}\hlstd{(}\hlkwc{panel}\hlstd{=panel,} \hlkwc{variable}\hlstd{=\NANN{mo2}{modal},}
+            \hlkwc{title}\hlstd{=}\hlstr{"Destacal a classe modal?"}\hlstd{,}
+            \hlkwc{initval}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{action}\hlstd{=\NANN{hr3}{hist.reactive}\NANN{wg2}{)}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{minipage}
+
+}; %% \node
+
+\ifopacity
+\path[blue, epath] (hr1) to[out=0, in=90]
+  node[cir, pos=0.6] {1} (hr2);
+\path[blue, epath] (hr1) to[out=0, in=60]
+  node[cir, pos=0.6] {2} (hr3);
+
+\path[red, epath] (rg1) to[out=-60, in=120]
+  node[cir, pos=0.4] {3} (rg2);
+
+\path[red, epath] (mo1) to[out=-90, in=90]
+  node[cir, pos=0.4] {4} (mo2);
+
+\path[orange, epath] (in1) to[out=90, in=180]
+  (in2) to[out=180, in=180]
+  (in3) to[out=180, in=180] (in4);
+\else
+\path[fpath] (pr1) -- ($(pr1)+(5,0)$) |-
+  node[dir] {Objetos} (pr2);
+
+\path[fpath] (fc1) -- ($(fc1)+(3,0)$) |-
+  node[dir] {Fun\c{c}\~ao reativa} (fc2);
+
+\path[fpath] (wg1) -- ($(wg1)+(2.5,0)$) |-
+  node[dir] {Interface gr\'{a}fica} (wg2);
+\fi	
+
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+
+\opacitytrue % <- PAY ATTENTION HERE!
+\ifopacity
+  \tikzset{nodeR/.style={text opacity=0.2}}
+\else
+  \tikzset{nodeR/.style={text opacity=1}}
+\fi	
+
+\begin{tikzpicture}
+\node[nodeR] (slider) at (0,0){
+
+\begin{minipage}{10cm}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{x} \hlkwb{<-} \hlstd{precip\NANN{pr1}{\phantom{1}}}
+\hlstd{ht} \hlkwb{<-} \hlkwd{hist}\hlstd{(x)}
+\hlstd{col} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlstr{"#3366CC"}\hlstd{,} \hlkwd{length}\hlstd{(ht}\hlopt{$}\hlstd{counts))\NANN{pr2}{\phantom{1}}}
+
+\hlstd{\NANN{hr1}{hist.reactive}} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{\NANN{in1}{input}}\hlstd{)\{\NANN{fc1}{\phantom{1}}}
+    \hlkwa{if}\hlstd{(\NANN{in2}{input}}\hlopt{$}\hlstd{\NANN{mo1}{modal})\{}
+        \hlstd{col[}\hlkwd{which.max}\hlstd{(ht}\hlopt{$}\hlstd{counts)]} \hlkwb{<-} \hlstr{"#142952"}
+    \hlstd{\}}
+    \hlkwd{plot}\hlstd{(ht,} \hlkwc{col}\hlstd{=col,} \hlkwc{main}\hlstd{=}\hlkwa{NULL}\hlstd{,}
+         \hlkwc{ylab}\hlstd{=}\hlstr{"Frequencia absoluta"}\hlstd{,}
+         \hlkwc{xlab}\hlstd{=}\hlstr{"Precipitacao"}\hlstd{)}
+    \hlkwa{if}\hlstd{(\NANN{in3}{input}}\hlopt{$}\hlstd{\NANN{rg1}{rg})\{}
+        \hlkwd{rug}\hlstd{(x)}
+    \hlstd{\}}
+    \hlkwd{return}\hlstd{(\NANN{in4}{input})}
+\hlstd{\}\NANN{fc2}{\phantom{1}}}
+
+\hlstd{panel} \hlkwb{<-} \hlkwd{rp.control}\hlstd{(}\hlkwc{title}\hlstd{=}\hlstr{"Histograma"}\hlstd{\NANN{wg1}{)}}
+\hlkwd{rp.checkbox}\hlstd{(}\hlkwc{panel}\hlstd{=panel,} \hlkwc{variable}\hlstd{=\NANN{rg2}{rg},}
+            \hlkwc{title}\hlstd{=}\hlstr{"Marcar sobre eixo com os valores?"}\hlstd{,}
+            \hlkwc{initval}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{action}\hlstd{=\NANN{hr2}{hist.reactive})}
+\hlkwd{rp.checkbox}\hlstd{(}\hlkwc{panel}\hlstd{=panel,} \hlkwc{variable}\hlstd{=\NANN{mo2}{modal},}
+            \hlkwc{title}\hlstd{=}\hlstr{"Destacal a classe modal?"}\hlstd{,}
+            \hlkwc{initval}\hlstd{=}\hlnum{FALSE}\hlstd{,} \hlkwc{action}\hlstd{=\NANN{hr3}{hist.reactive}\NANN{wg2}{)}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{minipage}
+
+}; %% \node
+
+\ifopacity
+\path[blue, epath] (hr1) to[out=0, in=90]
+  node[cir, pos=0.6] {1} (hr2);
+\path[blue, epath] (hr1) to[out=0, in=60]
+  node[cir, pos=0.6] {2} (hr3);
+
+\path[red, epath] (rg1) to[out=-60, in=120]
+  node[cir, pos=0.4] {3} (rg2);
+
+\path[red, epath] (mo1) to[out=-90, in=90]
+  node[cir, pos=0.4] {4} (mo2);
+
+\path[orange, epath] (in1) to[out=90, in=180]
+  (in2) to[out=180, in=180]
+  (in3) to[out=180, in=180] (in4);
+\else
+\path[fpath] (pr1) -- ($(pr1)+(5,0)$) |-
+  node[dir] {Objetos} (pr2);
+
+\path[fpath] (fc1) -- ($(fc1)+(3,0)$) |-
+  node[dir] {Fun\c{c}\~ao reativa} (fc2);
+
+\path[fpath] (wg1) -- ($(wg1)+(2.5,0)$) |-
+  node[dir] {Interface gr\'{a}fica} (wg2);
+\fi	
+
+\end{tikzpicture}

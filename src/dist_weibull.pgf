@@ -1,0 +1,26 @@
+\begin{tikzpicture}[
+  declare function={
+    weibullpdf(\x,\a,\b) = \b*\a*\x^(\a-1)*exp(-\b*\x^(\a));
+  }]
+
+  \begin{axis}[
+    width=9cm, height=6cm,
+    samples=50, smooth, domain=0:5,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none}]
+
+    \addplot[black] {weibullpdf(x,1,1)};
+    \addlegendentry{$\alpha=1, \beta=1$};
+
+    \addplot[blue] {weibullpdf(x,3,1)};
+    \addlegendentry{$\alpha=3, \beta=1$};
+
+    \addplot[red] {weibullpdf(x,3,3)};
+    \addlegendentry{$\alpha=3, \beta=3$};
+
+    \node at (axis cs: 3.5,  0.6)
+    {$f(x) = \alpha\beta x^{\alpha-1} \text{e}^{-\beta x^{\alpha}}$};
+  \end{axis}
+\end{tikzpicture}

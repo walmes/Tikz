@@ -1,0 +1,59 @@
+\pgfplotsset{
+  myplot/.style={
+    width=7cm, height=6cm,
+    samples=10, domain=0:5, no marks,
+    xlabel=$x$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    % title={Distribui\c{c}\~{a}o Exponencial}
+  }
+}
+
+\begin{tikzpicture}[
+  declare function={
+    unifpdf(\x,\a,\b) = 1/(\b-\a);
+  },
+  declare function={
+    unifcdf(\x,\a,\b) =
+    0+(\x>=\a)*(\x<=\b)*(\x-\a)/(\b-\a)+1*(\x>\b);
+  }]
+
+  \begin{axis}[
+    myplot,
+    ymax=1.1, ymin=-0.1,
+    ylabel=$f(x)$]
+
+    \addplot[smooth, domain=0:3]
+    {unifpdf(x,0,3)};
+    \addlegendentry{$a=0$, $\hphantom{-}b=2$};
+
+    \addplot[smooth, domain=-1:1, color=red]
+    {unifpdf(x,-1,1)};
+    \addlegendentry{$a=-1$, $b=1$};
+
+    \addplot[ycomb, mark=o, samples at={0,3}, dashed]
+    {unifpdf(x,0,3)};
+    \addplot[ycomb, mark=o, samples at={-1,1}, dashed, color=red]
+    {unifpdf(x,-1,1)};
+
+    \node at (axis cs: -0.15,  0.65)
+    {$f(x) = \displaystyle \frac{1}{b-a}$};
+
+  \end{axis}
+
+  \begin{axis}[
+    myplot, xshift=7cm,
+    samples=10,
+    ylabel=$F(x)$]
+
+    \addplot [samples at={-1.5,0,3,3.2}]
+    {unifcdf(x,0,3)};
+    \addplot [samples at={-1.5,-1,1,3.2}, color=red]
+    {unifcdf(x,-1,1)};
+
+    \node at (axis cs: 2,  0.15)
+    {$F(x) = \displaystyle \frac{x-a}{b-a}$};
+
+  \end{axis}
+\end{tikzpicture}

@@ -1,0 +1,40 @@
+% \tikzstyle{aponta}=[-latex, dashed]
+% \tikzstyle{eixos}=[-latex]
+% \tikzstyle{fun}=[very thick]
+\tikzset{
+  aponta/.style={-latex, dashed},
+  eixos/.style={-latex},
+  fun/.style={very thick}
+}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  % \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  % \draw[draw=gray!30] (-1,-1) rectangle (11,11);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$\eta(x)$};
+
+  \def\A{3}; \def\B{1}; \def\C{4.5};
+  \draw[fun]
+    plot[id=x, samples=100]
+    function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
+
+  \coordinate (b) at (\C,\A+\B*\C);
+  \draw (0,\A) circle (3pt) node[left] {$\theta_0$};
+  \draw (b) circle (3pt);
+  \draw[aponta] (b) -- (\C,0) node[below] {$\theta_b$};
+  \draw[|<->|] (1,4) -- (3,4)
+    node[midway, below, fill=white] {$\Delta x$};
+  \draw[|<->|] (3,4) -- (3,6)
+    node[midway, right, fill=white] {$\Delta y$};
+  \node[fill=white] (b1) at (2,2)
+    {$\theta_1 = \frac{\Delta y}{\Delta x}$};
+
+  \def\desc{-1}
+  \draw[->|] (1,\desc) -- (\C,\desc)
+    node[midway, below=3pt] {linear};
+  \draw[dashed] (0,\desc) -- (1,\desc);
+  \draw[|<-] (\C,\desc) -- (9,\desc)
+    node[midway, below=3pt] {plat\^o};
+  \draw[dashed] (9,\desc) -- (10,\desc);
+
+\end{tikzpicture}

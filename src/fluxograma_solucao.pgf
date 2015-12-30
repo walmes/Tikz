@@ -1,0 +1,69 @@
+\def\widthmini{5cm}
+
+\newenvironment{cminipage}[1][5cm]{%
+  \begin{minipage}{#1}
+    \begin{center}
+    }{%
+    \end{center}
+  \end{minipage}
+}
+
+\tikzset{
+  % ->, >=stealth,
+  % line width=2.75pt,
+  every path/.style={->, >=stealth, very thick, rounded corners},
+  state/.style={
+    rectangle, rounded corners,
+    draw=black, fill=gray!20, thick,
+    minimum height=2em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}
+  \node[state] (L3) {
+    \begin{cminipage}[5cm]
+      Contagem, propor\c{c}\~{a}o\\ limitadas ou censuradas.
+    \end{cminipage}
+  };
+  \node[state, right=of L3] (R3) {
+    \begin{cminipage}[5cm]
+      Perda de parcela,\\
+      perda de casela.
+    \end{cminipage}
+  };
+  \node[state, fill=yellow!80!darkgreen,
+  below=1.5cm of $(L3.east)!0.5!(R3.west)$] (C) {
+    \begin{cminipage}[5cm]
+      Modelos lineares generalizados, modelos mistos,
+      modelos de sobreviv\^{e}ncia,
+      m\'{e}dias ajustadas, compa\c{c}\~oes m\'{u}ltiplas.
+    \end{cminipage}
+  };
+  \node[below=of C] (R) {
+    \begin{cminipage}[5cm]
+      \includegraphics[width=5cm]{/home/walmes/Dropbox/tikz/Rlogo.png}
+    \end{cminipage}
+  };
+  \node[state, fill=darkgreen!30!white, right=of R] (E) {
+    \begin{cminipage}[5cm]
+      \texttt{lm()}, \texttt{glm()}, \texttt{survival::survreg()},
+      \texttt{nlme::lme()}, \texttt{lme4::lmer()},
+      \texttt{doBy::LSmeans()}, \texttt{multicomp::glht()},\\ \ldots
+    \end{cminipage}
+  };
+  \node[state, fill=darkgreen!30!white, left=of R] (F) {
+    \begin{cminipage}[5cm]
+      Processamento de dados, simula\c{c}\~ao, gr\'{a}ficos,
+      regress\~{a}o, an\'{a}lise de experimentos,
+      s\'{e}ries temporais, geostat\'{i}stica,
+      estat\'{i}stica multivariada,
+      gera\c{c}\~{a}o automatizada de relat\'{o}rios,
+      \ldots
+    \end{cminipage}
+  };
+  \path[draw] (L3)  |- (C);
+  \path[draw] (R3) |- (C);
+  \path[draw] (C) -- (R);
+  \path[draw] (R) -- (E);
+  \path[draw] (R) -- (F);
+\end{tikzpicture}

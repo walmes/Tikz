@@ -1,0 +1,84 @@
+% http://tex.stackexchange.com/questions/131081/how-can-i-center-and-decimal-align-a-pgfplots-table
+
+\begin{filecontents}{measurements.dat}
+  sample num-bugs num-part other-measure another
+  5       80      190        200        210.02
+  15      520     410.00     430        350
+  25      650     640        630.2      900
+  35     1100     1200       1150       1020
+\end{filecontents}
+
+\pgfplotstabletypeset[
+  assign column name/.code=\pgfkeyssetvalue{
+    /pgfplots/table/column name}{{{#1}}},
+  columns={sample, another, num-part},
+  every head row/.style={
+    before row={\toprule},
+    after row={\midrule}
+  },
+  every last row/.style={
+    after row={\bottomrule}
+  },
+  every even row/.style={
+    before row={\rowcolor[gray]{0.7}}
+  },
+  columns/sample/.style={
+    assign column name={Sample}, 
+  },
+  columns/another/.style={%
+    assign column name={Another},
+    dec sep align,
+    precision=2
+  }, 
+  columns/num-part/.style={%
+    assign column name={Num-Part},
+    dec sep align,
+  }]{measurements.dat}
+  
+%-----------------------------------------------------------------------
+% http://tex.stackexchange.com/questions/86070/align-right-in-table-if-no-expression
+
+\begin{filecontents*}{scientists.csv}
+  name,surname,age
+  Albert,Einstein,133
+  Factor and,Curie,145 % add the word and just to illustrate
+  Thomas,Edison,165
+\end{filecontents*}
+
+\pgfplotstabletypeset[
+  col sep=comma,
+  string type,
+  columns/name/.style={
+    column name=Name,
+    column type={|l},
+    string replace*={Factor}{\bfseries Factor}
+  },
+  columns/surname/.style={
+    column name=Surname,
+    column type={|l}
+  },
+  columns/age/.style={
+    column name=Age,
+    column type={|c|}
+  },
+  every head row/.style={
+    before row=\hline,
+    after row=\hline
+  },
+  every last row/.style={
+    after row=\hline
+  }]{scientists.csv}
+
+%-----------------------------------------------------------------------
+
+% The '%' is important. Otherwise, the newline here would delimit an
+% (empty) row.
+\pgfplotstabletypeset[skip first n=4]{% <- important!
+  XYZ Format,
+  Version 1.234
+  Date 2010-09-01
+  @author Mustermann
+  A B C
+  1 2 3
+  4 5 6
+}

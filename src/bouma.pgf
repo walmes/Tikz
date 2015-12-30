@@ -1,0 +1,95 @@
+\begin{tikzpicture}[scale=2.2, >=latex]
+  % preenchimentos
+  \draw[draw=none, fill=gray!15] (0,0) -- (0,1.5) -- 
+    plot[id=x, domain=0:1] function{1+2*(x-0.5)**2} -- (1,0);
+  \draw[draw=none, fill=gray!15] (-1,-0.75) rectangle (2,0.13);
+  \draw[draw=none, fill=gray!25]
+    (1,1.52) arc (0:-180:0.5cm and 0.2cm) --
+    plot[id=x, domain=0:1] function{1+2*(x-0.5)**2};
+  \draw[draw=none, fill=gray!40] (0.5,1.52) ellipse (0.5cm and 0.2cm);
+
+  % laterais do tubo
+  \draw (-1,0.15) -- (-1,-0.75) -- (2,-0.75) -- (2,0.2);
+  \draw (0,0) -- (0,2);
+  \draw (1,0) -- (1,2);
+  \draw[yshift=2cm, dashed] (0,0) -- (0,0.15);
+  \draw[yshift=2cm, dashed] (1,0) -- (1,0.15);
+  \draw[dashed] (0,0) -- (0,-0.15);
+  \draw[dashed] (1,0) -- (1,-0.15);
+
+  % parabola e elipses
+  \draw plot[id=x, domain=0:1, samples=50, smooth]
+    function{1+2*(x-0.5)**2};
+  \draw[dashed] (0.5,2) ellipse (0.5cm and 0.2cm);
+  \draw[dashed] (1,1.52) arc (0:180:0.5cm and 0.2cm);
+  \draw (0,1.52) arc (180:360:0.5cm and 0.2cm);
+
+  % chaves
+  \draw [xshift=1.1cm, decorate, decoration={brace, amplitude=4pt}]
+    (0,1) -- (0,0.1) node [black,midway,right=5pt] {$h$};
+  \draw [yshift=-0.15cm, decorate, decoration={brace, amplitude=4pt}]
+    (0.5,0) -- (0,0) node [black,midway,below=5pt] {$r$};
+
+  % angulo
+  \draw[<->,yshift=-0.5cm] (1,1.55) arc (270:246:0.5cm and 0.5cm);
+  \path (1,1.52)++(255:0.5) node[below] {$\alpha$};
+
+  % setas do menisco
+  \path[yshift=-0.5cm,xshift=-0.24cm,->, draw=black]
+    (0.5,1.52)++(0:0.5 and 0.2) -- ++(0.5,1);
+  \path[yshift=-0cm,xshift=-1.0cm,->, draw=black]
+    (0.5,1.52)++(0:0.5 and 0.2) -- ++(-0.25,0.5);
+  \path[->, draw=black] (0.5,1.52)++(45:0.5 and 0.2) -- ++(0.15,0.55);
+  \path[->, draw=black] (0.5,1.52)++(90:0.5 and 0.2) -- ++(0.0,0.58);
+  \path[->, draw=black] (0.5,1.52)++(135:0.5 and 0.2) -- ++(-0.15,0.55);
+  \path[->, draw=black] (0.5,1.52)++(225:0.5 and 0.2) -- ++(-0.15,0.4);
+  \path[->, draw=black] (0.5,1.52)++(315:0.5 and 0.2) -- ++(0.15,0.4);
+  \path[->, draw=black] (0.5,1.52)++(270:0.5 and 0.2) -- ++(0.0,0.38);
+  % \draw[color=gray!10] (0.5,2) ellipse (0.75cm and 0.3cm);
+
+  % setas grossas
+  \draw[->, line width=3pt] (0.5,0.8) -- ++(0,-0.5)
+    node[below] {$\pi r^2 h\rho g$};
+  \draw[->, line width=3pt] (0.5,2.4) -- ++(0,0.5)
+    node[above] {$2\pi r \gamma \cos(\alpha)$};
+
+  % setas com textos
+  \path[xshift=2pt, yshift=-2pt, ->, draw]
+    (1,1.52)++(255:0.5) to[out=0, in=180] ++(0.3,0.3)
+    node[anchor=west, text ragged, text width=3cm]
+    {\^angulo entre o menisco e a parede do tubo capilar};
+  \path[xshift=5.5pt, yshift=-2pt, ->, draw]
+    (1.1,0.5) to[out=270, in=180] ++(0.2,-0.15)
+    node[anchor=west, text ragged, text width=2cm] {ascens\~ao};
+  \path[xshift=2pt, yshift=-5pt, ->, draw]
+    (0.25,-0.15) to[out=0, in=180] ++(0.3,-0.2)
+    node[anchor=west, text ragged, text width=3cm]
+    {raio do tubo capilar};
+
+  \begin{scope}[xshift=3.25cm, yshift=-0.75cm, scale=1.25]
+    % base
+    \draw[draw=none, fill=gray!40] (-0.5,0) rectangle (1.5,0.7);
+    \draw (-0.5,0.75) -- (-0.5,0) -- (1.5,0) -- (1.5,0.75);
+
+    % preenchimento
+    \draw[draw=none, fill=gray!40] (0,0.5) --
+      plot[id=x, domain=0:0.45, smooth]
+      function{0.8+1*(x-0.225)**2} --
+      plot[id=x, domain=0.45:0.70, smooth]
+      function{1.25+2*(x-0.575)**2} --
+      plot[id=x, domain=0.70:0.80, smooth]
+      function{2+4*(x-0.75)**2} --
+      plot[id=x, domain=0.8:0.85, smooth]
+      function{2.45+8*(x-0.825)**2} -- 
+      plot[id=x, domain=0.85:1, smooth]
+      function{1.6+3*(x-0.925)**2} -- (1,0.5);
+
+    % tubos
+    \draw (0,0.5) -- ++(0,2);
+    \draw (0.45,0.5) -- ++(0,2);
+    \draw (0.70,0.5) -- ++(0,2);
+    \draw (0.80,0.5) -- ++(0,2);
+    \draw (0.85,0.5) -- ++(0,2);
+    \draw (1,0.5) -- ++(0,2);
+  \end{scope}
+\end{tikzpicture}

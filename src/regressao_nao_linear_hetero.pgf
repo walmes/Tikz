@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+  domain=0:9, xscale=0.8, yscale=0.25,
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick
+  }]
+
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,20) node[above] (E) {$\textrm{E}(Y|x)$};
+  \def\A{18}; \def\V{2};
+  \draw[color=black, thick]
+    plot[id=x] function{\A*x/(\V+x)}
+    node[right] (eta) {$\displaystyle\frac{\theta_a x}{\theta_v+x}$};
+  \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
+  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$,$\sigma$)};
+  \node[below right of=E, anchor=west] (V) {$\textrm{V}(Y|x)$};
+  \path[aponta] (3.2,11.8) edge[bend left=10] (N);
+  \draw[aponta] (Q) -| (E);
+  \draw[aponta] (Q) -| (V);
+  \draw[aponta] (Q) -| (eta);
+  \foreach[
+    evaluate=\x as \y using \A*\x/(\V+\x),
+    evaluate=\y as \s using (\y^1.25)/20]
+    \x in {0.8, 3, ..., 8}{
+      \draw[color=gray, dashed] (\x,0) -- ++(0,20);
+      \def\factor{2.3}
+      \begin{scope}[
+        xshift=\x cm, yshift=\y cm,
+        rotate=-90, smooth, domain=(-4*\s):(4*\s)]
+        \draw[color=gray] (-2*\s,0) -- (2*\s,0);
+        \filldraw[fill opacity=0.3, fill=gray!70!black]
+          plot[id=x]
+          function{\factor*(2*3.14)**(-0.5)*(1/\s)*
+            exp(-(x)**2/(2*\s**2))};
+    \end{scope}
+  }
+\end{tikzpicture}

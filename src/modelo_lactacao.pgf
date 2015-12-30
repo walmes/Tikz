@@ -1,0 +1,18 @@
+\def\bz{5}
+\def\bo{1}
+\def\bt{1}
+
+\begin{tikzpicture}[domain=-3:5, xscale=1.2, yscale=1.2, >=latex]
+  \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+  \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
+  \draw[color=green!30!black, thick, smooth]
+    plot[id=x, domain=0:4.5]
+    function{\bz*x**\bo*exp(-\bt*x)};
+  \draw[dashed] (0, 1.85) node[left] {$\vartheta_y$} -| (\bo/\bt,0)
+    node[below] {$\vartheta_x$};
+  \draw[color=red!90!black, smooth]
+    plot[id=x, domain=0.15:1.85]
+    function{1.85-1*(x-\bo/\bt)**2}
+    node[below, color=black] {$\vartheta_a$};
+  \node[above] at (1, 1.85) {$\vartheta_p$};
+\end{tikzpicture}

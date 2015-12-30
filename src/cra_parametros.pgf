@@ -1,0 +1,100 @@
+\def\f1{0.8}
+\def\xs{0.5}
+\def\ys{4}
+
+\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
+  \def\tr{0.1}
+  \def\ts{0.6}
+  \def\al{1.3}
+  \def\n{1.6}
+  \def\m{0.9}
+  \def\I{0.3506}
+  \def\ti{0.4071}
+  \def\S{-0.1340}
+  \def\Sangle{-42}
+
+  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+  % \node at (6,1) {van Genuchten original};
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+    node[below] {$\log(\psi)$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+    node[left] {$U(\psi)$};
+  \foreach \tts in {0.45,0.5,0.55,0.6}
+  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\tr+(\tts-\tr)/(1+(\al*exp(x))**\n)**(\m)};
+  \draw[->,xshift=-3.25cm] (0,0.4) -- (0,0.65)
+    node[midway,left] {$U_s$};
+
+  \begin{scope}[xshift=11.5cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \ttr in {0.05,0.1,0.15,0.2}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\ttr+(\ts-\ttr)/(1+(\al*exp(x))**\n)**(\m)};
+    \draw[->,xshift=5.25cm] (0,0.025) -- (0,0.25)
+      node[midway,right] {$U_r$};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-1cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \all in {1,2,3,4}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr+(\ts-\tr)/(1+(\all*exp(x))**\n)**(\m)};
+    \draw[->] (1,0.35) node[right,circle,fill=white] {$A$} -- ++(-3,0);
+  \end{scope}
+
+  \begin{scope}[xshift=11.5cm, yshift=-1cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \nn in {1,2,3,4}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\nn)**(\m)};
+    \draw[->] (-0.45,0.37)++(1,0) arc (0:-300:0.8 and 0.1)
+      node[below right,circle,fill=white] {$n$};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-2cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \mm in {0.5,1,1.5,2}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\n)**(\mm)};
+    \path[->] (1,0.4) edge[bend left=3]
+      node[at end, left,circle,fill=white] {$m$} (-1,0.2);
+  \end{scope}
+
+  \begin{scope}[xshift=11.5cm, yshift=-2cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \nn in {1.5,2,2.5,3}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\nn)**(1-1/\nn)};
+    \path[->] (1.5,0.4) edge[bend left=3]
+      node[at end, left,circle,fill=white] {$n$} (-1,0.2);
+    \node[anchor=base,rectangle,fill=white] (i) at (2.5,0.6)
+      {$m=1-1/n$};
+  \end{scope}
+
+\end{tikzpicture}

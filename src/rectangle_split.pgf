@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+  \node[
+    rectangle split,
+    rectangle split parts=3,
+    draw,
+    text width=2.75cm]
+  {Student
+    \nodepart{second}
+    age:int \\ name:String
+    \nodepart{third}
+    getAge():int \\ getName():String
+  };
+\end{tikzpicture}

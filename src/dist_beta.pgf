@@ -1,0 +1,47 @@
+\begin{tikzpicture}[
+  declare function={
+    gamma(\z) =
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    beta(\a,\b) = gamma(\a)*gamma(\b)/gamma(\a+\b);
+  },
+  declare function={
+    betapdf(\x,\a,\b) = \x^(\a-1)*(1-\x)^(\b-1)/beta(\a,\b);
+  }]
+
+  \begin{axis}[
+    width=9cm, height=6cm,
+    samples=30,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    domain=0.01:0.99,
+    legend pos=outer north east,
+    legend cell align=left,
+    clip=false]
+
+    \addplot[smooth] {betapdf(x,1,1)};
+    \addlegendentry{$\alpha=1$, $\phantom{.}\beta=1$};
+
+    \addplot[smooth, red] {betapdf(x,5,5)};
+    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=5$};
+
+    \addplot[smooth, blue] {betapdf(x,.7,.7)};
+    \addlegendentry{$\alpha=.7$, $\beta=.7$};
+
+    \addplot[smooth, orange] {betapdf(x,.7,1.2)};
+    \addlegendentry{$\alpha=.7$, $\beta=1.2$};
+
+    \addplot[smooth, purple] {betapdf(x,5,2)};
+    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=2$};
+
+    \node[anchor=west] at (axis description cs: 1.05, 0.2)
+    {$f(x) = \dfrac{x^{\alpha-1}\cdot(1-x)^{\beta-1}}{
+        B(\alpha, \beta)}$};
+
+  \end{axis}
+\end{tikzpicture}

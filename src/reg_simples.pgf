@@ -1,0 +1,55 @@
+% Set the random seed.
+\pgfmathsetseed{12}
+
+% Define the equations for x and y.
+\pgfplotstableset{
+  create on use/x/.style={
+    create col/expr={42+2*\pgfplotstablerow}},
+  create on use/y/.style={
+    create col/expr={(0.6*\thisrow{x}+130)+8*rand}}
+}
+
+% Create a new table with 30 rows and columns x and y:
+\pgfplotstablenew[columns={x,y}]{20}\loadedtable
+
+% Calculate the regression line.
+\pgfplotstablecreatecol[linear regression]{regression}{\loadedtable}
+
+\pgfplotsset{
+  colored residuals/.style 2 args={
+    only marks,
+    scatter,
+    point meta=explicit,
+    colormap={redblue}{color=(#1) color=(#2)},
+    error bars/y dir=minus,
+    error bars/y explicit,
+    error bars/draw error bar/.code 2 args={
+      \pgfkeys{/pgf/fpu=true}
+      \pgfmathtruncatemacro\positiveresidual{\pgfplotspointmeta<0}
+      \pgfkeys{/pgf/fpu=false}
+      \ifnum\positiveresidual=0
+        \draw [#2] ##1 -- ##2;
+      \else
+        \draw [#1] ##1 -- ##2;
+      \fi
+    },
+    /pgfplots/table/.cd,
+    meta expr=(\thisrow{y}-\thisrow{regression})/
+    abs(\thisrow{y}-\thisrow{regression}),
+    y error expr=\thisrow{y}-\thisrow{regression}
+  },
+  colored residuals/.default={red}{blue}
+}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel=Weight (kg),
+    ylabel=Height (cm)]
+
+    \makeatletter
+    \addplot[colored residuals]
+      table {\loadedtable};
+    \addplot[no markers, thick, black]
+      table [y=regression] {\loadedtable};
+  \end{axis}
+\end{tikzpicture}

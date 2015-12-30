@@ -1,0 +1,75 @@
+\tikzset{
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[}, right delimiter={]}
+  },
+  hlt/.style={opacity=0.1, line width=4 mm, line cap=round},
+  hltr/.style={opacity=0.5, rounded corners=2pt, inner sep=-1pt}
+}
+
+\begin{tikzpicture}
+
+  \matrix[mtx] (X) at (2,2) {
+    1 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 1 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 1 \\ 
+    1 & 1 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 1 & 0 \\ 
+    1 & 1 & 0 & 0 & 0 & 1 \\ 
+    1 & 0 & 1 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 1 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 1 & 0 \\ 
+    1 & 0 & 1 & 0 & 0 & 1 \\ 
+  };
+
+  \matrix[mtx, left=of X] (E) {
+    \mu_{11} \\ \mu_{12} \\ \mu_{13} \\ \mu_{14} \\
+    \mu_{21} \\ \mu_{22} \\ \mu_{23} \\ \mu_{24} \\
+    \mu_{31} \\ \mu_{32} \\ \mu_{33} \\ \mu_{34} \\
+  };
+
+  \matrix[mtx, nodes={minimum width=4ex}, right=3ex of X] (beta) { 
+    \mu \\ \alpha_2 \\ \alpha_3 \\ \tau_2 \\ \tau_3 \\ \tau_4 \\
+  };
+
+  \matrix[mtx, nodes={anchor=west}, right=of beta] (mu) {
+    \mu \\
+    \mu+\tau_2 \\
+    \mu+\tau_3 \\
+    \mu+\tau_4 \\
+    \mu+\alpha_2 \\
+    \mu+\alpha_2+\tau_2 \\
+    \mu+\alpha_2+\tau_3 \\
+    \mu+\alpha_2+\tau_4 \\
+    \mu+\alpha_3 \\
+    \mu+\alpha_3+\tau_2 \\
+    \mu+\alpha_3+\tau_3 \\
+    \mu+\alpha_3+\tau_4 \\
+  };
+
+  \draw[-stealth, color=red] (X-1-1.south west) -| (beta-6-1.south west);
+
+  \node at ($(E.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(mu.west)$) {$=$};%
+
+  \node[above=of X, text width=5cm] {% <- importante!
+    $\begin{aligned}
+      \mu_{ij} &= \mu+\alpha_i+\tau_j,\\
+      &\qquad i=1,2;\quad j=1,2,3;\\
+      &\qquad \alpha_1 = \tau_1 = 0\\
+      \mu &= X\beta
+    \end{aligned}$
+  };
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill=gray, fit=(beta-1-1)] {};
+    \node[hltr, fill=red, fit=(beta-2-1)(beta-3-1)] {};
+    \node[hltr, fill=green, fit=(beta-4-1)(beta-6-1)] {};
+    \node[hltr, fill=gray, fit=(X-1-1)(X-12-1)] {};
+    \node[hltr, fill=red, fit=(X-1-2)(X-12-3)] {};
+    \node[hltr, fill=green, fit=(X-1-4)(X-12-6)] {};
+  \end{scope}
+
+\end{tikzpicture}

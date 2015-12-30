@@ -1,0 +1,49 @@
+\pgfplotsset{
+  select row/.style={
+    x filter/.code={\ifnum\coordindex=#1\else\def\pgfmathresult{}\fi}
+  }
+}
+
+\pgfplotstableread[col sep=comma,header=false]{
+  1999/00,167.1
+  2000/1,172.5
+  2001/2,175
+  2002/3,179.3
+  2003/4,184.4
+  2004/5,188
+  2005/6,201.7
+  2006/7,208.3
+  2007/8,210.2
+  2008/9,210.5
+  2009/10,209.8
+  2010/11,207.5
+  2011/12,203.4
+  2012/13,198.2
+  % 2013/14(YTD),97
+}\datatable
+
+\begin{tikzpicture}[scale=0.8]
+  \begin{axis}[
+    % title=Australia's Primary Energy Consumption by sector - 2012,
+    ybar, bar shift=0pt,
+    enlarge y limits=0.1,
+    % xmin=0,
+    xtick={0,...,13},
+    xticklabels from table={\datatable}{0},
+    ymajorgrids = true,
+    bar width=3mm, 
+    width=12cm, height=9cm, 
+    xlabel={year},
+    ylabel={TWh},
+    x tick label style={font=\footnotesize,rotate=45, anchor=east},
+    nodes near coords align={horizontal}]
+
+    \pgfplotsinvokeforeach{0,...,13}{
+      \addplot table [x expr=\coordindex, select row=#1] {\datatable};
+    }
+    \node[
+      pin={[pin distance=1cm, pin edge={<-,>=stealth'},
+        shift={(-1.2cm,0.5cm)}]
+      Tasmania entry to NEM}] at (axis cs:5,190) {};
+  \end{axis}
+\end{tikzpicture}

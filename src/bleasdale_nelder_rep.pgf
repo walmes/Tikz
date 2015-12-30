@@ -1,0 +1,42 @@
+\def\xs{0.6}
+\def\ys{1}
+\def\ty{2.5}
+\def\tx{1}
+\def\tc{0.3}
+
+\begin{tikzpicture}[xscale=\xs, yscale=\ys, >=latex]
+  \begin{scope}
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,3) node[left] {$\eta(x)$};
+    \foreach \tty in {0.8,1.6,2.4}
+    \draw[color=green!30!black, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\tty*(x/\tx)*(1-\tc*(1-x/\tx))**(-1/\tc)};
+    \draw[->,xshift=\tx cm] (0,0.35) -- (0,2.8)
+      node[above] {$\vartheta_y$};
+    \draw (\tx,0) node {$\times$} node[below] {$\vartheta_x$};
+  \end{scope}
+  \begin{scope}[xshift=6cm]
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,3) node[left] {$\eta(x)$};
+    \foreach \ttx in {0.5,1.5,2.5}
+    \draw[color=green!30!black, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\ty*(x/\ttx)*(1-\tc*(1-x/\ttx))**(-1/\tc)};
+    \draw[->,xshift=0.25cm,yshift=0.1cm] (0,\ty) -- (3,\ty)
+      node[midway,above] {$\vartheta_x$};
+    \draw (0, \ty) node {$\times$} node[left] {$\vartheta_y$};
+  \end{scope}
+  \begin{scope}[xshift=12cm]
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,3) node[left] {$\eta(x)$};
+    \foreach \ttc in {0.05,0.3,0.55}
+    \draw[color=green!30!black, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\ty*(x/\tx)*(1-\ttc*(1-x/\tx))**(-1/\ttc)};
+    \draw[->,xscale=1/\xs, yscale=1/\ys] (1.1,1.3) arc (290:350:1.5cm)
+      node[above] {$\theta_2$};
+    \draw (0, \ty) node {$\times$} node[left] {$\vartheta_y$};
+    \draw (\tx,0) node {$\times$} node[below] {$\vartheta_x$};
+  \end{scope}
+\end{tikzpicture}

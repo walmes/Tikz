@@ -1,0 +1,31 @@
+\def\hd{0.7}
+\def\vd{0.7}
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+
+\tikzstyle{every picture}+=[remember picture]
+
+\begin{tikzpicture}[
+  >=stealth,
+  every path/.style={->, color=darkgreen, thin, rounded corners},
+  every node/.style={color=black},
+  bx/.style={
+    % text width=2.5cm,
+    font=\footnotesize,
+    minimum height=4ex},
+  bxl/.append style={bx,
+    left,
+    align=flush right},
+  bxr/.append style={bx,
+    right,
+    align=flush left}]
+
+  \node {$\tm{Z}t = \dfrac{\tm{bX}\bar{X}-\mu}{\sqrt{\tm{S}S^2/n}}
+    \sim t_{n-1},$};
+  \draw (Z)+(0.5ex,2.5ex) |- +(-\vd,\hd)
+  node[bxl] {$\sim \text{t de Student}$};
+  \draw (bX)+(0.5ex,2.5ex) |- +(\vd,\hd)
+  node[bxr] {$\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim
+    \text{Normal}(0,1)$};
+  \draw (S)+(0.5ex,-1ex) |- +(\vd,-\hd)
+  node[bxr] {$(n-1)\frac{S^2}{\sigma^2}\sim \chi^2_{n-1}$};
+\end{tikzpicture}

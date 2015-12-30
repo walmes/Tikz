@@ -1,0 +1,56 @@
+\tikzset{
+  state/.style={
+    rectangle,
+    rounded corners,
+    draw=black, very thick,
+    minimum height=2em,
+    inner sep=10pt,
+    text centered,
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=1pt]
+  \node[state] (f1) {
+    $f_1(t; A, Q_1, Q_2, Tr) =
+    A+Q_1\cdot t+Q_2\cdot t\cdot I(t\geq Tr)$\\
+  };
+  \node [state, yshift=-3cm, left of=f1,
+  node distance=5.5cm, anchor=center] (f2) {
+    $f_2(t; A, Q_1, Tr) =
+    A+Q_1\cdot t-Q_1\cdot t\cdot I(t\geq Tr)$\\
+  };
+  \node[state, yshift=-3cm, right of=f1,
+  node distance=5.5cm, anchor=center] (f3) {
+    $f_3(t; A, Q_1) = A+Q_1\cdot t$\\
+  };
+  \path
+  (f1) edge[bend right=20]
+    node[near end, left] {$Q_2 = -Q_1$} (f2)
+  (f1) edge[bend left=20]
+    node[near end, right] {$Q_2 = 0$} (f3);
+  \begin{scope}[xshift=-1.5cm, yshift=1cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:1.25]
+      function{0.5+0.8*x} node[right] {};
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=1.25:3]
+      function{0.5+0.8*1.25+0.2*(x-1.25)} node[right] {};
+  \end{scope}
+  \begin{scope}[xshift=-6.5cm, yshift=-6cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:1.25]
+      function{0.5+0.8*x} node[right] {};
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=1.25:3]
+      function{0.5+0.8*1.25+0*(x-1.25)} node[right] {};
+  \end{scope}
+  \begin{scope}[xshift=4cm, yshift=-6cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:3]
+      function{0.5+0.5*x} node[right] {};
+  \end{scope}
+\end{tikzpicture}
+

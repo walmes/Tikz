@@ -1,0 +1,36 @@
+\begin{filecontents*}{temp.dat}
+  1   1   100
+  2   2   200
+  3   3   300
+  4   4   400
+  5   5   500
+  6   6   600
+  7   7   700
+  8   8   800
+  9   9   900
+  10  10  1000
+\end{filecontents*}
+
+\begin{tikzpicture}
+  \begin{axis}[%
+    width=4.5in,
+    height=3.5in,
+    scale only axis,
+    xmin=0,
+    xmax=10,
+    ymin=0,
+    ymax=10,
+    axis x line*=bottom,
+    axis y line*=left]
+    \addplot[%
+    scatter=true,
+    only marks,
+    mark=*,
+    color=blue,
+    point meta=explicit symbolic,
+    scatter/@pre marker code/.style={
+      /tikz/mark size=\pgfplotspointmeta/50},
+    scatter/@post marker code/.style={}
+    ] table [meta index=2] {temp.dat};
+  \end{axis}
+\end{tikzpicture}%

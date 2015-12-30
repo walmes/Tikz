@@ -1,0 +1,34 @@
+\def\hd{0.7}
+\def\vd{0.7}
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\tikzstyle{every picture}+=[remember picture]
+
+\begin{tikzpicture}[
+  >=stealth,
+  every path/.style={->, color=darkgreen, thin, rounded corners},
+  every node/.style={color=black},
+  bx/.style={text width=3cm, font=\footnotesize, minimum height=4ex},
+  bxl/.append style={bx, left, align=flush right},
+  bxr/.append style={bx, right, align=flush left}]
+
+  \node {
+    $\tm{y}y =
+    \tm{b0}\beta_0+
+    \tm{b1}\beta_1
+    \tm{x}x+
+    \tm{er}\epsilon$
+  };
+
+  \draw (y)+(0.5ex,2ex) |- +(-\vd,\hd) node[bxl]
+  {Resposta ou vari\'avel dependente}; 
+  \draw (x)+(0.5ex,2ex) |- +(\vd,\hd) node[bxr]
+  {Preditora ou vari\'avel independente};
+  \draw (b0)+(1ex,-1ex) |- +(-\vd,-\hd) node[bxl]
+  {Intercepto};
+  \draw (b1)+(1ex,-1ex) -- +(1ex,-1.5*\hd)
+  node[bxr, below, align=center]
+  {Taxa};
+  \draw (er)+(0.5ex,-1ex) |- +(\vd,-\hd) node[bxr]
+  {Erro aleat\'orio $E(\epsilon) = 0$,\\ $V(\epsilon) = \sigma^2$};
+
+\end{tikzpicture}

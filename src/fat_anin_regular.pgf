@@ -1,0 +1,30 @@
+\def\d{1.35}
+
+\begin{tikzpicture}[
+  yscale=0.6,
+  node distance=1 and 0.5,
+  fator1/.style={%
+    fill=gray!50},
+  fator2/.style={%
+    fill=darkgreen!80, minimum height=1.8em},
+  profator2/.style={%
+    grow=down, xshift=0.1cm, solid, anchor=west,
+    edge from parent path={
+      (\tikzparentnode.south) |- (\tikzchildnode.west)
+    },
+  },
+  level1/.style ={level distance=\d cm},
+  level2/.style ={level distance=2*\d cm},
+  level3/.style ={level distance=3*\d cm},
+  level 1/.style={sibling distance=1cm, level distance=0.5cm}]
+
+  \node[fator1] (A1) {No solo}
+    child [profator2, level1] {node[fator2] {25 kg}}
+    child [profator2, level2] {node[fator2] {50 kg}}
+    child [profator2, level3] {node[fator2] {75 kg}};
+  \node[fator1, right=of A1] (A2) {Foliar}
+    child [profator2, level1] {node[fator2] {2 L}}
+    child [profator2, level2] {node[fator2] {4 L}}
+    child [profator2, level3] {node[fator2] {6 L}};
+  \node at ($(A1)!0.5!(A2)+(0,1)$) {Aduba\c{c}\~ao complementar};
+\end{tikzpicture}

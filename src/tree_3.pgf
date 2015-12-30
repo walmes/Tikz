@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+  font=\small, edge from parent fork down, 
+  every node/.style={
+    top color=white, bottom color=blue!25, 
+    rectangle,rounded corners, minimum size=6mm, draw=blue!75,
+    very thick, drop shadow, align=center
+  },
+  edge from parent/.style={draw=blue!50,thick},
+  level 1/.style={sibling distance=6cm},
+  level 2/.style={sibling distance=2.5cm}, 
+  level 3/.style={sibling distance=1.75cm}, 
+  level distance=2cm]
+
+  \node {Paletizador} % root
+  child { node {Inicializaaaao\\de sistema} 
+    child { node {Sensor X}}
+    child { node {Aaaaao Y}}
+  }
+  child { node {Sacos}
+    child { node {Linha/Coluna}
+      child { node {Garra}}
+      child { node {Rodar Garra}}
+      child { node {Aaaao Y2}}
+    }
+    child { node {Euro Pallet}}
+    child { node {Disposaaaao $xyz$}
+      child { node {$x=?$}}
+      child { node {$y=?$}}
+      child { node {$z=?$}}
+    }
+  }
+  child { node {Sistema de despacho} 
+    child { node {Sensor de peso\\/contador}}
+    child { node {Tapete rolante\\de saaaaada}}
+  };
+\end{tikzpicture}

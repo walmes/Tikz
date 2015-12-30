@@ -1,0 +1,36 @@
+% http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
+\def\ptsize{0.75pt}
+\tikzset{
+  mypoints/.style={fill=white,draw=black},
+  pil/.style={->, shorten <=2pt, shorten >=2pt}
+}
+
+\begin{tikzpicture}[>=latex, xscale=5, yscale=5]
+  \def\thetah{0.3}; \def\thetac{5.6}; %\def\thetac{-2.8}
+  \draw[->, thick] (-0.05,0) -- +(1.2,0) node[below] {tempo ($t$)};
+  \draw[->, thick] (0,-0.05) -- +(0,1.2) node[left] {tanino ($y$)};
+  \def\bet{0.2}
+  \def\alp{0.7}
+  \def\v{0.14}
+  \draw[-, color=green!60!black, ultra thick, samples=100]
+    plot[id=x, domain=0:1]  
+    function{\bet+\alp*2**(-x/\v)}
+    node[color=black, right] {$f(t) = tnp+tp \cdot 2^{-t/tmv}$};
+  \draw[|<->|] (-0.1,\bet) -- (-0.1,0.9)
+    node[midway, left, text width=2cm, text ragged left]
+    {tanino polimerizado\\ ($tp$)};
+  \draw[|<->|] (-0.1,0) -- (-0.1,\bet)
+    node[midway, left, text width=2.8cm, text ragged left]
+    {tanino n\~{a}o polimerizado ($tnp$)};
+  \draw[<-, dashed] (0,\bet) -- +(0.25,0) node[right] {ass\'intota};
+  \draw[<-, dashed] (0,\bet+\alp) -- +(0.5,0)
+    node[right, text width=2cm] {tanino total\\ ($tnp+tp$)};
+  \draw[->,dashed] (\v,\bet+0.5*\alp) -- (\v,0)
+    node[below, text width=2cm, text centered]
+    {tempo de meia vida ($tmv$)};
+  \draw[dashed] (0,\bet+0.5*\alp) -- +(\v,0);
+  \coordinate (a1) at (0.3,0.6);
+  \path[<-, dashed] (0,\bet+0.5*\alp) edge[bend left=50] (a1);
+  \node[below right, text width=2.5cm] at (a1)
+    {metade do tanino polimerizado};
+\end{tikzpicture}

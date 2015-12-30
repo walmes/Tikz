@@ -1,0 +1,56 @@
+\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick, smooth] plot[id=x, domain=2:13]
+        function{5.5*(1-exp(-0.7*(x-2)/2))+0.4*(x-2)} node[right] {P total};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=2:13]
+        function{5.5*(1-exp(-0.7*(x-2)/2))} node[right] {P f\'{a}cil};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=2:13]
+        function{0.4*(x-2)} node[right] {P dif\'{i}cil};
+  \draw[|<->|] (10,3.2) -- ++(1,0) node[below] {$D$} -- ++(0,0.4);
+  \node[below] at (2,0) {$t_0$};
+  \draw[->, dashed] (4,2.75) -- (4,0) node[below] {$t_0+V$};
+  \draw[->, dashed] (13,5.5) -- (0,5.5) node[left] {$A$};
+  \draw[->, dashed] (4,2.75) -- (0,2.75) node[left] {$\frac{A}{2}$};
+  \draw[|<->|] (0,-1) -- (2,-1) node[midway, below] {nula};
+  \draw[|<-] (2,-1) -- (9,-1) node[midway, below] {r\'{a}pida};
+  \draw[|<-] (7,-1.2) -- (14,-1.2) node[midway, above] {lenta};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick, smooth] plot[id=x, domain=-0.1:13]
+        function{6/(1+(3/x)**4)+0.3*x} node[right] {P total};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=0:13]
+        function{6/(1+(3/x)**4)} node[right] {1 regime};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=0:13]
+        function{0.3*x} node[right] {2 regime};
+  \draw[color=green!30!black, thick, smooth, dotted] plot[id=x, domain=3:4.2]
+        function{2*(x-1.5)} node[right] {};
+  \draw[|<->|] (10,3) -- ++(1,0) node[below] {$D$} -- ++(0,0.4);
+  \draw[|<->|] (3,3) -- ++(1,0) node[right] {\small $f'(V)=\frac{CA}{4V}$} -- ++(0,2);
+  \draw[<->, dashed] (0,3) node[left] {$\frac{A}{2}$} -- (3,3)
+        -- (3,0) node[below] {$V$};
+  \draw[->, dashed] (13,6) -- (0,6) node[left] {$A$};
+%  \path[<-] (3,3) edge[bend left=20] node[at end, above] {$f'(V)$} +(-1.5,1);
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:8, scale=0.7, >=latex]
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick] plot[id=x, domain=0:5.5]
+        function{2.5+1.1*x};
+  \node[left] at (0,2.5) {$A$};
+  \draw[->, dashed] (5.5,8.55) -- (5.5,0) node[below] {$Tr$};
+  \draw[|<->|] (2.5,5.25) -- ++(1,0) node[below] {$Q_1$} -- ++(0,1.1);
+  \draw[color=green!30!black, thick] plot[id=x, domain=5.5:13]
+        function{2.5+1.1*5.5+0.3*(x-5.5)};
+  \draw[|<->|] (8.5,9.45) -- ++(1,0) node[midway, below] {$Q_1-Q_2$} -- ++(0,0.3);
+  \draw[|<->|] (0,-1) -- (5.5,-1) node[midway, below] {intermediÃÂ¡ria};
+  \draw[|<-] (5.5,-1) -- (14,-1) node[midway, below] {lenta};
+  \draw[|<->|] (-1,0) -- (-1,2.5) node[midway, above, rotate=90] {imediato};
+\end{tikzpicture}

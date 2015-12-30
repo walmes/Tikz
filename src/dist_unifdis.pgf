@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  declare function={
+    unifdispf(\k,\n)=1/\n;
+  },
+  hplot/.style={ycomb, mark=o}]
+
+  \begin{axis}[
+    width=8cm, height=6cm,
+    xlabel=$x$, ylabel=$p(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none, font=\footnotesize},
+    legend cell align=left,
+    ymin=-0.02, ymax=0.25,
+    xtick={1,2,...,10},
+    ytick={0, 0.1, 0.166},
+    yticklabels={0,$\frac{1}{10}$,$\frac{1}{6}$}]
+
+    \addplot[hplot, samples at={1,2,...,6}]
+      (x-0.07, {unifdispf(x, 6)});
+    \addlegendentry{$n=6$};
+    \addplot[hplot, samples at={1,2,...,10}, red]
+      (x+0.07, {unifdispf(x, 10)});
+    \addlegendentry{$n=10$};
+    \node at (axis description cs: 0.5, 0.85) {$p(x) = \frac{1}{n}$};
+  \end{axis}
+\end{tikzpicture}

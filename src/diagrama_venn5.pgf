@@ -1,0 +1,22 @@
+\begin{tikzpicture}[node distance=0.8cm, scale=0.9]
+  \def\evA{(1.8,0) -- (3,5) -- (0,5) -- (0,0)}
+  \def\evB{(2,2.5) ellipse (0.7cm and 0.3cm)}
+  \draw (0,0) -- (0,5) -- (8,5) -- (8,0) -- (0,0);
+  \draw[color=darkgreen, fill=darkgreen!25] \evB;
+  \draw \evA;
+  \begin{scope}
+    \clip \evA;
+    \fill[fill=darkgreen!75] \evB;
+  \end{scope}
+  \node (n1) at (2,3) {\textcolor{darkgreen}{$F$}};
+  \node (n2) at (1,4) {$H$} node[below of=n2,
+  label={\tiny$P(H)=0.2$}]{};
+  \node (n3) at (7,4) {$H^c$} node[below of=n3,
+  label={\tiny$P(H^c)=0.8$}]{};
+  \node (q1) at (3,1) {$F\cap H$} node[below of=q1,
+  label={\tiny$P(F\cap H)=0.02$}]{};
+  \node (q2) at (4,2) {$F\cap H^c$} node[below of=q2,
+  label={\tiny$P(F\cap H^c)=0.004$}]{};
+  \path[->,>=stealth'] (1.4,2.5) edge[bend right] node [left] {}
+  (q1.west) (2.4,2.5) edge[bend right] node [left] {} (q2.west);
+\end{tikzpicture}

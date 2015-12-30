@@ -1,0 +1,57 @@
+\tikzset{
+  level 1/.style={level distance=3.5cm, sibling distance=4.5cm},
+  level 2/.style={level distance=3.5cm, sibling distance=2.2cm},
+  bag/.style={text width=8em, text centered, anchor=west,
+    fill=gray!50, rounded corners, minimum height=3em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped, ->, >=stealth']
+  \node[bag] {falha na \\ superf\'icie?}
+  child {
+    node[bag] {falha no \\ funcionamento?}        
+    child {
+      node[end, label=right:
+      {$\Pr(S^c\cap F^c)=\dfrac{360}{400}\cdot
+        \dfrac{342}{360}=\dfrac{342}{400}$}] {}
+      edge from parent
+      node[above] {n\~ao $(F^c)$}
+      node[below] {$\Pr(F^c|S^c)=\frac{342}{360}$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S^c\cap F)=\dfrac{360}{400}\cdot
+        \dfrac{18}{360}=\dfrac{18}{400}$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|S^c)=\frac{18}{360}$}
+    }
+    edge from parent 
+    node[above] {n\~ao ($S^c$)}
+    node[below] {$\Pr(S^c)=\frac{360}{400}$}
+  }
+  child {
+    node[bag] {falha no \\ funcionamento?}        
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap F^c)=\dfrac{40}{400}\cdot
+        \dfrac{30}{40}=\dfrac{30}{400}$}] {}
+      edge from parent
+      node[above] {n\~ao ($F^c$)}
+      node[below] {$\Pr(F^c|S)=\frac{30}{40}$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap F)=\dfrac{40}{400}\cdot
+        \dfrac{10}{40}=\dfrac{10}{400}$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|S)=\frac{10}{40}$}
+    }
+    edge from parent         
+    node[above] {sim ($S$)}
+    node[below] {$\Pr(S)=\frac{40}{400}$}
+  };
+\end{tikzpicture}
+

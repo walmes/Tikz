@@ -1,0 +1,60 @@
+% No R:
+% x <- c(0,50,100,250,500,1000);
+% num <- c(27,9,18,3,6,1);
+% den <- 64; px <- num/den
+% data.frame(x=x, px=px, PX=cumsum(px),
+% f=sprintf("%i/%i", num, den),
+% F=sprintf("%i/%i", cumsum(num), den))
+
+\pgfplotsset{
+  myplot/.style={
+    xlabel=$X$: pr\^emio (\$),
+    ylabel=Probabilidade,
+    width=10cm, height=7cm,
+    mark=*,
+    nodes near coords,
+    point meta=explicit symbolic, % permite usar a 3 coluna como label.
+    every node near coord/.append style={font=\footnotesize},
+    nodes near coords align={vertical}
+  }
+}
+
+\pgfplotstableread{
+  i    x       px       PX     f     F
+  1    0 0.421875 0.421875 27/64 27/64
+  2   50 0.140625 0.562500  9/64 36/64
+  3  100 0.281250 0.843750 18/64 54/64
+  4  250 0.046875 0.890625  3/64 57/64
+  5  500 0.093750 0.984375  6/64 63/64
+  6 1000 0.015625 1.000000  1/64 64/64
+}\distrprob
+
+\begin{tikzpicture}
+  \begin{axis}[
+    myplot,
+    ymin=-0.03,
+    enlarge x limits=0.1,
+    enlarge y limits={upper, value=0.2},
+    ylabel={Probabilidade, $\Pr(X=x)$},
+    title={Distribui\c{c}\~{a}o de probabilidades}]
+
+    \addplot[thick, black, ycomb] table[x=x, y=px, meta=f] \distrprob;
+  \end{axis}
+
+  \begin{scope}[xshift=10.5cm]
+    \begin{axis}[
+      myplot,
+      ymin=-0.1,
+      enlarge x limits=0.1,
+      enlarge y limits={upper, value=0.15},
+      ylabel={Probabilidade, $\Pr(X\leq x)$},
+      title={Distribui\c{c}\~{a}o de probabilidades acumulada}]
+
+      \addplot[thick, black, const plot, jump mark left]
+      table[x=x, y=PX, meta=F] \distrprob;
+      \draw[gray] (axis cs: -100, 0) -- (axis cs: 0, 0);
+      \draw[gray] (axis cs: 1000, 1) -- (axis cs: 1100, 1);
+    \end{axis}
+  \end{scope}
+\end{tikzpicture}
+

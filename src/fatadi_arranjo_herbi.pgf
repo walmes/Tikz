@@ -1,0 +1,36 @@
+\def\d{1cm}
+\def\k{1.4}
+
+\begin{tikzpicture}[
+  yscale=0.6,
+  node distance=1 and 0.5,
+  fator1/.style={%
+    fill=gray!50, text width=2.5cm, text centered, minimum height=3em},
+  fator2/.style={%
+    fill=darkgreen!80, text width=1.5cm, text centered},
+  profator2/.style={%
+    grow=down, xshift=-0.2cm, solid, %anchor=west,
+    edge from parent path={
+      (\tikzparentnode.south west) |- (\tikzchildnode.west)
+    },
+  },
+  level1/.style ={level distance=1.5cm},
+  level2/.style ={level distance=2.5cm},
+  level3/.style ={level distance=3.5cm}]
+
+  \node[fator1] (H1) {Herbic\'{i}da\\ A}
+    child [profator2, level1] {node[fator2] {1 L}}
+    child [profator2, level2] {node[fator2] {2 L}}
+    child [profator2, level3] {node[fator2] {3 L}};
+  \node[fator1, right=of H1] (H2) {Herbic\'{i}da\\ B}
+    child [profator2, level1] {node[fator2] {1 L}}
+    child [profator2, level2] {node[fator2] {2 L}}
+    child [profator2, level3] {node[fator2] {3 L}};
+  \node[fator1, right=of H2] (Tm)
+    {Sem herbic\'ida \\ \textbf{Sem} capina};
+  \node[fator1, right=of Tm] (TM)
+    {Sem herbic\'ida \\ \textbf{Com} capina};
+  \draw (H1) |- ($(H2)+(0,\k)$);
+  \draw (H2) |- ($(Tm)+(0,\k)$);
+  \draw (Tm) |- ($(TM)+(0,\k)$) -- (TM);
+\end{tikzpicture}

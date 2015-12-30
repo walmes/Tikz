@@ -1,0 +1,70 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, fill=gray!20, thick,
+    minimum height=2em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+
+  \node [state] (Cl0) {
+    $\eta(x; \theta_0, \theta_1, C) =
+    \theta_0-\theta_1 x^{\exp\{C\}}$\\
+  };
+  \node [state, yshift=0cm, right of=Cl0,
+  node distance=8cm, anchor=center]
+  (Cg0) {
+    $\eta(x; \theta_0, \theta_1, C) = \theta_0-\theta_1 x^{\exp\{C\}}$\\
+  };
+  \node [state, yshift=-5cm, right of=Cl0,
+  node distance=4cm, anchor=center]
+  (Ce0) {
+    $\eta(x; \theta_0, \theta_1) = \theta_0-\theta_1 x$\\
+  };
+  \node[state, yshift=0cm, below of=Ce0,
+  node distance=5cm, anchor=center]
+  (f1e0) {
+    $\eta(x; \theta_0) = \theta_0$\\
+  };
+
+  \path
+  (Cl0) edge[bend right=50]
+    node[midway, left] {$C = 0$} (Ce0)
+  (Cg0) edge[bend left=50]
+    node[midway, right] {$C = 0$} (Ce0)
+  (Ce0) edge[bend left=75]
+    node[midway, right] {$\theta_1 = 0$} (f1e0);
+
+  \begin{scope}[xshift=-1.5cm, yshift=1.5cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-0.7*x**exp(-1.2)};
+    \node at (0.5, -0.25) {$C<0$, fun\c{c}\~ao convexa};
+  \end{scope}
+
+  \begin{scope}[xshift=6.5cm, yshift=1.5cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-0.7*x**exp(1.2)};
+    \node at (0.5, -0.25) {$C>0$, fun\c{c}\~ao c\^oncava};
+  \end{scope}
+
+  \begin{scope}[xshift=2.5cm, yshift=-3.5cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-0.7*x};
+    \node at (0.5, -0.25) {$C=0$, fun\c{c}\~ao linear};
+  \end{scope}
+
+  \begin{scope}[xshift=2.5cm, yshift=-8.5cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.5-0*x};
+    \node at (0.5, -0.25) {$C=0$, fun\c{c}\~ao constante};
+  \end{scope}
+
+\end{tikzpicture}

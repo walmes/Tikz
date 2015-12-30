@@ -1,0 +1,50 @@
+\pgfplotsset{
+  myplot/.style={
+    width=10cm, height=7cm,
+    mark=*,
+    nodes near coords,
+    point meta=explicit symbolic, % permite usar a 3 coluna como label.
+    every node near coord/.append style={font=\footnotesize},
+    nodes near coords align={vertical}
+  }
+}
+
+\pgfplotstableset{
+  create on use/new/.style={
+    create col/expr={\thisrow{px}*30}
+  }
+}
+
+\begin{filecontents*}{distrprob.dat}
+  i    x       px       PX     f     F
+  1    0 0.421875 0.421875 27/64 27/64
+  2   50 0.140625 0.562500  9/64 36/64
+  3  100 0.281250 0.843750 18/64 54/64
+  4  250 0.046875 0.890625  3/64 57/64
+  5  500 0.093750 0.984375  6/64 63/64
+  6 1000 0.015625 1.000000  1/64 64/64
+\end{filecontents*}
+
+\begin{tikzpicture}[>=stealth]
+  \begin{axis}[
+    myplot,
+    hide y axis,
+    axis x line*=bottom,
+    xmin=0, xmax=1000,
+    domain=0:1000,
+    height=2.0cm,
+    enlarge x limits=0.05,
+    clip=false]
+
+    \addplot[
+      scatter, only marks, ycomb,
+      visualization depends on=\thisrow{px} \as\wtwo,
+      scatter/@pre marker code/.append style={
+        /tikz/mark size=\wtwo*20}
+    ] table [x=x, y=px] {distrprob.dat};
+
+    \draw[<-, very thick, darkgreen] (axis cs: 109.375, 0) --
+    (axis cs: 109.375, -0.5) node[below] {$E(X) = 109.375$};
+
+  \end{axis}
+\end{tikzpicture}

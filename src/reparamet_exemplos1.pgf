@@ -1,0 +1,43 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, thick,
+    minimum height=4em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[>=latex, line width=0.75pt]
+  \begin{scope}[xshift=0cm, yshift=0cm, xscale=3, yscale=2]
+    \coordinate (centro) at (0.5,0);
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=darkgreen, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-2*(x-0.5)**2};
+    \draw[<-,dotted] (0.5,0) |- (0,0.8);
+    \node at (0.5,0.8) {$\times$};
+    \node[state, above of=centro, node distance=3.2cm] (modelo1)
+      {$f(x, \theta) = \theta_0+\theta_1 x+\theta_2 x^2$};
+    \node[above of=modelo1] {modelo quadr\'atico};
+    \node[state, yshift=0cm, below of=centro,
+      node distance=1.5cm,  anchor=center]
+      (g1) {$\vartheta = \displaystyle\frac{-\theta_1}{2\theta_2}$};
+    \node[above of=g1] {ponto cr\'itico};
+  \end{scope}
+  \begin{scope}[xshift=6cm, yshift=0cm, xscale=3, yscale=2]
+    \coordinate (centro) at (0.5,0);
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=darkgreen, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8/(1+exp(-(x-0.5)/0.09))};
+    \draw[<-,dotted] (0.5,0) |- (0,0.4);
+    \node at (0.5,0.4) {$\circ$};
+    \node[state, above of=centro, node distance=3.2cm] (modelo1)
+      {$f(x, \theta) = \displaystyle \frac{\theta_a}{
+          1+\exp\{\theta_0+\theta_1 x\}}$};
+    \node[above of=modelo1] {modelo log\'istico};
+    \node[state, yshift=0cm, below of=centro,
+      node distance=1.5cm,  anchor=center]
+      (g1) {$\vartheta = \displaystyle\frac{1}{\theta_1}
+        \left(\log\left(\frac{1-q}{q}\right)-\theta_0\right)$};
+    \node[above of=g1] {DL$_{q}$};
+  \end{scope}
+\end{tikzpicture}

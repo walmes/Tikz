@@ -1,0 +1,99 @@
+\pgfplotsset{
+  myplot/.style={
+    width=7cm, height=5cm,
+    width=7cm, height=5cm,
+    xlabel=$x$,
+    ylabel=$y$,
+    xtick=\empty,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    samples=50, domain=0:5, smooth, no marks,
+    font=\footnotesize,
+  }
+}
+
+\begin{tikzpicture}[
+  declare function={
+    reg(\x,\a,\b)=\a+\b*\x;
+  },
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    beta(\a,\b)=gamma(\a)*gamma(\b)/gamma(\a+\b);
+  },
+  declare function={
+    betapdf(\x,\a,\b)=\x^(\a-1)*(1-\x)^(\b-1)/beta(\a,\b);
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen}]
+
+  \begin{axis}[
+    myplot,
+    extra x ticks={2,5,8},
+    extra x tick labels={$x_1$,$x_2$,$x_3$},
+    extra tick style={grid=major}]
+
+    \addplot[color=black, thick, domain=0:10, samples=2]
+      (x,{reg(x,0,1)});
+    \node[cx, anchor=north west] (dp)
+      at (axis description cs:0.05,0.95)
+      {$[y|x]$: assim\'etrica a esquerda};
+    \pgfplotsinvokeforeach{2,5,8}{
+      \addplot[domain=0:1, samples=30, fill=darkgreen, opacity=0.5]
+      ({#1+0.5*betapdf(x,2,6)},7*x-1.5+#1);
+    }
+  \end{axis}
+
+  \begin{axis}[
+    myplot,
+    xshift=6.5cm,
+    width=5cm, height=5cm,
+    xlabel=Quantis te\'{o}ricos,
+    ylabel=Quantis observados]
+
+    \addplot[color=black, dotted, domain=-1:1, samples=2]
+      (x,{reg(x,0,1)});
+    \addplot[color=black, very thick, domain=-1:1,
+      samples=20, color=darkgreen] {0.5-0.5*(x-0.95)^2};
+    \node[cx, anchor=north] (dp)
+      at (axis description cs:0.5,0.95) {Assimetria a esquerda};
+  \end{axis}
+
+  \begin{axis}[
+    myplot,
+    yshift=4.5cm,
+    extra x ticks={2,5,8},
+    extra x tick labels={$x_1$,$x_2$,$x_3$},
+    extra tick style={grid=major}]
+
+    \addplot[color=black, thick, domain=0:10, samples=2]
+      (x,{reg(x,0,1)});
+    \node[cx, anchor=south east] (dp)
+      at (axis description cs:0.95,0.05)
+      {$[y|x]$: assim\'{e}trica a direita};
+    \pgfplotsinvokeforeach{2,5,8}{
+      \addplot[domain=0:1, samples=30, fill=darkgreen, opacity=0.5]
+      ({#1+0.5*betapdf(x,6,2)},7*x-5.5+#1);
+    }
+  \end{axis}
+
+  \begin{axis}[
+    myplot,
+    xshift=6.5cm, yshift=4.5cm,
+    width=5cm, height=5cm,
+    xlabel=Quantis te\'{o}ricos,
+    ylabel=Quantis observados]
+
+    \addplot[color=black, dotted, domain=-1:1, samples=2]
+      (x,{reg(x,0,1)});
+    \addplot[color=black, very thick, domain=-1:1,
+      samples=20, color=darkgreen] {-0.5+0.5*(x+0.95)^2};
+    \node[cx, anchor=south] (dp)
+      at (axis description cs:0.5,0.05) {Assimetria a direita};
+  \end{axis}
+\end{tikzpicture}

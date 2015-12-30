@@ -1,0 +1,35 @@
+% http://tex.stackexchange.com/questions/22406/how-to-make-a-textbox-with-this-tikz-code
+
+\xdefinecolor{mycolor}{RGB}{62,96,111} % Neutral Blue
+\colorlet{bancolor}{mycolor}
+% \def\bancolor{mycolor}
+
+\newenvironment{mybox}[3][]{%
+  \begin{tikzpicture}[#1]%
+    \def\myboxname{#3}%
+    % good options: minimum height, minimum width
+    \node [draw, inner sep=1.5ex, text width=#2, align=justify]
+      (BOXCONTENT) \bgroup\rule{0pt}{3ex}\ignorespaces
+  }{%
+    \egroup;
+    \node [right, inner xsep=1em, fill=bancolor!75, outer sep=0pt,
+      text height=2ex, text depth=.5ex] (BOXNAME) 
+      at ([shift={(-1em,0pt)}]BOXCONTENT.north west) {\myboxname};
+    \fill[bancolor] (BOXNAME.north east) -- +(-1em,1em)
+      -- +(-1em,0) -- cycle;
+    \fill[bancolor] (BOXNAME.south west) -- +(1em,-1em)
+      -- +(1em,0) -- cycle;
+  \end{tikzpicture}
+}
+
+\begin{mybox}{10em}{Test}
+  This is the content
+\end{mybox}
+
+\begin{mybox}{25em}{Test it really good}
+  This is the longer content
+  This is the longer content
+  This is the longer content
+  This is the longer content
+  This is the longer content
+\end{mybox}

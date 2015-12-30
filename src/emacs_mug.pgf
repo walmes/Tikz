@@ -1,0 +1,325 @@
+\definecolor{emacsroxo}{HTML}{5854A8}
+\definecolor{emacsazul}{HTML}{00003D}
+
+\fontfamily{iwonalc} %% iwona ligth condensed
+\changefontsizes[11pt]{8pt}
+\renewcommand{\baselinestretch}{0.85}
+\newcommand{\cc}{\cellcolor[gray]{0.9}}
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{\cc #3}}
+\newcommand{\md}[3]{\multicolumn{#1}{#2}{#3}}
+
+\tikzset{
+  mybox/.style={
+    draw=emacsroxo, thick, rectangle,
+    fill=gray!40,
+    rounded corners=3pt, inner sep=0pt, inner ysep=1pt,
+    anchor=north west
+  },
+  fancytitle/.style={
+    fill=emacsroxo, text=white,
+    %% text width=0.5*\d,
+    minimum width=1.2cm, minimum height=1.5em,
+    rounded corners=3pt, left=5pt
+  },
+  bx/.style={draw}
+}
+
+\begin{tikzpicture}[node distance=0.3cm, scale=1]
+  \def\d{3.5cm}
+  \def\cred{%
+    \begin{minipage}{\d}
+      \begin{center}
+        \includegraphics[width=2.2cm]{/home/walmes/Dropbox/tikz/mugs/carbon-emacs-icon.png}\\
+        {\Large \textbf{Caneca Emacs}}\\
+        por \textit{Walmes Zeviani}\\
+        \textcolor{emacsazul}{\texttt{github.com/walmes/emacs}}
+      \end{center}
+    \end{minipage}
+  }
+  \def\ajuda{%
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-6pt}            \\
+        % {\tt F1}     & Ajuda                    \\
+        {\tt M-x} help & Ajuda                    \\
+        {\tt F1 a}     & \`{A} prop\'{o}sito      \\
+        {\tt F1 b}     & Atalhos                  \\
+        {\tt F1 c}     & A\c{c}\~{a}o do atalho   \\
+        {\tt F1 f}     & Descrever fun\c{c}\~{a}o \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\arquivo{%
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-6pt}                 \\
+        % {\tt C-x C-f} & Abrir                        \\
+        % {\tt C-x C-s} & Salvar                       \\
+        % {\tt C-x C-w} & Salvar como                  \\
+        \md{2}{l}{\tt C-x C-<fsw>}                     \\
+        \md{2}{l}{Abrir, salvar, salvar como}          \\
+        \md{2}{l}{{\tt M-x} dired ~ Abrir diret\'orio} \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\book{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                \\
+        % {\tt C-x r m} & Definir                     \\
+        % {\tt C-x r b} & Ir para                     \\
+        % {\tt C-x r l} & Listar                      \\
+        \md{2}{l}{\tt M-x r <mbl>}                    \\
+        \md{2}{l}{Definir, ir para, listar}           \\
+        \md{2}{l}{{\tt M-x} bookmark-delete~~Deletar} \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\area{%
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                  \\
+        {\tt S-delete}    & Recortar                    \\
+        {\tt C-insert}    & Copiar                      \\
+        {\tt S-insert}    & Colar                       \\
+        \md{2}{l}{{\tt C-S-backspace}  ~Recortar linha} \\
+        \md{2}{l}{{\tt C-</\_>} ~~ Desfazer, Refazer}   \\
+        {\tt C-x r s <c>} & Armazenar em                \\
+        {\tt C-x r i <c>} & Inserir                     \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\retangulos{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}   \\
+        {\tt C-x r k}     & Recortar     \\
+        % {\tt C-x r M-w} & Copiar       \\ %% nao existe copiar retangulo
+        {\tt C-x r y}     & Colar        \\
+        {\tt C-x r r <c>} & Armazenar em \\
+        {\tt C-x r i <c>} & Inserir      \\
+        \md{2}{l}{\tt C-x r <ocdt>}      \\
+        \md{2}{l}{Abrir, limpar, deletar, preceder}
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\formatacao{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}         \\
+        {\tt M-q}              & Acomodar      \\
+        {\tt C-M-$\backslash$} & Indentar      \\
+        {\tt C-77 -}           & 77 tra\c{c}os \\
+        {\tt M-;}              & Comentar      \\
+        {\tt M-x align}        & Alinhar       \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\orto{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}\\
+        {\tt M-\$}              & Palavra             \\
+        {\tt M-x} ispell-region & Regi\~ao              \\
+        {\tt M-x} ispell-buffer & Buffer              \\
+        \md{2}{l}{{\tt M-x} ispell-change-dictionary} \\
+        \md{2}{l}{{\tt M-x} flyspell-mode}            \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\movi{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                                                 \\
+        {\tt M-g g}                       & Ir linha                                   \\
+        % \md{2}{l}{{\tt M-x} goto-char ~~Ir coluna}                                   \\
+        \md{2}{l}{{\tt C-l} ~~Cursor ao centro/bordas}                                 \\
+        \md{2}{l}{{\tt C-<ae>} ~~Ir paragr\'afo $\blacktriangle$ $\blacktriangledown$} \\
+        {\tt C-x C-$\blacktriangleright$} & Pr\'oximo buffer                           \\
+        {\tt C-x C-$\blacktriangleleft$}  & Buffer anterior                            \\
+        {\tt C-x o}                       & Passar o cursor                            \\
+        {\tt C-x C-b}                     & Listar buffers                             \\
+        {\tt C-x k}                       & Fechar buffer                              \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\busca{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                                           \\
+        {\tt M-s o}    & Listar ocorr\^encias                                    \\
+        \md{2}{l}{~~~\tt C-c C-f, M-<pn>  $\blacktriangle$ $\blacktriangledown$} \\ 
+        {\tt C-<rs>}   & Para $\blacktriangle$ $\blacktriangledown$              \\
+        {\tt C-M-<rs>} & Regex $\blacktriangle$ $\blacktriangledown$             \\
+        % \md{2}{l}{{\tt M-x} (un)highlight-regexp}                              \\
+        \md{2}{l}{{\tt M-x} delete-(non-)matching-lines}                         \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\subist{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}     \\
+        {\tt M-\%}   & Buscar e substituir \\
+        {\tt C-M-\%} & Com regex           \\ %\hline
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\janelas{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}       \\
+        {\tt C-x 1}   & Manter a atual       \\
+        {\tt C-x 2}   & Divis\~ao horizontal \\
+        {\tt C-x 3}   & Divis\~ao vertical   \\
+        {\tt C-x 0}   & Remover divis\~ao    \\
+        {\tt C-x 5 2} & Janela flutuante     \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\sessaor{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}             \\
+        \md{2}{l}{{\tt C-c C-<jnprfb>} ~~ Avaliar} \\
+        \md{2}{p{3.5cm}}{Linha, linha e descer, par\'agrafo, regi\~ao, fun\c{c}\~ao,
+        buffer}                                    \\
+      % {\tt C-c C-j} & Linha                      \\
+      % {\tt C-c C-n} & Linha e descer             \\
+      % {\tt C-c C-p} & Par\'agrafo                \\
+      % {\tt C-c C-r} & Regi\~ao                   \\
+      % {\tt C-c C-f} & Fun\c{c}\~ao               \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\sessaornw{
+    \begin{minipage}{\d}
+      \begin{tabular}{lp{2cm}}\vspace{-3pt}                                  \\
+        % {\tt M-n C-p}  & Chunk acima                                       \\
+        % {\tt M-n C-n}  & Chunk abaixo                                      \\
+        {\tt M-n C-<pn>} & Ir ao chunk $\blacktriangle$ $\blacktriangledown$ \\
+        {\tt M-n g}      & Ir para chunk                                     \\
+        {\tt M-n C-M-x}  & Avaliar chunk                                     \\
+        {\tt M-n C-c}    & Chunk e descer                                    \\
+        {\tt M-n <sTP>}  & Sweave, Tangle, \newline pdflatex                 \\
+        % {\tt M-n <ru>} & knit, purl \newline (*ess-knitr.el)               \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\sessaolatex{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                                           \\
+        % {\tt C-c C-m}   & Inserir macro                                        \\
+        % {\tt C-c C-e}   & Inserir ambiente                                     \\
+        % {\tt C-c C-j}   & Inserir \verb|\item|                                 \\
+        \md{2}{l}{{\tt C-c C-<mesi>} ~~Inserir}                                  \\
+        \md{2}{l}{Macro, ambiente, sess\~ao, $\backslash{}$\texttt{item}}        \\
+        {\tt C-c ]}       & Fechar ambiente                                      \\
+        {\tt C-c C-c}     & Compilar                                             \\
+        {\tt M-g <pn>}    & Ir para o erro $\blacktriangle$ $\blacktriangledown$ \\
+      \end{tabular}
+      \begin{tabular}{ll}
+        \md{2}{l}{{\tt C-c C-f C-<bit>} ~~Fonte}                                 \\
+        \md{2}{l}{\textbf{negrito}, \textit{it\'alico}, \texttt{monoespa\c{c}o}} \\
+        \md{2}{l}{{\tt C-c C-q C-<rep>} ~~Formatar}                              \\
+        \md{2}{l}{Regi\~ao, ambiente, par\'agrafo}                               \\
+        {\tt C-c C-o C-f} & Modo esconder                                        \\
+        \md{2}{l}{{\tt C-c C-o C-<repo>} ~~Esconder}                             \\
+        \md{2}{l}{Regi\~ao, ambiente, par\'agrafo, item}                         \\
+        \md{2}{l}{{\tt C-c C-o <repi>} ~~Mostrar}                                \\
+        \md{2}{l}{Regi\~ao, ambiente, par\'agrafo, item}                         \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\reftex{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}       \\
+        {\tt C-c =}  & Navegar no sum\'ario  \\
+        {\tt C-c (}  & Criar r\'otulo        \\
+        {\tt C-c )}  & Inserir refer\^encia  \\
+        {\tt C-c [}  & Inserir cita\c{c}\~ao \\
+        {\tt C-c \&} & Ver refer\^encias     \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\trans{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}                       \\
+        \md{2}{l}{{\tt C-t} Caracteres ~ {\tt M-t} Palavras} \\
+        {\tt C-x C-t} & Linhas                               \\
+        \md{2}{l}{{\tt M-x} reverse-region}                  \\
+      \end{tabular}
+    \end{minipage}
+  }
+  \def\extra{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}    \\
+        {\tt M-x tetris}   & Tetris       \\
+        {\tt M-x calendar} & Calend\'ario \\
+      \end{tabular}
+    \end{minipage}
+  }
+
+  \def\misc{
+    \begin{minipage}{\d}
+      \begin{tabular}{ll}\vspace{-3pt}               \\
+        {\tt M-x} shell          & Terminal          \\
+        {\tt M-x} re-builder     & Regex             \\
+        {\tt M-x} orgstruct-mode & Listas            \\
+        {\tt M-x} orgtbl-mode    & Tabelas           \\
+        % {\tt M-x z}            & Repete a\c{c}\~ao \\
+        {\tt M-x} artist-mode    & Desenhar          \\
+        \md{2}{l}{{\tt M-x} highlight-changes-mode}  \\
+      \end{tabular}
+    \end{minipage}
+  }
+
+  % \draw[fill=gray] rectangle (20,-9);
+  % \draw[help lines, gray] (-0.1, -0.1) grid (20.1, 9.1);
+
+  %% Simbolo Emacs com creditos.
+  \node[draw=none, anchor=north west] (cred) at (0,9) {\cred};
+  \node[mybox, below=of cred] (ajuda) {\ajuda};
+  \node[mybox, below=of ajuda] (arquivo) {\arquivo};
+  \node[mybox, below=of arquivo] (book) {\book};
+
+  \renewcommand{\baselinestretch}{0.815}
+  \def\d{3.8cm}
+  \node[mybox, right=6pt of cred.39, anchor=north west] (area) {\area};
+  \node[mybox, below=of area] (retangulos) {\retangulos};
+  \node[mybox, below=of retangulos] (busca) {\busca};
+  \node[mybox, below=of busca] (subist) {\subist};
+
+  \renewcommand{\baselinestretch}{0.815}
+  \def\d{3.6cm}
+  \node[mybox, right=of area.north east, anchor=north west]
+    (movi) {\movi};
+  \node [mybox, below=of movi] (janela) {\janelas};
+  \node [mybox, below=of janela] (orto) {\orto};
+  \node [mybox, below=of orto] (extra) {\extra};
+
+  \renewcommand{\baselinestretch}{0.81}
+  \def\d{3.9cm}
+  \node[mybox, right=of movi.north east, anchor=north west]
+    (formatacao) {\formatacao};
+  \node[mybox, below=of formatacao] (trans) {\trans};
+  \node[mybox, below=of trans] (latex) {\sessaolatex};
+
+  \renewcommand{\baselinestretch}{0.815}
+  \def\d{3.9cm}
+  \node[mybox, right=of formatacao.north east, anchor=north west]
+    (reftex) {\reftex};
+  \node[mybox, below=of reftex] (R) {\sessaor};
+  \node[mybox, below=of R] (Rnw) {\sessaornw};
+  \node[mybox, below=of Rnw] (misc) {\misc};
+
+  \node[fancytitle] at (ajuda.north east) {Ajuda};
+  \node[fancytitle] at (arquivo.north east) {Arquivo};
+  \node[fancytitle] at (area.north east)
+    {\'{A}rea de transfer{\^e}ncia};
+  \node[fancytitle] at (retangulos.north east) {Ret{\^a}ngulos};
+  \node[fancytitle] at (formatacao.north east) {Formata\c{c}\~{a}o};
+  \node[fancytitle] at (orto.north east) {Ortografia};
+  \node[fancytitle] at (book.north east) {Bookmarks};
+  \node[fancytitle] at (movi.north east) {Movimenta\c{c}\~{a}o};
+  \node[fancytitle] at (busca.north east) {Busca};
+  \node[fancytitle] at (subist.north east) {Substitui\c{c}\~{a}o};
+  \node[fancytitle] at (janela.north east) {Janelas};
+  \node[fancytitle] at (R.north east) {Sess\~{a}o R - ESS};
+  \node[fancytitle] at (Rnw.north east) {Sess\~{a}o Rnw - ESS};
+  \node[fancytitle] at (latex.north east)
+    {Sess\~ao \LaTeX{} - AUC\TeX{}};
+  \node[fancytitle] at (reftex.north east) {Reftex};
+  \node[fancytitle] at (trans.north east) {Transposi\c{c}\~{a}o};
+  \node[fancytitle] at (extra.north east) {Extras};
+  \node[fancytitle] at (misc.north east) {Miscel{\^a}nia};
+
+\end{tikzpicture}

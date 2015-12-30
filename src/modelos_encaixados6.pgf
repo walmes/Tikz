@@ -1,0 +1,66 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, very thick,
+    minimum height=2em, inner sep=10pt, text centered,
+  },
+}
+
+\begin{tikzpicture}[->, >=latex, line width=1pt]
+  \node[state] (f1) {
+    $f_1(t; A, V, C, D) = \displaystyle \frac{A}{1+(V/t)^C}+D\cdot t$
+  };
+  \node[state, yshift=-3cm, left of=f1,
+  node distance=5.5cm, anchor=center] (f2) {
+    $f_2(t; A, V, C) = \displaystyle \frac{A}{1+(V/t)^C}$
+  };
+  \node[state, yshift=-3cm, right of=f1,
+  node distance=5.5cm, anchor=center] (f3) {
+    $f_3(t; A, V, D) = \displaystyle \frac{A}{1+(V/t)}+D\cdot t$
+  };
+  \node[state, yshift=-3cm, right of=f2,
+  node distance=5.5cm, anchor=center] (f4) {
+    $f_4(t; A, V) = \displaystyle \frac{A}{1+(V/t)}$
+  };
+  \node[state, yshift=-3cm, right of=f3,
+  node distance=2.5cm, anchor=center] (f5) {
+    $f_5(t; A, D) = A+D\cdot t$\\
+  };
+  \path
+  (f1) edge[bend right=20] node[midway, left] {$D = 0$} (f2)
+  (f1) edge[bend left=20] node[midway, right] {$C = 1$} (f3)
+  (f2) edge[bend right=30] node[midway, left] {$C = 1$} (f4)
+  (f3) edge[bend left=30] node[midway, right] {$D = 0$} (f4)
+  (f3) edge[bend right=10] node[midway, right] {$V = 0$} (f5)
+  (f1) edge[bend left=20] node[midway, left]
+    {$D = 0 \textrm{ e } C = 1$} (f4);
+  \begin{scope}[xshift=-1.5cm, yshift=1cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=-0.01:3]
+      function{1/(1+(0.5/x)**4)+0.25*x};
+  \end{scope}
+  \begin{scope}[xshift=-9cm, yshift=-2cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=-0.01:3]
+      function{1.3/(1+(0.5/x)**4)};
+  \end{scope}
+  \begin{scope}[xshift=6cm, yshift=-2cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=-0.01:3]
+      function{1/(1+(0.5/x))+0.25*x};
+  \end{scope}
+  \begin{scope}[xshift=-1.5cm, yshift=-9cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=-0.01:3]
+      function{1.6/(1+(0.3/x))};
+  \end{scope}
+  \begin{scope}[xshift=6.5cm, yshift=-9cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=-0.01:3]
+      function{0.7+0.3*x};
+  \end{scope}
+\end{tikzpicture}

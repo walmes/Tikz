@@ -1,0 +1,86 @@
+\tikzstyle{every picture}+=[remember picture]
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[%
+    anchor=base,%
+    inner sep=0pt,%
+    outer sep=0pt,%
+    ] (#1) {#2};%
+  }%
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[}, right delimiter={]}
+  },
+  hlt/.style={
+    draw=red, thick, outer sep=0pt, inner sep=0pt, rounded corners,
+    inner sep=-1pt
+  },
+  hltr/.style={opacity=0.5, rounded corners=2pt, inner sep=-1pt},
+  rpath/.style={<->, draw, rounded corners},
+  epath/.style={draw, ->, rounded corners, shorten <=3pt, >=stealth},
+  every node/.style={rounded corners=false},
+  ann/.style={font=\footnotesize, color=darkgreen}]
+
+  \node (fat) {
+    $\mu+
+    \nann{a}{$\alpha$}_{i}+
+    \nann{t}{$\tau$}_{j}+
+    \nann{g}{$\gamma$}_{ij},
+    \qquad \text{se cela fatorial}$
+  };
+
+  \path[epath] (a.north) |- ++(0.5,1)
+    node[ann,right] (fa) {fator 1};
+  \path[epath] (t.north) |- ++(0.5,0.7)
+    node[ann,right] (ft) {fator 2};
+  \path[epath] (g.north) |- ++(0.5,0.4)
+    node[ann,right] (fg) {intera\c{c}\~ao};
+
+  \node[below=of fat] (adi) {
+    $\mu+
+    \nann{th}{$\theta$}_{k},
+    \qquad \text{se cela adicional}$
+  };
+
+  \path[epath] (th.south) |- ++(0.5,-0.5)
+    node[ann,right] (tt) {testemunhas};
+
+  \matrix[mtx, right=of fat] (X) {
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+  };
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill=blue, fit=(X-7-7)(X-8-8)] {};
+    \node[hltr, fill=green, fit=(X-1-2)(X-6-6)] {};
+    % \node[hltr, fill=green, fit=(X-1-2)(X-16-4)] {};
+    % \node[hltr, fill=blue, fit=(X-1-5)(X-16-8)] {};
+    % \node[hltr, fill=yellow, fit=(X-1-9)(X-16-20)] {};
+  \end{scope}
+
+  \foreach \col/\th in {
+    1/$\mu$,2/$\alpha_2$,3/$\tau_2$,4/$\tau_3$,
+    5/$\gamma_{23}$,6/$\gamma_{33}$,7/$\theta_1$,8/$\theta_2$
+  }{
+    \node[right, rotate=90, font=\tt]
+      (p\col) at (X-1-\col.north) {\th};
+  }
+
+  \draw (fa) to[out=90, in=90] (p2.east);
+  \draw (ft) to[out=90, in=90] (p3.east);
+  \draw (fg) to[out=90, in=90] (p5.east);
+  % \draw (tt) .. controls (X-8-8.south east) and +(5,-5) .. (p7.east);
+  \draw (tt) to[out=0, in=180] ($(X-8-8.south)+(0.5,-0.25)$)
+  to[out=10, in=60] (p8.east);
+
+\end{tikzpicture}

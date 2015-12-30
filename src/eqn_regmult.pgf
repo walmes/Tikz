@@ -1,0 +1,44 @@
+\def\hd{0.5}
+\def\vd{0.5}
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\tikzstyle{every picture}+=[remember picture]
+
+\begin{tikzpicture}[
+  >=stealth,
+  every path/.style={->, color=darkgreen, thin, rounded corners},
+  every node/.style={color=black},
+  bx/.style={text width=3cm, font=\footnotesize, minimum height=4ex},
+  bxl/.append style={bx, left, align=flush right},
+  bxr/.append style={bx, right, align=flush left}]
+
+  \node {
+    $\tm{y}y =
+    \tm{b0}\beta_0+
+    \tm{b1}\beta_1
+    \tm{x1}x_1+
+    \tm{b2}\beta_2
+    \tm{x2}x_2+\cdots+
+    \tm{bk}\beta_k
+    \tm{xk}x_k+
+    \tm{er}\epsilon$
+  };
+
+  \node[bx, align=center] (preds) at (0.4,1.5)
+  {Preditoras ou vari\'aveis\\ independentes};
+  \node[bx, align=center] (tx) at (0.4,-1.5) {Taxas};
+
+  \path[draw] (y)+(0.5ex,2ex) to[out=90, in=0] +(-\vd,\hd)
+  node[bxl] {resposta ou vari\'avel dependente};
+  \path[draw] (x1)+(0.5ex,2ex) to[out=90, in=-90] (preds);
+  \path[draw] (x2)+(0.5ex,2ex) to[out=90, in=-90] (preds);
+  \path[draw] (xk)+(0.5ex,2ex) to[out=90, in=-90] (preds);
+  \path[draw] (b1)+(1ex,-1ex) to[out=-90, in=90] (tx);
+  \path[draw] (b2)+(1ex,-1ex) to[out=-90, in=90] (tx);
+  \path[draw] (bk)+(1ex,-1ex) to[out=-90, in=90] (tx);
+  \path[draw] (b0)+(1ex,-1ex) to[out=-90, in=0] +(-\vd,-\hd)
+  node[bxl] {Intercepto};
+  \path[draw] (er)+(0.5ex,-1ex) to[out=-90, in=180] +(\vd,-\hd)
+  node[bxr] {Erro aleat\'orio $E(\epsilon) = 0$,\\
+    $V(\epsilon) = \sigma^ 2$};
+
+\end{tikzpicture}

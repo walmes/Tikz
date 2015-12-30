@@ -1,0 +1,41 @@
+\def\ABC{0.95}
+\def\DEF{0.7}
+
+\tikzset{
+  >=stealth,
+  terminal/.style={rectangle, minimum size=6mm, draw=black},
+  point/.style={coordinate},
+  draw=black,
+  mtx/.style={
+    matrix of nodes,
+    column sep=7mm, row sep=0mm,
+    nodes={draw, outer sep=5pt, fill=green!60!blue,
+      text width=2em, text centered}
+  },
+  every path/.style={rounded corners=1pt}
+}
+
+\begin{tikzpicture}
+  \matrix[mtx] (Y) {
+    \ABC &      & \\
+         & \DEF & \\
+    \ABC &      & \DEF \\
+         & \DEF & \\
+    \ABC &      & \\
+  };
+  \begin{scope}[on background layer]
+    \path[draw] (Y-3-1.east) -- (Y-3-1.west) -- ++(-0.5, 0);
+    \path[->, draw]
+    (Y-3-1.west)
+    |- (Y-1-1.east)
+    |- (Y-3-1.east)
+    -| (Y-2-2.west) -- (Y-2-2.east)
+    |- (Y-3-3.west) -- (Y-3-3.east) -- ++(0.5,0);
+    \path[draw]
+    (Y-3-1.west)
+    |- (Y-5-1.east)
+    |- (Y-3-1.east)
+    -| (Y-4-2.west) -- (Y-4-2.east)
+    |- (Y-3-3.west) -- (Y-3-3.east);
+  \end{scope}
+\end{tikzpicture} 

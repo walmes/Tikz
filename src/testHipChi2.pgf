@@ -1,0 +1,61 @@
+\def\chiright{12.59}
+\def\xzero{7.43}
+\def\grauliber{6}
+
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$x$, ylabel=$f(x)$,
+    samples=30,
+    % xlabel style={at={(1,0)}, anchor=west},
+    % ylabel style={rotate=-90, at={(0,1)}, anchor=east},
+    legend style={draw=none, fill=none},
+    yticklabel style={
+      /pgf/number format/fixed,
+      /pgf/number format/fixed zerofill,
+      /pgf/number format/precision=2
+    }
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  Yellow/.style={
+    draw=none, text opacity=1, fill=yellow, fill opacity=0.25
+  },
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    chisquare(\x,\nu)=
+    ((1/2)^(\nu/2))*\x^((\nu/2)-1)*exp(-(1/2)*\x)/gamma(\nu/2);
+  }]
+
+  \begin{axis}[myplot]
+    \addplot[samples at={0.2,0.19,...,0}, thick]
+      {chisquare(x,\grauliber)} -- (0,0);
+    \addplot[samples=50, thick, smooth, domain=0.2:25]
+      {chisquare(x,\grauliber)}
+      node[pos=0.3, right, pin={right:$\nu=8-1-1$}] {};
+    \addplot[Red, domain=\chiright:25]
+      {chisquare(x,\grauliber)} \closedcycle;
+    \path[<->, draw] (axis cs: \chiright,0)
+      to[out=90, in=180] (axis description cs: 0.58,0.25)
+      node[right] {$\chi^2_{\alpha}=\chiright$};
+    \path[<->, draw] (axis cs: \xzero,0)
+      to[out=90, in=0] (axis description cs: 0.27,0.25)
+      node[left] {$X_0^2=\xzero$};
+    \draw[densely dashed] ({rel axis cs:0,0} -| {axis cs: \xzero, 0})
+      -- ({rel axis cs:0,1} -| {axis cs: \xzero, 0});
+    \node[rotate=0, anchor=north east]
+      at (axis description cs: 0.975, 0.95)
+      {$f(x) = \frac{(1/2)^{\nu/2}}{\Gamma(\nu/2)}\cdot
+        x^{\nu/2-1} \text{e}^{-x/2}$};
+  \end{axis}
+\end{tikzpicture}

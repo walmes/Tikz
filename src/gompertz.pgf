@@ -1,0 +1,39 @@
+% http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
+\def\ptsize{0.75pt}
+\tikzset{
+  mypoints/.style={fill=white,draw=black},
+  pil/.style={->, shorten <=2pt, shorten >=2pt}
+}
+
+\begin{tikzpicture}[>=latex, xscale=4, yscale=4]
+  \def\tha{1}; \def\thc{4}; \def\thi{0.6}; \def\thq{0.75}
+  \draw[->] (-0.1,0) -- +(1.8,0);
+  \draw[->] (0,-0.1) -- +(0,1.2);
+  \draw[color=red!60!black, very thick, smooth, samples=100]
+    plot[id=x, domain=0:1.6]
+    function{\tha*exp(-exp(-\thc*(x-\thi)))}
+    node[right, black] {$\eta(x)$};
+  \draw[dashed, color=red!60!black, smooth, samples=100]
+    plot[id=x, domain=0.3:1.2]
+    function{\tha*exp(-1)+\tha*\thc*exp(-1)*
+      (0-\thi)+\tha*\thc*exp(-1)*(x)}
+    node[right, black] {$\eta'(\theta_i)$};
+  \coordinate (xyi) at (\thi,\tha*exp{-1});
+  \coordinate (xi) at (\thi,0);
+  \coordinate (yi) at (0,\tha*exp{-1});
+  \coordinate (xyf) at
+    ($(0,\thq*\tha)+{-(1/\thc)*ln(-ln(\thq))+\thi}*(1,0)$);
+  \coordinate (xf) at
+    ($(0,0)+{-(1/\thc)*ln(-ln(\thq))+\thi}*(1,0)$);
+  \coordinate (yf) at (0,\thq*\tha);
+  \draw[dashed] (0,\tha) -- +(1.6,0);
+  \fill[mypoints] (0,\tha) circle (\ptsize) node[left] {$\theta_a$};
+  \draw[dashed] (xi) -- (xyi) -- (yi);
+  \draw[dashed] (xf) -- (xyf) -- (yf);
+  \fill[mypoints] (xyi) circle (\ptsize);
+  \fill[mypoints] (xyf) circle (\ptsize);
+  \node[below] at (xi) {$\theta_i$};
+  \node[left] at (yi) {$\eta(\theta_i)$};
+  \node[below] at (xf) {$\theta_q$};
+  \node[left] at (yf) {$q\theta_a$};
+\end{tikzpicture}

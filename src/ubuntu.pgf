@@ -1,0 +1,31 @@
+% http://tex.stackexchange.com/questions/250198/draw-the-ubuntu-logo-with-tikz
+
+\begin{tikzpicture}
+
+  \pgfdeclarelayer{fg}   
+  \pgfsetlayers{main,fg}
+  \newcommand\rad{3cm}
+  \definecolor{myred}{RGB}{212,0,0}
+  \definecolor{myorange}{RGB}{244,72,0}
+  \definecolor{myyellow}{RGB}{251,139,0}
+
+  \newcommand{\hug}[3]{
+    \begin{scope}[shift={(0,0)}, rotate=#1]%
+      \draw[#2, line width=1.5cm] (\rad,0) arc (0:120:\rad)%
+      node[circle, fill=#3, minimum size=1.9cm,%
+      draw=white, line width=2.8mm] at (57.5:\rad*1.3) {};%
+      \begin{pgfonlayer}{fg}%
+        \node[rectangle, fill=white, rotate=#1,%
+        minimum height=3mm, minimum width=1.6cm] at (\rad,0) {};%
+      \end{pgfonlayer}%
+    \end{scope}%
+  }
+
+  \foreach \angle/\cola/\colb in {
+    0/myorange/myred,
+    120/myyellow/myorange,
+    240/myred/myyellow}{
+    \hug{\angle}{\cola}{\colb}
+  }
+
+\end{tikzpicture}

@@ -1,0 +1,51 @@
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$x$, ylabel=$f(x)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot]
+    % `forget plot` evita que seja feita legenda.
+    % \addplot[domain=1.6:1.8, draw=none, fill=gray!10!darkgreen, fill
+    % opacity=0.5, forget plot]
+    % {normalpdf(x,1.7,0.0276)} \closedcycle;
+
+    \addplot[smooth, thick, domain=1.3:2.1]
+    {normalpdf(x,1.7,0.1)};
+    \addlegendentry[align=center]{$\sigma^2=0.1^2$}
+
+    \addplot[smooth, thick, domain=1.3:2.1, color=darkgreen]
+    {normalpdf(x,1.7,0.0276)};
+    \addlegendentry[align=center]{$\sigma^2_{\bar{X}}=\frac{0.1^2}{10}$}
+
+    \node[anchor=north west] at (axis description cs: 0.02, 0.95)
+    {$X$: altura (m), $\mu=1.7$.};
+    \node[anchor=north west, text width=3.5cm]
+    at (axis description cs: 0.02, 0.83)
+    {$\bar{X}$: altura m\'{e}dia (m), $n=10$.};
+  \end{axis}
+
+  % z-axis.
+  \begin{scope}[yshift=-1cm, xshift=3.75cm]
+    \begin{axis}[myplot,
+      width=4.5cm, height=2cm,
+      hide y axis,
+      axis x line*=bottom,
+      xlabel=$z{\,=\,}\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}}$,
+      domain=-4:4]
+      \addplot[draw=none] {x};
+    \end{axis}
+  \end{scope}
+\end{tikzpicture}

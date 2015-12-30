@@ -1,0 +1,55 @@
+\def\chiright{30.14}
+\def\xzero{29.07}
+\def\grauliber{19}
+
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$x$, ylabel=$f(x)$,
+    samples=30,
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  Yellow/.style={
+    draw=none, text opacity=1, fill=yellow, fill opacity=0.25
+  },
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    chisquare(\x,\nu)=
+    ((1/2)^(\nu/2))*\x^((\nu/2)-1)*exp(-(1/2)*\x)/gamma(\nu/2);
+  }]
+
+  \begin{axis}[myplot, domain=0:45]
+    \addplot[samples=80, thick] {chisquare(x,\grauliber)}
+      node[pos=0.3, anchor=mid east, xshift=-2em,
+      append after command={
+        (\tikzlastnode.east) edge [thin, gray] +(2em,0)
+      }] {$\nu=\grauliber-1$};
+    \addplot[Red, domain=\chiright:45]
+      {chisquare(x,\grauliber)} \closedcycle;
+    \addplot[Yellow, domain=0:\chiright]
+      {chisquare(x,\grauliber)} \closedcycle;
+    \path[<->, draw] (axis cs: \chiright,0)
+      to[out=90, in=180] (axis description cs: 0.72,0.28)
+      node[right] {$\chi^2_{\alpha}=\chiright$};
+    \path[<->, draw] (axis cs: \xzero,0)
+      to[out=90, in=180] (axis description cs: 0.7,0.4)
+      node[right] {$X_0^2=\xzero$};
+    \node at (axis description cs: 0.42,0.3) {$1-\alpha = 0.95$};
+    \node[rotate=0, anchor=north east]
+      at (axis description cs: 0.975, 0.95)
+       {$f(x) = \frac{(1/2)^{\nu/2}}{\Gamma(\nu/2)}\cdot
+         x^{\nu/2-1} \text{e}^{-x/2}$};
+  \end{axis}
+\end{tikzpicture}

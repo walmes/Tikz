@@ -1,0 +1,17 @@
+% http://tex.stackexchange.com/questions/70154/draw-only-part-of-a-rectangle-in-tikz
+
+\begin{tikzpicture}
+  % first solution
+  \node (label) at (0,5) {text with line in the middle from rectangle};
+  \draw[rounded corners=3pt] (label) -| (-5,-5) -| (5,5) -- (label);
+
+  % second solution (with filled rectangle and node)
+  \node[draw,fill=lime!10,rounded corners=3pt] (label) at (0,4)
+    {text with line in the middle from rectangle};
+
+  \begin{scope}[on background layer]
+    \draw[rounded corners=3pt, fill=red!10]
+      (label) -| (-4,-4) -| (4,4) -- (label);
+  \end{scope}
+
+\end{tikzpicture}

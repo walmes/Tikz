@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+  % \draw[thick] (0,0) -- (0,5) -- (8,5) -- (8,0) -- (0,0);
+  \draw[thick] (0,0) rectangle (8,5);
+  \draw[thick, color=darkgreen, fill] (4,2.5) ellipse (2.7cm and 1.7cm);
+  \draw[thick] (3,0) .. controls (6,2) and (2,4) .. (4,5);
+  \node (n1) at (6,4) {\textcolor{darkgreen}{$A$}};
+  \node (n2) at (0.7,2) {$B$};
+  \node (n2) at (3,2.5) {$A\cap B$};
+  \node (n2) at (5,2.5) {$A\cap B^c$};
+  \node (n3) at (7.5,2) {$B^c$};
+\end{tikzpicture}

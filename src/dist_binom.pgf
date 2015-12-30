@@ -1,0 +1,39 @@
+\begin{tikzpicture}[
+  declare function={
+    binompf(\k,\n,\p)=\n!/(\k!*(\n-\k)!)*\p^\k*(1-\p)^(\n-\k);
+  },
+  hplot/.style={ycomb, mark=o}]
+
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel=$x$, ylabel=$p(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none, font=\footnotesize},
+    legend cell align=left,
+    ymax=0.45,
+    samples at={0,1,...,30},
+    yticklabel style={
+      /pgf/number format/fixed,
+      /pgf/number format/fixed zerofill,
+      /pgf/number format/precision=1
+    }]
+
+    \addplot[hplot] {binompf(x, 30, 0.3)};
+    \addlegendentry{$n=30$, $p=0.3$}
+
+    \addplot[hplot, red] {binompf(x, 30, 0.7)};
+    \addlegendentry{$n=30$, $p=0.7$}
+
+    \addplot[hplot, green] {binompf(x, 30, 0.9)};
+    \addlegendentry{$n=30$, $p=0.9$}
+
+    \addplot[hplot, blue, samples at={0,1,...,10}]
+    {binompf(x, 10, 0.3)};
+    \addlegendentry{$n=10$, $p=0.3$}
+
+    \node at (axis description cs: 0.33, 0.8)
+    {$p(x) = \binom{n}{p}\cdot p^x \cdot (1-p)^{n-x} $};
+
+  \end{axis}
+\end{tikzpicture}

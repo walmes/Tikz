@@ -1,0 +1,50 @@
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xmin=-4.5, xmax=4.5
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot]
+
+    \addplot[smooth, domain=-4:-1.65, draw=none, fill=darkgreen]
+    {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=-4:-1.88, draw=none, fill=red!70!blue]
+    {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=4:1.28, draw=none, fill=darkgreen!30!yellow]
+    {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=4:1.47, draw=none, fill=red!70!blue]
+    {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=4:1.65, draw=none, fill=darkgreen]
+    {normalpdf(x,0,1)} \closedcycle;
+
+    \addplot[smooth, thick, domain=-4:4] {normalpdf(x,0,1)};
+
+    \path[<->, draw] (axis cs: -1.65,0) to[out=90, in=0]
+    (axis description cs: 0.25,0.4) node[left] {$-z_{5\%}$};
+    \path[<->, draw] (axis cs: 1.65,0) to[out=90, in=180]
+    (axis description cs: 0.75,0.3) node[right] {$z_{5\%}$};
+
+    \path[<->, draw] (axis cs: -1.88,0) to[out=90, in=0]
+    (axis description cs: 0.25,0.3) node[left] {$-z_{3\%}$};
+    \path[<->, draw] (axis cs: 1.47,0) to[out=90, in=180]
+    (axis description cs: 0.75,0.4) node[right] {$z_{7\%}$};
+    \path[<->, draw] (axis cs: 1.28,0) to[out=90, in=180]
+    (axis description cs: 0.75,0.5) node[right] {$z_{10\%}$};
+
+    \node at (axis description cs: 0.5,0.3) {$90\%$};
+
+  \end{axis}
+\end{tikzpicture}

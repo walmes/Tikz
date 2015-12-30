@@ -1,0 +1,27 @@
+% \usepackage{booktabs}
+
+\pgfplotstabletypeset[
+  column type=l,
+  every head row/.style={
+    before row={%
+      \toprule
+      & \multicolumn{2}{c}{Singular}
+      & \multicolumn{2}{c}{Plural}\\
+    },
+    after row=\midrule,
+  },
+  every last row/.style={
+    after row=\bottomrule
+  },
+  columns/person/.style={column name=},
+  columns/singGaeilge/.style={column name=Gaeilge},
+  columns/pluralGaeilge/.style={column name=Gaeilge},
+  columns/singEnglish/.style={column name=English},
+  columns/pluralEnglish/.style={column name=English},
+  col sep=&, row sep=\\, string type]{
+  person & singEnglish & singGaeilge & pluralEnglish & pluralGaeilge \\
+  1st    & at me       & agam        & at us         & againn        \\
+  2st    & at you      & agat        & at you        & agaibh        \\
+  3st    & at him      & aige        & at them       & acu           \\
+         & at her      & aici        &               &               \\
+}

@@ -1,0 +1,69 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, very thick,
+    minimum height=2em, inner sep=10pt, text centered,
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=1pt]
+  \node[state] (f1) {
+    $f_1(t; A, V, t_0, D) =
+    A\cdot(1-\exp\{-\log(2)\cdot(t-t_0)/V\})+D\cdot (t-t0)$\\
+  };
+  \node[state, yshift=-3cm, left of=f1,
+  node distance=5.5cm, anchor=center] (f2) {
+    $f_2(t; A, V, D) =
+    A\cdot(1-\exp\{-\log(2)\cdot t/V\})+D\cdot t$\\
+  };
+  \node[state, yshift=-3cm, right of=f1,
+  node distance=5.5cm, anchor=center] (f3) {
+    $f_3(t; A, V, t_0) =
+    A\cdot(1-\exp\{-\log(2)\cdot(t-t_0)/V\})$\\
+  };
+  \node[state, yshift=-3cm, right of=f2,
+  node distance=5.5cm, anchor=center] (f4) {
+    $f_4(t; A, V) =
+    A\cdot(1-\exp\{-\log(2)\cdot t/V\})$\\
+  };
+  \node[state, yshift=-3cm, right of=f3,
+  node distance=2.5cm, anchor=center] (f5) {
+    $f_5(t; A, D) = A+D\cdot t$\\
+  };
+  \path
+  (f1) edge[bend right=20] node[near end, left] {$t_0 = 0$} (f2)
+  (f1) edge[bend left=20] node[near end, right] {$D = 0$} (f3)
+  (f2) edge[bend right=20] node[near end, left] {$D=0$} (f4)
+  (f3) edge[bend left=20] node[near end, left] {$t_0=0$} (f4)
+  (f3) edge[bend right=20] node[near end, right] {$V=0$} (f5)
+  (f1) edge node[very near end, left] {$t_0=0 \textrm{ e } D=0$} (f4);
+  \begin{scope}[xshift=-1.5cm, yshift=1cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0.5:3]
+      function{1.2*(1-exp(-0.7*(x-0.5)/0.3))+0.25*(x-0.5)};
+  \end{scope}
+  \begin{scope}[xshift=-10.5cm, yshift=-2cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:3]
+      function{1.2*(1-exp(-0.7*(x)/0.3))+0.25*(x)};
+  \end{scope}
+  \begin{scope}[xshift=7cm, yshift=-2cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0.5:3]
+      function{1.2*(1-exp(-0.7*(x-0.5)/0.3))};
+  \end{scope}
+  \begin{scope}[xshift=6.5cm, yshift=-9cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:3]
+      function{0.5+0.4*x};
+  \end{scope}
+  \begin{scope}[xshift=-1.5cm, yshift=-9cm]
+    \draw[<->] (0,2) |- (3.25,0);
+    \draw[-, color=green!30!black, thick]
+      plot[id=x, domain=0:3]
+      function{1.2*(1-exp(-0.7*x/0.3))};
+  \end{scope}
+\end{tikzpicture}

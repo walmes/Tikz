@@ -1,0 +1,89 @@
+\def\zleft{-1.64}
+\def\zright{1.64}
+\def\muzero{0}
+\def\muone{1}
+
+\pgfplotsset{
+  myplot/.style={
+    width=14cm, height=6cm,
+    % xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xmin=-6, xmax=7,
+    ymax=0.5,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xticklabels=\empty,
+    yticklabels=\empty,
+    legend pos=north west,
+    legend cell align=left,
+    clip=false, % Para anotar fora da area grafica.
+    % extra tick style={grid=major}
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={draw=none, text opacity=1, fill=red!70!blue, fill
+    opacity=0.75},
+  Yellow/.style={draw=none, text opacity=1, fill=yellow, fill
+    opacity=0.25},
+  Blue/.style={draw=none, text opacity=1, fill=blue, fill
+    opacity=0.25},
+  declare function={
+    normalpdf(\x,\mu,\sigma) =
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[
+    myplot,
+    extra x ticks={\muzero,\muone},
+    extra x tick labels={$\mu_0$,$\mu$}]
+
+    % Legenda.
+    \addlegendentry{Erro tipo I ($\alpha$)}
+    \addlegendimage{only marks, mark=*, fill=red!70!blue}
+    \addlegendentry{Erro tipo II ($\beta$)}
+    \addlegendimage{only marks, mark=*, fill=blue, fill opacity=0.25}
+
+    % Regioes preenchidas.
+    \addplot[Red, smooth, domain=-5:\zleft]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[Red, smooth, domain=\zright:5]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[Yellow, smooth, domain=\zleft:\zright]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[Blue, smooth, domain=\zleft:\zright]
+      {normalpdf(x,\muone,1)} \closedcycle;
+
+    % Curvas.
+    \addplot[smooth, domain=-5:5] {normalpdf(x,\muzero,1)};
+    \addplot[smooth, dashed, domain=-5:5] {normalpdf(x,\muone,1)};
+
+    % Verticais das medias.
+    \addplot[ycomb, mark=none, samples at={\muzero}]
+      {normalpdf(x,\muzero,1)};
+    \addplot[ycomb, mark=none, samples at={\muone}, dashed]
+      {normalpdf(x,\muone,1)};
+
+    % Setas e anotacoes.
+    \path[o->, draw] (axis cs: -1,0.125)
+      to[out=90, in=-90] (axis description cs: 0.2,0.5)
+      node[Yellow, above] {$\Pr(\bar{X}\in \text{NR}|H_0)=1-\alpha$};
+    \path[o->, draw] (axis cs: 1.25,0.25)
+      to[out=45, in=-90] (axis description cs: 0.8,0.7)
+      node[Blue, above] {$\Pr(\bar{X}\in \text{NR}|H_1)=\beta$};
+    \path[o->, draw] (axis cs: -2,0.025)
+      to[out=0, in=180] (axis description cs: 0.7,0.4)
+      node[Red, right] {$\Pr(\bar{X}\notin \text{NR}|H_0)=\alpha$};
+    \path[o->, draw] (axis cs: 1.8,0.025)
+      to[out=0, in=180] (axis description cs: 0.7,0.4);
+
+    \node[below right, text width=10cm]
+      at (axis description cs: 0, -0.075)
+      {NR: regi\~ao de n\~ao rejei\c{c}\~ao de $H_0$. \\
+        $\alpha$: n\'ivel de signific\^ancia.};
+
+  \end{axis}
+\end{tikzpicture}

@@ -1,0 +1,48 @@
+\begin{tikzpicture}[
+  draw,
+  every node/.style={
+    fill=green!70!black,
+    rectangle,
+    rounded corners
+  },
+  sibling distance=4cm,
+  level distance=12mm,
+  level 6/.style={
+    sibling distance=6cm
+  }]
+
+  \node {Maom{\'e}}
+  child {node (fatima) {F{\'a}tima}}
+  child {node (ali) {1. Ali} edge from parent [draw=none]
+    child {node {2. Hasan}}
+    child {node {3. Husayn} 
+      child {node {4. Ali Zaynu'l-Abidin}
+        child {node {Zayd} child {node [fill=green!30]{Zayditas}}}
+        child {node {5. Muhammad al-Baqir}
+          child {node {6. Jaafar al-Sadiq}
+            child {node {7. Ismail}
+              child {node [fill=green!30]
+                {Califado Ismaelita Fat{\'i}mida do Egito}}
+              child {node [fill=green!30]{Xiitas Ismaelitas}}}
+            child {node {7. Musa al-Kazim}
+              child [level distance=24mm] {node {8. Ali al-Rida}
+                child [level distance=12mm] {node {9. Muhammad al-Taqi}
+                  child {node {10. Ali al-Hadi}
+                    child {node {11. Hasan al-Askari}
+                      child {node {12. Imam Mahdi}
+                        child {node [fill=green!30]
+                          {Xiitas Duodecimais}}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  \draw (fatima) -- (ali);
+\end{tikzpicture}

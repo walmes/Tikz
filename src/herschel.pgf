@@ -1,0 +1,24 @@
+\begin{tikzpicture}[>=latex, xscale=4, yscale=4]
+  \draw[<->] (-0.01,1.2) |- (1.1,0);
+  \draw[-, color=green!30!black, thick]
+    plot[id=x, domain=0:1]
+    function{1.1-1*x**exp(1.5)} node[right] {};
+  \draw[-, color=green!60!black, thick, samples=100]
+    plot[id=x, domain=0:1]
+    function{1.1-1*x**exp(-1.5)} node[right] {};
+  \draw[-, color=green!90!black, thick, dotted]
+    plot[id=x, domain=0:1]
+    function{1.1-1*x**exp(0)} node[right] {};
+  \node[left] at (0,1.1) {$\theta_0$};
+  \node[below] at (0,0) {$0$};
+  \node[left] at (0,0) {$0$};
+  \node[below] at (1,0) {$1$};
+  \draw[|<->|] (1.2,1.1) -- (1.2,1.1-1)
+    node[midway, right] {$\theta_1$};
+  \draw[->] (0.25,0.25) node[below] {$\theta_c<0$} -- (0.9,0.9)
+    node[above] {$\theta_c>0$};
+  \draw[-, dashed] (0,0.9)
+    node[left] {$\theta_0-q$} -- +(0.7,0);
+  \draw[-, dashed] (0.7,0.9) -- +(0,-0.9)
+    node[below] {$\vartheta_q$};
+\end{tikzpicture}

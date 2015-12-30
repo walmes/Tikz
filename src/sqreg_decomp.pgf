@@ -1,0 +1,82 @@
+% http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
+
+\begin{tikzpicture}[>=latex, xscale=5, yscale=5]
+  % Titulo com expressao do modelo
+  \node at (0.5, 1.2)
+    {$\textrm{E}(Y|X)=\beta_0+\beta_1 x_1 +\beta_2 x_2 +\beta_3 x_3$};
+
+  % Seta indicando a ordem de entrada
+  \draw[<-] (-0.3,0.2) -- (-0.3,1) node[midway, above, rotate=90]
+    {Ordem dos termos};
+
+  % Rotulos na esquerda
+  \node[left] at (0,0.9) {SQ($\beta_1$)};
+  \node[left] at (0,0.6) {SQ($\beta_2$)};
+  \node[left] at (0,0.3) {SQ($\beta_3$)};
+
+  % Linhas de guia pontilhadas
+  \draw[dotted] (0,0.3) -- (1,0.3);
+  \draw[dotted] (0,0.6) -- (1,0.6);
+  \draw[dotted] (0,0.9) -- (1,0.9);
+
+  % SQ do modelo de regressao, residuos e total
+  \draw[->] (0,0) -- (1,0) node[midway, above]
+    {SQ($\beta_1, \beta_2, \beta_3$)};
+  \draw[->] (0,0) -- (0,-0.4) node[midway, left] {SQRes};
+  \draw[<->] (0,-0.4) -- (1,0) node[midway, below right] {SQTot};
+
+  % SQ devido a beta1
+  \draw[|-|] (0,0.9) -- (0.55,0.9);
+
+  % SQ devido a beta2
+  \draw[|-|] (0.4,0.6) -- (0.75,0.6);
+  \draw[|-|] (0.9,0.6) -- (1,0.6);
+
+  % SQ devido a beta2
+  \draw[|-|] (0.5,0.3) -- (0.9,0.3);
+
+  % SQ de b2|b1
+  \draw[<->, color=red, thick] (0.55,0.62) -- (0.75,0.62);
+  \draw[<->, color=red, thick] (0.9,0.62) -- (1,0.62);
+
+  % SQ de b2|b1,b3
+  \draw[<->, color=blue, thick] (0.9,0.58) -- (1,0.58);
+
+  % SQ de b3|b2,b1
+  \draw[<->, color=red, thick] (0.75,0.32) -- (0.9,0.32);
+  \draw[<->, color=blue, thick] (0.75,0.28) -- (0.9,0.28);
+
+  % SQ de b1|b2,b3
+  \draw[<->, color=blue, thick] (0,0.88) -- (0.4,0.88);
+
+  % SQ de b1|b2,b3
+  \draw[<->, color=blue, thick] (0,0.88) -- (0.4,0.88);
+
+  % Coordenadas
+  \coordinate (b2seq) at (1.1,0.75);
+  \coordinate (b3seq) at (1.1,0.3);
+  \coordinate (b2mar) at (1.1,0.5);
+  \coordinate (b1mar) at (1.1,0.9);
+
+  % Textos para as coordenadas
+  \node[right] at (b2seq) {SQ($\beta_2|\beta_1$)};
+  \node[right] at (b3seq) {SQ($\beta_3|\beta_2,\beta_1$)};
+  \node[right] at (b2mar) {SQ($\beta_2|\beta_1,\beta_3$)};
+  \node[right] at (b1mar) {SQ($\beta_1|\beta_2,\beta_3$)};
+
+  % Setas
+  \path[<-] (0.65,0.62) edge[bend left] (b2seq);
+  \path[<-] (0.95,0.62) edge[bend left] (b2seq);
+  \path[<-] (0.95,0.58) edge[bend right] (b2mar);
+  \path[<-] (0.825,0.32) edge[bend left=90] (b3seq);
+  \path[<-] (0.825,0.28) edge[bend right=90] (b3seq);
+  \path[<-] (0.2,0.88) edge[bend right] (b1mar);
+
+  % Legenda
+  \draw[|-|] (1.2,-0.10) -- (1.4,-0.10) node[right] {SQ individual};
+  \draw[<->, color=red, thick] (1.2,-0.18) -- (1.4,-0.18)
+    node[right, color=black] {SQ sequencial};
+  \draw[<->, color=blue, thick] (1.2,-0.26) -- (1.4,-0.26)
+    node[right, color=black] {SQ marginal};
+
+\end{tikzpicture}

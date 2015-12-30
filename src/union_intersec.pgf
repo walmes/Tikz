@@ -1,0 +1,83 @@
+\def\firstcircle{(90:1cm) circle (1.35cm)}
+\def\secondcircle{(-30:1cm) circle (1.35cm)}
+\def\thirdcircle{(-150:1cm) circle (1.35cm)}
+
+\begin{tikzpicture}
+
+  %% 3 circulos.
+  \begin{scope}[fill opacity=0.5]
+    \coordinate (ori) at (0,0);
+    \fill[darkgreen!50!white] \firstcircle;
+    \fill[darkgreen] \secondcircle;
+    \fill[darkgreen!50!black] \thirdcircle;
+  \end{scope}
+
+  %% Contornos.
+  \begin{scope}
+    \draw \firstcircle node {$A$};
+    \draw \secondcircle node {$B$};
+    \draw \thirdcircle node {$C$};
+  \end{scope}
+
+  \path[draw, name path=bigcircle, gray] (0,0) circle (4cm);
+
+  \begin{scope}[shift={(31:3.5cm)}]
+    \clip \firstcircle node {$A\cap B$};
+    \fill[darkgreen!90!white] \secondcircle;
+  \end{scope}
+
+  \begin{scope}[shift={(29:3.5cm)}]
+    \begin{scope}[even odd rule]% first circle without the second
+      \clip \firstcircle (-3,-3) rectangle (3,3);
+      \fill[darkgreen!50!yellow] \secondcircle;
+    \end{scope}
+    \node at (2,1) {$B \cap A^c$};
+  \end{scope}
+
+  \begin{scope}[shift={(-90:2.8cm)}]
+    \begin{scope}
+      \clip \firstcircle;
+      \clip \secondcircle;
+      \fill[darkgreen!50!green] \thirdcircle;
+    \end{scope}
+    \node at (1,0.5) {$A\cap B \cap C$};
+  \end{scope}
+
+  \begin{scope}[shift={(-90:2.9cm)}]
+    \begin{scope}[even odd rule]
+      \clip \firstcircle (-3,-3) rectangle (3,3);
+      \clip \secondcircle;
+      \fill[darkgreen!80!blue] \thirdcircle;
+    \end{scope}
+    \node at (1.3,-1) {$B \cap C \cap A^c$};
+  \end{scope}
+
+  \begin{scope}[shift={(90:3.4cm)}]
+    \begin{scope}
+      \clip \firstcircle;
+      \fill[darkgreen!90!white] \secondcircle;
+      \clip \firstcircle;
+      \fill[darkgreen!90!white] \thirdcircle;
+    \end{scope}
+    % \node[right] at (1,0) {$(A\cap B) \cup (A\cap C)$};
+    \node[right] at (1,0) {$A\cap (B\cup C)$};
+  \end{scope}
+
+  \begin{scope}[shift={(90:3.5cm)}]
+    \begin{scope}[even odd rule]
+      \clip \thirdcircle (-3,-3) rectangle (3,3); %% rect U A
+      \clip \secondcircle (-3,-3) rectangle (3,3);
+      \fill[darkgreen!90!blue] \firstcircle;
+    \end{scope}
+    \node at (-2,1) {$A \cap (B \cup C)^c$};
+  \end{scope}
+
+  \begin{scope}[shift={(170:3.95cm)}]
+    \begin{scope}
+      \fill[darkgreen!80!orange] \firstcircle;
+      \fill[darkgreen!80!orange] \thirdcircle;
+    \end{scope}
+    \node at (1.7,1.9) {$A \cup C$};
+  \end{scope}
+
+\end{tikzpicture}

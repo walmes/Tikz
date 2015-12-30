@@ -1,0 +1,48 @@
+\begin{tikzpicture}[
+  domain=0:9, xscale=0.8, yscale=0.25,
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick}
+  ]
+
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,20)
+    node[above] (E) {$\textrm{E}(Y|x,a_i)$};
+  \def\A{19}; \def\V{2};
+  \draw[color=black, thick, domain=0:11]
+    plot[id=x] function{\A*x/(\V+x)}
+    node[right] (eta) {$\displaystyle\frac{\theta_a x}{\theta_v+x}$};
+  \node (Q) at (5,25) {$Q(Y|x,a_i) = \eta(x, \theta, a_i)$};
+  \node (N) at (5,22) {$[Y|x,a_i]\sim$ Normal($\mu$,$\sigma$)};
+  \path[aponta] (2.35,12) edge[bend left=10] (N);
+  \draw[aponta] (Q) -| (E);
+  \draw[aponta] (Q) -| (eta);
+  \draw[color=black, very thin, domain=0:11]
+    plot[id=x, samples=100] function{(\A-5.5)*x/(\V+x)}
+    node[right] {$\displaystyle\frac{(\theta_a+a_i)\, x}{\theta_v+x}$};
+  \foreach \Aa in {-5.5,-2.7,-0.5,0,1.2,1.8,4.5}{
+    \draw[color=black, very thin]
+      plot[id=x, samples=100] function{(\A+\Aa)*x/(\V+x)};
+    \foreach[evaluate=\x as \y using (\A+\Aa)*\x/(\V+\x)]
+      \x in {0.5, 2.2, ..., 8.5}{
+        \draw[color=gray, dashed] (\x,0) -- ++(0,20);
+        \def\sr{2.5}
+        \begin{scope}[
+          xshift=\x cm, yshift=\y cm,
+          rotate=-90, smooth, domain=-\sr:\sr]
+          \filldraw[fill opacity=0.3, fill=white!85!black]
+            plot[id=x] function{0.5*exp(-(x)**2/0.5)};
+      \end{scope}
+    }
+  }
+
+  \def\sr{8}
+  \begin{scope}[
+    xshift=9.1 cm, yshift=0.83*\A cm,
+    rotate=-90, smooth, domain=-\sr:\sr]
+    \filldraw[fill opacity=0.3, fill=gray!50!black]
+      plot[id=x] function{1.5*exp(-(x)**2/10)};
+    \node (a) at (10,1.5) {$[a_i]\sim$ Normal($0$,$\sigma_a$)};
+    \draw[aponta] (1,0.5) |- (a);
+  \end{scope}
+
+\end{tikzpicture}

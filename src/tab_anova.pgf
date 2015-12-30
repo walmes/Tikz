@@ -1,0 +1,53 @@
+\pgfplotstabletypeset[
+  col sep=&, row sep=\\,
+  column type=l, %% Alinhamento.
+  string type,
+  % every even row/.style={
+  %   before row={\rowcolor[gray]{0.9}}
+  % },
+  % every row 2 column 0/.style={
+  %   postproc cell content/.style={@cell content=\textbf{##1}}
+  % },
+  every head row/.style={
+    before row=\toprule, after row=\midrule
+  },
+  every first row/.style={
+    before row=\rowcolor[gray]{0.5}
+  },
+  every last row/.style={
+    before row=\midrule,
+    after row=\bottomrule
+  },
+  every nth row={10[-9]}{
+    before row=\rowcolor[gray]{0.9}
+  }, %% Linha 2.
+  every nth row={10[-2]}{
+    before row=\rowcolor[gray]{0.9}
+  }, %% Linha 8.
+]{
+  Termo & $H_0$ & Mat. Proj. & GL & SQ & $E$(SQ) \\
+  F\'ormulas & & $P$ & $tr(P)$ & $y^\top (P)y$ 
+    & $tr(P) \sigma^2 +\beta^\top X^\top (P) X \beta$ \\
+  Modelo & $\beta=0 $ & $P_{\beta}$ & $tr(\cdot) = p$ 
+    & $y^\top (\cdot)y$
+    & $tr(\cdot) \sigma^2 +\beta^\top X^\top (\cdot) X \beta$ \\ 
+  Regress\~ao ($\beta|\beta_0$) & $\beta_{i\geq 1}|\beta_0$
+    & $P_{\beta}-P_{\beta_0}$ & $tr(\cdot) = p-1$ & $\vdots$
+    & $\vdots$ \\
+  ~$\quad x_1$ & $\beta_1|\beta_0$ & $P_{\beta_0 \beta_1}-P_{\beta_0}$
+    & $tr(.) = 1$ & & \\
+  ~$\quad x_2$ & $\beta_2|\beta_0, \beta_1$
+    & $P_{\beta_0 \beta_1 \beta_2}-P_{\beta_0 \beta_1}$ & $1$ &  & \\
+  ~$\quad x_3$ & $\beta_3|\beta_{i<3}$
+    & $P_{\beta_{i\leq 3}}-P_{\beta_{i<3}}$ & $ $ &  & \\
+  ~$\quad \vdots$ & & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+  ~$\quad x_k$ & $\beta_k|\beta_{i<k}$
+    & $P_{\beta_{i\leq k}}-P_{\beta_{i<k}}$ &  &  & \\
+  Res\'{i}duo & & $I-P_{\beta}$ & $tr(\cdot) = n-p$
+    & $y^\top (\cdot)y$ & $(n-p) \sigma^2$ \\
+  Total & & $I-P_{\beta_0}$ & $tr(\cdot) = n-1$ & $y^\top (\cdot)y$ & \\
+}
+
+% Seja a $y$ um vetor aleat\'orio tal que $E(y) = \mu$ e $V(y) =
+% I\sigma^2$.  Assim, a esperan\c{c}a da forma quadr\'atica $y^\top A y$
+% \'e: $$ E(y^\top A y) = \sigma^2 tr(A)+\mu^\top A \mu. $$

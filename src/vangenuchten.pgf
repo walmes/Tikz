@@ -1,0 +1,30 @@
+\begin{tikzpicture}[domain=-3:5, xscale=1.5, yscale=8, >=latex]
+  \def\tr{0.1}; \def\ts{0.6}; \def\al{1.3}
+  \def\n{1.6}; \def\I{0.3506}
+  % -log(al)+log(m)/n = -log(al)+log(1-1/n)/n
+  \def\ti{0.4071}; \def\S{-0.1340}; \def\Sangle{-42}; \def\f1{0.8}
+  \draw[very thin,color=gray!30] (-3,0)
+    grid[xstep=0.5, ystep=0.1] (5,0.7);
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0) node[below] {$\log(x)$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.75) node[left] {$\eta(x)$};
+  \draw[color=green!30!black, thick, smooth]
+    plot[id=x, domain=-3:5]
+    function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\n)**(1-1/\n)}
+    node[right] {};
+  \node[left] (tr) at (-3,\tr) {$\theta_r$};
+  \node[left] (ts) at (-3,\ts) {$\theta_s$};
+  \draw[dashed] (\I,0) node[below] {$I$} -- (\I,\ti) -- (-3,\ti)
+    node[left] {$\theta_i$};
+  \draw[color=green!30!black, dashed]
+    plot[id=x, domain=-1.5:3]
+    function{\ti+\S*(x-\I)}
+    node[right] {};
+  \draw [decorate, decoration={brace,amplitude=5pt}]
+    (-3.5,\tr) -- (-3.5,\ts) node [black,midway,left=3pt] {$\Delta$};
+  \draw[|<->|] (\I,\ti)++(1,0) arc (0:\Sangle:0.8 and 0.15);
+  \path (\I,\ti)++(0.5*1.5\Sangle/8:1)
+    node[right=-1pt] {$\tan^{-1}(S)$};
+  \node[anchor=base] (vg) at (1,0.8)
+    {$\eta(x) = \theta_r+\displaystyle\frac{\theta_s-\theta_r}{
+        (1+(\theta_a x)^{\theta_n})^{\theta_m}}$};
+\end{tikzpicture}

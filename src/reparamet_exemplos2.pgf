@@ -1,0 +1,57 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, thick,
+    minimum height=4em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[>=latex, line width=0.75pt]
+  \begin{scope}[xshift=0cm, yshift=0cm, xscale=3, yscale=2]
+    \def\tr{0.1}; \def\S{-2.10}; \def\I{0.4};
+    \def\n{9.6}; \def\m{1.9}; \def\ti{0.42}
+    \coordinate (centro) at (0.5,0);
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=darkgreen, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{\tr-(\S/\n)*((1+1/\m)**(\m+1)/
+        (1+exp(\n*(x-\I))/\m)**\m)};
+    \draw[<->,dotted] (\I,0) |- (0,\ti);
+    \draw[dashed, thin] plot[id=x, domain=0.15:0.65]
+      function{\ti+\S*(x-\I)} node[right] {};
+    \node at (\I,0.42) {$\circ$};
+    \node[state, above of=centro, node distance=3.2cm] (modelo1)
+      {$f(x, \theta) = \displaystyle \theta_r+\frac{\theta_s-\theta_r}{
+          (1+(\theta_a x)^{\theta_n})^{\theta_m}}$};
+    \node[above of=modelo1] {modelo van Genuchten (cra)};
+    \node[state, yshift=0cm, below of=centro,
+      node distance=1.5cm,  anchor=center]
+      (g1) {\begin{minipage}{2cm}
+          x-inflex\~{a}o,\\
+          y-inflex\~{a}o,\\
+          y'-inflex\~{a}o.
+        \end{minipage}
+    }; 
+  \end{scope}
+  \begin{scope}[xshift=7cm, yshift=0cm, xscale=3, yscale=2]
+    \def\vy{0.8}; \def\vx{0.4}; \def\th{4}
+    \coordinate (centro) at (0.5,0);
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=darkgreen, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{\vy*(x/\vx)**\th*exp(\th*(1-x/\vx))};
+    \draw[<->,dotted] (\vx,0) |- (0,\vy);
+    \node at (\vx,\vy) {$\times$};
+    \node[state, above of=centro, node distance=3.2cm] (modelo1)
+      {$f(x, \theta) = \theta_0 x^{\theta_1} \exp\{-\theta_2 x\}$};
+    \node[above of=modelo1] {modelo Wood (lacta\c{c}\~ao)};
+    \node[state, yshift=0cm, below of=centro,
+      node distance=1.5cm,  anchor=center]
+      (g1) {\begin{minipage}{2cm}
+          x-cr\'itico,\\
+          y-cr\'itico,\\
+          persist\^encia,\\
+          \'AAC.
+        \end{minipage}
+    }; 
+  \end{scope}
+\end{tikzpicture}

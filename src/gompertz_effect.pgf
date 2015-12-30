@@ -1,0 +1,35 @@
+% http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
+\def\ptsize{0.75pt}
+\tikzset{
+  mypoints/.style={fill=white,draw=black},
+  pil/.style={->, shorten <=2pt, shorten >=2pt
+  }
+}
+
+\begin{tikzpicture}[>=latex, xscale=2, yscale=2]
+  \def\tha{1}; \def\thc{4}; \def\thi{0.6}; \def\thq{0.75}
+  \begin{scope}
+    \draw[->] (-0.1,0) -- +(1.8,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \foreach \a in {0,1,2}
+    \draw[color=red!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1.6]
+      function{(\tha-\a/5.0)*exp(-exp(-\thc*(x-\thi)))};
+  \end{scope}
+  \begin{scope}[xshift=2cm]
+    \draw[->] (-0.1,0) -- +(1.8,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \foreach \i in {0,1,2}
+    \draw[color=red!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1.6]
+      function{\tha*exp(-exp(-\thc*(x-(\thi+\i/5.0))))};
+  \end{scope}
+  \begin{scope}[xshift=4cm]
+    \draw[->] (-0.1,0) -- +(1.8,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \foreach \c in {0,1,2}
+    \draw[color=red!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1.6]
+      function{\tha*exp(-exp(-(\thc-\c/1.0)*(x-\thi)))};
+  \end{scope}
+\end{tikzpicture}

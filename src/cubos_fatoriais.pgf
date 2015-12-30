@@ -1,0 +1,101 @@
+\tikzset{
+  vertex/.style={
+    circle, minimum size=20pt, inner sep=0pt, fill=gray!10},
+  axial/.style={
+    rectangle, minimum size=20pt, inner sep=0pt, fill=gray!30},
+  edge/.style={draw,thick,-,black},
+  rotu/.style={midway},
+  sinal/.style={draw, circle, inner sep=0pt, thin}
+}
+
+\def\dist{0.4}
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm]
+  \node[vertex] (v0) at (0,0,0) {$(1)$};
+  \node[vertex] (v1) at (0,1,0) {$b$};
+  \node[vertex] (v2) at (1,0,0) {$a$};
+  \node[vertex] (v3) at (1,1,0) {$ab$};
+  \node[vertex] (v4) at (0,0,1) {$c$};
+  \node[vertex] (v5) at (0,1,1) {$bc$};
+  \node[vertex] (v6) at (1,0,1) {$ac$};
+  \node[vertex] (v7) at (1,1,1) {$abc$};
+  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}
+
+\def\dist{0.4}
+\def\ax{2}
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.55,0.3)}, node distance=0.65cm]
+  \node[vertex, fill=yellow] (c0) at (0,0,0) {$0$};
+  \node[vertex] (v0) at (-1,-1,-1) {$(1)$};
+  \node[vertex] (v1) at (-1,1,-1) {$b$};
+  \node[vertex] (v2) at (1,-1,-1) {$a$};
+  \node[vertex] (v3) at (1,1,-1) {$ab$};
+  \node[vertex] (v4) at (-1,-1,1) {$c$};
+  \node[vertex] (v5) at (-1,1,1) {$bc$};
+  \node[vertex] (v6) at (1,-1,1) {$ac$};
+  \node[vertex] (v7) at (1,1,1) {$abc$};
+  \node[axial] (a1) at (-\ax,0,0) {$W$};
+  \node[axial] (a2) at (\ax,0,0) {$W$};
+  \node[axial] (a3) at (0,-\ax,0) {$W$};
+  \node[axial] (a4) at (0,\ax,0) {$W$};
+  \node[axial] (a5) at (0,0,-\ax) {$W$};
+  \node[axial] (a6) at (0,0,\ax) {$W$};
+  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \draw[edge] (a1) -- (c0) --(a2);
+  \draw[edge] (a3) -- (c0) --(a4);
+  \draw[edge] (a5) -- (c0) --(a6);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm,
+  vertex/.style={
+    rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10
+  }]
+  \node[text centered] (title) at (0.7,1.7,0)
+    {Rendimento (\%) em um $2^3$};
+  \node[vertex] (v0) at (0,0,0) {$54.8$};
+  \node[vertex] (v1) at (0,1,0) {$48.0$};
+  \node[vertex] (v2) at (1,0,0) {$86.5$};
+  \node[vertex] (v3) at (1,1,0) {$63.0$};
+  \node[vertex] (v4) at (0,0,1) {$63.0$};
+  \node[vertex] (v5) at (0,1,1) {$58.5$};
+  \node[vertex] (v6) at (1,0,1) {$93.5$};
+  \node[vertex] (v7) at (1,1,1) {$72.0$};
+  \draw[edge] (v0) -- (v1)
+    node[rotu, rotate=90, yshift=1.2cm] {Catalizador} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=0.9cm] {Temperatura};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, rotate=40, yshift=-1cm, xshift=0.5cm]
+    {Concentra\c{c}\~ao} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}

@@ -1,0 +1,59 @@
+\def\Y{9}
+\def\X{5}
+\def\C{-0.25}
+\def\dX{3}
+\def\dY{2.25}
+\def\D{1.5}
+\def\xshift{1}
+
+\tikzset{
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick
+  },
+  cotas/.style={|<->|, >=latex}
+}
+
+\begin{tikzpicture}[domain=-0.25:10.25, xscale=0.75, yscale=0.5]
+  % \draw[very thin,color=gray!30] (0,0) grid (10,20);
+  \draw[draw=gray!10] (-3,-3.4) rectangle (12,11.5);
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$\theta$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[above] (E) {$\ell(\theta)$};
+
+  \draw[color=black, thick]
+    plot[id=x] function{\Y+\C*(x-\X)**2}
+    node[right] {$\tilde{\ell}(\theta)$};
+  \draw[color=green!60!black, thick, thick]
+    plot[id=x] function{\Y*(x/\X)**\D*exp(\D*(1-x/\X))}
+    node[color=black, right] {$\ell(\theta)$};
+
+  \coordinate (llmax) at (\X,\Y);
+  \coordinate (llmaxy) at (0,\Y);
+  \coordinate (llmaxx) at (\X,0);
+
+  \coordinate (llhzero) at (\X+\dX,\Y-\dY);
+  \coordinate (llhzeroy) at (0,\Y-\dY);
+  \coordinate (llhzerox) at (\X+\dX,0);
+
+  \draw[dashed] (llmaxy)
+    node[left] {$\ell(\hat\theta)$} -| (llmaxx)
+    node[below] {$\hat\theta$};
+
+  \draw[dashed] (llhzeroy)
+    node[left] {$\ell(\hat{\theta})-\frac{1}{2}\chi_{\alpha}^2$}
+    -- ++(10,0);
+  \draw[latex-, dashed] (2,0) -- ++(llhzeroy);
+  \draw[latex-, dashed] (8,0) -- ++(llhzeroy);
+  \draw[latex-, dashed, color=green!60!black,thick]
+    (2.5,0) -- ++(llhzeroy);
+  \draw[latex-, dashed, color=green!60!black,thick]
+    (8.8,0) -- ++(llhzeroy);
+
+  \draw[yshift=-2.5cm, cotas] (2,0) -- (8,0)
+    node [right] {IC$_{\tilde{\ell}}(\theta)$};
+  \draw[yshift=-1.5cm, color=green!60!black, cotas] (2.5,0) -- (8.8,0)
+    node [right] {IC$_{\ell}(\theta)$};
+
+  \draw[cotas] (\X+\dX+\xshift,\Y) -- ++(0,-\dY)
+    node [midway, right, text width=3cm] {deviance\\};
+
+\end{tikzpicture}

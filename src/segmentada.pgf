@@ -1,0 +1,10 @@
+%% http://www.latex-community.org/forum/viewtopic.php?f=46&p=72503
+
+\begin{tikzpicture}
+  \begin{axis}[mark=none]
+    \addplot[red, samples=100]
+      {x^2};
+    \addplot[green, samples=300]
+      {x^2 > 4 ? -x^2+8 : x^2};
+  \end{axis}
+\end{tikzpicture}

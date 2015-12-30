@@ -1,0 +1,28 @@
+\def\ptsize{0.75pt}
+\tikzset{
+  mypoints/.style={fill=white, draw=black},
+  pil/.style={->, shorten <=2pt, shorten >=2pt}
+}
+
+\begin{tikzpicture}[>=latex, xscale=2.5, yscale=2.5]
+  \begin{scope}
+    \def\thetas{5}; \def\thetav{0.4}
+    \draw[->] (-0.1,0) -- +(1.2,0);
+    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[-, color=darkgreen, very thick, samples=100]
+    plot[id=x, domain=-0.35:1]
+    function{1/(1+exp(-\thetas*(x-\thetav)))}
+    node[right, color=black] {MI};
+    \draw[dashed] (0,1) -- (1,1);
+    \fill[mypoints] (0,1) circle (\ptsize) node[left] {UA};
+    \draw[dashed] (0,0) -- (-0.5,0) node[left] {LA};
+    \fill[mypoints] (0,0) circle (\ptsize);
+    \draw[dashed] ($(-0.25,0)+1/(1+exp(\thetas*\thetav))*(0,1)$)
+      node[left] {O} -- +(0.5,0);
+    \fill[mypoints] ($(0,0)+1/(1+exp(\thetas*\thetav))*(0,1)$)
+      circle (\ptsize);
+    \draw[dashed] (\thetav,0.25) -- +(0,0.5);
+    \fill[mypoints] (\thetav,0.5) circle (\ptsize)
+      node[right] {S-I-F$_{0.5}$};
+  \end{scope}
+\end{tikzpicture}

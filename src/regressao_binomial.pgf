@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+  domain=-0.25:9, xscale=0.8, yscale=0.25,
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick
+  }]
+
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,20) node[above] (E) {$\textrm{E}(Y|x)$};
+
+  \def\A{-3}; \def\B{0.8};
+  \draw[color=black, thick]
+    plot[id=x] function{20/(1+exp(-\A-\B*x))}
+    node[right] (eta)
+    {$\displaystyle\frac{n}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
+
+  \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
+  \node (N) at (5,22) {$[Y|x]\sim$ Binomial($p$,$n$)};
+  \path[aponta] (5.8,14.5) edge[bend left=10] (N);
+
+  \draw[aponta] (Q) -| (E);
+  \draw[aponta] (Q) -| (eta);
+  
+  \foreach[evaluate=\x as \p using 1/(1+exp(-\A-\B*\x))]
+    \x in {0.5, 2.2, ..., 8.5}{
+      \draw[color=gray, dashed] (\x,0) -- ++(0,20);
+      \def\lim{20};
+      % \node[below] at (\x,0) {\p};
+      \begin{scope}[xshift=\x cm, rotate=90, yscale=4]
+        \draw[color=black, very thick]
+        plot[ycomb, samples=\lim+1, domain=0:\lim]
+        function {-(gamma(\lim+1)/(gamma(x+1)*
+          (gamma(\lim-x+1))))*\p**x*(1-\p)**(\lim-x)};
+      \end{scope}
+    }
+    
+\end{tikzpicture}

@@ -1,0 +1,75 @@
+\def\hd{0.9}
+\def\vd{1.1}
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\newcommand{\tmc}[2]{
+  \tikz[overlay] \node[xshift=#2ex, yshift=1.25ex] (#1) {};
+}
+\renewcommand{\baselinestretch}{0.9}
+
+\tikzstyle{every picture}+=[remember picture]
+
+\tikzset{ 
+  rounded corners=4pt,
+  every node/.style={color=black},
+  every path/.style={
+    color=darkgreen!80!black, thin,
+    shorten >=4pt, shorten <=4pt, |-latex
+  },
+  mybox/.style={
+    draw=gray!50, fill=gray!20, very thick, rectangle,
+    inner sep=7pt, inner ysep=7pt
+  },
+  bola/.style={
+    circle, draw, near end, inner sep=0.5pt, font=\footnotesize,
+    color=darkgreen, fill=white,
+  },
+  nodedir/.style={right, text width=3.5cm, align=flush left},
+  nodeesq/.style={left, text width=2.6cm, align=flush right}
+}
+
+\begin{tikzpicture}
+  \node (eq1) {$\tmc{Y}{1}Y\tmc{pipe1}{0.3}|\tm{X}x$};
+  \node[below=1.5cm of eq1] (eq2)
+  {$\tmc{Q}{1}Q(Y\tmc{pipe2}{0.3}|x) =
+    \tmc{eta}{0.5}\eta(\tmc{x}{0.5}x \tmc{comma}{0.3},
+    \tmc{theta}{0.5}\theta)$};
+  \draw (Y.220) -- ++(-1,0)
+  node[nodeesq] {\footnotesize{Vari{\'a}vel resposta}};
+  \draw (X.40) -- ++(1,0)
+  node[nodedir] {
+    \footnotesize{Termos experimentais,\\
+      [-1ex] causas de varia{\c c}{\~a}o.}
+  };
+  \draw[shorten <=1pt] (pipe1) |- +(\vd,\hd)
+  node[nodedir] {
+    Distribui{\c c}{\~a}o\\
+    \footnotesize{Normal, Beta,\\
+      [-1ex] Poisson, Binomial, \ldots}
+  } node[bola] {1};
+  \draw[shorten <=6pt] (pipe1) |- ++(-0.25,-1) -| (pipe2)
+  node[bola] {2};
+  \draw (Q) |- +(-\vd,-\hd)
+  node[nodeesq] {
+    Quantidade\\
+    \footnotesize{M{\'e}dia, quantil,\\
+      [-1ex] par{\^a}metro, \ldots}
+  } node[bola] {3};
+  \draw[shorten <=6pt] (pipe1) |- ++(0.25,-1) -| (comma)
+  node[bola] {4};
+  \draw (eta) |- +(-\vd,-\hd-1)
+  node[nodeesq] {
+    Fun{\c c}{\~a}o\\
+    \footnotesize{Linear, n{\~a}o linear,\\
+      [-1ex] semiparam{\'e}trica, \ldots}
+  } node[bola] {5};
+  \draw (x) |- +(\vd,-\hd-1)
+  node[nodedir] {
+    Explicativa\\
+    \footnotesize{M{\'e}trica, categ{\'o}rica.}
+  } node[bola] {6};
+  \draw (theta) |- +(\vd,-\hd+0.25)
+  node[nodedir] {
+    Par{\^a}metros\\
+    \footnotesize{Emp{\'\i}ricos, interpret{\'a}veis.}
+  } node[bola] {7};
+\end{tikzpicture}

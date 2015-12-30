@@ -1,0 +1,110 @@
+% http://tex.stackexchange.com/questions/125244/how-can-i-produce-the-history-graph-of-a-git-repository-in-latex
+
+% Nesse link existe script python que faz a arte em tikz a partir da saida
+% `git log --graph --oneline`.
+
+% gitgraph.txt contains raw output of: $ git log --graph --oneline
+\begin{filecontents}{gitgraph.txt}
+* d764b48 added plaintext version in markdown
+* 54ba4b2 release 2014-01-25
+*   c589395 Merge branch 'master'
+|\
+| * 9f9c652 Remove holdover from kjh gh-pages branch
+* | b3bd158 exclude font files
+|/
+* 63268c1 micro-typography
+\end{filecontents}
+
+\newcommand\commit[2]{
+  \node[commit] (#1) {}; \node[clabel] at (#1) {\texttt{#1}: #2};
+}
+\newcommand\ghost[1]{
+  \coordinate (#1);
+}
+\newcommand\connect[2]{
+  \path (#1) to[out=90,in=-90] (#2);
+}
+
+\begin{tikzpicture}
+  \tikzstyle{commit}=[draw, circle, fill=white, inner sep=0pt,minimum size=5pt]
+  \tikzstyle{clabel}=[right, outer sep=1em]
+  \tikzstyle{every path}=[draw]
+  % Nao pode ter espaco entre '1em,between origins'.
+  \matrix [column sep={1em,between origins}, row sep=\lineskip] {
+    \commit{d764b48}{added plaintext version in markdown} & \\
+    \commit{54ba4b2}{release 2014-01-25} & \\
+    \commit{c589395}{Merge branch `master'} & \\
+    & \commit{9f9c652}{Remove holdover from kjh gh-pages branch} \\
+    \commit{b3bd158}{exclude font files} & \ghost{branch1} \\
+    \commit{63268c1}{micro-typography} & \\
+  };
+  \connect{63268c1}{b3bd158};
+  \connect{63268c1}{branch1};
+  \connect{branch1}{9f9c652};
+  \connect{b3bd158}{c589395};
+  \connect{9f9c652}{c589395};
+  \connect{c589395}{54ba4b2};
+  \connect{54ba4b2}{d764b48};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \tikzstyle{commit}=[draw,circle,fill=white,inner sep=0pt,minimum size=5pt]
+  \tikzstyle{every path}=[draw]
+  \tikzstyle{branch}=[draw,rectangle,rounded corners=3,fill=white,inner sep=2pt,minimum size=5pt]
+  \node[commit, green, fill=green] (ef1eae1) at (0.0,0) {};
+  \node[right,xshift=10] (label_ef1eae1) at (ef1eae1.east)
+  {\verb!ef1eae1: Updates my_file.txt for new feature!};
+  \node[commit, yellow, fill=blue] (4f669eb) at (0.5,-0.5) {};
+  \node[right,xshift=10] (label_4f669eb) at (4f669eb.east)
+  {\verb!4f669eb: Added README file with basic documentation!};
+  \node[commit, blue, fill=blue] (9216cb2) at (0.5,-1.0) {};
+  \node[right,xshift=10] (label_9216cb2) at (9216cb2.east)
+  {\verb!9216cb2: Added a start message!};
+  \node[commit, blue, fill=red] (77c49c1) at (1.0,-1.5) {};
+  \node[right,xshift=10] (label_77c49c1) at (77c49c1.east)
+  {\verb!77c49c1: New script added.!};
+  \node[commit, blue, fill=blue] (167af36) at (0.5,-2.0) {};
+  \node[right,xshift=10] (label_167af36) at (167af36.east)
+  {\verb!167af36: Added date/time to the final message in the script!};
+  \path[blue] (167af36) to[out=90,in=-90] (9216cb2);
+  \path[blue] (167af36) to[out=90,in=-90] (77c49c1);
+  \node[commit, blue, fill=blue] (a2a2593) at (0.5,-2.5) {};
+  \node[right,xshift=10] (label_a2a2593) at (a2a2593.east)
+  {\verb!a2a2593: Merge branch 'Feature1'!};
+  \path[blue] (a2a2593) to[out=90,in=-90] (167af36);
+  \node[commit, green, fill=green] (6ea97fa) at (0.0,-3.0) {};
+  \node[right,xshift=10] (label_6ea97fa) at (6ea97fa.east)
+  {\verb!6ea97fa: Added a line to the Feature1 branch!};
+  \path[green] (6ea97fa) to[out=90,in=-90] (ef1eae1);
+  \path[green] (6ea97fa) to[out=90,in=-90] (4f669eb);
+  \path[green] (6ea97fa) to[out=90,in=-90] (a2a2593);
+  \node[commit, blue, fill=blue] (9f51c0d) at (0.5,-3.5) {};
+  \node[right,xshift=10] (label_9f51c0d) at (9f51c0d.east)
+  {\verb!9f51c0d: Added a 'finished' message at the end of the script!};
+  \path[blue] (9f51c0d) to[out=90,in=-90] (a2a2593);
+  \node[commit, green, fill=green] (2e10426) at (0.0,-4.0) {};
+  \node[right,xshift=10] (label_2e10426) at (2e10426.east)
+  {\verb!2e10426: Added a line of text to my_file.txt.!};
+  \path[green] (2e10426) to[out=90,in=-90] (6ea97fa);
+  \path[green] (2e10426) to[out=90,in=-90] (9f51c0d);
+  \node[commit, green, fill=green] (91f1fef) at (0.0,-4.5) {};
+  \node[right,xshift=10] (label_91f1fef) at (91f1fef.east)
+  {\verb!91f1fef: Converted another_file.txt to a Bash script.!};
+  \path[green] (91f1fef) to[out=90,in=-90] (2e10426);
+  \node[commit, green, fill=green] (1ddccf6) at (0.0,-5.0) {};
+  \node[right,xshift=10] (label_1ddccf6) at (1ddccf6.east)
+  {\verb!1ddccf6: Added a new file and added several lines to my_files.txt.!};
+  \path[green] (1ddccf6) to[out=90,in=-90] (91f1fef);
+  \node[commit, green, fill=green] (2f06323) at (0.0,-5.5) {};
+  \node[right,xshift=10] (label_2f06323) at (2f06323.east)
+  {\verb!2f06323: First commit. Added an important file.!};
+  \path[green] (2f06323) to[out=90,in=-90] (1ddccf6);
+  \node[branch,right,xshift=10] (Feature1) at (label_4f669eb.east)
+  {\lstinline{Feature1}};
+  \node[branch,right,xshift=10] (Feature2) at (label_77c49c1.east)
+  {\lstinline{Feature2}};
+  \node[branch,right,xshift=10] (SubFeature) at (label_ef1eae1.east)
+  {\lstinline{SubFeature}};
+  \node[branch,right,xshift=10] (master) at (label_9216cb2.east)
+  {\lstinline{master}};
+\end{tikzpicture}

@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+  declare function={
+    binom(\n,\x) = (\n!)/(\x!*(\n-\x)!);
+  },
+  declare function={
+    hiperpf(\x,\N,\n,\K) = binom(\K, \x)*binom(\N-\K, \n-\x)/binom(\N, \n);
+  },
+  hplot/.style={ycomb, mark=o}]
+
+  \begin{axis}[
+    width=10cm, height=6cm,
+    xlabel=$x$, ylabel=$p(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none, font=\footnotesize},
+    legend cell align=left,
+    xtick={0,1,...,10},
+    ymax=0.75]
+
+    \addplot[hplot, samples at={0,1,...,10}]
+    (x, {hiperpf(x, 20, 10, 10)});
+    \addlegendentry{$N=20$, $n=10$, $K=10$}
+
+    \addplot[hplot, samples at={0,1,...,10}, red]
+    (x-0.1, {hiperpf(x, 50, 10, 25)});
+    \addlegendentry{$N=50$, $n=10$, $K=25$}
+
+    \addplot[hplot, samples at={0,1,...,5}, blue]
+    (x+0.1, {hiperpf(x, 50, 10, 5)});
+    \addlegendentry{$N=50$, $n=10$, $K=5$}
+
+    \node[anchor=north] at (axis description cs: 0.25, 0.95)
+    {$p(x) = \dfrac{\binom{K}{x} \binom{N-k}{n-x}}{\binom{N}{n}}$};
+
+  \end{axis}
+\end{tikzpicture}

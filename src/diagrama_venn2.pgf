@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+  \draw[thick] (0,0) rectangle (8,5);
+  \draw[thick, color=darkgreen, fill] (4,2.5) ellipse (2.7cm and 1.7cm);
+  \draw[thick] (0,0) .. controls (1,1) and (3,1) .. (2,5);
+  \draw[thick] (0,5) .. controls (1,1) and (3,1) .. (2,0);
+  \draw[thick] (3,0) .. controls (2,1) and (4,1) .. (2,5);
+  \draw[thick] (4,5) .. controls (2,4) and (4,1) .. (5,0);
+  \draw[thick] (4,0) .. controls (3,4) and (4,4) .. (8,0);
+  \draw[thick] (5,5) .. controls (3,4) and (4,3) .. (6,0);
+  \draw[thick] (7,5) .. controls (7,4) and (8,3) .. (6,0);
+  \node (n1) at (6,4) {\textcolor{darkgreen}{$A$}};
+  \node (n2) at (0.7,2) {$B_1$};
+  \node (n3) at (1,4) {$B_2$};
+  \node (n2) at (2.5,2) {$B_3$};
+  \node (n3) at (1.5,0.5) {$B_4$};
+  \node (n2) at (3.3,0.3) {$B_5$};
+  \node (n3) at (4.2,2) {$\cdots$};
+  \node (n2) at (7,0.3) {$B_{n-1}$};
+  \node (n3) at (7.5,2) {$B_n$};
+\end{tikzpicture}

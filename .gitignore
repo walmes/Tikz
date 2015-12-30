@@ -1,0 +1,11 @@
+!src/*.png
+!src/*.pgf
+!src/TIKZ_TEMPLATE.pgs
+!.gitignore
+!README.Rmd
+!README.md
+!style.css
+!template.Rmd
+child.Rmd
+*.html
+

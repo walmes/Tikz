@@ -1,0 +1,50 @@
+\begin{tikzpicture}[domain=-0.25:9, scale=0.7, >=latex]
+  % \draw[very thin,color=gray!30] (-1.1,-1.1) grid (12.1,7.1);
+  \draw[->] (-0.2,0) -- (9.2,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5) node[above] {$Y$};
+
+  \begin{scope}[line width=1pt]
+    \coordinate (a1) at (0,0);
+    \coordinate (a2) at (4,3);
+    \coordinate (a3) at (9,5);
+    \draw (a1) ..controls (2,1) and (1,5).. (a2);
+    \draw (a2) ..controls (7,1) and (7,3).. (a3);
+    \node[right] at (a3) {$\eta(x)$};
+  \end{scope}
+
+  \begin{scope}[
+    color=gray, fill opacity=0.3, fill=gray, smooth, domain=-1:1]
+
+    \def\x{1.5}; \def\y{2.4};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      (0,-0.8) -| (0.8,0) |- (0,0.9);
+    \draw (\x,\y) -- ++(0.8,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+    \def\x{3.75}; \def\y{3.15};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      (0,-1) -- (1,0) -- (0,1);
+    \draw (\x,\y) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+    \def\x{6}; \def\y{2.7};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      plot[id=x, rotate=-90]
+      function{0.55*(1+x)**3*(1-x)**0.9};
+    \draw (\x,2.17) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.3);
+
+    \def\x{8}; \def\y{3.85};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      plot[id=x, rotate=-90, domain=-1.2:1.2]
+      function{exp(-(x)**2/0.29)};
+    \draw (\x,\y) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+  \end{scope}
+
+  \coordinate (a) at (8.25,3.5);
+  \node (b) at (10,2.8) {$[Y|x]$};
+  \draw (a) edge[out=0, in=180,->] (b);
+
+\end{tikzpicture}

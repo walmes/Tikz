@@ -1,0 +1,41 @@
+% http://tex.stackexchange.com/questions/3161/tikz-how-to-draw-an-arrow-in-the-middle-of-the-line
+
+\tikzset{
+  % style to apply some styles to each segment of a path
+  on each segment/.style={
+    decorate,
+    decoration={
+      show path construction,
+      moveto code={},
+      lineto code={
+        \path [#1] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+      curveto code={
+        \path [#1] (\tikzinputsegmentfirst) .. controls
+        (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) ..
+        (\tikzinputsegmentlast);
+      },
+      closepath code={
+        \path [#1]
+        (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+    },
+  },
+  % style to add an arrow in the middle of a path
+  mid arrow/.style={
+    postaction={decorate,
+      decoration={
+        markings, mark=at position .5 with {\arrow[#1]{stealth}}
+      }
+    }
+  },
+}
+
+\begin{tikzpicture}
+  \path [draw=blue, postaction={on each segment={mid arrow=red}}]
+  (.2,0) -- (3,1) arc (0:180:1.4 and 1) -- cycle
+  (4,1) circle (.8)
+  (6,1) ellipse (.5 and 1)
+  (0,3) to [bend left] (3,4)
+  (4,3) rectangle (6,4);
+\end{tikzpicture}

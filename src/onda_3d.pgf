@@ -1,0 +1,29 @@
+\begin{tikzpicture}[
+  x={(0.866cm,-0.5cm)},
+  y={(0.866cm,0.5cm)},
+  z={(0cm,1cm)},
+  scale=1.0,
+  % Option for nice arrows
+  >=stealth, %
+  inner sep=0pt, outer sep=2pt,%
+  axis/.style={thick,->},
+  wave/.style={thick,color=#1,smooth},
+  polaroid/.style={fill=black!60!white, opacity=0.3}]
+
+  % Colors
+  \colorlet{darkgreen}{green!50!black}
+  \colorlet{lightgreen}{green!80!black}
+  \colorlet{darkred}{red!50!black}
+  \colorlet{lightred}{red!80!black}
+  
+  % Frame
+  \coordinate (O) at (0, 0, 0);
+  \draw[axis] (O) -- +(14, 0,   0) node [right] {x};
+  \draw[axis] (O) -- +(0,  2.5, 0) node [right] {y};
+  \draw[axis] (O) -- +(0,  0,   2) node [above] {z};
+  \draw[thick,dashed] (-2,0,0) -- (O);
+
+  % Electric field vectors
+  \draw[wave=blue, variable=\x,samples at={0,0.25,...,10}]
+    plot (\x,{sin(2*\x r)},0)node[anchor=north]{$\vec{E}$};
+\end{tikzpicture}

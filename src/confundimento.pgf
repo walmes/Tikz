@@ -1,0 +1,134 @@
+\tikzset{
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[}, right delimiter={]}
+  },
+  hlt/.style={opacity=0.2, line width=4 mm, line cap=round},
+  hltr/.style={opacity=0.2, rounded corners=2pt, inner sep=-1pt},
+  txt/.style={rotate=90, right}
+}
+
+%-----------------------------------------------------------------------
+% Experimento fatorial 2^3 em dois blocos, ou 2^{3-1}.
+
+\begin{tikzpicture}
+
+  \matrix (X) at (2,2) [mtx, nodes={anchor=east}] {
+    1 & 0 & 1  & -1 & 1  & -1 & 1  & -1 & -1 \\ 
+    1 & 0 & -1 & -1 & 1  & 1  & -1 & -1 & 1  \\ 
+    1 & 0 & 1  & 1  & -1 & 1  & -1 & -1 & -1 \\ 
+    1 & 0 & -1 & 1  & -1 & -1 & 1  & -1 & 1  \\ 
+    1 & 1 & 1  & 1  & 1  & 1  & 1  & 1  & 1  \\ 
+    1 & 1 & -1 & 1  & 1  & -1 & -1 & 1  & -1 \\ 
+    1 & 1 & 1  & -1 & -1 & -1 & -1 & 1  & 1  \\ 
+    1 & 1 & -1 & -1 & -1 & 1  & 1  & 1  & -1 \\ 
+  };
+
+  %% Efeitos.
+  \node[txt] at (X-1-1.north) {$\mu$};
+  \node[txt] at (X-1-2.north) {$\beta_2$};
+  \node[txt] at (X-1-3.north) {$\tau_a$};
+  \node[txt] at (X-1-4.north) {$\tau_b$};
+  \node[txt] at (X-1-5.north) {$\tau_c$};
+  \node[txt] at (X-1-6.north) {$\tau_{ab}$};
+  \node[txt] at (X-1-7.north) {$\tau_{ac}$};
+  \node[txt] at (X-1-8.north) {$\tau_{bc}$};
+  \node[txt] at (X-1-9.north) {$\tau_{abc}$};
+
+  %% Colunas de efeitos.
+  \node[hltr, fill=black, fit=(X-1-2)(X-8-2)] {};
+  \node[hltr, fill=black, fit=(X-1-8)(X-8-8)] {};
+
+  %% Divisoes.
+  \draw[dashed] (X-4-1.south west) -- (X-4-9.south east);
+
+  %% Descricao.
+  \node[above=of X] {$2^3,\, p=2$};
+
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+% Experimento fatorial 2^3 em dois blocos, ou 2^{3-1}.
+
+\begin{tikzpicture}
+
+  \matrix (X) at (2,2) [mtx, nodes={anchor=east}] {
+    1 & 0 & 0 & 0 & 1  & 1  & 1  & \phantom{-}1 & 1  & 1  & 1  \\ 
+    1 & 0 & 0 & 0 & -1 & -1 & -1 & 1            & 1  & 1  & -1 \\ 
+    1 & 1 & 0 & 0 & -1 & 1  & 1  & -1           & -1 & 1  & -1 \\ 
+    1 & 1 & 0 & 0 & 1  & -1 & -1 & -1           & -1 & 1  & 1  \\ 
+    1 & 0 & 1 & 0 & 1  & -1 & 1  & -1           & 1  & -1 & -1 \\ 
+    1 & 0 & 1 & 0 & -1 & 1  & -1 & -1           & 1  & -1 & 1  \\ 
+    1 & 0 & 0 & 1 & -1 & -1 & 1  & 1            & -1 & -1 & 1  \\ 
+    1 & 0 & 0 & 1 & 1  & 1  & -1 & 1            & -1 & -1 & -1 \\ 
+  };
+
+  %% Colunas de efeitos.
+  \node[hltr, fill=black, fit=(X-1-2)(X-8-4)] {};
+  \node[hltr, fill=black, fit=(X-1-8)(X-8-10)] {};
+
+  %% Divisoes.
+  \draw[dashed] (X-2-1.south west) -- (X-2-11.south east);
+  \draw[dashed] (X-4-1.south west) -- (X-4-11.south east);
+  \draw[dashed] (X-6-1.south west) -- (X-6-11.south east);
+
+  %% Nomes dos efeitos.
+  \node[txt] at (X-1-1.north) {$\mu$};
+  \node[txt] at (X-1-2.north) {$\beta_2$};
+  \node[txt] at (X-1-3.north) {$\beta_3$};
+  \node[txt] at (X-1-4.north) {$\beta_4$};
+  \node[txt] at (X-1-5.north) {$\tau_a$};
+  \node[txt] at (X-1-6.north) {$\tau_b$};
+  \node[txt] at (X-1-7.north) {$\tau_c$};
+  \node[txt] at (X-1-8.north) {$\tau_{ab}$};
+  \node[txt] at (X-1-9.north) {$\tau_{ac}$};
+  \node[txt] at (X-1-10.north) {$\tau_{bc}$};
+  \node[txt] at (X-1-11.north) {$\tau_{abc}$};
+
+  %% Descricao.
+  \node[above=of X] {$2^3,\, p=4$};
+
+\end{tikzpicture}
+
+%-----------------------------------------------------------------------
+% Experimento fatorial 3^2 em tres blocos (confundimento parcial).
+
+\begin{tikzpicture}
+
+  \matrix (X) at (2,2) [mtx, nodes={anchor=east}] {
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\ 
+    1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\ 
+  };
+
+  %% Colunas de efeitos.
+  \node[hltr, fill=black, fit=(X-1-2)(X-9-3)] {};
+  \node[hltr, fill=black, fit=(X-1-8)(X-9-11)] {};
+
+  %% Divisoes.
+  \draw[dashed] (X-3-1.south west) -- (X-3-11.south east);
+  \draw[dashed] (X-6-1.south west) -- (X-6-11.south east);
+
+  %% Nomes dos efeitos.
+  \node[txt] at (X-1-1.north) {$\mu$};
+  \node[txt] at (X-1-2.north) {$\beta_2$};
+  \node[txt] at (X-1-3.north) {$\beta_3$};
+  \node[txt] at (X-1-4.north) {$\tau_{2}$};
+  \node[txt] at (X-1-5.north) {$\tau_{3}$};
+  \node[txt] at (X-1-6.north) {$\alpha_{2}$};
+  \node[txt] at (X-1-7.north) {$\alpha_{3}$};
+  \node[txt] at (X-1-8.north) {$\gamma_{22}$};
+  \node[txt] at (X-1-9.north) {$\gamma_{32}$};
+  \node[txt] at (X-1-10.north) {$\gamma_{23}$};
+  \node[txt] at (X-1-11.north) {$\gamma_{33}$};
+
+  %% Descricao.
+  \node[above=of X] {$3^2,\, p=3$};
+
+\end{tikzpicture}

@@ -1,0 +1,52 @@
+\tikzset{
+  level 1/.style={level distance=3.5cm, sibling distance=3.5cm},
+  level 2/.style={level distance=3.9cm, sibling distance=2.2cm},
+  bag/.style={text width=5em, text centered, anchor=west,
+    fill=gray!50, rounded corners, minimum height=3em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped]
+  \node[bag] {tem a doen\c{c}a}
+  child {
+    node[bag] {resultado do teste}
+    child {
+      node[end, label=right:
+      {$$}] {}
+      edge from parent
+      node[above] {negativo $(S^c)$}
+      node[below] {$\Pr(S^c|D^c)=0.95$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap D^c)= ?$}] {}
+      edge from parent
+      node[above] {positivo ($S$)}
+      node[below] {$\Pr(S|D^c)=?$}
+    }
+    edge from parent 
+    node[above] {n\~ao ($D^c$)}
+    node[below] {$\Pr(D^c)=?$}
+  }
+  child {
+    node[bag] {resultado do teste}        
+    child {
+      node[end, label=right:
+      {$$}] {}
+      edge from parent
+      node[above] {negativo ($S^c$)}
+      node[below] {$\Pr(S^c|D)=?$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap D) = 0.0001\cdot 0.99$}] {}
+      edge from parent
+      node[above] {positivo ($S$)}
+      node[below] {$\Pr(S|D)=0.99$}
+    }
+    edge from parent         
+    node[above] {sim ($D$)}
+    node[below] {$\Pr(D)=0.0001$}
+  };
+\end{tikzpicture}

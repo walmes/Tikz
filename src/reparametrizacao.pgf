@@ -1,0 +1,27 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, thick,
+    minimum height=2em, minimum width=8em, inner sep=10pt,
+    text centered
+  }
+}
+
+\begin{tikzpicture}[>=latex, line width=0.75pt]
+  \begin{scope}
+    \node[state] (modelo1) {$f(x, \theta)$};
+    \node[below of=modelo1] {original};
+    \node (m1) [above right of=modelo1, node distance=3.5cm,
+      matrix of math nodes, left delimiter=[,right delimiter={]}]
+      { \theta_0 \\ \theta_1 \\ \vdots \\ \theta_p \\};
+    \node (m2) [right of=m1, node distance=2.5cm,
+      matrix of math nodes, left delimiter=[,right delimiter={]}]
+      { \theta_0 \\ \theta_1 \\ \vdots \\ \vartheta \\};
+    \node (modelo2) [below right of=m2, state, node distance=3.5cm]
+      (modelo2) {$f(x, \theta_\vartheta)$};
+    \node[below of=modelo2] {reparametrizado};
+    \path[->, shorten >=1em] (modelo1) edge[bend left=30] (m1.west);
+    \path[->] (m1.south) edge[bend right=70]
+      node [midway, below] {reparametriza\c{c}\~{a}o} (m2.south);
+    \path[<-, shorten >=1em] (modelo2) edge[bend right=30] (m2);
+  \end{scope}
+\end{tikzpicture}

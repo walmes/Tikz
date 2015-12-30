@@ -1,0 +1,35 @@
+\def\d{1cm}
+\def\k{0.6}
+
+\begin{tikzpicture}[
+  yscale=0.6,
+  node distance=1 and 0.5,
+  fator1/.style={%
+    fill=gray!50},
+  fator2/.style={%
+    fill=darkgreen!80},
+  profator2/.style={%
+    grow=down, xshift=0.1cm, solid, anchor=west,
+    edge from parent path={
+      (\tikzparentnode.south) |- (\tikzchildnode.west)
+    },
+  },
+  level1/.style ={level distance=1cm},
+  level2/.style ={level distance=2cm},
+  level3/.style ={level distance=3cm},
+  level 1/.style={sibling distance=1cm, level distance=0.5cm}]
+
+  \node[fator1] (A1) {A1}
+    child [profator2, level1] {node[fator2] {B1}}
+    child [profator2, level2] {node[fator2] {B2}}
+    child [profator2, level3] {node[fator2] {B3}};
+  \node[fator1, right=of A1] (A2) {A2}
+    child [profator2, level1] {node[fator2] {B1}}
+    child [profator2, level2] {node[fator2] {B2}}
+    child [profator2, level3] {node[fator2] {B3}};
+  \node[fator1, right=of A2] (Tm) {$T-$};
+  \node[fator1, right=of Tm] (TM) {$T+$};
+  \draw (A1) |- ($(A2)+(0,\k)$);
+  \draw (A2) |- ($(Tm)+(0,\k)$);
+  \draw (Tm) |- ($(TM)+(0,\k)$) -- (TM);
+\end{tikzpicture}

@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  auto, >=stealth', node distance=0.0ex and 2em,
+  pil/.style={->},
+  punkt/.style={
+    rectangle, rounded corners,
+    draw=black, text width=6.5em,
+    minimum height=3em, text centered},
+  ann/.style={font=\footnotesize, color=darkgreen}]
+
+  \node[punkt, color=darkgreen] (machine) at (0,0) {Sistema};
+  \node[left=of machine] (x3) {$x_3$};
+  \node[above=of x3] (x2) {$x_2$};
+  \node[above=of x2] (x1) {$x_1$};
+  \node[below=of x3] (x4) {$\vdots$};
+  \node[below=of x4] (x5) {$x_k$};
+  \node[ann, rotate=90, left=1pt of x3, anchor=south] {est\'{i}mulos};
+  \node[right=of machine,
+    % label={[darkgreen,font=\tiny]below:resposta},
+    draw, circle, fill=darkgreen!50] (y) {$y$};
+  \node[ann, rotate=-90, right=1pt of y, anchor=south] {resposta};
+
+  \path[pil] (x1) edge[bend left] (machine);
+  \path[pil] (x2) edge[bend left=10] (machine.162);
+  \path[pil] (x3) edge (machine);
+  \path[pil] (x5) edge[bend right] (machine);
+  \path[pil] (machine) edge (y);
+\end{tikzpicture}

@@ -1,0 +1,26 @@
+% http://tex.stackexchange.com/questions/94150/how-to-read-value-from-table-assign-to-variable-and-use-it-in-x-expr-thisrow
+
+\begin{filecontents}{data.dat}
+  #time speed
+  3 5
+  4 3
+  5 6
+  6 4
+  7 0
+  8 1
+\end{filecontents}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel=time,
+    ylabel=speed,
+    x filter/.code={
+      \ifnum\coordindex=0
+      \xdef\firstvalue{\pgfmathresult}
+      \fi
+      \pgfmathparse{\pgfmathresult-\firstvalue}
+    }]
+
+    \addplot[color=red, mark=square*] file {data.dat};
+  \end{axis}
+\end{tikzpicture}

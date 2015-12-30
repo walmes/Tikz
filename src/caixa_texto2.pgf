@@ -1,0 +1,35 @@
+% https://blog.karssen.org/2009/09/14/using-tikz-to-generate-an-abstract-box-in-latex/
+
+\tikzset{
+  abstractbox/.style={
+    draw=black, fill=white, rectangle, 
+    inner sep=10pt, style=rounded corners,
+    drop shadow={fill=black, opacity=1}
+  },
+  abstracttitle/.style={fill=white}
+}
+
+\newcommand{\boxabstract}[2][fill=white]{
+  \begin{tikzpicture}
+    \node [abstractbox, #1] (box)
+    {\begin{minipage}{0.80\linewidth}
+        \setlength{\parindent}{2mm} % Indentar.
+        \footnotesize #2
+      \end{minipage}};
+    \node[abstracttitle, right=10pt] at (box.north west) {Abstract};
+    \node[draw=none, fit=(box)] {};
+  \end{tikzpicture}
+}
+
+\boxabstract{
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+  egestas tempor bibendum. Pellentesque et elit eu tellus malesuada
+  consequat. Donec lacinia volutpat tortor quis aliquet. Vestibulum
+  posuere vehicula massa non ornare. Praesent condimentum maximus
+  consectetur. Cras porttitor eget augue vitae lacinia. Nunc eu bibendum
+  mauris. Sed a libero velit. Nunc sed posuere leo, a bibendum
+  dui. Vivamus quis purus accumsan, euismod sem pellentesque, facilisis
+  nisl. Donec a massa pulvinar, ultrices arcu nec, ultricies
+  enim. Quisque id condimentum orci. Fusce id vulputate leo, vel ornare
+  lorem.
+}

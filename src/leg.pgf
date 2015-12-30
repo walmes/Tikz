@@ -1,0 +1,14 @@
+\def\outercircle{(0,0) circle (5cm)}
+\def\innercircle{(-0.4,0.4) circle (4.2cm)}
+\def\leg{
+  \node[font=\fontsize{165}{144}\selectfont, color=white]
+  at (0,0) (leg) {leg}}
+\def\orangecircle{(1.9,0.5) circle (0.8cm)}
+
+\begin{tikzpicture}
+  \draw[color=white!50!black, fill=white, line width=5pt]
+  \outercircle;
+  \draw[draw=none, fill=white!50!black] \innercircle;
+  \draw[draw=none, fill=orange] \orangecircle;
+  \leg;
+\end{tikzpicture}

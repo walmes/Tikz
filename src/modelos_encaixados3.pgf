@@ -1,0 +1,54 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, fill=gray!20, thick,
+    minimum height=2em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \node[state] (Cd0) {
+    $\eta(x; \theta_0, \theta_1, \theta_c) =
+    \theta_0-\theta_1 x^{\exp\{\theta_c\}}$
+  };
+  \node[state, yshift=0cm, below of=Cd0,
+  node distance=5cm, anchor=center] (Ce0) {
+    $\eta(x; \theta_0, \theta_1) = \theta_0-\theta_1 x$
+  };
+  \node[state, yshift=0cm, below of=Ce0,
+  node distance=5cm, anchor=center] (f1e0) {
+    $\eta(x; \theta_0) = \theta_0$
+  };
+  
+  \path
+  (Cd0) edge[bend left=78]
+    node[midway, right, align=left] {$\theta_c = 0$\\ linear} (Ce0)
+  (Ce0) edge[bend left=75]
+    node[midway, right, align=left] {$\theta_1 = 0$\\ constante} (f1e0);
+
+  \begin{scope}[xshift=-1.5cm, yshift=1cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.75-0.7*x**exp(-1)};
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-0.7*x**exp(1.2)};
+    \node[align=right, left] at (0, 0.5) {$\theta_c<0$\\ convexa};
+    \node[align=left, right] at (0.9, 0.5) {$\theta_c>0$\\ c\^{o}ncava};
+  \end{scope}
+
+  \begin{scope}[xshift=-1.5cm, yshift=-4cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.8-0.7*x};
+  \end{scope}
+
+  \begin{scope}[xshift=-1.5cm, yshift=-9cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.5-0*x};
+  \end{scope}
+
+\end{tikzpicture}

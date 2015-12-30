@@ -1,0 +1,8 @@
+\usepgfplotslibrary{polar}
+
+\begin{tikzpicture}
+  \begin{polaraxis}[
+    title=\large\bfseries{Polar coordinates}]
+    \addplot+[red, domain=0:360, samples=360] {sin(\x)};
+  \end{polaraxis}
+\end{tikzpicture}

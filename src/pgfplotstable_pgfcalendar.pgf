@@ -1,0 +1,39 @@
+% \usepackage{siunitx} da conflito com formatacao de datas do
+% \usepackage{pgfcalendar}.
+
+\pgfplotstableread{
+  date        account1  account2  account3
+  2008-01-03  60        1200      400
+  2008-02-06  120       1600      410
+  2008-03-15  -10       1600      410
+  2008-04-01  1800      500       410
+  2008-05-20  2300      500       410
+  2008-06-15  800       1920      410
+}\accounts
+
+% requires: \usepackage{pgfcalendar}
+
+\pgfplotstableset{columns={date, account2}}
+\pgfplotstabletypeset[
+  every head row/.style={
+    before row=\toprule,after row=\midrule},
+  every last row/.style={
+    after row=\bottomrule},
+  columns/date/.style={string type},
+  columns/account2/.style={fixed, dec sep align}]
+\accounts
+
+% Pacote siunitx tem conflito com o pgfcalendar. Eles nao podem
+% coexistir no preambulo. O siunitx eh mais util e sera mantido.
+
+\hspace{1cm}
+
+\pgfplotstabletypeset[
+  columns={date, account1},
+  column type=r,
+  columns/date/.style={date type={\monthname\ \year}},
+  columns/account1/.style={
+  fixed, dec sep align,
+  fonts by sign={}{\color{red}}
+  }]
+\accounts

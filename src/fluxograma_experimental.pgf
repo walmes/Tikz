@@ -1,0 +1,68 @@
+\newenvironment{cminipage}[1][5cm]{%
+  \begin{minipage}{#1}
+    \begin{center}
+    }{%
+    \end{center}
+  \end{minipage}
+}
+
+\tikzset{
+  % ->, >=stealth,
+  % line width=2.75pt,
+  every path/.style={->, >=stealth, very thick, rounded corners},
+  state/.style={
+    rectangle, rounded corners,
+    draw=black, fill=gray!10, thick,
+    minimum height=2em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}
+  \node[state] (L1) {
+    \begin{cminipage}[5cm]
+      Disponibilidade de obras\\ e software destinados aos casos simples.
+    \end{cminipage}
+  };
+  \node[state, right=of L1] (R1) {
+    \begin{cminipage}[5cm]
+      Experimentos em condi\c{c}\~oes regulares
+      (balanceamento, respostas cont\'inuas).
+    \end{cminipage}
+  };
+  \node[state, below=of L1] (L2) {
+    \begin{cminipage}[5cm]
+      Emprego da ANOVA \textbf{inclusive} em situa{\c c}\~oes
+      n\~ao apropriadas! \newline \newline
+      N\~ao atendimento dos pressupostos;
+    \end{cminipage}
+  };
+  \node[state, right=of L2] (R2) {
+    \begin{cminipage}[5cm]
+      Dificuldade de aplica\c{c}\~ao em situa\c{c}\~aes n\~ao regulares.
+    \end{cminipage}
+  };
+  \node[state, below=of L2] (L3) {
+    \begin{cminipage}[5cm]
+      Contagem, propor\c{c}\~ao,\\ limitadas ou censuradas.
+    \end{cminipage}
+  };
+  \node[state, right=of L3] (R3) {
+    \begin{cminipage}[5cm]
+      Perda de parcela,\\ perda de casela.
+    \end{cminipage}
+  };
+  \node[state, fill=yellow!80!darkgreen,
+  below=1.5cm of $(L3.east)!0.5!(R3.west)$] (C) {
+    \begin{cminipage}[5cm]
+      O que fazer?
+    \end{cminipage}
+  };
+  \path[draw] (L1) -- (L2);
+  \path[draw] (R1) -- (L2);
+  \path[draw] (L1) -- (R2);
+  \path[draw] (R1) -- (R2);
+  \path[draw] (L2) -- (L3);
+  \path[draw] (R2) -- (R3);
+  \path[draw] (L3)  |- (C);
+  \path[draw] (R3) |- (C);
+\end{tikzpicture}

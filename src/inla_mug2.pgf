@@ -1,0 +1,132 @@
+\definecolor{brown}{rgb}{1,0.5,0.3}
+\definecolor{lightapricot}{RGB}{253,213,177}
+\definecolor{apricotcream}{RGB}{243,229,171}
+
+\tikzset{
+  statei/.style={
+    rectangle, rounded corners, draw=black, fill=brown, thick,
+    minimum height=2em, inner sep=5pt, text centered},
+  statef/.style={
+    rectangle, rounded corners, draw=black, fill=pink, thick,
+    minimum height=2em, inner sep=5pt, text centered},
+  statem/.style={
+    rectangle, rounded corners, draw=gray!80, fill=lightapricot, thick,
+    minimum height=2em, inner sep=5pt, text centered},
+  statec/.style={
+    rectangle, rounded corners, draw=gray!60, fill=apricotcream, thick,
+    minimum height=2em, inner sep=4pt, text centered}
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \draw [fill=white, color=white] (-12.3,-3.8) rectangle (7.7,3.67);
+  \node [rotate=90] (site) at (-12,-2.9)
+    {\large r-inla.org};
+  \node [rotate=90, color=blue, scale=0.9] (site) at (7.5,-2.9)
+    {@leg.ufpr.br};
+  \node [rotate=90, text width=1.7cm] (mug) at (-11.4,-0.75)
+    {\huge  INLA\\ \vspace{0.1cm} MUG};
+
+  \node [statei, text width=15.6cm, text ragged] (inla) at (-2.5,-0.8) {
+    \texttt{inla(formula, family, control.family=list(hyper, ...),
+      control.mix=list(hyper, ...), \\
+      \hspace{5ex} data, E, offset, scale, weights, Ntrials,
+      strata, link.covariates, lincomb,\\
+      \hspace{5ex} control.fixed, control.predictor,
+      control.compute, control.inla, control.hazard, ...)}\\
+  };
+
+  \node [statef] (formula) at (-5.3,0.85) {
+    \verb|y ~ fix.eff + f(i, model, control.group=list(model, ...), hyper, ...)| \\
+  };
+
+  \node [statem, text width=9.2cm, text ragged] (family) at (-7.4,2.7) {
+    {\tt beta, (|g)poisson, (|circular|skew|log)normal, t,
+      (|beta|c)binomial, coxph, laplace, weibull(|cure),\\
+      log(gammafrailty|istic|logistic|periodogram), gev,\\ % gamma(|count),\\
+      zeroinflated(poisson|(|beta|n)binomial)[0-2], ...}\\
+  };
+
+  \node [statem, text width=8cm, text ragged] (model) at (1.65,2.7) {
+    {\tt (|c)linear, iid, iid[1-5]d, me(c|b), copy, z,\\ 
+      (|rev)sigm, ar(|1), rw[1-2], crw2, seasonal, \\
+      ou, besag(|2|proper|proper2), bym(|2), slm,
+      generic(|[0-3]), rgeneric, spde[1-3], ...}\\
+  };
+
+  \node [statem, text width=1.4cm, text ragged] (group) at (6.8,2.7) {
+    {\tt rw[1-2], ar(|1), besag, exchang.}\\
+  };
+
+  \node [statem, text width=5.9cm, text ragged] (prior) at (4.55,0.75) {
+    {\tt loggamma, wishart[1-4]d, table:,
+      pc.prec, pc.dof, expression:, ...}\\
+  };
+  \node [statem, text width=1.5cm, text ragged]
+  (hazard) at (6.75,-0.4) {
+    {\tt rw1, rw2}\\
+  };
+  \node[statec, text width=1.2cm, text ragged]
+  (controlfixed) at (-10.85,-2.9){
+    {\tt list(\\
+      \hspace{0.5ex} mean,\\
+      \hspace{0.5ex} prec,\\
+      \hspace{0.5ex} ...)}\\
+  };
+
+  \node[statec, text width=1.9cm, text ragged]
+  (controlpredictor) at (-8.85,-2.9){
+    {\tt list(A,\\
+      \hspace{0.5ex} compute,\\
+      \hspace{0.5ex} cross,\\
+      \hspace{0.5ex} link, ...)}\\
+  };
+  \node[statec, text width=2.3cm, text ragged]
+  (controlcompute) at (-6.3,-2.9){
+    {\tt list(mlik,\\
+      \hspace{0.5ex} dic, waic,\\
+      \hspace{0.5ex} cpo, po,\\
+      \hspace{0.5ex} config, ...)}\\
+  };
+  \node[statec, text width=9cm, text ragged]
+  (controlinla) at (-.2,-2.9){
+    {\tt list(strategy=c("simplified.laplace", "gaussian",\\
+      \hspace{0.5ex}  "laplace"), int.strategy=c("ccd","grid","eb"),\\
+      \hspace{0.5ex}  h, dz, tolerance, optimizer, npoints, stencil,\\
+      \hspace{0.5ex}  diagonal, step.factor, correct.strategy, ...)}\\
+  };
+  \node[statec, text width=2.3cm, text ragged]
+  (controlhazard) at (5.9,-2.9){
+    {\tt list(\\
+      \hspace{4.5ex} hyper,\\
+      \hspace{4.5ex}  model,\\
+      \hspace{4.5ex}  ...)}\\
+  };
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-7.7,1.1) |- ++(0.5,0.5) -| (model);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-3,1.0) |- ++(0.4,0.4) -- (3,1.5) -| (group);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-8.7,-0.2) |- ++(0.5,0.5) -| (formula);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-7.2,-0.2) |- ++(-0.5,0.35) --(-12,0.35) --(-12,1.5) -- (family);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-0.5,.7) |- ++(0.4,-0.4) -- (0.3,0.3) -- (prior);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-2.2,-0.2) |- ++(0.5,0.4) -- (0,0.1) -- (prior);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (3.1,-0.25) |- ++(0.5,0.4) --(4,0.1) -| (prior);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (5.9,-2.5) -- (6.2,-1.4) -- (5.6,-1.3) -- (5.6,-0.1) -- (prior);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (6.55,-2.87) -- (hazard);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-9.1,-1.4) |- ++(0,-0.4) -| (controlfixed);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-6.4,-1.4) |- ++(0,-0.4) -| (controlpredictor);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (-2.9,-1.4) |- ++(-0,-0.4) -| (controlcompute);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (0.1,-1.4) -- (controlinla);
+  \draw[<-, rounded corners, line width=1.25pt]
+    (2.65,-1.4) |- ++(-0,-0.4) -| (controlhazard);
+\end{tikzpicture}

@@ -1,0 +1,49 @@
+\def\zleft{-1.96}
+\def\zright{1.96}
+\def\muzero{0}
+\def\muone{3.25}
+
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  Yellow/.style={
+    draw=none, text opacity=1, fill=yellow, fill opacity=0.25
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot]
+    \addplot[Red, smooth, domain=-5:\zleft]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[Red, smooth, domain=\zright:5]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[Yellow, smooth, domain=\zleft:\zright]
+      {normalpdf(x,\muzero,1)} \closedcycle;
+    \addplot[smooth, thick, domain=-4:4]
+      {normalpdf(x,0,1)};
+    \path[<->, draw] (axis cs: \zleft,0) to[out=90, in=0]
+      (axis description cs: 0.25,0.4) node[left]
+      {$-z_{\alpha/2}=\zleft$};
+    \path[<->, draw] (axis cs: \zright,0) to[out=90, in=180]
+      (axis description cs: 0.75,0.4) node[right]
+      {$z_{\alpha/2}=\zright$};
+    \path[<->, draw] (axis cs: \muone,0) to[out=90, in=180]
+      (axis description cs: 0.83,0.25) node[right]
+      {$z_0=\muone$};
+    \node at (axis description cs: 0.5,0.3) {$1-\alpha = 0.95$};
+  \end{axis}
+\end{tikzpicture}

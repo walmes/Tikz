@@ -1,0 +1,130 @@
+\tikzset{
+  basic/.style={draw, text width=2cm, drop shadow, rectangle, minimum
+    height=4ex},
+  root/.style={basic, rounded corners=2pt, align=center, fill=gray!30},
+  level 2/.style={basic, rounded corners=3pt, align=center,
+    fill=gray!60, text width=6em},
+  level 3/.style={basic, align=center, fill=gray, text width=6em},
+  table/.style={
+    matrix of nodes,
+    % matrix of math nodes,
+    nodes={align=center},
+    % minimum height=1.5em,
+    minimum width=2em,
+    text depth=0ex,
+    text height=1ex,
+    nodes in empty cells
+  },
+  vertex/.style={circle, minimum size=4pt, inner sep=1pt, fill=gray!90},
+  edge/.style={draw, -, black}
+}
+
+\begin{tikzpicture}[
+  level 1/.append style={sibling distance=70mm},
+  level 2/.append style={sibling distance=30mm},
+  edge from parent/.style={-, draw},
+  >=stealth]
+
+  \node[root] {Arranjos fatoriais}
+  child {
+    node[level 2] (cru) {Cruzados}
+    child {node[level 3] (com) {Completos}}
+    child {node[level 3] (inc) {Incompletos}}
+    child {node[level 3] (fra) {Fracionados}}
+  }
+  child {
+    node[level 2] (ani) {Aninhados}
+  };
+  
+  \begin{scope}
+    \matrix[table, below=2mm of com] (tbcom) {
+            & $B_1$    & $B_2$    \\
+      $A_1$ & $\times$ & $\times$ \\ 
+      $A_2$ & $\times$ & $\times$ \\ 
+      $A_3$ & $\times$ & $\times$ \\ 
+    };
+    \draw (tbcom-1-2.north west) -- (tbcom-4-2.south west);
+    \draw (tbcom-2-1.north west) -- (tbcom-2-3.north east);
+    \matrix[table, below=2mm of inc] (tbinc) {
+            & $B_1$    & $B_2$    \\
+      $A_1$ & $\times$ & $\times$ \\ 
+      $A_2$ & $\times$ &          \\ 
+      $A_3$ & $\times$ & $\times$ \\ 
+    };
+    \draw (tbinc-1-2.north west) -- (tbinc-4-2.south west);
+    \draw (tbinc-2-1.north west) -- (tbinc-2-3.north east);
+    \matrix[table, below=2mm of tbinc] (tbadi) {
+            & $B_1$    & $B_2$    & $T$ \\
+      $A_1$ & $\times$ & $\times$ &     \\ 
+      $A_2$ & $\times$ & $\times$ &     \\ 
+      $T$   &          &          & $+$ \\ 
+    };
+    \draw (tbadi-1-2.north west) -- (tbadi-4-2.south west);
+    \draw (tbadi-2-1.north west) -- (tbadi-2-4.north east);
+    \matrix[
+    matrix of nodes,
+    nodes={align=center},
+    text height=0.5ex,
+    nodes in empty cells,
+    below=5mm of fra,
+    left delimiter = {[}, right delimiter = {]}] (tbfra) {
+      $-$ & $-$ & $+$ \\
+      $-$ & $+$ & $-$ \\
+      $+$ & $-$ & $-$ \\
+      $+$ & $+$ & $+$ \\
+    };
+    \node[above] at (tbfra-1-1.north) {$A$};
+    \node[above] at (tbfra-1-2.north) {$B$};
+    \node[above] at (tbfra-1-3.north) {$C$};
+  \end{scope}
+
+  \begin{scope}[thick, z={(0.45,0.35)}, node distance=0.5cm]
+    \coordinate[below=1cm of tbcom] (centro);
+    \node[vertex, below left=of centro] (v0) {};
+    \node[vertex, above left=of centro] (v1) {};
+    \node[vertex, below right=of centro] (v2) {};
+    \node[vertex, above right=of centro] (v3) {};
+    \node[vertex, above right=2ex of v0] (v4) {};
+    \node[vertex, above right=2ex of v1] (v5) {};
+    \node[vertex, above right=2ex of v2] (v6) {};
+    \node[vertex, above right=2ex of v3] (v7) {};
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+  \end{scope}
+
+  \begin{scope}[thick, z={(0.45,0.35)}, node distance=0.5cm]
+    \coordinate[below=1cm of tbfra] (centro);
+    \node[vertex, fill=white, below left=of centro] (v0) {};
+    \node[vertex, above left=of centro] (v1) {};
+    \node[vertex, below right=of centro] (v2) {};
+    \node[vertex, fill=white, above right=of centro] (v3) {};
+    \node[vertex, above right=2ex of v0] (v4) {};
+    \node[vertex, fill=white, above right=2ex of v1] (v5) {};
+    \node[vertex, fill=white, above right=2ex of v2] (v6) {};
+    \node[vertex, above right=2ex of v3] (v7) {};
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+  \end{scope}
+
+  \begin{scope}[
+    grow=right,
+    cx/.style={rounded corners=2pt, thin, align=center, fill=gray!30},
+    level 1/.append style={sibling distance=8mm, level distance=10mm},
+    edge from parent/.style={-, draw}]
+    \coordinate[below=of ani] (anip);
+    \node[cx, below left=0mm and 0mm of anip] (A1) {$A_1$}
+    child {node[cx] {$B_2$}}
+    child {node[cx] {$B_1$}};
+    \node[cx, below=15mm of A1] (A2) {$A_2$}
+    child {node[cx] {$B_5$}}
+    child {node[cx] {$B_4$}}
+    child {node[cx] {$B_3$}};
+  \end{scope}
+
+\end{tikzpicture}

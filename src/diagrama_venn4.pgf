@@ -1,0 +1,25 @@
+\def\first{(4,2.5) ellipse (2.7cm and 1.7cm)}
+\def\second{
+  (0,0) .. controls (1,2) and (3.5,1) .. (2,5) -- (0,5) -- (0,0)}
+\begin{tikzpicture}
+  \fill[fill=darkgreen!20] \first;
+  \begin{scope}
+    \clip \first;
+    \fill[fill=darkgreen!70] \second;
+  \end{scope}
+  \node (e1) at (1.85,2.5) {$A_1\cap B$};
+  \draw (0,0) rectangle (8,5);
+  \draw[color=darkgreen] \first;
+  \draw \second;
+  \draw (0,5) .. controls (1,1) and (3,1) .. (2,0);
+  \draw (3,0) .. controls (2,1) and (4,1) .. (2,5);
+  \draw (4,5) .. controls (2,4) and (4,1) .. (5,0);
+  \draw (4,0) .. controls (3,4) and (4,4) .. (8,0);
+  \draw (5,5) .. controls (3,4) and (4,3) .. (6,0);
+  \draw (7,5) .. controls (7,4) and (8,3) .. (6,0);
+  \node (n1) at (6,4) {\textcolor{darkgreen}{$B$}};
+  \node (n2) at (0.7,2) {$A_2$}; \node (n3) at (1,4) {$A_1$};
+  \node (n2) at (2.5,2) {$A_3$}; \node (n3) at (1.5,0.5) {$A_4$};
+  \node (n2) at (3.3,0.3) {$A_5$}; \node (n3) at (4.2,2) {$\cdots$};
+  \node (n2) at (7,0.3) {$A_{n-1}$}; \node (n3) at (7.5,2) {$A_n$};
+\end{tikzpicture}

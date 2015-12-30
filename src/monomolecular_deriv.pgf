@@ -1,0 +1,39 @@
+\def\ba{2.1}
+\def\bb{1}
+
+\begin{tikzpicture}[domain=-3:5, xscale=1, yscale=1, >=latex]
+  \begin{scope}
+    \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
+    \draw[color=green!30!black, thick, smooth]
+      plot[id=x, domain=0:5]
+      function{\ba*(1-exp(-\bb*x))};
+    \draw[dashed] (0, \ba) node[left] {$\theta_0$} -- (5,\ba);
+    \node (texto) at (2.5,2.5) {$\theta_1 =\,\, ?$};
+    \path[->] (1,1.3) edge[bend right=20]
+      node[at end, right] {$\theta_0(1-e^{-\theta_1x})$} +(1,-0.5);
+    \path[->] (0-0.5,\ba) edge[bend right=30]
+      node[at end, below] {ass\'intota} +(-0.5,-1);
+    \node (der1) at (7,2)
+      {$\displaystyle\frac{\partial f(x,\theta)}{
+          \partial \theta_0} = 1-e^{-\theta_1 x}$};
+    \node[below of=der1, node distance=1.3cm] (der2)
+      {$\displaystyle\frac{\partial f(x,\theta)}{
+          \partial \theta_1} = \theta_0\cdot x\cdot e^{-\theta_1 x}$};
+  \end{scope}
+
+  \begin{scope}[yshift=-4cm]
+    \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
+    \draw[color=green!30!black, thick, smooth]
+      plot[id=x, domain=0:5]
+      function{\ba*(1-exp(-\bb*x))};
+    \draw[dashed] (0, \ba) node[left] {$\theta_0$} -- (5,\ba);
+    \draw[dashed] (0, \ba/2) node[left] {$\theta_0/2$} -| (0.693,0)
+      node[below] {$\vartheta$};
+    \node (der1) at (7,1)
+      {$\vartheta=-\displaystyle\frac{\log(1/2)}{\theta_1}$};
+    \path[->] (0.693,-0.5) edge[bend right=30]
+      node[at end, right] {meia vida} +(1,-0.5);
+  \end{scope}
+\end{tikzpicture}

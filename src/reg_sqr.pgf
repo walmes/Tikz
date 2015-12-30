@@ -1,0 +1,51 @@
+%% http://tex.stackexchange.com/questions/87674/how-to-coherently-combine-3d-and-contour-plots-with-pgfplots
+\newcommand\expr[2]{5+#1^2+#2^2-0.9*#2*#1}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    domain=-2:2.5,
+    domain y=-2:2.5,
+    view={-40}{12},
+    xlabel=$\beta_0$,
+    ylabel=$\beta_1$,
+    zlabel={$SSE(\beta_0, \beta_1)$},
+    zmin=-2,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    zticklabels=\empty]
+
+    \addplot3[
+      contour gnuplot={
+        output point meta=rawz,
+        number=30,
+        labels=false,
+      },
+      samples=30,
+      z filter/.code=\def\pgfmathresult{-2},
+    ] {\expr{x}{y}};
+
+    \addplot3[
+      surf,
+      samples=20,
+      opacity=0.75,
+      mesh/interior colormap={blueblack}{
+        color=(darkgreen) color=(orange)},
+      miter limit=1, 
+    ] {\expr{x}{y}};
+
+    \addplot3[
+      contour gnuplot={number=9, labels=false}
+    ] {\expr{x}{y}};
+
+    \draw (axis cs:-2,0,-2) -- (axis cs:2.5,0,-2);
+    \draw (axis cs:0,-2,-2) -- (axis cs:0,2.5,-2);
+
+    \path[draw, ->, >=stealth] (axis cs:1,-1,4)
+      node[right] {$\min\, SSE$}
+      to[out=180, in=-90] (axis cs:0,0,4);
+    \path[draw, ->, >=stealth] (axis cs:-1,1,4)
+      node[left] {$\hat\beta$}
+      to[out=0, in=90] (axis cs:0,0,-2);
+
+  \end{axis}
+\end{tikzpicture}

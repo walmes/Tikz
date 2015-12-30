@@ -1,0 +1,44 @@
+% http://tex.stackexchange.com/questions/80345/student-t-distribution-with-tikz
+
+\begin{tikzpicture}[
+  >=stealth,
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    student(\x,\n)=
+    gamma((\n+1)/2)/(sqrt(\n*pi)*
+    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[
+    width=8cm, height=5cm,
+    samples=30,
+    xlabel=$t$, ylabel=$f(t)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    domain=-5:5, xmin=-5.5, xmax=5.5]
+
+    %% Quantil para \nu=5 e \alpha=0.05
+    \addplot[domain=2.015:5, draw=none, fill=darkgreen, samples=30]
+    {student(x,5)} \closedcycle;
+
+    \addplot[smooth, thick, samples=100] {student(x,5)}
+    node[pos=0.55, anchor=mid west, xshift=2em,
+    append after command={
+      (\tikzlastnode.west) edge [thin, gray] +(-2em,0)}]
+    {$\nu=5$};
+
+    \path[<->, draw] (axis cs: 2.015, 0.0) to[out=90, in=-90]
+    (axis description cs: 0.82, 0.3) node[above] {$t_{\alpha}=2.0150$};
+
+  \end{axis}
+\end{tikzpicture}

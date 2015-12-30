@@ -1,0 +1,35 @@
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\tikzstyle{every picture}+=[remember picture]
+\tikzset{ 
+  >=stealth,
+  every path/.style={->, color=darkgreen, thin},
+  every node/.style={color=black},
+  node distance=0.5cm
+}
+
+\begin{tikzpicture}
+  \node at (0.5,-0)
+  {$\tm{x}\underset{n\times p}{X} =
+    \tm{q}\underset{n\times p}{Q}
+    \tm{r}\underset{p\times p}{R}$};
+  \begin{scope}[xshift=0mm, yshift=-1cm]
+    \node (a) at (0,0) {};
+    \node[right=1mm of a] (b) {};
+    \node[below=1cm of b] (c) {};
+    \node[below=1cm of a] (d) {};
+    \fill[darkgreen]
+    (a.north west) -| (c.south east) -| (a.north west);
+    \path[draw] (q)+(1.8ex,-2ex)
+    to[out=-90, in=90] ($(a.north)!0.5!(b.north)$);
+    \node (a) at (0.7,0) {};
+    \node[right=1mm of a] (b) {};
+    \node[below=1mm of b] (c) {};
+    \node[below=of a] (d) {};
+    \fill[darkgreen]
+    (a.west) |- (b.north east) |- (c.south) -- cycle;
+    \draw[-, darkgreen]
+    (a.north west) |- (c.south east);
+    \path[draw] (r)+(1.7ex,-2ex)
+    to[out=-90, in=90] ($(a.north)!0.5!(b.north)$);
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,79 @@
+\tikzset{ 
+  >=stealth,
+  table/.style={
+    matrix of nodes,
+    nodes={align=center},
+    minimum height=1.5em,
+    minimum width=1em,
+    text depth=0.1ex,
+    text height=1.2ex,
+    nodes in empty cells,
+    column 4/.style={
+      nodes={text width=3.5em, fill=gray!20, rounded corners=false}
+    },
+    row 4/.style={
+      nodes={fill=gray!20, rounded corners=false}
+    }
+  }
+}
+
+\pgfplotsset{
+  myplot/.style={
+    width=9cm, height=6cm,
+    samples=50, smooth, no marks,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    legend pos={north west}
+  }
+}
+
+\begin{tikzpicture}[
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{scope}
+    \begin{axis}[
+      myplot,
+      domain=-4:4,
+      xlabel=$z$, ylabel=$f(z)$,
+      title={Densidade da Normal Padr\~{a}o ($Z$)}]
+
+      \addplot[domain=0:1.64, draw=none, fill=darkgreen]
+      {normalpdf(x,0,1)} \closedcycle;
+      \addplot[thick] {normalpdf(x,0,1)};
+      % \addlegendentry{$\mu=0$, $\sigma^2=1$}
+      \coordinate (p0) at (axis cs: 0.82,0.1);
+      \draw[<->] (axis cs: 1.64,  0) |- (axis cs: 2.2, 0.25)
+      node[right] {$z =1.64$};
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[
+    xshift=11cm, yshift=2.9cm,
+    every node/.style={rounded corners}]
+
+    \matrix[table, text width=1.5em] (first) {
+                   & $\cdots$ & 0.03 & \textbf{0.04}                          & $\cdots$ \\
+      $\vdots$     &          &      &                                        &          \\ 
+      1.5          &          &      &                                        &          \\
+      \textbf{1.6} &          &      & \node[black, fill=darkgreen]{0.44950}; &          \\
+      $\vdots$     &          &      &                                        &          \\
+    };
+
+    \draw (first-1-2.north west) -- (first-5-2.south west);
+    \draw (first-1-1.south west) -- (first-1-5.south east);
+    \draw[->] (first-1-4) -- (first-4-4);
+    \draw[->] (first-4-1) -- (first-4-4);
+
+    \path[o->] (p0) edge[bend right=25]
+    node[below=1pt, fill=darkgreen,
+    draw=none, anchor=north west] {$\Pr(0<Z<z)$}
+    (first-4-4.-140);
+
+    \node[above of=first-1-3] {Tabela da Normal Padr\~{a}o};
+
+  \end{scope}
+\end{tikzpicture}

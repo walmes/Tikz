@@ -1,0 +1,22 @@
+% http://tex.stackexchange.com/questions/276496/draw-a-surface-on-a-ternary-diagram-with-pgfplots
+
+\usepgfplotslibrary{ternary}
+
+\begin{tikzpicture}
+  \begin{ternaryaxis}[
+    axis on top,
+    xlabel=x, ylabel=y, zlabel=z,
+    colorbar]
+
+    \addplot3 [patch, shader=interp, point meta=\thisrow{C}]
+    table{
+      X Y Z C
+      0 0 1 100
+      1 0 0 0
+      0.5 0.5 0 0
+      0.5 0.5 0 0
+      0 1 0 20
+      0 0 1 100
+    };
+  \end{ternaryaxis}
+\end{tikzpicture}

@@ -1,0 +1,67 @@
+\tikzset{
+  aponta/.style={-latex, dashed},
+  eixos/.style={-latex},
+  fun/.style={very thick}
+}
+
+\begin{tikzpicture}[domain=-0.2:10, xscale=0.5, yscale=0.5]
+
+  \begin{scope}
+    \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+    \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$\eta(x)$};
+    \def\A{3}; \def\B{1}; \def\C{4.5};
+    \draw[fun]
+      plot[id=x, samples=100]
+      function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
+    \coordinate (b) at (\C,\A+\B*\C);
+    \draw (0,\A) node[left] {$\theta_0$};
+    \draw[aponta] (b) -- (\C,0) node[below] {$\theta_b$};
+    \draw[|<->|] (1,4) -- (3,4)
+      node[midway, below, fill=white] {$\Delta x$};
+    \draw[|<->|] (3,4) -- (3,6)
+      node[midway, right, fill=white] {$\Delta y$};
+    \node[fill=white] (b1) at (2,2)
+      {$\theta_1 = \frac{\Delta y}{\Delta x}$};
+    \def\desc{-1}
+    \draw[->|] (1,\desc) -- (\C,\desc)
+      node[midway, below=3pt] {linear};
+    \draw[dashed] (0,\desc) -- (1,\desc);
+    \draw[|<-] (\C,\desc) -- (9,\desc)
+      node[midway, below=3pt] {plat\^o};
+    \draw[dashed] (9,\desc) -- (10,\desc);
+    \node[above] (titulo) at (5,10) {Modelo linear-plat{\^o}};
+  \end{scope}
+
+  \begin{scope}[xshift=12cm]
+    \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+    \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$\eta(x)$};
+    \def\Y{8}; \def\X{5}; \def\C{-0.25};
+    \draw[fun]
+      plot[id=x, samples=100]
+      function{\Y+\C*(x-\X)**2*(x<\X)};
+    \draw[dashed]
+      plot[id=x, samples=100, domain=-0.25:2.9]
+      function{1.9+2.5*x}
+      node[right, fill=white] {$\eta'(0) = \theta_1$};
+    \coordinate (b) at (\X,\Y);
+    \draw (0,1.9)  node[left] {$\theta_0$};
+    \draw (0,\Y)  node[left] {$\theta_y$};
+    \draw[aponta] (b) -- (\X,0) node[below] {$\theta_b$};
+    \def\Xe{1.5}
+    \coordinate (ye) at (\Xe,{\Y+\C*(\X-\Xe)^2});
+    \draw[aponta] (ye) -- (\Xe,0) node[below] {$\theta_b-1$};
+    \draw[|<->|] (ye) -- ++(\X-\Xe,0)
+      node[midway, above, fill=white] {$\Delta x=1$};
+    \draw[|<->|] (\X,\Y) -- (\X,4.95)
+      node[midway, right, fill=white] {$\theta_2 = \Delta y$};
+    \def\desc{-1}
+    \draw[->|] (1,\desc) -- (\X,\desc)
+      node[midway, below=3pt] {quadr{\'a}tico};
+    \draw[dashed] (0,\desc) -- (1,\desc);
+    \draw[|<-] (\X,\desc) -- (9,\desc)
+      node[midway, below=3pt] {plat{\^o}};
+    \draw[dashed] (9,\desc) -- (10,\desc);
+    \node[above] (titulo) at (5,10) {Modelo quadr{\'a}tico-plat{\^o}};
+  \end{scope}
+
+\end{tikzpicture}

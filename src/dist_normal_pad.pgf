@@ -1,0 +1,55 @@
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    samples=50, smooth, no marks,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none}
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*pi*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[myplot, xmin=1.1, xmax=2.3]
+
+    \addplot[domain=1.7:1.8, draw=none, fill=darkgreen]
+    {normalpdf(x,1.7,0.1)} \closedcycle;
+    \addplot[smooth, thick, domain=1.2:2.2]
+    {normalpdf(x,1.7,0.1)}
+    node[pos=0.35, pin={left:$\mu=1.7$, $\sigma^2=0.1^2$}] {};
+    \addplot[hplot, samples at={1.7}] {normalpdf(x,1.7,0.1)};
+    
+    \node[anchor=north west] at (axis description cs: 0.02, 0.95)
+    {$X$: altura de pessoas (m)};
+
+    \coordinate (p0) at (axis cs: 1.75, 1);
+    \node[fill=darkgreen, draw=none] (p1)
+    at (axis description cs: 0.78, 0.75)
+    {\footnotesize $\displaystyle \Pr\left(\frac{1.7-\mu}{\sigma}<
+        Z<\frac{1.8-\mu}{\sigma}\right)$};
+    \path[o->] (p0) edge[out=45, in=-90] (p1);
+
+  \end{axis}
+
+  \begin{scope}[yshift=-1cm]
+    \begin{axis}[
+      myplot,
+      hide y axis,
+      axis x line*=bottom,
+      xlabel=$z{\,=\,}\dfrac{x-\mu}{\sigma}$,
+      xlabel style={at={(1,0)}, anchor=west},
+      domain=-4:4,
+      xmin=-6, xmax=6]
+      \addplot[draw=none] {x};
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,19 @@
+\tikzset{state/.style={
+    rectangle, rounded corners, draw=black, thick, minimum height=2em,
+    minimum width=7cm, inner sep=10pt, text centered,
+  },
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \node[state] (cra) {
+    $U(x) = U_r+\displaystyle\frac{U_s-U_r}{(1+\exp\{a+x\})^n)^m}$\\
+  };
+  \node[above of=cra] {Curva de reten\c{c}\~{a}o de \'{a}gua no solo};
+  \node[state, right of=cra, node distance=8cm]
+  (dist) {
+    $f(r) = \displaystyle\frac{nm\, (2\gamma\,\exp\{a\}/r)^n}{
+      r(1+(2\gamma\,\exp\{a\}/r)^n)^{m+1}}$\\
+  };
+  \node[above of=dist] {Distribui\c{c}\~{a}o do tamanho de poros};
+  \path (cra) edge[<->, bend right=30] node[below] {} (dist);
+\end{tikzpicture}

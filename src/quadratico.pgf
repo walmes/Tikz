@@ -1,0 +1,12 @@
+\def\by{2.1}
+\def\bx{3}
+\def\bc{-0.2}
+
+\begin{tikzpicture}[domain=-3:5, xscale=1.2, yscale=1.2, >=latex]
+  \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+  \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
+  \draw[color=green!30!black, thick, smooth]
+    plot[id=x, domain=0:5] function{\by+\bc*(x-\bx)**2};
+  \draw[dashed] (0, \by) node[left] {$\vartheta_y$} -| (\bx,0)
+    node[below] {$\vartheta_x$};
+\end{tikzpicture}

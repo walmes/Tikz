@@ -1,0 +1,43 @@
+\pgfplotsset{
+  myplot/.style={
+    width=7cm, height=6cm,
+    samples=50, domain=0:5, smooth, no marks,
+    xlabel=$x$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    % title={Distribui\c{c}\~{a}o Exponencial}
+  }
+}
+
+\begin{tikzpicture}[
+  declare function={
+    exppdf(\x,\lambda) = \lambda*exp(-\lambda*\x);
+  },
+  declare function={
+    expcdf(\x,\lambda) = 1-exp(-\lambda*\x);
+  }]
+
+  \begin{axis}[myplot, ylabel=$f(x)$]
+    \addplot[color=black] {exppdf(x,2)};
+    \addlegendentry{$\lambda=2$};
+    \addplot[color=red] {exppdf(x,1)};
+    \addlegendentry{$\lambda=1$};
+    \addplot[color=blue] {exppdf(x,0.5)};
+    \addlegendentry{$\lambda=\frac{1}{2}$};
+    \node[rotate=0] at (axis cs: 3,  0.85)
+    {$f(x) = \displaystyle \lambda \text{e}^{-\lambda x}$};
+  \end{axis}
+
+  \begin{axis}[myplot, xshift=7cm, ylabel=$F(x)$, legend pos=south east]
+    \addplot[color=black] {expcdf(x,2)};
+    \addlegendentry{$\lambda=2$};
+    \addplot[color=red] {expcdf(x,1)};
+    \addlegendentry{$\lambda=1$};
+    \addplot[color=blue] {expcdf(x,0.5)};
+    \addlegendentry{$\lambda=\frac{1}{2}$};
+    \node at (axis cs: 2,  0.1)
+    {$F(x) = \displaystyle \lambda \text{e}^{-\lambda x}$};
+  \end{axis}
+
+\end{tikzpicture}

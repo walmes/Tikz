@@ -1,0 +1,55 @@
+%% http://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla
+
+\def\hscale{-1}
+\def\stderr{0.35}
+\def\fromto{1.8}
+
+\newcommand*{\ListXYvalues}{1/2, 2/0, 3/1.5, 4/0.5}
+\newcommand*\pgfplotsinvokeforeachmacro[1]
+{\expandafter\pgfplotsinvokeforeach\expandafter{#1}}
+
+\tikzset{ 
+  declare function={
+    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none}
+}
+
+\pgfplotsset{
+  my plot/.code args={#1/#2}{%
+    \addplot[domain=-\fromto:\fromto]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2);
+    \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
+    \addplot[halves, domain=0:\fromto, fill=darkgreen]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
+    \node[rotate=90, below] at (axis cs: #1, #2) {$\mu+\tau_{#1}$};
+  }
+}
+
+\begin{tikzpicture}[rotate=-90]
+  \begin{axis}[
+    width=8cm, height=9cm,
+    xlabel=Tratamentos ($i$),
+    ylabel=Vari\'{a}vel resposta ($Y$),
+    x label style={rotate=180},
+    xtick=\empty, xticklabels=\empty, yticklabels=\empty,
+    extra x ticks={1,2,3,4},
+    extra x tick labels={$i=1$,$i=2$,$i=3$,$i=4$},
+    x tick label style={rotate=90, anchor=east},
+    extra tick style={grid=major},
+    samples=20, domain=-0:4, smooth]
+
+    \node[cx, rotate=90, anchor=north west] (eq)
+    at (axis description cs: 0.02, 0.01)
+    {$[Y|i]\sim$ Normal($\mu_i=\mu+\tau_i$, $\sigma^2$)};
+
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot={#1}}
+    }
+
+  \end{axis}
+\end{tikzpicture}

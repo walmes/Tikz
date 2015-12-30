@@ -1,0 +1,23 @@
+\begin{tikzpicture}[
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[},
+    right delimiter={]}
+  },
+  subtxt/.style={below, font=\footnotesize}]
+
+  \matrix[mtx] (X) {%
+    1      & x_{1} & x_{1}^2 & \ldots & x_{1}^k \\
+    1      & x_{2} & x_{1}^2 & \ldots & x_{2}^k \\
+    \vdots &       &         & \ddots & \vdots  \\
+    1      & x_{n} & x_{1}^2 & \ldots & x_{n}^k \\
+  };
+  \matrix[right=0.5cm of X] (beta) [mtx]{%
+    \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k\\
+  };
+  \node[xshift=0.6cm, above=2ex of X] (mod)
+    {$f(x) = \beta_0+\beta_1 x+\beta_2
+      x^2+\cdots+\beta_k x^k = X\beta$};
+  \node[subtxt, align=center] at (X.south) {$n\times p$\\ $(p=k+1)$};
+  \node[subtxt] at (beta.south) {$p\times 1$};
+\end{tikzpicture}

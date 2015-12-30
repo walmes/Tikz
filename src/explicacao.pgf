@@ -1,0 +1,25 @@
+\tikzstyle{every picture}+=[remember picture]
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[%
+    anchor=base,%
+    inner sep=0pt,%
+    outer sep=0pt,%
+    % fill=green%
+    ] (#1) {#2};%
+  }%
+}
+
+\begin{tikzpicture}[
+  every path/.style={rounded corners, shorten <=3pt, >=stealth},
+  every node/.style={rounded corners=false}]
+
+  \node {
+    \begin{minipage}{10cm}
+      {\tt sed s/\nann{regex}{regex}/\nann{repl}{replacement}/g \nann{txt}{text.txt}}
+    \end{minipage}
+  };
+  \path[->, draw] (regex.south) |- ++(1,-1) node[right] {REGEX};
+  \path[->, draw] (repl.north) |- ++(1,1) node[right] {REPL};
+  \path[->, draw] (txt.east) -| ++(1,1) node[above] {FILE};
+\end{tikzpicture}

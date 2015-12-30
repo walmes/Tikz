@@ -1,0 +1,39 @@
+\begin{tikzpicture}[
+  domain=-0.25:9, xscale=0.8, yscale=5,
+  aponta/.style={
+    color=green!50!blue, rounded corners=5pt, -latex, thick
+  }]
+
+  \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+  \draw[-latex] (0,-0.01) -- (0,1) node[above] (E) {$\textrm{E}(Y|x)$};
+
+  \def\A{-3}; \def\B{0.8};
+  \draw[color=black, thick]
+  plot[id=x] function{1/(1+exp(-\A-\B*x))}
+  node[right] (eta)
+    {$\displaystyle\frac{1}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
+
+  \node (Q) at (5,25/20) {$Q(Y|x) = \eta(x, \theta)$};
+  \node (N) at (5,22/20) {$[Y|x]\sim$ Beta($\mu$,$\phi$)};
+  \path[aponta] (3.9,12/20) edge[bend left=10] (N);
+
+  \draw[aponta] (Q) -| (E);
+  \draw[aponta] (Q) -| (eta);
+
+  \def\parphi{40}; 
+  \def\parmu{0.5}; \def\factor{0.14}
+
+  \foreach[evaluate=\x as \parmu using 1/(1+exp(-\A-\B*\x))]
+    \x in {1, 2.4, ..., 7}{
+      \draw[color=gray, dashed] (\x,0) -- ++(0,1);
+      \begin{scope}[xshift=\x cm, rotate=90, yscale=1]
+        % \draw (\parmu,0) -- ++(0,-0.5);
+        \filldraw[fill opacity=0.3, fill=gray!70!black]
+          plot[domain=(\parmu-0.25):(\parmu+0.25), smooth, samples=100]
+          function {-\factor*gamma(\parphi)/(gamma(\parphi*\parmu)*
+            gamma((1-\parmu)*\parphi))*x**(\parmu*\parphi-1)*
+            (1-x)**((1-\parmu)*\parphi-1)};
+      \end{scope}
+    }
+
+\end{tikzpicture}

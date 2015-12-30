@@ -1,0 +1,57 @@
+\def\tright{1.761}
+\def\tzero{2.72}
+\def\grauliber{14}
+
+\pgfplotsset{
+  myplot/.style={
+    width=12cm, height=6cm,
+    xlabel=$t$, ylabel=$f(t)$,
+    samples=30,
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  Yellow/.style={
+    draw=none, text opacity=1, fill=yellow, fill opacity=0.25
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    student(\x,\n)=
+    gamma((\n+1)/2)/(sqrt(\n*pi)*
+    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
+  }]
+
+  \begin{axis}[myplot]
+    \addplot[very thick, samples=100] {student(x,\grauliber)}
+      node[pos=0.45, anchor=mid east, xshift=-2em,
+      append after command={
+        (\tikzlastnode.east) edge [thin, gray] +(2em,0)
+      }] {$\nu=15-1$};
+    \addplot[Red, domain=\tright:5]
+      {student(x,\grauliber)} \closedcycle;
+    \addplot[Yellow, domain=-5:\tright]
+      {student(x,\grauliber)} \closedcycle;
+    \path[<->, draw] (axis cs: \tright,0)
+      to[out=90, in=180] (axis description cs: 0.75,0.4)
+      node[right] {$t_{\alpha}=\tright$};
+    \path[<->, draw] (axis cs: \tzero,0)
+      to[out=90, in=180] (axis description cs: 0.8,0.25)
+      node[right] {$t_0=\tzero$};
+    \node at (axis description cs: 0.5,0.3) {$1-\alpha = 0.95$};
+  \end{axis}
+\end{tikzpicture}

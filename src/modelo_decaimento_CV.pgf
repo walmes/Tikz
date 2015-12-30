@@ -1,0 +1,28 @@
+\def\bzero{0.1}
+\def\bum{1}
+\def\boti{4}
+\def\dd{-3.5}
+
+\begin{tikzpicture}[domain=1:8, xscale=1, yscale=5, >=latex]
+  \draw[->, line width=1pt] (0,0) -- (10,0) node[below] {$n$};
+  \draw[->, line width=1pt] (0,0) -- (0,1.2) node[left] {$CV(n)$};
+  \draw[color=green!30!black, thick, smooth, samples=50]
+    plot[id=x, domain=0.9:9.7]
+    function{\bzero+(\bum-\bzero)/(1+((1-0.15)/0.15)*((x-1)/\boti))};
+  \draw[dashed] (1,0) node[below] {$1$} |- (0,\bum)
+    node[left] {$b_1 = CV(1)$};
+  \draw[dashed] (0,\bzero) node[left]
+    {$b_0 = \displaystyle\lim_{n\to\infty} CV(n)$} -- (10,\bzero);
+  \draw[dashed] (\boti,0) node[below] {$b_2$} |- (0,0.28)
+    node[left] {$b_0+q(b_1-b_0)$};
+  \draw [decorate, decoration={brace,amplitude=4pt}]
+    (\dd,0.1) -- (\dd,0.28) node [black,midway,left=4pt] {$q$};
+  \draw [decorate, decoration={brace,amplitude=4pt}]
+    (\dd,0.28) -- (\dd,1) node [black,midway,left=4pt] {$1-q$};
+  \node[anchor=base, fill=white] (vg) at (6,1)
+    {$\displaystyle CV(n) = b_0+\frac{b_1-b_0}{
+        1+\displaystyle\frac{1-q}{q}\cdot\frac{n-1}{b_2-1}}$};
+  \path[->] (\boti,0.28) edge[bend left=10]
+    node [at end,right,fill=white, text width=5cm, text ragged]
+    {tamanho {\'o}timo de parcela correspondente {\`a} $q$.} ++(1,0.2);
+\end{tikzpicture}

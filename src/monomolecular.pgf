@@ -1,0 +1,27 @@
+\def\xs{1}
+\def\ys{1.5}
+\def\A{2.5}
+\def\V{0.8}
+\def\q{0.8}
+\def\dx{-1.5}
+
+\begin{tikzpicture}[domain=0:5, xscale=\xs, yscale=\ys, >=latex]
+  \begin{scope}
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,3) node[left] {$\eta(x,\theta)$};
+    \draw[color=green!30!black, very thick, smooth]
+      plot[id=x, domain=0:5] function{\A*(1-exp(-log(2)*x/\V))};
+    \draw[dashed] (0,\A) node[left] {$\theta_a$} -- (5,\A);
+    \draw[dashed, color=red] (0,\q*\A)
+      node[left] {$q\theta_a$} -- (5,\q*\A);
+    \draw[dashed, color=red] (\V+1.07,0)
+      node[below] {$\vartheta_q$} -- ++(0,3);
+    \draw[|<->|] (\dx,0) -- (\dx,\q*\A) node[midway, left] {$q$};
+    \draw[|<->|] (\dx,\q*\A) -- (\dx,\A) node[midway, left] {$1-q$};
+    \node at (2.5,3.5)
+      {$\eta(x,\theta) = \theta_a (1-\exp\{-\theta_k x\})$};
+    \draw[dashed] (-0.2,-0.4) -- (1.5,3);
+    \draw (0.5,0) arc (0:70:0.5 and 0.33);
+    \node[right] at (0.4,0.24) {$\theta_k$};
+  \end{scope}
+\end{tikzpicture}

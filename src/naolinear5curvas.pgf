@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+  \def\xs{0.7}; \def\ys{1.2}
+  % Michaelis-Menten
+  \def\A{2.3}; \def\V{1}
+  % Logistico
+  \def\Ass{2.5}; \def\xhaf{1.6}; \def\Scal{0.3}
+  % Exponencial decaimento
+  \def\Int{2.5}; \def\B{0.6}
+  % Linear-plato
+  \def\bz{0.25}; \def\bu{0.5}; \def\xb{2}
+  % Bleasdale-Nelder
+  \def\ty{2.5}; \def\tx{1}; \def\tc{0.2}
+  \begin{scope}[xscale=\xs, yscale=\ys, >=latex, domain=0:4.8]
+    \draw[->] (0-0.2*\ys,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0-0.2*\xs) -- (0,3)
+      node[left] {$f(x,\boldsymbol{\theta})$};
+    \draw[color=green!80!black, ultra thick, smooth, dotted]
+      plot[id=x] function{\Ass/(1+exp(-(x-\xhaf)/\Scal))}
+      node[right] {1};
+    \draw[color=darkgreen, thick, smooth, dashed]
+      plot[id=x] function{\A*x/(\V+x)}
+      node[right] {2};
+    \draw[color=green!50!black, thick, smooth]
+      plot[id=x] function{\ty*(x/\tx)*(1-\tc*(1-x/\tx))**(-1/\tc)}
+      node[right] {4};
+    \draw[color=darkgreen, ultra thick, smooth]
+      plot[id=x] function{\bz+\bu*x*(x<\xb)+\bu*\xb*(x>\xb)}
+      node[right] {3};
+    \draw[color=green!10!black, thin, smooth]
+      plot[id=x] function{\Int*exp(-\B*x)}
+      node[right] {5};
+  \end{scope}
+\end{tikzpicture}

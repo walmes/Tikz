@@ -1,0 +1,44 @@
+\pgfplotstableread{
+  size        min         max         avg         med
+  1           2e-03       3e-03       2.5e-03     2.4e-03
+  10          2.02e-03    3.02e-03    2.72e-03    2.32e-03
+  123456789   2.02        123.72e9    2.72e9      2.32e-03
+}{\loadedtable}
+
+% require \usepackage{sunitx}
+\sisetup{
+  math-rm=\mathrm,
+  text-rm=\rmfamily,
+  table-format=3.2e+3,
+  round-precision=2,
+  round-mode=places,
+  scientific-notation=engineering,
+  group-digits=integer,
+  group-separator={,},
+  exponent-product=\cdot,
+}
+
+\pgfplotstabletypeset[
+  header=true,
+  string type,
+  multicolumn names,
+  columns={size,med,min,avg,max},
+  assign column name/.code={
+    \pgfkeyssetvalue{/pgfplots/table/column name}{
+      \multicolumn{1}{c}{\multirow{2}{*}{#1}}
+    }
+  },
+  columns/size/.style={
+    column name={\shortstack{Instance\\Size}},
+    column type={S[scientific-notation=false, table-format=9]},
+    int detect
+  },
+  columns/min/.style={column name=Minimum, column type=S},
+  columns/avg/.style={column name=Average, column type=S},
+  columns/med/.style={column name=Median, column type=S},
+  columns/max/.style={column name=Maximum, column type=S},
+  every head row/.style={
+    before row=\toprule,
+    after row=\\ \midrule
+  },
+  every last row/.style={after row=\bottomrule}]{\loadedtable}

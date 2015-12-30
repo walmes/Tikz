@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    width=0.8\textwidth, height=0.6\textwidth,
+    axis x line=bottom,
+    axis y line=left,
+    xmin=1934, xmax=2012,
+    ymin=0, ymax=620,
+    xlabel={Year},
+    ylabel={Number of failed banks},
+    xlabel near ticks,
+    ylabel near ticks,
+    xticklabel style={/pgf/number format/1000 sep=}]
+
+    \addplot [color=red, mark=x] coordinates {
+      (1988,232)
+      (1989,531)
+      (1990,381)
+      (1991,268)
+      (1992,179)
+      (1993,50)
+      (1994,15)
+      (1995,8)
+      (1996,6)
+      (1997,1)
+      (1998,3)
+      (1999,8)
+      (2000,7)
+      (2001,4)
+      (2002,11)
+      (2003,3)
+      (2004,4)
+      (2005,0)
+      (2006,0)
+      (2007,3)
+      (2008,25)
+      (2009,140)
+      (2010,157)
+      (2011,92)
+      (2012,49)
+    };
+  \end{axis}
+\end{tikzpicture}

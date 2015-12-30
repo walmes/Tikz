@@ -1,0 +1,21 @@
+%% http://tex.stackexchange.com/questions/69445/using-pgfplots-why-do-i-get-undefined-control-sequence-when-trying-to-use-a-f
+
+\begin{tikzpicture}
+  \begin{axis}
+    \foreach \x/\y in {a/-1cm, b/0cm, c/1cm} {
+      \edef\temp{
+        \noexpand\addplot+[
+          every error bar/.append style={xshift=\y},
+          every node/.style={xshift=\y},
+          error bars/y dir=both,
+          error bars/y explicit]
+      }
+      \temp
+      coordinates {
+        (0, 0) +- (0, 1)
+        (1, 0) +- (0, 1)
+        (2, 0) +- (0, 1)
+      };
+    }
+  \end{axis}
+\end{tikzpicture}

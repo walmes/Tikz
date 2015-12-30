@@ -1,0 +1,68 @@
+\tikzset{
+  state/.style={
+    rectangle, rounded corners, draw=black, fill=gray!20, thick,
+    minimum height=2em, inner sep=10pt, text centered
+  }
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \node [state] (Cd0) {
+    $\eta(x; \theta_a, \theta_v, \theta_c) =
+    \displaystyle\frac{\theta_a x^{\theta_c}}{
+      \theta_v^{\theta_c} +x^{\theta_c}}$
+  };
+  \node [state, yshift=0cm, below of=Cd0,
+  node distance=5cm, anchor=center] (Ce0) {
+    $\eta(x; \theta_a, \theta_v, \theta_c) =
+    \displaystyle\frac{\theta_a x}{\theta_v +x}$
+  };
+  \node [state, yshift=0cm, below of=Ce0,
+  node distance=5cm, anchor=center] (f1e0) {
+    $\eta(x; \theta_a) = \theta_a$
+  };
+  
+  \path
+  (Cd0) edge[bend left=78]
+    node[midway, right, align=left] {$\theta_c = 1$\\ Mic-Men} (Ce0)
+  (Ce0) edge[bend left=75]
+    node[midway, right, align=left] {$\lim_{\theta_v\to 0}$\\ constante}
+  (f1e0);
+
+  \node[state, yshift=0cm, right of=Ce0,
+  node distance=9cm, anchor=center] (Ce1) {
+    $\eta(x; \theta_a, \theta_v, \theta_c) =
+    \displaystyle\frac{\theta_a x}{1+x/\theta_v}$
+  };
+
+  \path (Ce0) edge node[midway, below, align=left]
+    {reparametriza\c{c}\~{a}o} (Ce1);
+
+  \begin{scope}[xshift=-1.5cm, yshift=1.2cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{1*x**3/(0.5**3+x**3)};
+    \node[align=right, left] at (0, 0.25)
+      {$\theta_c<1$\\ c\^{o}ncava};
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{1*x**(0.7)/(0.5**0.7+x**(0.7))};
+    \node[align=left, right] at (0.9, 0.85)
+      {$\theta_c>1$\\ sigm\'{o}ide};
+  \end{scope}
+
+  \begin{scope}[xshift=-1.5cm, yshift=-3.8cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{1*x**(1)/(0.2**1+x**(1))};
+  \end{scope}
+
+  \begin{scope}[xshift=-1.5cm, yshift=-9cm, xscale=3, yscale=2]
+    \draw[<->] (-0.02,1) |- (1,0);
+    \draw[-, color=green!30!black, thick, samples=50]
+      plot[id=x, domain=0:0.9]
+      function{0.7-0*x};
+  \end{scope}
+
+\end{tikzpicture}

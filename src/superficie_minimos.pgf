@@ -1,0 +1,69 @@
+\begin{tikzpicture}[scale=1.2]
+  \draw [step=0.5cm, black!20, very thin] (-0.2, -0.7) grid (7.2, 6.2);
+  \draw (0,0) -- (6,6);
+  \draw [dashed] (1,5) to (3,3);
+  \draw [xshift=-0.1cm, yshift=0.48cm]
+    (1,-1) .. controls (2,2) and (4,4) .. (7,4);
+  \draw [dotted] (5,5) -- (5.35, 4.25);
+  \draw (4.75, 4.75) arc (225:310:0.3);
+  \draw (1,5) circle (0.5mm) node [anchor=south east] {$y$};
+  \draw (3,3) circle (0.5mm)
+    node [anchor=north west] {$\eta(\hat\theta)$};
+  \draw (5,5) node[anchor=south east] {$\tau(\theta_w)$};
+  \draw (5.35, 4.25) node[anchor=north] {$\eta(\theta_w)$};
+  \draw (5, 4.5) node {$\alpha$};
+  \draw [dotted, xshift=-0.5cm, yshift=-0.5cm] (1,5) to (3,3);
+  \draw [xshift=-0.5cm, yshift=-0.5cm] (1,5)
+    edge [<->, >=right to reversed, thin] (2,4);
+  \draw [xshift=-0.5cm, yshift=-0.5cm] (2,4)
+    edge [<->, >=left to reversed, thin] (3,3);
+  \draw (1.5, 3.5) node[anchor=north east] {$\mathrm{SQR}(\hat\theta)$};
+  \draw [xshift=0.5cm, yshift=0.25cm] (5,5)
+    edge [<->, >=left to reversed, thin] (5.175,4.625);
+  \draw[xshift=0.5cm, yshift=0.25cm] (5.175,4.625)
+    edge [<->, >=right to reversed, thin] (5.35, 4.25);
+  \draw[xshift=0.5cm, yshift=0.25cm] (5.175,4.625)
+    node [anchor=south west] {$\epsilon d$};
+  \draw[xshift=1.2cm, yshift=-1.2cm] (3,3)
+    edge [<->, >=right to reversed, thin] (4,4);
+  \draw[xshift=1.2cm, yshift=-1.2cm] (4,4)
+    edge [<->, >=left to reversed, thin] (5,5);
+  \draw[xshift=1.2cm, yshift=-1.2cm] (4,4)
+    node [anchor=north west] {$d$};
+  \draw (1,-0.5) node [anchor=west] {se};
+  \draw (0,0) node [anchor=west] {ap};
+\end{tikzpicture}
+
+\begin{tikzpicture}[rotate=-45, scale=0.8]
+  \draw (0,0) -- (6,6);
+  \draw [dashed] (1,5) to (3,3);
+  \draw [xshift=-0.1cm, yshift=0.48cm]
+    (1,-1) .. controls (2,2) and (4,4) .. (7,4);
+  \draw[dotted] (5,5) -- (5.35, 4.25);
+  \draw (4.75, 4.75) arc (225:310:0.3);
+  \draw (1,5) circle (0.5mm) node [anchor=south] {$y$};
+  \draw (3,3) circle (0.5mm) node [anchor=north] {$\eta(\hat\theta)$};
+  \draw (5,5) node [anchor=south] {$\tau(\theta_w)$};
+  \draw (5.35, 3.9) node {$\eta(\theta_w)$};
+  \draw (5, 4.5) node {$\alpha$};
+  \draw [dotted, xshift=-0.5cm, yshift=-0.5cm] (1,5) to (3,3);
+  \draw [xshift=-0.5cm, yshift=-0.5cm] (1,5)
+    edge [<->, >=right to reversed, thin] (2,4);
+  \draw [xshift=-0.5cm, yshift=-0.5cm] (2,4)
+    edge [<->, >=left to reversed, thin] (3,3);
+  \draw (1.5, 3.5) node[anchor=east] {$\mathrm{SQR}(\hat\theta)$};
+  \draw [xshift=0.5cm, yshift=0.25cm] (5,5)
+    edge [<->, >=left to reversed, thin] (5.175,4.625);
+  \draw [xshift=0.5cm, yshift=0.25cm] (5.175,4.625)
+    edge [<->, >=right to reversed, thin] (5.35, 4.25);
+  \draw [xshift=0.5cm, yshift=0.25cm] (5.175,4.625)
+    node[anchor=west] {$\epsilon d$};
+  \draw [xshift=1.2cm, yshift=-1.2cm] (3,3)
+    edge [<->, >=right to reversed, thin] (4,4);
+  \draw [xshift=1.2cm, yshift=-1.2cm] (4,4)
+    edge [<->, >=left to reversed, thin] (5,5);
+  \draw [xshift=1.2cm, yshift=-1.2cm] (4,4)
+    node[anchor=north] {$d$};
+  \draw (1,-0.5) node[anchor=west] {se};
+  \draw (0,0) node[anchor=south west] {ap};
+\end{tikzpicture}

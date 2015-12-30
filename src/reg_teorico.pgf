@@ -1,0 +1,51 @@
+\def\hscale{1}
+\def\stderr{0.5}
+\def\fromto{2}
+
+\begin{tikzpicture}[
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none},
+  declare function={
+    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  declare function={
+    reg(\x,\a,\b)=\a+\b*\x;
+  }]
+
+  \begin{axis}[
+    width=10cm, height=7cm,
+    xlabel=$x$: preditora,
+    ylabel=$y$: resposta,
+    xtick=\empty,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    extra x ticks={1,2,3},
+    extra x tick labels={$x_1$,$x_2$,$x_3$},
+    extra tick style={grid=major},
+    samples=30, domain=-0:4,
+    ymin=-2, ymax=6, xmin=-1, xmax=5]
+
+    \addplot[color=black, thick, samples=2] (x, {reg(x,0,1)});
+
+    \node[cx] (dp) at (axis description cs: 0.65, 0.1)
+      {\footnotesize $[y|x]$};
+    \node[cx, anchor=south west] (eq)
+      at (axis description cs: 0.02, 0.03) {$E(y) = \beta_0+\beta_1 x$};
+    \path[pth, shorten >=2pt] (eq) to[out=90, in=-135] (axis cs: 0, 0);
+
+    \pgfplotsinvokeforeach{1,2,3}{
+      \addplot[domain=-\fromto:\fromto]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1);
+      \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs:#1,#1);
+      \addplot[halves, domain=0:\fromto, fill=darkgreen]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs: #1, #1);
+      \draw[dashed] (axis cs:#1,#1) -- (axis cs: #1+0.6, #1);
+      \path[pth] (dp) to[out=130, in=-45] (axis cs: #1+0.4, #1-\stderr);
+      \node[cx] (x#1) at (axis cs: #1-0.7, #1+2) {$E(y|x=x_{#1})$};
+      \path[pth] (x#1) to[out=-60, in=180] (axis cs: #1, #1);
+    }
+  \end{axis}
+\end{tikzpicture}
