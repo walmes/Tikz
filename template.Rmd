@@ -1,0 +1,14 @@
+****
+
+![](./src/&PGF_FILE&.png)
+
+  * GitHub: [&PGF_FILE&.pgf](https://github.com/walmes/Tikz/blob/master/src/&PGF_FILE&.pgf)    
+  * GitLab: [&PGF_FILE&.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/&PGF_FILE&.pgf)
+
+`r a`
+```{r}
+cat(readLines("./src/&PGF_FILE&.pgf"), sep = "\n")
+```
+`r b`
+
+

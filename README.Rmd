@@ -1,0 +1,68 @@
+---
+title: "Tikz Gallery"
+author: "Prof. Walmes M. Zeviani"
+output:
+  html_document:
+    css: style.css
+    keep_md: true
+    toc: true
+    number_sections: false
+---
+
+```{r setup, include=FALSE}
+opts_chunk$set(
+    echo=FALSE, comment=NA, results="asis",
+    error=FALSE, warning=FALSE, message=FALSE
+)
+a <- "```tex"
+b <- "```"
+```
+```{r, include=FALSE}
+file.remove("child.Rmd")
+tmp <- readLines("template.Rmd")
+
+pgf <- sub(x = list.files(path = "./src/", pattern = "*.pgf"),
+           pattern = "\\.pgf$", replacement = "")
+png <- sub(x = list.files(path = "./src/", pattern = "*.png"),
+           pattern = "\\.png$", replacement = "")
+
+## Lista de arquivos que tem os pares pgf e png.
+i <- intersect(pgf, png)
+sapply(i,
+       FUN = function(i){
+           tmpi <- gsub(x = tmp, pattern = "&PGF_FILE&",
+                        replacement = i)
+           cat(tmpi, file = "child.Rmd",
+               append = TRUE, sep= "\n")
+       })
+```
+
+This is my collection, or gallery, of Tikz Art.  The official Tikz
+Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
+
+There are `r length(i)` Tikz figures in this gallery.  Most of them were
+done to teach statistics, inspired by content on the web or done from
+the zero.  Also, a lot were catch in the web and copied with few
+modifications.
+
+To build them, I use
+[ktikz editor](https://apps.ubuntu.com/cat/applications/ktikz/).
+
+To the sake of accessibility and security, this repository is maintained
+in to git services: 1) officially in my profile on
+[GitHub](https://github.com/walmes/Tikz) and 2) mirrored in the
+[GitLab](http://git.leg.ufpr.br/walmes/Tikz) of my laboratory.
+
+If you want to reproduce these figures, do not forget of seeing the
+corresponding preamble that list all tikz libraries used:
+
+  * GitHub:
+    [TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs);
+  * GitLab:
+    [TIKZ_PREAMBLE.pgs](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
+
+The figures are in alphabetic order. A page with all figures displayed
+in on <http://www.leg.ufpr.br/~walmes/tikz/>.
+
+```{r, child="child.Rmd"}
+```
