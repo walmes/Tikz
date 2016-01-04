@@ -1,0 +1,41 @@
+\begin{tikzpicture}[
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\muA{3}
+  \def\muB{6}
+  \def\sA{1}
+  \def\sB{1}
+  \def\k{4.1}
+  \def\xmin{-1}
+  \def\xmax{10}
+  \def\ymin{-0.01}
+  \def\ymax{0.43}
+
+  \begin{axis}[
+    width=10cm, height=5cm,
+    samples=50,
+    domain=\xmin:\xmax,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    xticklabels=\empty,
+    yticklabels=\empty,
+    extra x ticks={\k,\muA,\muB},
+    extra x tick labels={\k,\muA,\muB},
+    extra tick style={grid=major, color=black, dashed, thick},
+    legend style={draw=none, fill=none},
+    every axis legend/.append style={at={(0.5,1.03)}, anchor=south}]
+
+    \addplot [smooth] {normalpdf(x,\muA,\sA)};
+    \addlegendentry{$\mu_f=\muA$, $\sigma_f=\sA$};
+    \addplot [smooth, thick] {normalpdf(x,\muB,\sB)};
+    \addlegendentry{$\mu_m=\muB$, $\sigma_m=\sB$};
+    \addplot [ycomb, mark=o, samples at={\muA}, dotted]
+      {normalpdf(x,\muA,\sA)};
+    \addplot [ycomb, mark=o, samples at={\muB}, dotted, blue]
+      {normalpdf(x,\muB,\sB)};
+  \end{axis}
+\end{tikzpicture}
