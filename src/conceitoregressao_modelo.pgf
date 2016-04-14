@@ -1,0 +1,58 @@
+\tikzstyle{mybox} = [draw=gray!50, fill=gray!20, very thick, rectangle, inner sep=7pt, inner ysep=7pt]
+\tikzstyle{bola} = [circle, draw, near end, fill=white, inner sep=0.5pt, font=\footnotesize]
+\tikzstyle{nodedir} = [right, text width=4cm, align=flush left, color=black]
+\tikzstyle{nodeesq} = [left, text width=4cm, align=flush right, color=black]
+
+\begin{tikzpicture}[%overlay, 
+                    remember picture,
+                    scale=0.7, rounded corners=4pt,
+                    bla/.style={color=blue, 
+                    thin, shorten >=4pt, shorten <=4pt, |-latex}]
+
+\newcommand{\tm}[1]{
+  \tikz[remember picture, overlay]
+  \node[anchor=south west] (#1) {};} % setas 
+\newcommand{\tmc}[2]{
+  \tikz[remember picture, overlay]
+  \node[xshift=#2 ex, yshift=0.5 ex] (#1) {};} 
+
+\def\hd{1};
+\def\vd{1.5};
+
+\node {
+\begin{minipage}{10cm}
+\begin{eqnarray*}
+  [\tmc{Y}{1}Y\tmc{pipe1}{0.3}|\tm{x}x]\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \tmc{Q}{1}Q(Y\tmc{pipe2}{0.3}|x) =
+    \tmc{eta}{0.5}\eta(\tmc{x}{0.5}x \tmc{comma}{0.3}, \tmc{theta}{0.5}\theta)
+\end{eqnarray*}
+\end{minipage}
+};
+
+\draw[bla] (pipe1) |- +(\vd,\hd)
+  node[nodedir] {Distribui\c{c}\~ao \\ \footnotesize{Normal, Beta, \\[-1ex] Poisson, Binomial, \ldots}}
+  node[bola] {1};
+
+\draw[bla] (pipe1) |- ++(-0.5,-1) -| (pipe2) node[bola] {2};
+\draw[bla] (Q) |- +(-\vd,-\hd)
+  node[nodeesq] {Quantidade\\ \footnotesize{M\'edia, quantil, \\[-1ex] par\^ametro, \ldots}}
+  node[bola] {3};
+
+\draw[bla] (pipe1) |- ++(0.5,-1) -| (comma) node[bola] {4};
+
+\draw[bla] (eta) |- +(-\vd,-\hd-1)
+  node[nodeesq] {Fun\c{c}\~ao\\ \footnotesize{Linear, n\~ao linear, \\[-1ex] semiparam\'eetrica, \ldots}}
+  node[bola] {5};
+
+\draw[bla] (x) |- +(\vd,-\hd-1)
+  node[nodedir] {Explicativa\\ \footnotesize{M\'etrica, categ\'oica.}}
+  node[bola] {6};
+
+\draw[bla] (theta) |- +(\vd,-\hd+0.25)
+  node[nodedir] {Par\^ametros \\ \footnotesize{Emp\'iricos, interpret\'aveis.}}
+  node[bola] {7};
+
+\end{tikzpicture}
