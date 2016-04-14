@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 181 Tikz figures in this gallery.  Most of them were
+There are 183 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -842,6 +842,75 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 
 \end{tikzpicture} 
+```
+
+
+****
+
+![](./src/conceitoregressao_modelo.png)
+
+  * GitHub: [conceitoregressao_modelo.pgf](https://github.com/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)    
+  * GitLab: [conceitoregressao_modelo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)
+
+```tex
+\tikzstyle{mybox} = [draw=gray!50, fill=gray!20, very thick, rectangle, inner sep=7pt, inner ysep=7pt]
+\tikzstyle{bola} = [circle, draw, near end, fill=white, inner sep=0.5pt, font=\footnotesize]
+\tikzstyle{nodedir} = [right, text width=4cm, align=flush left, color=black]
+\tikzstyle{nodeesq} = [left, text width=4cm, align=flush right, color=black]
+
+\begin{tikzpicture}[%overlay, 
+                    remember picture,
+                    scale=0.7, rounded corners=4pt,
+                    bla/.style={color=blue, 
+                    thin, shorten >=4pt, shorten <=4pt, |-latex}]
+
+\newcommand{\tm}[1]{
+  \tikz[remember picture, overlay]
+  \node[anchor=south west] (#1) {};} % setas 
+\newcommand{\tmc}[2]{
+  \tikz[remember picture, overlay]
+  \node[xshift=#2 ex, yshift=0.5 ex] (#1) {};} 
+
+\def\hd{1};
+\def\vd{1.5};
+
+\node {
+\begin{minipage}{10cm}
+\begin{eqnarray*}
+  [\tmc{Y}{1}Y\tmc{pipe1}{0.3}|\tm{x}x]\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \tmc{Q}{1}Q(Y\tmc{pipe2}{0.3}|x) =
+    \tmc{eta}{0.5}\eta(\tmc{x}{0.5}x \tmc{comma}{0.3}, \tmc{theta}{0.5}\theta)
+\end{eqnarray*}
+\end{minipage}
+};
+
+\draw[bla] (pipe1) |- +(\vd,\hd)
+  node[nodedir] {Distribui\c{c}\~ao \\ \footnotesize{Normal, Beta, \\[-1ex] Poisson, Binomial, \ldots}}
+  node[bola] {1};
+
+\draw[bla] (pipe1) |- ++(-0.5,-1) -| (pipe2) node[bola] {2};
+\draw[bla] (Q) |- +(-\vd,-\hd)
+  node[nodeesq] {Quantidade\\ \footnotesize{M\'edia, quantil, \\[-1ex] par\^ametro, \ldots}}
+  node[bola] {3};
+
+\draw[bla] (pipe1) |- ++(0.5,-1) -| (comma) node[bola] {4};
+
+\draw[bla] (eta) |- +(-\vd,-\hd-1)
+  node[nodeesq] {Fun\c{c}\~ao\\ \footnotesize{Linear, n\~ao linear, \\[-1ex] semiparam\'eetrica, \ldots}}
+  node[bola] {5};
+
+\draw[bla] (x) |- +(\vd,-\hd-1)
+  node[nodedir] {Explicativa\\ \footnotesize{M\'etrica, categ\'oica.}}
+  node[bola] {6};
+
+\draw[bla] (theta) |- +(\vd,-\hd+0.25)
+  node[nodedir] {Par\^ametros \\ \footnotesize{Emp\'iricos, interpret\'aveis.}}
+  node[bola] {7};
+
+\end{tikzpicture}
 ```
 
 
@@ -2102,6 +2171,58 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     \node at (axis description cs: 0.65, 0.5)
     {$p(x) = \binom{x-1}{r-1} \cdot p^r \cdot (1-p)^{x-r}$};
 
+  \end{axis}
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/dist_duas_normais.png)
+
+  * GitHub: [dist_duas_normais.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_duas_normais.pgf)    
+  * GitLab: [dist_duas_normais.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_duas_normais.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\muA{3}
+  \def\muB{6}
+  \def\sA{1}
+  \def\sB{1}
+  \def\k{4.1}
+  \def\xmin{-1}
+  \def\xmax{10}
+  \def\ymin{-0.01}
+  \def\ymax{0.43}
+
+  \begin{axis}[
+    width=10cm, height=5cm,
+    samples=50,
+    domain=\xmin:\xmax,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    xticklabels=\empty,
+    yticklabels=\empty,
+    extra x ticks={\k,\muA,\muB},
+    extra x tick labels={\k,\muA,\muB},
+    extra tick style={grid=major, color=black, dashed, thick},
+    legend style={draw=none, fill=none},
+    every axis legend/.append style={at={(0.5,1.03)}, anchor=south}]
+
+    \addplot [smooth] {normalpdf(x,\muA,\sA)};
+    \addlegendentry{$\mu_f=\muA$, $\sigma_f=\sA$};
+    \addplot [smooth, thick] {normalpdf(x,\muB,\sB)};
+    \addlegendentry{$\mu_m=\muB$, $\sigma_m=\sB$};
+    \addplot [ycomb, mark=o, samples at={\muA}, dotted]
+      {normalpdf(x,\muA,\sA)};
+    \addplot [ycomb, mark=o, samples at={\muB}, dotted, blue]
+      {normalpdf(x,\muB,\sB)};
   \end{axis}
 \end{tikzpicture}
 ```
