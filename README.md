@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 183 Tikz figures in this gallery.  Most of them were
+There are 185 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -8590,6 +8590,75 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 ****
 
+![](./src/rbras.png)
+
+  * GitHub: [rbras.pgf](https://github.com/walmes/Tikz/blob/master/src/rbras.pgf)    
+  * GitLab: [rbras.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/rbras.pgf)
+
+```tex
+% Para fazer o quadrado.
+\newcommand{\thesquare}[3]{
+  \def\dmin{0.04}
+  \def\dmax{0.96}
+  \draw[xshift = #1, yshift = #2, fill = #3]
+    (\dmin, \dmin) -- (\dmax, \dmin) --
+    (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
+}
+
+% Definicao das cores.
+\definecolor{v3}{HTML}{006600}
+\definecolor{v2}{HTML}{009900}
+\definecolor{v1}{HTML}{66FF33}
+\definecolor{am}{HTML}{FFFF00}
+\definecolor{az}{HTML}{0000FF}
+
+\begin{tikzpicture}
+  \def\dist{0cm}
+  \thesquare{\dist}{0cm}{v3}
+  \thesquare{\dist}{1cm}{v2}
+  \thesquare{\dist}{2cm}{v1}
+  \thesquare{\dist}{3cm}{am}
+  \thesquare{\dist}{4cm}{az}
+
+  \def\dist{1cm}
+  \thesquare{\dist}{0cm}{v2}
+  \thesquare{\dist}{1cm}{v1}
+  \thesquare{\dist}{2cm}{am}
+  \thesquare{\dist}{3cm}{az}
+  \thesquare{\dist}{4cm}{am}
+
+  \def\dist{2cm}
+  \thesquare{\dist}{0cm}{v1}
+  \thesquare{\dist}{1cm}{am}
+  \thesquare{\dist}{2cm}{az}
+  \thesquare{\dist}{3cm}{am}
+  \thesquare{\dist}{4cm}{v1}
+
+  \def\dist{3cm}
+  \thesquare{\dist}{0cm}{am}
+  \thesquare{\dist}{1cm}{az}
+  \thesquare{\dist}{2cm}{am}
+  \thesquare{\dist}{3cm}{v1}
+  \thesquare{\dist}{4cm}{v2}
+
+  \def\dist{4cm}
+  \thesquare{\dist}{0cm}{az}
+  \thesquare{\dist}{1cm}{am}
+  \thesquare{\dist}{2cm}{v1}
+  \thesquare{\dist}{3cm}{v2}
+  \thesquare{\dist}{4cm}{v3}
+
+  \node[color = white] at (0.5, 4.5) {\Huge R};
+  \node[color = white] at (1.5, 3.5) {\Huge B};
+  \node[color = white] at (2.5, 2.5) {\Huge r};
+  \node[color = white] at (3.5, 1.5) {\Huge a};
+  \node[color = white] at (4.5, 0.5) {\Huge s};
+\end{tikzpicture}
+```
+
+
+****
+
 ![](./src/rectangle_split.png)
 
   * GitHub: [rectangle_split.pgf](https://github.com/walmes/Tikz/blob/master/src/rectangle_split.pgf)    
@@ -11634,6 +11703,70 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     (100) edge[bend right] (2,-2)
     (010) edge[bend right] (1,-2)
     (000) edge[bend right] (0,-2);
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/workflow.png)
+
+  * GitHub: [workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow.pgf)    
+  * GitLab: [workflow.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/workflow.pgf)
+
+```tex
+\tikzset{
+  state/.style={
+    rectangle, rounded corners=2pt, draw=black, fill=gray!20, thick,
+    minimum height=2em, inner sep=5pt, text centered, text width=2.5cm
+  }
+}
+
+\begin{tikzpicture}[
+  ->, >=latex, line width=0.75pt, 
+  align=center, node distance=0.75cm and 0.5cm]
+
+  \node [state] (start) {Come\c{c}ar};
+  \node [state, below right=of start] (miles) {Criar \emph{milestone} com \emph{issues}};
+  \node [state, below=of miles] (sprint) {Come\c{c}ar \emph{sprint}};
+  \node [state, below right=0.75cm and -0.75cm of sprint] (atual) {Atualizar ramo\\ \texttt{git pull}};
+  \node [state, below=of atual, text width=3.5cm] (branch) {Criar ramo do \emph{sprint}\\ \texttt{git checkout -b}};
+  \node [state, below=of branch, text width=2.5cm] (todo) {Criar/editar\\ \texttt{txt, rda, R, Rd}};
+  \node [state, below=of todo] (check) {Verificar\\ \texttt{check()\\ build()}};
+  \node [state, left=of check] (add) {Incorporar\\ \texttt{git add\\ git commit}};
+  \node [state, left=of add] (push) {Subir\\ \texttt{git push}};
+  \node [state, above=of push, fill=red] (icfail) {Build FAILED};
+  \node [state, left=of push, fill=green] (icpass) {Build PASSED};
+  \node [state, above=of icpass] (mr) {Fazer\\ \emph{merge request}};
+  \node [state, above=of mr, fill=gray] (merger) {Inspe\c{c}\~{a}o do\\ \emph{merger}};
+  \node [state, right=of merger, fill=orange] (mfail) {Corre\c{c}\~{o}es};
+  \node [state, above=of merger, fill=gray] (mpass) {Transferir para o \texttt{devel}};
+  \node [state, above right=0.75cm and -0.75cm of mpass] (fissue) {Fechar \emph{issue} concluido};
+  \node [state, above=of fissue] (fmiles) {Fechar \emph{milestone} concluida};
+  \node (texto) at (0.5,-5) {\huge\emph{labestData}\\ \large fluxo de trabalho};
+   \path
+   (start) edge (miles)
+   (miles) edge (sprint)
+   (sprint) edge (atual)
+   (atual) edge (branch)
+   (branch) edge (todo)
+   (todo) edge (check)
+   (check) edge (add)
+   (add) edge (push)
+   (push) edge (icfail)
+   (icfail) edge (todo)
+   (push) edge (icpass)
+   (icpass) edge (mr)
+   (mr) edge (merger)
+   (merger) edge (mfail)
+   (mfail) edge (branch)
+   (merger) edge (mpass)
+   (mpass) edge (fissue)
+   (fissue) edge (fmiles)
+   (fissue) edge (sprint)
+   (fmiles) edge (miles)
+;
+
 \end{tikzpicture}
 ```
 
