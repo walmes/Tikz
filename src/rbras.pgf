@@ -1,0 +1,58 @@
+% Para fazer o quadrado.
+\newcommand{\thesquare}[3]{
+  \def\dmin{0.04}
+  \def\dmax{0.96}
+  \draw[xshift = #1, yshift = #2, fill = #3]
+    (\dmin, \dmin) -- (\dmax, \dmin) --
+    (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
+}
+
+% Definicao das cores.
+\definecolor{v3}{HTML}{006600}
+\definecolor{v2}{HTML}{009900}
+\definecolor{v1}{HTML}{66FF33}
+\definecolor{am}{HTML}{FFFF00}
+\definecolor{az}{HTML}{0000FF}
+
+\begin{tikzpicture}
+  \def\dist{0cm}
+  \thesquare{\dist}{0cm}{v3}
+  \thesquare{\dist}{1cm}{v2}
+  \thesquare{\dist}{2cm}{v1}
+  \thesquare{\dist}{3cm}{am}
+  \thesquare{\dist}{4cm}{az}
+
+  \def\dist{1cm}
+  \thesquare{\dist}{0cm}{v2}
+  \thesquare{\dist}{1cm}{v1}
+  \thesquare{\dist}{2cm}{am}
+  \thesquare{\dist}{3cm}{az}
+  \thesquare{\dist}{4cm}{am}
+
+  \def\dist{2cm}
+  \thesquare{\dist}{0cm}{v1}
+  \thesquare{\dist}{1cm}{am}
+  \thesquare{\dist}{2cm}{az}
+  \thesquare{\dist}{3cm}{am}
+  \thesquare{\dist}{4cm}{v1}
+
+  \def\dist{3cm}
+  \thesquare{\dist}{0cm}{am}
+  \thesquare{\dist}{1cm}{az}
+  \thesquare{\dist}{2cm}{am}
+  \thesquare{\dist}{3cm}{v1}
+  \thesquare{\dist}{4cm}{v2}
+
+  \def\dist{4cm}
+  \thesquare{\dist}{0cm}{az}
+  \thesquare{\dist}{1cm}{am}
+  \thesquare{\dist}{2cm}{v1}
+  \thesquare{\dist}{3cm}{v2}
+  \thesquare{\dist}{4cm}{v3}
+
+  \node[color = white] at (0.5, 4.5) {\Huge R};
+  \node[color = white] at (1.5, 3.5) {\Huge B};
+  \node[color = white] at (2.5, 2.5) {\Huge r};
+  \node[color = white] at (3.5, 1.5) {\Huge a};
+  \node[color = white] at (4.5, 0.5) {\Huge s};
+\end{tikzpicture}
