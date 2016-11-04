@@ -1,0 +1,52 @@
+\newcommand{\leglogo}[3]{
+  \draw[color=white!50!black, fill=white, line width=5pt] (0,0) circle (5cm);
+  \draw[draw=none, fill=white!50!black] (-0.4,0.4) circle (4.2cm);
+  \draw[draw=none, fill=orange] (1.9,0.5) circle (0.8cm);
+  \draw node[font=\fontsize{165}{144}\selectfont, color=white] (#1) at (0,0) {leg};
+  \node[right=2cm of #1.20, font=\fontsize{100}{0}\selectfont] (#1prof) {#2};
+  \node[below=1cm of #1prof, font=\fontsize{60}{0}\selectfont] (#1email) {\texttt{#3@ufpr.br}};
+  \node[fit={(-5.4, -5) (-5, 5) (#1prof) (#1email)}, inner sep=1cm, draw=gray, thick] (rect) {};
+}
+
+\begin{tikzpicture}
+\def\numb{12}
+
+\begin{scope}[yshift=-0*\numb cm]
+\leglogo{elias}{Prof. Elias T. Krainski}{eliaskr}
+\end{scope}
+
+
+\begin{scope}[yshift=-1*\numb cm]
+\leglogo{wagner}{Prof. Wagner H. Bonat}{wbonat}
+\end{scope}
+
+\begin{scope}[yshift=-2*\numb cm]
+\leglogo{cesar}{Prof. Cesar A. Taconeli}{taconeli}
+\end{scope}
+
+\begin{scope}[yshift=-3*\numb cm]
+\leglogo{fernando}{Prof. Fernando P. Mayer}{fernando.mayer}
+\end{scope}
+
+\begin{scope}[yshift=-4*\numb cm]
+\leglogo{walmes}{Prof. Walmes M. Zeviani}{walmes}
+\end{scope}
+
+\begin{scope}[yshift=-5*\numb cm]
+\leglogo{eduardo}{Prof. Eduardo V. Ferreira}{e.ferreira}
+\end{scope}
+
+\begin{scope}[yshift=-6*\numb cm]
+\leglogo{silvia}{Profa. Silvia E. Shimakura}{silvia.shimakura}
+\end{scope}
+
+
+\begin{scope}[yshift=-7*\numb cm]
+\leglogo{paulo}{Prof. Paulo Justiniano R. Jr}{paulojus}
+\end{scope}
+
+\begin{scope}[yshift=-8*\numb cm]
+\leglogo{cesar}{Profa.  Fernanda B. Rizzato}{fernandab}
+\end{scope}
+
+\end{tikzpicture}

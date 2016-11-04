@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 185 Tikz figures in this gallery.  Most of them were
+There are 187 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -5432,6 +5432,69 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw[draw=none, fill=white!50!black] \innercircle;
   \draw[draw=none, fill=orange] \orangecircle;
   \leg;
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/leg-profs.png)
+
+  * GitHub: [leg-profs.pgf](https://github.com/walmes/Tikz/blob/master/src/leg-profs.pgf)    
+  * GitLab: [leg-profs.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/leg-profs.pgf)
+
+```tex
+\newcommand{\leglogo}[3]{
+  \draw[color=white!50!black, fill=white, line width=5pt] (0,0) circle (5cm);
+  \draw[draw=none, fill=white!50!black] (-0.4,0.4) circle (4.2cm);
+  \draw[draw=none, fill=orange] (1.9,0.5) circle (0.8cm);
+  \draw node[font=\fontsize{165}{144}\selectfont, color=white] (#1) at (0,0) {leg};
+  \node[right=2cm of #1.20, font=\fontsize{100}{0}\selectfont] (#1prof) {#2};
+  \node[below=1cm of #1prof, font=\fontsize{60}{0}\selectfont] (#1email) {\texttt{#3@ufpr.br}};
+  \node[fit={(-5.4, -5) (-5, 5) (#1prof) (#1email)}, inner sep=1cm, draw=gray, thick] (rect) {};
+}
+
+\begin{tikzpicture}
+\def\numb{12}
+
+\begin{scope}[yshift=-0*\numb cm]
+\leglogo{elias}{Prof. Elias T. Krainski}{eliaskr}
+\end{scope}
+
+
+\begin{scope}[yshift=-1*\numb cm]
+\leglogo{wagner}{Prof. Wagner H. Bonat}{wbonat}
+\end{scope}
+
+\begin{scope}[yshift=-2*\numb cm]
+\leglogo{cesar}{Prof. Cesar A. Taconeli}{taconeli}
+\end{scope}
+
+\begin{scope}[yshift=-3*\numb cm]
+\leglogo{fernando}{Prof. Fernando P. Mayer}{fernando.mayer}
+\end{scope}
+
+\begin{scope}[yshift=-4*\numb cm]
+\leglogo{walmes}{Prof. Walmes M. Zeviani}{walmes}
+\end{scope}
+
+\begin{scope}[yshift=-5*\numb cm]
+\leglogo{eduardo}{Prof. Eduardo V. Ferreira}{e.ferreira}
+\end{scope}
+
+\begin{scope}[yshift=-6*\numb cm]
+\leglogo{silvia}{Profa. Silvia E. Shimakura}{silvia.shimakura}
+\end{scope}
+
+
+\begin{scope}[yshift=-7*\numb cm]
+\leglogo{paulo}{Prof. Paulo Justiniano R. Jr}{paulojus}
+\end{scope}
+
+\begin{scope}[yshift=-8*\numb cm]
+\leglogo{cesar}{Profa.  Fernanda B. Rizzato}{fernandab}
+\end{scope}
+
 \end{tikzpicture}
 ```
 
@@ -11703,6 +11766,163 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     (100) edge[bend right] (2,-2)
     (010) edge[bend right] (1,-2)
     (000) edge[bend right] (0,-2);
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/workflow-labestData.png)
+
+  * GitHub: [workflow-labestData.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow-labestData.pgf)    
+  * GitLab: [workflow-labestData.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/workflow-labestData.pgf)
+
+```tex
+% http://www.texample.net/tikz/examples/simple-flow-chart/
+
+% 2a0e72, 8072a3, bfb9d1
+\definecolor{color1}{HTML}{BFB9D1}
+\definecolor{color2}{HTML}{8072A3}
+\definecolor{color3}{HTML}{2A0E72}
+
+\tikzstyle{decision} = [diamond, aspect=1.5, draw, fill=color3, text=white,
+    text width=5em, text badly centered, node distance=3.5cm, inner sep=1pt]
+\tikzstyle{term} = [rectangle, draw, fill=color1, text=color3,
+    text width=5em, text centered, rounded corners = 1em, minimum height=2em]
+\tikzstyle{block} = [rectangle, draw, fill=color2, 
+    text width=7.5em, text centered, rounded corners, minimum height=3em]
+\tikzstyle{line} = [draw, -latex', line width=1pt, rounded corners]
+\tikzstyle{lineyn} = [line, auto]
+
+\tikzset{
+    cir/.style={draw, circle, fill, inner sep=1pt, text=white},
+}
+
+\begin{tikzpicture}
+
+\def\nao{n\~{a}o}
+\def\sim{sim}
+
+\node (ini) at (0,0) [term] {in\'{i}cio};
+
+\node (leu) [decision, below=2em of ini] {Leu Guia de Contribui\c{c}\~{a}o?};
+\path [line] (ini) -- (leu);
+
+\node (ler) [block, right=1cm of leu] {Ler Guia de Contribui\c{c}\~{a}o};
+\path [lineyn] (leu) -- node {\nao} (ler);
+
+\node (mil) [decision, below of=leu] {Possui \emph{milestone}?};
+
+\path [lineyn] (ler) |- ($(leu)!0.5!(mil)$);
+\path [lineyn] (leu) -- node[left] {\sim} (mil);
+
+\node (cml) [block, right=1cm of mil] {Criar \emph{milestone}};
+\path [lineyn] (mil) -- node {\nao} (cml);
+
+\node (iss) [decision, below of=mil] {Possui \emph{issue(s)}?};
+\path [lineyn] (cml) |- ($(mil)!0.5!(iss)$);
+\path [lineyn] (mil) -- node[left] {\sim} (iss);
+
+\node (cis) [block, right=1cm of iss] {Criar \emph{issue(s)}};
+\path [lineyn] (iss) -- node {\nao} (cis);
+
+\node (atl) [block, below=1cm of iss, text width=15em] {
+  1. Atualizar ramo \emph{baby}\\  
+   \texttt{git checkout baby}\\ \texttt{git pull origin baby}\\
+  2. Tirar ramo do \emph{baby}\\
+  \texttt{git checkout -b <autorNum>}};
+\path [lineyn] (cis) |- ($(iss)!0.5!(atl)$);
+\path [lineyn] (iss) -- node[left] {\sim} (atl);
+
+\node (isc) [decision, below=2cm of atl] {\emph{Issue} completo?};
+\path [lineyn] (atl) -- (isc);
+
+\path [line] (atl) -- node [cir] {R} (isc);
+
+\node (pmr) [block, below=1cm of isc] {Pedir \emph{merge request}};
+\path [lineyn] (isc) -- node {\sim} (pmr);
+\path [lineyn] (isc) -- node {\nao} +(2.5,0) |- ($(atl)!0.4!(isc)$);
+
+\node (mra) [decision, left=1cm of pmr] {\emph{Merge request} feito?};
+\path [lineyn] (pmr) -- (mra);
+
+\node (doa) [block, right=1cm of pmr] {Fazer corre\c{c}\~{o}es};
+\path [lineyn] (mra) -- node {\nao} +(0, -2) -| (doa);
+\path [lineyn] (doa) |- ($(atl)!0.35!(isc)$);
+
+\node (lim) [block, above=1cm of mra, text width=9em] {1. Fechar \emph{issue}\\ 2. Remover ramo};
+\path [lineyn] (mra) -- node {\sim} (lim);
+
+\node (mlc) [decision, above=7.97cm of lim] {\emph{Milestone} concluida?};
+\path [lineyn] (lim) -- (mlc);
+\path [lineyn] (mlc) -- node {\nao} ($(mil)!0.32!(iss)$);
+
+\node (pro) [decision, above=1.24cm of mlc] {Projeto concluido?};
+\path [lineyn] (mlc) -- node {sim} (pro);
+\path [lineyn] (pro) -- node {\nao} ($(leu)!0.4!(mil)$);
+
+\node (fim) [term, above=1cm of pro] {fim};
+\path [lineyn] (pro) -- node {sim} (fim);
+
+%------------------------------------------------------------------------------
+
+\node (str) [term, right=6.5cm of ini] {in\'{i}cio R};
+
+\node (tsv) [block, below=1cm of str] {Criar \emph{.txt} em\\\texttt{data-raw/}};
+\path [line] (str) -- (tsv);
+
+\node (rda) [block, below=1cm of tsv] {Criar \emph{.rda} em \\\texttt{data/}\\\texttt{use\_data(<?>)}};
+\path [line] (tsv) -- node [cir] {G} (rda);
+
+\node (loa) [block, below=1cm of rda] {Carregar e experimentar\\\texttt{load\_all()}};
+\path [line] (rda) -- node [cir] {G} (loa);
+
+\node (rox) [block, below=1cm of loa, text width=12em] {Escrever documenta\c{c}\~{a}o\\\texttt{roxy\_data(<?>)}};
+\path [line] (loa) -- node [cir] {G} (rox);
+
+\node (rdo) [block, below=1cm of rox] {Gerar \emph{.Rd}\\\texttt{document()}\\\texttt{check\_man()}};
+\path [line] (rox) -- node [cir] {G} (rdo);
+
+\node (che) [block, below=1cm of rdo, text width=10em] {Verifica\c{c}\~{a}o integral\\\texttt{check()}};
+\path [line] (rdo) -- node [cir] {G} (che);
+
+\node (bui) [block, below=1cm of che] {Fazer embrulho\\\texttt{build()}};
+\path [line] (che) -- node [cir] {G} (bui);
+
+\node (end) [term, below=1cm of bui] {fim R};
+\path [line] (bui) -- node [cir] {G} (end);
+
+%------------------------------------------------------------------------------
+
+\node (ig) [term, right=2.5cm of str] {in\'{i}cio G};
+\node (g1) [decision, below=1cm of ig] {Algum aviso, erro ou nota?};
+\path [line] (ig) -- (g1);
+
+\node (fix) [block, right=1cm of g1] {Corrigir};
+\path [lineyn] (g1) -- node {\sim} (fix);
+
+\node (g2) [decision, below=1cm of g1] {Quer registrar?};
+\path [lineyn] (g1) -- node [left] {\nao} (g2);
+\path [lineyn] (fix) |- ($(ig)!0.3!(g1)$);
+
+\node (com) [block, right=1cm of g2] {\texttt{git add ...}\\ \texttt{git commit ...}};
+\path [lineyn] (g2) -- node {\sim} (com);
+
+\node (g3) [decision, below=1cm of com] {Quer subir?};
+\path [line] (com) -- (g3);
+
+\node (sub) [block, below=1cm of g3] {\texttt{git push ...}};
+\path [lineyn] (g3) -- node {\sim} (sub);
+
+\node (fg) [term, below=5cm of g2] {fim G};
+\path [lineyn] (g2) -- node [left] {\nao} (fg);
+\path [lineyn] (g3) -- node {\nao} ($(g2)!0.395!(fg)$);
+\path [lineyn] (sub) -- ($(g2)!0.789!(fg)$);
+
+% \node[draw, fit=(mra.west)(mra.south)(fix)(ini), color=gray] {};
+
+\node at (6, 1.5) {\huge \emph{labestData} - Fluxo de Trabalho};
+
 \end{tikzpicture}
 ```
 
