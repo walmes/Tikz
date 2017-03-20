@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 187 Tikz figures in this gallery.  Most of them were
+There are 188 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -4897,29 +4897,33 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \begin{tikzpicture}[>=latex, xscale=2, yscale=2]
   \def\tha{1}; \def\thc{4}; \def\thi{0.6}; \def\thq{0.75}
+  \node at (3.1, 1.8) {$f(x) = \theta_0 \exp\{-\exp\{\theta_1 (x - \theta_2)\}\} $};
   \begin{scope}
-    \draw[->] (-0.1,0) -- +(1.8,0);
-    \draw[->] (0,-0.1) -- +(0,1.2);
+    \draw[->] (-0.1,0) -- +(1.8,0) node[below] {$x$};
+    \draw[->] (0,-0.1) -- +(0,1.2) node[left] {$f(x)$};
     \foreach \a in {0,1,2}
     \draw[color=red!60!black, very thick, smooth, samples=100]
       plot[id=x, domain=0:1.6]
       function{(\tha-\a/5.0)*exp(-exp(-\thc*(x-\thi)))};
+    \draw[->] (1.5,0.4) -- +(0,0.8) node[above] {$\theta_0$};
   \end{scope}
-  \begin{scope}[xshift=2cm]
-    \draw[->] (-0.1,0) -- +(1.8,0);
-    \draw[->] (0,-0.1) -- +(0,1.2);
-    \foreach \i in {0,1,2}
-    \draw[color=red!60!black, very thick, smooth, samples=100]
-      plot[id=x, domain=0:1.6]
-      function{\tha*exp(-exp(-\thc*(x-(\thi+\i/5.0))))};
-  \end{scope}
-  \begin{scope}[xshift=4cm]
-    \draw[->] (-0.1,0) -- +(1.8,0);
-    \draw[->] (0,-0.1) -- +(0,1.2);
+  \begin{scope}[xshift=2.3cm]
+    \draw[->] (-0.1,0) -- +(1.8,0) node[below] {$x$};
+    \draw[->] (0,-0.1) -- +(0,1.2) node[left] {$f(x)$};
     \foreach \c in {0,1,2}
     \draw[color=red!60!black, very thick, smooth, samples=100]
       plot[id=x, domain=0:1.6]
       function{\tha*exp(-exp(-(\thc-\c/1.0)*(x-\thi)))};
+    \draw[->] (0.8,0.37) arc (0:280:0.2) node[right] {$\theta_1$};
+  \end{scope}
+  \begin{scope}[xshift=4.6cm]
+    \draw[->] (-0.1,0) -- +(1.8,0) node[below] {$x$};
+    \draw[->] (0,-0.1) -- +(0,1.2) node[left] {$f(x)$};
+    \foreach \i in {0,1,2}
+    \draw[color=red!60!black, very thick, smooth, samples=100]
+      plot[id=x, domain=0:1.6]
+      function{\tha*exp(-exp(-\thc*(x-(\thi+\i/5.0))))};
+    \draw[->] (0.4,0.5) -- +(1,0) node[right] {$\theta_2$};
   \end{scope}
 \end{tikzpicture}
 ```
@@ -5660,6 +5664,47 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
       {sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
     \addlegendentry{$\frac{sin(r)}{r}$}
   \end{axis}
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/michaelis_menten2.png)
+
+  * GitHub: [michaelis_menten2.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)    
+  * GitLab: [michaelis_menten2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)
+
+```tex
+\def\xs{0.6}
+\def\ys{0.8}
+
+\def\thetaA{2}
+\def\thetaV{0.5}
+
+
+\begin{tikzpicture}[xscale=\xs, yscale=\ys, >=latex]
+  \begin{scope}
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
+    \foreach \thetaAA in {1.6,2,2.4}
+    \draw[color=blue, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\thetaAA * x/(\thetaV + x)};
+    \draw[->] (3, 1) -- +(0, 1.5)
+      node[above] {$\theta_a$};
+  \end{scope}
+
+  \begin{scope}[xshift=6.5cm]
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
+    \foreach \thetaVV in {0.2,0.6,1}
+    \draw[color=blue, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\thetaA * x/(\thetaVV + x)};
+    \draw[->] (-0.5, 1) -- +(2.5, 0)
+      node[below] {$\theta_v$};
+  \end{scope}
 \end{tikzpicture}
 ```
 
