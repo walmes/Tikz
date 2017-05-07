@@ -1,0 +1,160 @@
+\newcommand{\matColumn}[2]{
+  \draw [fill = #1, draw, thin] (0,0) rectangle (#2)
+}
+\newcommand{\matColumnBorder}[2]{
+  \draw [draw = #1] (0,0) rectangle (#2)
+}
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter
+\def\Vec{\mathop{\operator@font vec}\nolimits}
+\makeatother
+
+\begin{tikzpicture}[
+  node distance=0.3cm,
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[},
+    right delimiter={]}
+  },
+  mtn/.style={
+    matrix of nodes
+  },
+  ]
+
+\begin{scope}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{gray}{0.2,2}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.1,0.2}; &
+    \matColumn{cyan}{0.1,0.2}; &
+    \matColumn{green}{0.1,0.2}; &
+    \matColumn{orange}{0.1,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec1) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\begin{scope}[xshift=3.5cm, yshift=-4cm]
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.05,0.5}; \\
+    \matColumn{cyan}{0.05,0.5}; \\
+    \matColumn{green}{0.05,0.5}; \\
+    \matColumn{orange}{0.05,0.5}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{red}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumn{cyan}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumn{green}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumn{orange}{0.2,0.5}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.05,0.2}; \\
+    \matColumn{cyan}{0.05,0.2}; \\
+    \matColumn{green}{0.05,0.2}; \\
+    \matColumn{orange}{0.05,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.05,0.5}; \\
+    \matColumn{cyan}{0.05,0.5}; \\
+    \matColumn{green}{0.05,0.5}; \\
+    \matColumn{orange}{0.05,0.5}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec2) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec2] {$\Vec(Y) = [\bigoplus_{i=1}^m X_i] \Vec(B) + \Vec(E)$};
+
+\end{scope}
+
+\begin{scope}[xshift = -3.5cm, yshift = -4cm]
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{red}{0.2,2}; &
+    \matColumn{cyan}{0.2,2}; &
+    \matColumn{green}{0.2,2}; &
+    \matColumn{orange}{0.2,2}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{cyan}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{green}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{orange}{0.1,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec3) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec3] {$Y = [X_1,\ldots,X_m] [\bigoplus_{i=1}^m \beta_i] + E$};
+
+\end{scope}
+
+\end{tikzpicture}
