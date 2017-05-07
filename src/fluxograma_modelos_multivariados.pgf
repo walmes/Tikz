@@ -1,0 +1,92 @@
+\newenvironment{cminipage}[1][5cm]{%
+  \begin{minipage}{#1}
+    \begin{center}
+    }{%
+    \end{center}
+  \end{minipage}
+}
+
+\tikzset{
+  every path/.style = {
+   ->,
+   > = stealth, 
+   very thick,
+   rounded corners},
+  state/.style = {
+    rectangle,
+    rounded corners,
+    draw=black,
+    fill=gray!10,
+    thick,
+    minimum height=2em,
+    inner sep=10pt,
+    text centered
+  },
+  note/.style = {
+    fill = yellow,
+    text width = 3.2cm,
+    text centered,
+  },
+  node distance=2cm and 1cm,
+}
+
+\begin{tikzpicture}
+
+  \node[state] (manova) {
+    \begin{cminipage}[5cm]
+      Multivariate Linear Models (Manova)
+    \end{cminipage}
+  };
+
+  \node[state, below left=of manova] (mdmlm) {
+    \begin{cminipage}[5cm]
+      Multiple Design
+      Multivariate Linear Models
+    \end{cminipage}
+  };
+
+  \node[state, dotted, below=of manova] (mclm) {
+    \begin{cminipage}[5cm]
+      Multivariate Correlated Linear Models
+    \end{cminipage}
+  };
+
+  \node[state, below right=of manova] (mglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Generalized\\ Linear Models
+    \end{cminipage}
+  };
+
+  \coordinate [below=0.5cm of mclm] (union);
+
+  \node[state, below=of union, fill = cyan] (mcglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Covariance\\ Generalized Linear Models \\ (McGLM)
+    \end{cminipage}
+  };
+
+  \node[state, draw = cyan, below left=2cm and -1cm of mcglm] (mcgnlm) {
+    \begin{cminipage}[5cm]
+      Multivariate Covariance Generalized Nonlinear Models
+    \end{cminipage}
+  };
+
+  \node[state, draw = cyan, below right=2cm and -1cm of mcglm] (mcpglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Parametrized Covariance Generalized Linear Models
+    \end{cminipage}
+  };
+
+  \path[draw] (manova) -| node [note, pos = 0.8] {$+$ by response predictor} (mdmlm);
+  \path[draw] (manova) -- node [note, pos = 0.5] {$+$ correlation between units} (mclm);
+  \path[draw] (manova) -| node [note, pos = 0.8] {$+$ exponential family distribution} (mglm);
+
+  \path[draw, -] (mdmlm) |- (union);
+  \path[draw, -] (mclm) |- (union);
+  \path[draw, -] (mglm) |- (union);
+  \path[draw] (union) -- node [note, fill = yellow] {$+$ dispersion matrix linear predictor} (mcglm);
+
+  \path[draw] (mcglm) -| node [note, pos = 0.8] {$+$ nonlinear predictor} (mcgnlm);
+  \path[draw] (mcglm) -| node [note, pos = 0.8] {$+$ parametrized dispersion matrix linear predictor} (mcpglm);
+
+\end{tikzpicture}
