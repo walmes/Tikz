@@ -1,0 +1,36 @@
+\newcommand{\upperTri}[2]{
+  \draw [fill = #1, draw, rounded corners=1pt] (0, 0) |- (0.3, 0.3) -- cycle;
+  \draw [fill = #2, draw, rounded corners=1pt] (0, 0) -| (0.3, 0.3) -- cycle;
+}
+
+\begin{tikzpicture}[
+  node distance=0.3cm,
+  mtn/.style={
+    matrix of nodes,
+    column sep = 0.5pt, 
+    row sep = 0.5pt
+  },
+  ]
+
+  \matrix[mtn] (Y) {%
+    \upperTri{red}{red}; &
+    \upperTri{red}{cyan}; &
+    \upperTri{red}{green}; &
+    \upperTri{red}{orange}; \\
+    \upperTri{red}{cyan}; &
+    \upperTri{cyan}{cyan}; &
+    \upperTri{cyan}{green}; &
+    \upperTri{cyan}{orange}; \\
+    \upperTri{red}{green}; &
+    \upperTri{cyan}{green}; &
+    \upperTri{green}{green}; &
+    \upperTri{green}{orange}; \\
+    \upperTri{red}{orange}; &
+    \upperTri{cyan}{orange}; &
+    \upperTri{green}{orange}; &
+    \upperTri{orange}{orange}; \\
+  };
+
+  \node [left=0cm of Y] {$\Sigma_m =$};%
+
+\end{tikzpicture}
