@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 188 Tikz figures in this gallery.  Most of them were
+There are 192 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -4533,6 +4533,109 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 ****
 
+![](./src/fluxograma_modelos_multivariados.png)
+
+  * GitHub: [fluxograma_modelos_multivariados.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_modelos_multivariados.pgf)    
+  * GitLab: [fluxograma_modelos_multivariados.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fluxograma_modelos_multivariados.pgf)
+
+```tex
+\newenvironment{cminipage}[1][5cm]{%
+  \begin{minipage}{#1}
+    \begin{center}
+    }{%
+    \end{center}
+  \end{minipage}
+}
+
+\tikzset{
+  every path/.style = {
+   ->,
+   > = stealth, 
+   very thick,
+   rounded corners},
+  state/.style = {
+    rectangle,
+    rounded corners,
+    draw=black,
+    fill=gray!10,
+    thick,
+    minimum height=2em,
+    inner sep=10pt,
+    text centered
+  },
+  note/.style = {
+    fill = yellow,
+    text width = 3.2cm,
+    text centered,
+  },
+  node distance=2cm and 1cm,
+}
+
+\begin{tikzpicture}
+
+  \node[state] (manova) {
+    \begin{cminipage}[5cm]
+      Multivariate Linear Models (Manova)
+    \end{cminipage}
+  };
+
+  \node[state, below left=of manova] (mdmlm) {
+    \begin{cminipage}[5cm]
+      Multiple Design
+      Multivariate Linear Models
+    \end{cminipage}
+  };
+
+  \node[state, dotted, below=of manova] (mclm) {
+    \begin{cminipage}[5cm]
+      Multivariate Correlated Linear Models
+    \end{cminipage}
+  };
+
+  \node[state, below right=of manova] (mglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Generalized\\ Linear Models
+    \end{cminipage}
+  };
+
+  \coordinate [below=0.5cm of mclm] (union);
+
+  \node[state, below=of union, fill = cyan] (mcglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Covariance\\ Generalized Linear Models \\ (McGLM)
+    \end{cminipage}
+  };
+
+  \node[state, draw = cyan, below left=2cm and -1cm of mcglm] (mcgnlm) {
+    \begin{cminipage}[5cm]
+      Multivariate Covariance Generalized Nonlinear Models
+    \end{cminipage}
+  };
+
+  \node[state, draw = cyan, below right=2cm and -1cm of mcglm] (mcpglm) {
+    \begin{cminipage}[5cm]
+      Multivariate Parametrized Covariance Generalized Linear Models
+    \end{cminipage}
+  };
+
+  \path[draw] (manova) -| node [note, pos = 0.8] {$+$ by response predictor} (mdmlm);
+  \path[draw] (manova) -- node [note, pos = 0.5] {$+$ correlation between units} (mclm);
+  \path[draw] (manova) -| node [note, pos = 0.8] {$+$ exponential family distribution} (mglm);
+
+  \path[draw, -] (mdmlm) |- (union);
+  \path[draw, -] (mclm) |- (union);
+  \path[draw, -] (mglm) |- (union);
+  \path[draw] (union) -- node [note, fill = yellow] {$+$ dispersion matrix linear predictor} (mcglm);
+
+  \path[draw] (mcglm) -| node [note, pos = 0.8] {$+$ nonlinear predictor} (mcgnlm);
+  \path[draw] (mcglm) -| node [note, pos = 0.8] {$+$ parametrized dispersion matrix linear predictor} (mcpglm);
+
+\end{tikzpicture}
+```
+
+
+****
+
 ![](./src/fluxograma_solucao.png)
 
   * GitHub: [fluxograma_solucao.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_solucao.pgf)    
@@ -5641,6 +5744,224 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   (6,1) ellipse (.5 and 1)
   (0,3) to [bend left] (3,4)
   (4,3) rectangle (6,4);
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/matricial_manova.png)
+
+  * GitHub: [matricial_manova.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova.pgf)    
+  * GitLab: [matricial_manova.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/matricial_manova.pgf)
+
+```tex
+\newcommand{\matColumn}[2]{
+  \draw [fill = #1, draw, thin] (0,0) rectangle (#2)
+}
+\newcommand{\matColumnBorder}[2]{
+  \draw [draw = #1] (0,0) rectangle (#2)
+}
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter
+\def\Vec{\mathop{\operator@font vec}\nolimits}
+\makeatother
+
+\begin{tikzpicture}[
+  node distance=0.3cm,
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[},
+    right delimiter={]}
+  },
+  mtn/.style={
+    matrix of nodes
+  },
+  ]
+
+\begin{scope}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{gray}{0.2,2}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.1,0.2}; &
+    \matColumn{cyan}{0.1,0.2}; &
+    \matColumn{green}{0.1,0.2}; &
+    \matColumn{orange}{0.1,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec1) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\begin{scope}[xshift=3.5cm, yshift=-4cm]
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.05,0.5}; \\
+    \matColumn{cyan}{0.05,0.5}; \\
+    \matColumn{green}{0.05,0.5}; \\
+    \matColumn{orange}{0.05,0.5}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{red}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumn{cyan}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumn{green}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; \\
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumnBorder{gray}{0.2,0.5}; & 
+    \matColumnBorder{gray}{0.2,0.5}; &
+    \matColumn{orange}{0.2,0.5}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.05,0.2}; \\
+    \matColumn{cyan}{0.05,0.2}; \\
+    \matColumn{green}{0.05,0.2}; \\
+    \matColumn{orange}{0.05,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.05,0.5}; \\
+    \matColumn{cyan}{0.05,0.5}; \\
+    \matColumn{green}{0.05,0.5}; \\
+    \matColumn{orange}{0.05,0.5}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec2) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec2] {$\Vec(Y) = [\bigoplus_{i=1}^m X_i] \Vec(B) + \Vec(E)$};
+
+\end{scope}
+
+\begin{scope}[xshift = -3.5cm, yshift = -4cm]
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{red}{0.2,2}; &
+    \matColumn{cyan}{0.2,2}; &
+    \matColumn{green}{0.2,2}; &
+    \matColumn{orange}{0.2,2}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{cyan}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{green}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; \\
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumnBorder{gray}{0.1,0.2}; &
+    \matColumn{orange}{0.1,0.2}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{0.1,2}; &
+    \matColumn{cyan}{0.1,2}; &
+    \matColumn{green}{0.1,2}; &
+    \matColumn{orange}{0.1,2}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  \node (rec3) [draw, fit = (Y) (E)] {};
+  \node [above=0cm of rec3] {$Y = [X_1,\ldots,X_m] [\bigoplus_{i=1}^m \beta_i] + E$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/matriz_covariancia.png)
+
+  * GitHub: [matriz_covariancia.pgf](https://github.com/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)    
+  * GitLab: [matriz_covariancia.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)
+
+```tex
+\newcommand{\upperTri}[2]{
+  \draw [fill = #1, draw, rounded corners=1pt] (0, 0) |- (0.3, 0.3) -- cycle;
+  \draw [fill = #2, draw, rounded corners=1pt] (0, 0) -| (0.3, 0.3) -- cycle;
+}
+
+\begin{tikzpicture}[
+  node distance=0.3cm,
+  mtn/.style={
+    matrix of nodes,
+    column sep = 0.5pt, 
+    row sep = 0.5pt
+  },
+  ]
+
+  \matrix[mtn] (Y) {%
+    \upperTri{red}{red}; &
+    \upperTri{red}{cyan}; &
+    \upperTri{red}{green}; &
+    \upperTri{red}{orange}; \\
+    \upperTri{red}{cyan}; &
+    \upperTri{cyan}{cyan}; &
+    \upperTri{cyan}{green}; &
+    \upperTri{cyan}{orange}; \\
+    \upperTri{red}{green}; &
+    \upperTri{cyan}{green}; &
+    \upperTri{green}{green}; &
+    \upperTri{green}{orange}; \\
+    \upperTri{red}{orange}; &
+    \upperTri{cyan}{orange}; &
+    \upperTri{green}{orange}; &
+    \upperTri{orange}{orange}; \\
+  };
+
+  \node [left=0cm of Y] {$\Sigma_m =$};%
+
 \end{tikzpicture}
 ```
 
@@ -9121,6 +9442,48 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       {Regress\~ao para a m\'edia} (axis cs: 2.4, 1.72);
 
   \end{axis}
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/reg_geom.png)
+
+  * GitHub: [reg_geom.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_geom.pgf)    
+  * GitLab: [reg_geom.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_geom.pgf)
+
+```tex
+\begin{tikzpicture}[
+  >=stealth,
+  % x={(0.866cm, -0.5cm)},
+  % y={(0.866cm, 0.5cm)},
+  % z={(0cm, 1cm)},
+  % scale=1.0,
+  % inner sep=0pt,
+  % outer sep=2pt,
+  axis/.style={->},
+  vec/.style={thick, ->},
+  every node/.style={color=black}]
+
+  \coordinate (O) at (-0.75,0.25,-0.5);
+  \draw[dotted, draw=darkgreen, fill=darkgreen!20]
+    (-2,0,-3.5) -- (3,0,-3.5) -- (4,0,3) -- (-1,0,3) -- cycle;
+  % \draw[axis] (O) -- +(3, 0, 0) node [right] {x};
+  % \draw[axis] (O) -- +(0, 2, 0) node [right] {y};
+  % \draw[axis] (O) -- +(0, 0, 2) node [above] {z};
+  \draw[vec] (O) -- (2, 2, 0) node [above] {$y$};
+  \draw[vec, darkgreen] (O) -- (2, 0, 0)
+    node[right] {$\hat{y}=X\hat{\beta}$};
+  \draw[vec, red] (O) -- (1.5, 0, 1.5)
+    node[below] {$\bar{y}$};
+  \draw[red, dotted] (1.5,0,1.5) -- (3, 0, 3)
+    node[below] {$C(\mathbf{1})$};
+  \draw[dashed, darkgreen, sloped] (2, 0, 0) -- (2,2,0)
+    node[midway, below] {$||y-X\hat{\beta}||$};
+  \draw[red, dashed, sloped] (2,2,0) -- (1.5, 0, 1.5)
+    node[midway, above] {$||y-\bar{y}||$};
+  \node[above left] at (3,0,-3.5) {$C(\mathbf{X})$};
 \end{tikzpicture}
 ```
 
