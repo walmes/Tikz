@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 192 Tikz figures in this gallery.  Most of them were
+There are 193 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the zero.  Also, a lot were catch in the web and copied with few
 modifications.
@@ -1822,6 +1822,76 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     \node[hltr, fill=red, fit=(X-1-2)(X-12-3)] {};
     \node[hltr, fill=green, fit=(X-1-4)(X-12-6)] {};
   \end{scope}
+
+\end{tikzpicture}
+```
+
+
+****
+
+![](./src/dest.png)
+
+  * GitHub: [dest.pgf](https://github.com/walmes/Tikz/blob/master/src/dest.pgf)    
+  * GitLab: [dest.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dest.pgf)
+
+```tex
+\begin{tikzpicture}[
+  % scale = 0.5,
+  shape1/.style = {
+    draw = none, xshift = 0cm,    yshift = 0cm,    scale = 1},
+  shape2/.style = {
+    draw = none, xshift = 0.44cm, yshift = -0.1cm, scale = 1.26},
+  shape3/.style = {
+    draw = none, xshift = 0.88cm, yshift = -0.2cm, scale = 1.52}
+  ]
+
+  \def\arcs{%
+    (0, 0) arc (-21:76:1.8cm and 2.05cm) --
+    +(-0.97, -0.78) arc (83:4:2.52cm and 2.1cm)
+  }
+
+  % Colors.
+  \definecolor{col1}{HTML}{BFB9D1}%
+  \definecolor{col2}{HTML}{8072A3}%
+  \definecolor{col3}{HTML}{2A0E72}%
+
+  % \node {\includegraphics[width=7cm]{labestData.png}};
+
+  % Help circles and axes.
+  % \foreach \a in {0, 120, 240}{
+  % \draw [blue, rotate = \a] (0, 0) -- (-0.14, 0.85);
+  % \draw [red, rotate = \a] (0, 0) -- (2.06, -1.1);
+  % };
+  % \draw [red] (0, 0) circle (2.33cm);
+  % \draw [blue] (0, 0) circle (0.86cm);
+
+  \begin{scope}[
+    xshift = 2.06cm, yshift = -1.1cm
+    ]
+    \draw [fill = col3, shape3] \arcs;
+    \draw [fill = col1, shape2] \arcs;
+    \draw [fill = col2, shape1] \arcs;
+  \end{scope}
+
+  \begin{scope}[
+    rotate around = {120:(0, 0)},
+    xshift = 2.06cm, yshift = -1.1cm
+    ]
+    \draw [fill = col3, shape3] \arcs;
+    \draw [fill = col2, shape2] \arcs;
+    \draw [fill = col1, shape1] \arcs;
+  \end{scope}
+
+  \begin{scope}[
+    rotate around = {240:(0, 0)},
+    xshift = 2.06cm, yshift = -1.1cm
+    ]
+    \draw [fill = col1, shape3] \arcs;
+    \draw [fill = col2, shape2] \arcs;
+    \draw [fill = col3, shape1] \arcs;
+  \end{scope}
+
+  \node at (0,-3.8) {\huge \textcolor{col3}{DEST/UFPR}};
 
 \end{tikzpicture}
 ```
