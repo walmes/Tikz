@@ -9,35 +9,28 @@ Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
 There are 193 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
-the zero.  Also, a lot were catch in the web and copied with few
-modifications.
+the scratch.  Also, a lot were caught in the web and copied with few
+modifications (I run tests on it).
 
-To build them, I use
-[ktikz editor](https://apps.ubuntu.com/cat/applications/ktikz/).
+I use [ktikz editor](https://apps.ubuntu.com/cat/applications/ktikz/) to
+edit these Tikz files.
 
-To the sake of accessibility and security, this repository is maintained
-in to git services: 1) officially in my profile on
-[GitHub](https://github.com/walmes/Tikz) and 2) mirrored in the
-[GitLab](http://git.leg.ufpr.br/walmes/Tikz) of my laboratory.
+This repository is maintained in to Git Version Control and is hosted on
+[GitHub](https://github.com/walmes/Tikz).
 
 If you want to reproduce these figures, do not forget of seeing the
 corresponding preamble that list all tikz libraries used:
+[TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
 
-  * GitHub:
-    [TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs);
-  * GitLab:
-    [TIKZ_PREAMBLE.pgs](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
-
-The figures are in alphabetic order. A page with all figures displayed
-in on <http://www.leg.ufpr.br/~walmes/tikz/>.
+The figures are in file alphabetic order.  A page with all figures displayed
+in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 
 ****
 
 ![](./src/anotacoes_intersecao.png)
 
-  * GitHub: [anotacoes_intersecao.pgf](https://github.com/walmes/Tikz/blob/master/src/anotacoes_intersecao.pgf)    
-  * GitLab: [anotacoes_intersecao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/anotacoes_intersecao.pgf)
+  * [anotacoes_intersecao.pgf](https://github.com/walmes/Tikz/blob/master/src/anotacoes_intersecao.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/129571/add-variable-tick-in-axis
@@ -95,14 +88,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture} 
 ```
-
-
 ****
 
 ![](./src/barras_erro.png)
 
-  * GitHub: [barras_erro.pgf](https://github.com/walmes/Tikz/blob/master/src/barras_erro.pgf)    
-  * GitLab: [barras_erro.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/barras_erro.pgf)
+  * [barras_erro.pgf](https://github.com/walmes/Tikz/blob/master/src/barras_erro.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/69445/using-pgfplots-why-do-i-get-undefined-control-sequence-when-trying-to-use-a-f
@@ -127,14 +117,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/barras.png)
 
-  * GitHub: [barras.pgf](https://github.com/walmes/Tikz/blob/master/src/barras.pgf)    
-  * GitLab: [barras.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/barras.pgf)
+  * [barras.pgf](https://github.com/walmes/Tikz/blob/master/src/barras.pgf)
 
 ```tex
 \pgfplotsset{
@@ -187,14 +174,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/bleasdale_nelder_rep.png)
 
-  * GitHub: [bleasdale_nelder_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/bleasdale_nelder_rep.pgf)    
-  * GitLab: [bleasdale_nelder_rep.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/bleasdale_nelder_rep.pgf)
+  * [bleasdale_nelder_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/bleasdale_nelder_rep.pgf)
 
 ```tex
 \def\xs{0.6}
@@ -240,14 +224,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/bouma.png)
 
-  * GitHub: [bouma.pgf](https://github.com/walmes/Tikz/blob/master/src/bouma.pgf)    
-  * GitLab: [bouma.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/bouma.pgf)
+  * [bouma.pgf](https://github.com/walmes/Tikz/blob/master/src/bouma.pgf)
 
 ```tex
 \begin{tikzpicture}[scale=2.2, >=latex]
@@ -346,14 +327,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/caixa_texto1.png)
 
-  * GitHub: [caixa_texto1.pgf](https://github.com/walmes/Tikz/blob/master/src/caixa_texto1.pgf)    
-  * GitLab: [caixa_texto1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/caixa_texto1.pgf)
+  * [caixa_texto1.pgf](https://github.com/walmes/Tikz/blob/master/src/caixa_texto1.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/22406/how-to-make-a-textbox-with-this-tikz-code
@@ -392,14 +370,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   This is the longer content
 \end{mybox}
 ```
-
-
 ****
 
 ![](./src/caixa_texto2.png)
 
-  * GitHub: [caixa_texto2.pgf](https://github.com/walmes/Tikz/blob/master/src/caixa_texto2.pgf)    
-  * GitLab: [caixa_texto2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/caixa_texto2.pgf)
+  * [caixa_texto2.pgf](https://github.com/walmes/Tikz/blob/master/src/caixa_texto2.pgf)
 
 ```tex
 % https://blog.karssen.org/2009/09/14/using-tikz-to-generate-an-abstract-box-in-latex/
@@ -438,14 +413,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   lorem.
 }
 ```
-
-
 ****
 
 ![](./src/calendario2016.png)
 
-  * GitHub: [calendario2016.pgf](https://github.com/walmes/Tikz/blob/master/src/calendario2016.pgf)    
-  * GitLab: [calendario2016.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/calendario2016.pgf)
+  * [calendario2016.pgf](https://github.com/walmes/Tikz/blob/master/src/calendario2016.pgf)
 
 ```tex
 \makeatletter
@@ -580,14 +552,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/campo_alvo.png)
 
-  * GitHub: [campo_alvo.pgf](https://github.com/walmes/Tikz/blob/master/src/campo_alvo.pgf)    
-  * GitLab: [campo_alvo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/campo_alvo.pgf)
+  * [campo_alvo.pgf](https://github.com/walmes/Tikz/blob/master/src/campo_alvo.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/159408/plotting-multivariable-functions-with-dependent-variables-in-domain
@@ -651,14 +620,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/circuito_paralelo.png)
 
-  * GitHub: [circuito_paralelo.pgf](https://github.com/walmes/Tikz/blob/master/src/circuito_paralelo.pgf)    
-  * GitLab: [circuito_paralelo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/circuito_paralelo.pgf)
+  * [circuito_paralelo.pgf](https://github.com/walmes/Tikz/blob/master/src/circuito_paralelo.pgf)
 
 ```tex
 \tikzset{
@@ -679,14 +645,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw (x1) |- (r2) -| (x2);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/circuito_serie.png)
 
-  * GitHub: [circuito_serie.pgf](https://github.com/walmes/Tikz/blob/master/src/circuito_serie.pgf)    
-  * GitLab: [circuito_serie.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/circuito_serie.pgf)
+  * [circuito_serie.pgf](https://github.com/walmes/Tikz/blob/master/src/circuito_serie.pgf)
 
 ```tex
 \tikzset{
@@ -703,14 +666,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw [->] (s2) -- ++(0.8,0);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/circuitos_mistos1.png)
 
-  * GitHub: [circuitos_mistos1.pgf](https://github.com/walmes/Tikz/blob/master/src/circuitos_mistos1.pgf)    
-  * GitLab: [circuitos_mistos1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/circuitos_mistos1.pgf)
+  * [circuitos_mistos1.pgf](https://github.com/walmes/Tikz/blob/master/src/circuitos_mistos1.pgf)
 
 ```tex
 \def\ABC{0.95}
@@ -755,14 +715,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture} 
 ```
-
-
 ****
 
 ![](./src/circuitos_mistos2.png)
 
-  * GitHub: [circuitos_mistos2.pgf](https://github.com/walmes/Tikz/blob/master/src/circuitos_mistos2.pgf)    
-  * GitLab: [circuitos_mistos2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/circuitos_mistos2.pgf)
+  * [circuitos_mistos2.pgf](https://github.com/walmes/Tikz/blob/master/src/circuitos_mistos2.pgf)
 
 ```tex
 \def\ABC{0.95}
@@ -843,14 +800,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture} 
 ```
-
-
 ****
 
 ![](./src/conceitoregressao_modelo.png)
 
-  * GitHub: [conceitoregressao_modelo.pgf](https://github.com/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)    
-  * GitLab: [conceitoregressao_modelo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)
+  * [conceitoregressao_modelo.pgf](https://github.com/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)
 
 ```tex
 \tikzstyle{mybox} = [draw=gray!50, fill=gray!20, very thick, rectangle, inner sep=7pt, inner ysep=7pt]
@@ -912,14 +866,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/conceito_regressao.png)
 
-  * GitHub: [conceito_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/conceito_regressao.pgf)    
-  * GitLab: [conceito_regressao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/conceito_regressao.pgf)
+  * [conceito_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/conceito_regressao.pgf)
 
 ```tex
 \begin{tikzpicture}[domain=-0.25:9, scale=0.7, >=latex]
@@ -973,14 +924,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/confundimento.png)
 
-  * GitHub: [confundimento.pgf](https://github.com/walmes/Tikz/blob/master/src/confundimento.pgf)    
-  * GitLab: [confundimento.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/confundimento.pgf)
+  * [confundimento.pgf](https://github.com/walmes/Tikz/blob/master/src/confundimento.pgf)
 
 ```tex
 \tikzset{
@@ -1118,14 +1066,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra-distporos.png)
 
-  * GitHub: [cra-distporos.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-distporos.pgf)    
-  * GitLab: [cra-distporos.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra-distporos.pgf)
+  * [cra-distporos.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-distporos.pgf)
 
 ```tex
 \tikzset{state/.style={
@@ -1148,14 +1093,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \path (cra) edge[<->, bend right=30] node[below] {} (dist);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra_parametros.png)
 
-  * GitHub: [cra_parametros.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros.pgf)    
-  * GitLab: [cra_parametros.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra_parametros.pgf)
+  * [cra_parametros.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros.pgf)
 
 ```tex
 \def\f1{0.8}
@@ -1259,14 +1201,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra_parametros_SI.png)
 
-  * GitHub: [cra_parametros_SI.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros_SI.pgf)    
-  * GitLab: [cra_parametros_SI.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra_parametros_SI.pgf)
+  * [cra_parametros_SI.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros_SI.pgf)
 
 ```tex
 \def\f1{0.8}
@@ -1374,14 +1313,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra.png)
 
-  * GitHub: [cra.pgf](https://github.com/walmes/Tikz/blob/master/src/cra.pgf)    
-  * GitLab: [cra.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra.pgf)
+  * [cra.pgf](https://github.com/walmes/Tikz/blob/master/src/cra.pgf)
 
 ```tex
 \def\xs{1}
@@ -1489,14 +1425,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra-vg-derivadas.png)
 
-  * GitHub: [cra-vg-derivadas.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-vg-derivadas.pgf)    
-  * GitLab: [cra-vg-derivadas.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra-vg-derivadas.pgf)
+  * [cra-vg-derivadas.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-vg-derivadas.pgf)
 
 ```tex
 % http://www.texample.net/tikz/examples/free-body-diagrams/
@@ -1583,14 +1516,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cra-vg.png)
 
-  * GitHub: [cra-vg.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-vg.pgf)    
-  * GitLab: [cra-vg.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cra-vg.pgf)
+  * [cra-vg.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-vg.pgf)
 
 ```tex
 \def\tr{0.1}
@@ -1627,14 +1557,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     {$U(\psi) = U_r+\displaystyle\frac{U_s-U_r}{(1+(\alpha\psi)^n)^m}$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/cubos_fatoriais.png)
 
-  * GitHub: [cubos_fatoriais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)    
-  * GitLab: [cubos_fatoriais.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)
+  * [cubos_fatoriais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)
 
 ```tex
 \tikzset{
@@ -1739,14 +1666,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node[sinal, right of=v7] {$+$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dbc_matricial.png)
 
-  * GitHub: [dbc_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/dbc_matricial.pgf)    
-  * GitLab: [dbc_matricial.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dbc_matricial.pgf)
+  * [dbc_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/dbc_matricial.pgf)
 
 ```tex
 \tikzset{
@@ -1825,14 +1749,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dest.png)
 
-  * GitHub: [dest.pgf](https://github.com/walmes/Tikz/blob/master/src/dest.pgf)    
-  * GitLab: [dest.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dest.pgf)
+  * [dest.pgf](https://github.com/walmes/Tikz/blob/master/src/dest.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -1895,14 +1816,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/diagrama_venn1.png)
 
-  * GitHub: [diagrama_venn1.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn1.pgf)    
-  * GitLab: [diagrama_venn1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/diagrama_venn1.pgf)
+  * [diagrama_venn1.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn1.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -1917,14 +1835,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node (n3) at (7.5,2) {$B^c$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/diagrama_venn2.png)
 
-  * GitHub: [diagrama_venn2.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn2.pgf)    
-  * GitLab: [diagrama_venn2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/diagrama_venn2.pgf)
+  * [diagrama_venn2.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn2.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -1948,14 +1863,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node (n3) at (7.5,2) {$B_n$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/diagrama_venn3.png)
 
-  * GitHub: [diagrama_venn3.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn3.pgf)    
-  * GitLab: [diagrama_venn3.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/diagrama_venn3.pgf)
+  * [diagrama_venn3.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn3.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -1975,14 +1887,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \fill[darkgreen] (3,5.5) circle (3pt) node [above, color=black] {$5$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/diagrama_venn4.png)
 
-  * GitHub: [diagrama_venn4.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn4.pgf)    
-  * GitLab: [diagrama_venn4.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/diagrama_venn4.pgf)
+  * [diagrama_venn4.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn4.pgf)
 
 ```tex
 \def\first{(4,2.5) ellipse (2.7cm and 1.7cm)}
@@ -2011,14 +1920,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node (n2) at (7,0.3) {$A_{n-1}$}; \node (n3) at (7.5,2) {$A_n$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/diagrama_venn5.png)
 
-  * GitHub: [diagrama_venn5.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn5.pgf)    
-  * GitLab: [diagrama_venn5.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/diagrama_venn5.pgf)
+  * [diagrama_venn5.pgf](https://github.com/walmes/Tikz/blob/master/src/diagrama_venn5.pgf)
 
 ```tex
 \begin{tikzpicture}[node distance=0.8cm, scale=0.9]
@@ -2044,14 +1950,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   (q1.west) (2.4,2.5) edge[bend right] node [left] {} (q2.west);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dispersao_filecontents.png)
 
-  * GitHub: [dispersao_filecontents.pgf](https://github.com/walmes/Tikz/blob/master/src/dispersao_filecontents.pgf)    
-  * GitLab: [dispersao_filecontents.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dispersao_filecontents.pgf)
+  * [dispersao_filecontents.pgf](https://github.com/walmes/Tikz/blob/master/src/dispersao_filecontents.pgf)
 
 ```tex
 \begin{filecontents*}{temp.dat}
@@ -2091,14 +1994,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}%
 ```
-
-
 ****
 
 ![](./src/dist_beta.png)
 
-  * GitHub: [dist_beta.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_beta.pgf)    
-  * GitLab: [dist_beta.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_beta.pgf)
+  * [dist_beta.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_beta.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2149,14 +2049,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_binom.png)
 
-  * GitHub: [dist_binom.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_binom.pgf)    
-  * GitLab: [dist_binom.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_binom.pgf)
+  * [dist_binom.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_binom.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2199,14 +2096,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_bneg.png)
 
-  * GitHub: [dist_bneg.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_bneg.pgf)    
-  * GitLab: [dist_bneg.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_bneg.pgf)
+  * [dist_bneg.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_bneg.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2244,14 +2138,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_duas_normais.png)
 
-  * GitHub: [dist_duas_normais.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_duas_normais.pgf)    
-  * GitLab: [dist_duas_normais.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_duas_normais.pgf)
+  * [dist_duas_normais.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_duas_normais.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2296,14 +2187,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_expon.png)
 
-  * GitHub: [dist_expon.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_expon.pgf)    
-  * GitLab: [dist_expon.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_expon.pgf)
+  * [dist_expon.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_expon.pgf)
 
 ```tex
 \pgfplotsset{
@@ -2350,14 +2238,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_gamma.png)
 
-  * GitHub: [dist_gamma.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_gamma.pgf)    
-  * GitLab: [dist_gamma.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_gamma.pgf)
+  * [dist_gamma.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_gamma.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2396,14 +2281,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_hiper.png)
 
-  * GitHub: [dist_hiper.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_hiper.pgf)    
-  * GitLab: [dist_hiper.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_hiper.pgf)
+  * [dist_hiper.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_hiper.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2443,14 +2325,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_normal_pad.png)
 
-  * GitHub: [dist_normal_pad.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_pad.pgf)    
-  * GitLab: [dist_normal_pad.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_normal_pad.pgf)
+  * [dist_normal_pad.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_pad.pgf)
 
 ```tex
 \pgfplotsset{
@@ -2509,14 +2388,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_normal.png)
 
-  * GitHub: [dist_normal.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal.pgf)    
-  * GitLab: [dist_normal.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_normal.pgf)
+  * [dist_normal.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2556,14 +2432,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_normal_tab.png)
 
-  * GitHub: [dist_normal_tab.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_tab.pgf)    
-  * GitLab: [dist_normal_tab.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_normal_tab.pgf)
+  * [dist_normal_tab.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_tab.pgf)
 
 ```tex
 \tikzset{ 
@@ -2646,14 +2519,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_pois.png)
 
-  * GitHub: [dist_pois.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_pois.pgf)    
-  * GitLab: [dist_pois.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_pois.pgf)
+  * [dist_pois.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_pois.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2691,14 +2561,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_prob.png)
 
-  * GitHub: [dist_prob.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_prob.pgf)    
-  * GitLab: [dist_prob.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_prob.pgf)
+  * [dist_prob.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_prob.pgf)
 
 ```tex
 % No R:
@@ -2761,14 +2628,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_t.png)
 
-  * GitHub: [dist_t.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t.pgf)    
-  * GitLab: [dist_t.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_t.pgf)
+  * [dist_t.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/80345/student-t-distribution-with-tikz
@@ -2825,14 +2689,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_t_quantil.png)
 
-  * GitHub: [dist_t_quantil.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t_quantil.pgf)    
-  * GitLab: [dist_t_quantil.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_t_quantil.pgf)
+  * [dist_t_quantil.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t_quantil.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/80345/student-t-distribution-with-tikz
@@ -2880,14 +2741,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_unifcont.png)
 
-  * GitHub: [dist_unifcont.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_unifcont.pgf)    
-  * GitLab: [dist_unifcont.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_unifcont.pgf)
+  * [dist_unifcont.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_unifcont.pgf)
 
 ```tex
 \pgfplotsset{
@@ -2950,14 +2808,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_unifdis.png)
 
-  * GitHub: [dist_unifdis.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_unifdis.pgf)    
-  * GitLab: [dist_unifdis.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_unifdis.pgf)
+  * [dist_unifdis.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_unifdis.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -2988,14 +2843,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_weibull.png)
 
-  * GitHub: [dist_weibull.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_weibull.pgf)    
-  * GitLab: [dist_weibull.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_weibull.pgf)
+  * [dist_weibull.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_weibull.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -3025,14 +2877,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_X_barX_Z.png)
 
-  * GitHub: [dist_X_barX_Z.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_X_barX_Z.pgf)    
-  * GitLab: [dist_X_barX_Z.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_X_barX_Z.pgf)
+  * [dist_X_barX_Z.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_X_barX_Z.pgf)
 
 ```tex
 \pgfplotsset{
@@ -3087,14 +2936,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/dist_Z_IC95.png)
 
-  * GitHub: [dist_Z_IC95.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_Z_IC95.pgf)    
-  * GitLab: [dist_Z_IC95.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/dist_Z_IC95.pgf)
+  * [dist_Z_IC95.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_Z_IC95.pgf)
 
 ```tex
 \pgfplotsset{
@@ -3148,14 +2994,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/efeito_manejo.png)
 
-  * GitHub: [efeito_manejo.pgf](https://github.com/walmes/Tikz/blob/master/src/efeito_manejo.pgf)    
-  * GitLab: [efeito_manejo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/efeito_manejo.pgf)
+  * [efeito_manejo.pgf](https://github.com/walmes/Tikz/blob/master/src/efeito_manejo.pgf)
 
 ```tex
 \def\xs{1}
@@ -3194,14 +3037,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     {ap\'os o manejo};
 \end{tikzpicture}  
 ```
-
-
 ****
 
 ![](./src/emacs_mug.png)
 
-  * GitHub: [emacs_mug.pgf](https://github.com/walmes/Tikz/blob/master/src/emacs_mug.pgf)    
-  * GitLab: [emacs_mug.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/emacs_mug.pgf)
+  * [emacs_mug.pgf](https://github.com/walmes/Tikz/blob/master/src/emacs_mug.pgf)
 
 ```tex
 \definecolor{emacsroxo}{HTML}{5854A8}
@@ -3530,14 +3370,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_estat_t.png)
 
-  * GitHub: [eqn_estat_t.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_estat_t.pgf)    
-  * GitLab: [eqn_estat_t.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_estat_t.pgf)
+  * [eqn_estat_t.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_estat_t.pgf)
 
 ```tex
 \def\hd{0.7}
@@ -3572,14 +3409,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   node[bxr] {$(n-1)\frac{S^2}{\sigma^2}\sim \chi^2_{n-1}$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_fatadi.png)
 
-  * GitHub: [eqn_fatadi.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_fatadi.pgf)    
-  * GitLab: [eqn_fatadi.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_fatadi.pgf)
+  * [eqn_fatadi.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_fatadi.pgf)
 
 ```tex
 \tikzstyle{every picture}+=[remember picture]
@@ -3623,14 +3457,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_LU.png)
 
-  * GitHub: [eqn_LU.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_LU.pgf)    
-  * GitLab: [eqn_LU.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_LU.pgf)
+  * [eqn_LU.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_LU.pgf)
 
 ```tex
 \newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
@@ -3671,14 +3502,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_QR.png)
 
-  * GitHub: [eqn_QR.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_QR.pgf)    
-  * GitLab: [eqn_QR.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_QR.pgf)
+  * [eqn_QR.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_QR.pgf)
 
 ```tex
 \newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
@@ -3717,14 +3545,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_regmult.png)
 
-  * GitHub: [eqn_regmult.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_regmult.pgf)    
-  * GitLab: [eqn_regmult.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_regmult.pgf)
+  * [eqn_regmult.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_regmult.pgf)
 
 ```tex
 \def\hd{0.5}
@@ -3772,14 +3597,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/eqn_regsimples.png)
 
-  * GitHub: [eqn_regsimples.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_regsimples.pgf)    
-  * GitLab: [eqn_regsimples.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/eqn_regsimples.pgf)
+  * [eqn_regsimples.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_regsimples.pgf)
 
 ```tex
 \def\hd{0.7}
@@ -3817,14 +3639,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/esperanca.png)
 
-  * GitHub: [esperanca.pgf](https://github.com/walmes/Tikz/blob/master/src/esperanca.pgf)    
-  * GitLab: [esperanca.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/esperanca.pgf)
+  * [esperanca.pgf](https://github.com/walmes/Tikz/blob/master/src/esperanca.pgf)
 
 ```tex
 \pgfplotsset{
@@ -3878,14 +3697,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/explicacao.png)
 
-  * GitHub: [explicacao.pgf](https://github.com/walmes/Tikz/blob/master/src/explicacao.pgf)    
-  * GitLab: [explicacao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/explicacao.pgf)
+  * [explicacao.pgf](https://github.com/walmes/Tikz/blob/master/src/explicacao.pgf)
 
 ```tex
 \tikzstyle{every picture}+=[remember picture]
@@ -3914,14 +3730,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \path[->, draw] (txt.east) -| ++(1,1) node[above] {FILE};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/factorials.png)
 
-  * GitHub: [factorials.pgf](https://github.com/walmes/Tikz/blob/master/src/factorials.pgf)    
-  * GitLab: [factorials.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/factorials.pgf)
+  * [factorials.pgf](https://github.com/walmes/Tikz/blob/master/src/factorials.pgf)
 
 ```tex
 \tikzset{
@@ -4055,14 +3868,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatadi_arranjo_herbi.png)
 
-  * GitHub: [fatadi_arranjo_herbi.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_arranjo_herbi.pgf)    
-  * GitLab: [fatadi_arranjo_herbi.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatadi_arranjo_herbi.pgf)
+  * [fatadi_arranjo_herbi.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_arranjo_herbi.pgf)
 
 ```tex
 \def\d{1cm}
@@ -4102,14 +3912,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw (Tm) |- ($(TM)+(0,\k)$) -- (TM);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatadi_arranjo.png)
 
-  * GitHub: [fatadi_arranjo.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_arranjo.pgf)    
-  * GitLab: [fatadi_arranjo.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatadi_arranjo.pgf)
+  * [fatadi_arranjo.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_arranjo.pgf)
 
 ```tex
 \def\d{1cm}
@@ -4148,14 +3955,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw (Tm) |- ($(TM)+(0,\k)$) -- (TM);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatadi_matricial.png)
 
-  * GitHub: [fatadi_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial.pgf)    
-  * GitLab: [fatadi_matricial.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatadi_matricial.pgf)
+  * [fatadi_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -4257,14 +4061,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatadi_matricial_simples.png)
 
-  * GitHub: [fatadi_matricial_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial_simples.pgf)    
-  * GitLab: [fatadi_matricial_simples.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatadi_matricial_simples.pgf)
+  * [fatadi_matricial_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial_simples.pgf)
 
 ```tex
 \tikzstyle{every picture}+=[remember picture]
@@ -4354,14 +4155,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fat_anin_regular.png)
 
-  * GitHub: [fat_anin_regular.pgf](https://github.com/walmes/Tikz/blob/master/src/fat_anin_regular.pgf)    
-  * GitLab: [fat_anin_regular.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fat_anin_regular.pgf)
+  * [fat_anin_regular.pgf](https://github.com/walmes/Tikz/blob/master/src/fat_anin_regular.pgf)
 
 ```tex
 \def\d{1.35}
@@ -4395,14 +4193,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node at ($(A1)!0.5!(A2)+(0,1)$) {Aduba\c{c}\~ao complementar};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatorial_fracionado.png)
 
-  * GitHub: [fatorial_fracionado.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_fracionado.pgf)    
-  * GitLab: [fatorial_fracionado.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatorial_fracionado.pgf)
+  * [fatorial_fracionado.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_fracionado.pgf)
 
 ```tex
 \tikzstyle{vertex1}=[
@@ -4428,14 +4223,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fatorial_ponto_central.png)
 
-  * GitHub: [fatorial_ponto_central.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central.pgf)    
-  * GitLab: [fatorial_ponto_central.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fatorial_ponto_central.pgf)
+  * [fatorial_ponto_central.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central.pgf)
 
 ```tex
 \def\dist{1.5}
@@ -4465,14 +4257,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw[edge] (1) -- (a) -- (ab) -- (b) -- (1);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/file_tree.png)
 
-  * GitHub: [file_tree.pgf](https://github.com/walmes/Tikz/blob/master/src/file_tree.pgf)    
-  * GitLab: [file_tree.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/file_tree.pgf)
+  * [file_tree.pgf](https://github.com/walmes/Tikz/blob/master/src/file_tree.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz
@@ -4520,14 +4309,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   child { node at (0,-8) {\dots}};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fluxograma_experimental.png)
 
-  * GitHub: [fluxograma_experimental.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_experimental.pgf)    
-  * GitLab: [fluxograma_experimental.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fluxograma_experimental.pgf)
+  * [fluxograma_experimental.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_experimental.pgf)
 
 ```tex
 \newenvironment{cminipage}[1][5cm]{%
@@ -4599,14 +4385,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \path[draw] (R3) |- (C);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fluxograma_modelos_multivariados.png)
 
-  * GitHub: [fluxograma_modelos_multivariados.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_modelos_multivariados.pgf)    
-  * GitLab: [fluxograma_modelos_multivariados.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fluxograma_modelos_multivariados.pgf)
+  * [fluxograma_modelos_multivariados.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_modelos_multivariados.pgf)
 
 ```tex
 \newenvironment{cminipage}[1][5cm]{%
@@ -4702,14 +4485,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fluxograma_solucao.png)
 
-  * GitHub: [fluxograma_solucao.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_solucao.pgf)    
-  * GitLab: [fluxograma_solucao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fluxograma_solucao.pgf)
+  * [fluxograma_solucao.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograma_solucao.pgf)
 
 ```tex
 \def\widthmini{5cm}
@@ -4782,14 +4562,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \path[draw] (R) -- (F);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/fun_3d.png)
 
-  * GitHub: [fun_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/fun_3d.pgf)    
-  * GitLab: [fun_3d.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/fun_3d.pgf)
+  * [fun_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/fun_3d.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/61475/tikz-how-to-draw-a-sine-curve-in-3d
@@ -4929,14 +4706,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node[rotate=90,right=1cm] at (0,0,12) {radial, color gradient};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/git_log.png)
 
-  * GitHub: [git_log.pgf](https://github.com/walmes/Tikz/blob/master/src/git_log.pgf)    
-  * GitLab: [git_log.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/git_log.pgf)
+  * [git_log.pgf](https://github.com/walmes/Tikz/blob/master/src/git_log.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/125244/how-can-i-produce-the-history-graph-of-a-git-repository-in-latex
@@ -5050,14 +4824,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   {\lstinline{master}};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/gompertz_effect.png)
 
-  * GitHub: [gompertz_effect.pgf](https://github.com/walmes/Tikz/blob/master/src/gompertz_effect.pgf)    
-  * GitLab: [gompertz_effect.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/gompertz_effect.pgf)
+  * [gompertz_effect.pgf](https://github.com/walmes/Tikz/blob/master/src/gompertz_effect.pgf)
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
@@ -5100,14 +4871,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/gompertz.png)
 
-  * GitHub: [gompertz.pgf](https://github.com/walmes/Tikz/blob/master/src/gompertz.pgf)    
-  * GitLab: [gompertz.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/gompertz.pgf)
+  * [gompertz.pgf](https://github.com/walmes/Tikz/blob/master/src/gompertz.pgf)
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
@@ -5150,14 +4918,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node[left] at (yf) {$q\theta_a$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/herschel.png)
 
-  * GitHub: [herschel.pgf](https://github.com/walmes/Tikz/blob/master/src/herschel.pgf)    
-  * GitLab: [herschel.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/herschel.pgf)
+  * [herschel.pgf](https://github.com/walmes/Tikz/blob/master/src/herschel.pgf)
 
 ```tex
 \begin{tikzpicture}[>=latex, xscale=4, yscale=4]
@@ -5185,14 +4950,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     node[below] {$\vartheta_q$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/hist_Checkbox.png)
 
-  * GitHub: [hist_Checkbox.pgf](https://github.com/walmes/Tikz/blob/master/src/hist_Checkbox.pgf)    
-  * GitLab: [hist_Checkbox.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/hist_Checkbox.pgf)
+  * [hist_Checkbox.pgf](https://github.com/walmes/Tikz/blob/master/src/hist_Checkbox.pgf)
 
 ```tex
 \tikzstyle{every picture}+=[remember picture]
@@ -5373,14 +5135,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/inla_mug1.png)
 
-  * GitHub: [inla_mug1.pgf](https://github.com/walmes/Tikz/blob/master/src/inla_mug1.pgf)    
-  * GitLab: [inla_mug1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/inla_mug1.pgf)
+  * [inla_mug1.pgf](https://github.com/walmes/Tikz/blob/master/src/inla_mug1.pgf)
 
 ```tex
 \tikzset{
@@ -5443,14 +5202,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     -| (controlinla);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/inla_mug2.png)
 
-  * GitHub: [inla_mug2.pgf](https://github.com/walmes/Tikz/blob/master/src/inla_mug2.pgf)    
-  * GitLab: [inla_mug2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/inla_mug2.pgf)
+  * [inla_mug2.pgf](https://github.com/walmes/Tikz/blob/master/src/inla_mug2.pgf)
 
 ```tex
 \definecolor{brown}{rgb}{1,0.5,0.3}
@@ -5586,14 +5342,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     (2.65,-1.4) |- ++(-0,-0.4) -| (controlhazard);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/leg.png)
 
-  * GitHub: [leg.pgf](https://github.com/walmes/Tikz/blob/master/src/leg.pgf)    
-  * GitLab: [leg.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/leg.pgf)
+  * [leg.pgf](https://github.com/walmes/Tikz/blob/master/src/leg.pgf)
 
 ```tex
 \def\outercircle{(0,0) circle (5cm)}
@@ -5611,14 +5364,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \leg;
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/leg-profs.png)
 
-  * GitHub: [leg-profs.pgf](https://github.com/walmes/Tikz/blob/master/src/leg-profs.pgf)    
-  * GitLab: [leg-profs.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/leg-profs.pgf)
+  * [leg-profs.pgf](https://github.com/walmes/Tikz/blob/master/src/leg-profs.pgf)
 
 ```tex
 \newcommand{\leglogo}[3]{
@@ -5674,14 +5424,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/linear_plato.png)
 
-  * GitHub: [linear_plato.pgf](https://github.com/walmes/Tikz/blob/master/src/linear_plato.pgf)    
-  * GitLab: [linear_plato.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/linear_plato.pgf)
+  * [linear_plato.pgf](https://github.com/walmes/Tikz/blob/master/src/linear_plato.pgf)
 
 ```tex
 % \tikzstyle{aponta}=[-latex, dashed]
@@ -5725,14 +5472,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/logis.png)
 
-  * GitHub: [logis.pgf](https://github.com/walmes/Tikz/blob/master/src/logis.pgf)    
-  * GitLab: [logis.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/logis.pgf)
+  * [logis.pgf](https://github.com/walmes/Tikz/blob/master/src/logis.pgf)
 
 ```tex
 \def\ptsize{0.75pt}
@@ -5764,14 +5508,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/marcacao.png)
 
-  * GitHub: [marcacao.pgf](https://github.com/walmes/Tikz/blob/master/src/marcacao.pgf)    
-  * GitLab: [marcacao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/marcacao.pgf)
+  * [marcacao.pgf](https://github.com/walmes/Tikz/blob/master/src/marcacao.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/3161/tikz-how-to-draw-an-arrow-in-the-middle-of-the-line
@@ -5816,14 +5557,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   (4,3) rectangle (6,4);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/matricial_manova.png)
 
-  * GitHub: [matricial_manova.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova.pgf)    
-  * GitLab: [matricial_manova.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/matricial_manova.pgf)
+  * [matricial_manova.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova.pgf)
 
 ```tex
 \newcommand{\matColumn}[2]{
@@ -5987,14 +5725,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/matriz_covariancia.png)
 
-  * GitHub: [matriz_covariancia.pgf](https://github.com/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)    
-  * GitLab: [matriz_covariancia.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)
+  * [matriz_covariancia.pgf](https://github.com/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)
 
 ```tex
 \newcommand{\upperTri}[2]{
@@ -6034,14 +5769,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/mesh_3d.png)
 
-  * GitHub: [mesh_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/mesh_3d.pgf)    
-  * GitLab: [mesh_3d.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/mesh_3d.pgf)
+  * [mesh_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/mesh_3d.pgf)
 
 ```tex
 % https://www.sharelatex.com/learn/Pgfplots_package
@@ -6057,14 +5789,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/michaelis_menten2.png)
 
-  * GitHub: [michaelis_menten2.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)    
-  * GitLab: [michaelis_menten2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)
+  * [michaelis_menten2.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)
 
 ```tex
 \def\xs{0.6}
@@ -6098,14 +5827,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/michaelis_menten.png)
 
-  * GitHub: [michaelis_menten.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten.pgf)    
-  * GitLab: [michaelis_menten.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/michaelis_menten.pgf)
+  * [michaelis_menten.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten.pgf)
 
 ```tex
 \def\xs{1}
@@ -6142,14 +5868,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/mindmapImovel.png)
 
-  * GitHub: [mindmapImovel.pgf](https://github.com/walmes/Tikz/blob/master/src/mindmapImovel.pgf)    
-  * GitLab: [mindmapImovel.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/mindmapImovel.pgf)
+  * [mindmapImovel.pgf](https://github.com/walmes/Tikz/blob/master/src/mindmapImovel.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -6169,14 +5892,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   };
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_binomial.png)
 
-  * GitHub: [modelo_binomial.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_binomial.pgf)    
-  * GitLab: [modelo_binomial.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_binomial.pgf)
+  * [modelo_binomial.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_binomial.pgf)
 
 ```tex
 \def\hscale{-1.2}
@@ -6232,14 +5952,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_cubico_rep.png)
 
-  * GitHub: [modelo_cubico_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_cubico_rep.pgf)    
-  * GitLab: [modelo_cubico_rep.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_cubico_rep.pgf)
+  * [modelo_cubico_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_cubico_rep.pgf)
 
 ```tex
 \def\xs{1}
@@ -6301,14 +6018,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_decaimento_CV.png)
 
-  * GitHub: [modelo_decaimento_CV.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_decaimento_CV.pgf)    
-  * GitLab: [modelo_decaimento_CV.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_decaimento_CV.pgf)
+  * [modelo_decaimento_CV.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_decaimento_CV.pgf)
 
 ```tex
 \def\bzero{0.1}
@@ -6340,14 +6054,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     {tamanho {\'o}timo de parcela correspondente {\`a} $q$.} ++(1,0.2);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_decaimento.png)
 
-  * GitHub: [modelo_decaimento.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_decaimento.pgf)    
-  * GitLab: [modelo_decaimento.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_decaimento.pgf)
+  * [modelo_decaimento.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_decaimento.pgf)
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
@@ -6387,14 +6098,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     {metade do tanino polimerizado};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modeloDIC1fator.png)
 
-  * GitHub: [modeloDIC1fator.pgf](https://github.com/walmes/Tikz/blob/master/src/modeloDIC1fator.pgf)    
-  * GitLab: [modeloDIC1fator.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modeloDIC1fator.pgf)
+  * [modeloDIC1fator.pgf](https://github.com/walmes/Tikz/blob/master/src/modeloDIC1fator.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla
@@ -6453,14 +6161,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_lactacao.png)
 
-  * GitHub: [modelo_lactacao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao.pgf)    
-  * GitLab: [modelo_lactacao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_lactacao.pgf)
+  * [modelo_lactacao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao.pgf)
 
 ```tex
 \def\bz{5}
@@ -6482,14 +6187,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node[above] at (1, 1.85) {$\vartheta_p$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_lactacao_rep.png)
 
-  * GitHub: [modelo_lactacao_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao_rep.pgf)    
-  * GitLab: [modelo_lactacao_rep.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_lactacao_rep.pgf)
+  * [modelo_lactacao_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao_rep.pgf)
 
 ```tex
 \begin{tikzpicture}[xscale=4, yscale=3, >=latex,  domain=0:1.3]
@@ -6509,14 +6211,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \node[left] at (\vx+0.2,\vy-0.5) {$\vartheta_a$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_poisson.png)
 
-  * GitHub: [modelo_poisson.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_poisson.pgf)    
-  * GitLab: [modelo_poisson.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_poisson.pgf)
+  * [modelo_poisson.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_poisson.pgf)
 
 ```tex
 \def\hscale{-1.7}
@@ -6578,14 +6277,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados1.png)
 
-  * GitHub: [modelos_encaixados1.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados1.pgf)    
-  * GitLab: [modelos_encaixados1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados1.pgf)
+  * [modelos_encaixados1.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados1.pgf)
 
 ```tex
 \tikzset{
@@ -6659,14 +6355,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados2.png)
 
-  * GitHub: [modelos_encaixados2.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados2.pgf)    
-  * GitLab: [modelos_encaixados2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados2.pgf)
+  * [modelos_encaixados2.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados2.pgf)
 
 ```tex
 \tikzset{
@@ -6738,14 +6431,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados3.png)
 
-  * GitHub: [modelos_encaixados3.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados3.pgf)    
-  * GitLab: [modelos_encaixados3.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados3.pgf)
+  * [modelos_encaixados3.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados3.pgf)
 
 ```tex
 \tikzset{
@@ -6803,14 +6493,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados4.png)
 
-  * GitHub: [modelos_encaixados4.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados4.pgf)    
-  * GitLab: [modelos_encaixados4.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados4.pgf)
+  * [modelos_encaixados4.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados4.pgf)
 
 ```tex
 \tikzset{
@@ -6869,14 +6556,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados5.png)
 
-  * GitHub: [modelos_encaixados5.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados5.pgf)    
-  * GitLab: [modelos_encaixados5.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados5.pgf)
+  * [modelos_encaixados5.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados5.pgf)
 
 ```tex
 \tikzset{
@@ -6949,14 +6633,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_encaixados6.png)
 
-  * GitHub: [modelos_encaixados6.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados6.pgf)    
-  * GitLab: [modelos_encaixados6.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_encaixados6.pgf)
+  * [modelos_encaixados6.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_encaixados6.pgf)
 
 ```tex
 \tikzset{
@@ -7026,14 +6707,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelos_regressao.png)
 
-  * GitHub: [modelos_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_regressao.pgf)    
-  * GitLab: [modelos_regressao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelos_regressao.pgf)
+  * [modelos_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_regressao.pgf)
 
 ```tex
 \def\hd{0.9}
@@ -7112,14 +6790,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   } node[bola] {7};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/modelo_tamanho_aamostra.png)
 
-  * GitHub: [modelo_tamanho_aamostra.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_tamanho_aamostra.pgf)    
-  * GitLab: [modelo_tamanho_aamostra.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/modelo_tamanho_aamostra.pgf)
+  * [modelo_tamanho_aamostra.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_tamanho_aamostra.pgf)
 
 ```tex
 \tikzset{
@@ -7308,14 +6983,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     {Modelo potencial de Barros e Tavares (1995)};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/monomolecular_deriv.png)
 
-  * GitHub: [monomolecular_deriv.pgf](https://github.com/walmes/Tikz/blob/master/src/monomolecular_deriv.pgf)    
-  * GitLab: [monomolecular_deriv.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/monomolecular_deriv.pgf)
+  * [monomolecular_deriv.pgf](https://github.com/walmes/Tikz/blob/master/src/monomolecular_deriv.pgf)
 
 ```tex
 \def\ba{2.1}
@@ -7358,14 +7030,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/monomolecular.png)
 
-  * GitHub: [monomolecular.pgf](https://github.com/walmes/Tikz/blob/master/src/monomolecular.pgf)    
-  * GitLab: [monomolecular.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/monomolecular.pgf)
+  * [monomolecular.pgf](https://github.com/walmes/Tikz/blob/master/src/monomolecular.pgf)
 
 ```tex
 \def\xs{1}
@@ -7396,14 +7065,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/naolinear5curvas.png)
 
-  * GitHub: [naolinear5curvas.pgf](https://github.com/walmes/Tikz/blob/master/src/naolinear5curvas.pgf)    
-  * GitLab: [naolinear5curvas.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/naolinear5curvas.pgf)
+  * [naolinear5curvas.pgf](https://github.com/walmes/Tikz/blob/master/src/naolinear5curvas.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -7440,14 +7106,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/normal_beta_3d.png)
 
-  * GitHub: [normal_beta_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/normal_beta_3d.pgf)    
-  * GitLab: [normal_beta_3d.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/normal_beta_3d.pgf)
+  * [normal_beta_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/normal_beta_3d.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -7528,14 +7191,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/normal_bivariada.png)
 
-  * GitHub: [normal_bivariada.pgf](https://github.com/walmes/Tikz/blob/master/src/normal_bivariada.pgf)    
-  * GitLab: [normal_bivariada.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/normal_bivariada.pgf)
+  * [normal_bivariada.pgf](https://github.com/walmes/Tikz/blob/master/src/normal_bivariada.pgf)
 
 ```tex
 % http://pgfplots.net/tikz/examples/bivariate-normal-distribution/
@@ -7593,14 +7253,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/onda_3d.png)
 
-  * GitHub: [onda_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/onda_3d.pgf)    
-  * GitLab: [onda_3d.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/onda_3d.pgf)
+  * [onda_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/onda_3d.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -7633,14 +7290,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
     plot (\x,{sin(2*\x r)},0)node[anchor=north]{$\vec{E}$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/PET_git_workflow.png)
 
-  * GitHub: [PET_git_workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/PET_git_workflow.pgf)    
-  * GitLab: [PET_git_workflow.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/PET_git_workflow.pgf)
+  * [PET_git_workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/PET_git_workflow.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -7770,14 +7424,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/pet_logo1.png)
 
-  * GitHub: [pet_logo1.pgf](https://github.com/walmes/Tikz/blob/master/src/pet_logo1.pgf)    
-  * GitLab: [pet_logo1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pet_logo1.pgf)
+  * [pet_logo1.pgf](https://github.com/walmes/Tikz/blob/master/src/pet_logo1.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -7822,14 +7473,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/pet_logo2.png)
 
-  * GitHub: [pet_logo2.pgf](https://github.com/walmes/Tikz/blob/master/src/pet_logo2.pgf)    
-  * GitLab: [pet_logo2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pet_logo2.pgf)
+  * [pet_logo2.pgf](https://github.com/walmes/Tikz/blob/master/src/pet_logo2.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -7882,14 +7530,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/>.
   \draw[white] \thecircle;
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/pgfplotstable1.png)
 
-  * GitHub: [pgfplotstable1.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable1.pgf)    
-  * GitLab: [pgfplotstable1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable1.pgf)
+  * [pgfplotstable1.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable1.pgf)
 
 ```tex
 % requires \usepackage{booktabs,colortbl}
@@ -7946,14 +7591,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     after row=\bottomrule
   }]\loadedtable
 ```
-
-
 ****
 
 ![](./src/pgfplotstable2.png)
 
-  * GitHub: [pgfplotstable2.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable2.pgf)    
-  * GitLab: [pgfplotstable2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable2.pgf)
+  * [pgfplotstable2.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable2.pgf)
 
 ```tex
 % \usepackage{booktabs}
@@ -7984,14 +7626,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
          & at her      & aici        &               &               \\
 }
 ```
-
-
 ****
 
 ![](./src/pgfplotstable3.png)
 
-  * GitHub: [pgfplotstable3.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable3.pgf)    
-  * GitLab: [pgfplotstable3.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable3.pgf)
+  * [pgfplotstable3.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable3.pgf)
 
 ```tex
 % A centered fixed-width-column.
@@ -8024,14 +7663,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   3 & 2 & 2      & $3 d\delta$ \\
 }
 ```
-
-
 ****
 
 ![](./src/pgfplotstable5.png)
 
-  * GitHub: [pgfplotstable5.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable5.pgf)    
-  * GitLab: [pgfplotstable5.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable5.pgf)
+  * [pgfplotstable5.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable5.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/131081/how-can-i-center-and-decimal-align-a-pgfplots-table
@@ -8119,14 +7755,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   4 5 6
 }
 ```
-
-
 ****
 
 ![](./src/pgfplotstable_pgfcalendar.png)
 
-  * GitHub: [pgfplotstable_pgfcalendar.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_pgfcalendar.pgf)    
-  * GitLab: [pgfplotstable_pgfcalendar.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable_pgfcalendar.pgf)
+  * [pgfplotstable_pgfcalendar.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_pgfcalendar.pgf)
 
 ```tex
 % \usepackage{siunitx} da conflito com formatacao de datas do
@@ -8169,14 +7802,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   }]
 \accounts
 ```
-
-
 ****
 
 ![](./src/pgfplotstable_sunitx.png)
 
-  * GitHub: [pgfplotstable_sunitx.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_sunitx.pgf)    
-  * GitLab: [pgfplotstable_sunitx.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/pgfplotstable_sunitx.pgf)
+  * [pgfplotstable_sunitx.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_sunitx.pgf)
 
 ```tex
 \pgfplotstableread{
@@ -8224,14 +7854,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   },
   every last row/.style={after row=\bottomrule}]{\loadedtable}
 ```
-
-
 ****
 
 ![](./src/plot_logaxis.png)
 
-  * GitHub: [plot_logaxis.pgf](https://github.com/walmes/Tikz/blob/master/src/plot_logaxis.pgf)    
-  * GitLab: [plot_logaxis.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/plot_logaxis.pgf)
+  * [plot_logaxis.pgf](https://github.com/walmes/Tikz/blob/master/src/plot_logaxis.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -8269,14 +7896,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/plot_parametric.png)
 
-  * GitHub: [plot_parametric.pgf](https://github.com/walmes/Tikz/blob/master/src/plot_parametric.pgf)    
-  * GitLab: [plot_parametric.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/plot_parametric.pgf)
+  * [plot_parametric.pgf](https://github.com/walmes/Tikz/blob/master/src/plot_parametric.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/65719/plotting-parametric-curves
@@ -8299,14 +7923,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/poderTesteMedia.png)
 
-  * GitHub: [poderTesteMedia.pgf](https://github.com/walmes/Tikz/blob/master/src/poderTesteMedia.pgf)    
-  * GitLab: [poderTesteMedia.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/poderTesteMedia.pgf)
+  * [poderTesteMedia.pgf](https://github.com/walmes/Tikz/blob/master/src/poderTesteMedia.pgf)
 
 ```tex
 \def\zleft{-1.64}
@@ -8399,14 +8020,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/points_and_shapes.png)
 
-  * GitHub: [points_and_shapes.pgf](https://github.com/walmes/Tikz/blob/master/src/points_and_shapes.pgf)    
-  * GitLab: [points_and_shapes.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/points_and_shapes.pgf)
+  * [points_and_shapes.pgf](https://github.com/walmes/Tikz/blob/master/src/points_and_shapes.pgf)
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
@@ -8559,14 +8177,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/polar.png)
 
-  * GitHub: [polar.pgf](https://github.com/walmes/Tikz/blob/master/src/polar.pgf)    
-  * GitLab: [polar.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/polar.pgf)
+  * [polar.pgf](https://github.com/walmes/Tikz/blob/master/src/polar.pgf)
 
 ```tex
 \usepgfplotslibrary{polar}
@@ -8578,14 +8193,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{polaraxis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/ponto_erro.png)
 
-  * GitHub: [ponto_erro.pgf](https://github.com/walmes/Tikz/blob/master/src/ponto_erro.pgf)    
-  * GitLab: [ponto_erro.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/ponto_erro.pgf)
+  * [ponto_erro.pgf](https://github.com/walmes/Tikz/blob/master/src/ponto_erro.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/240180/pgfplots-conditional-data-filtering
@@ -8629,14 +8241,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{semilogxaxis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/preenchimento.png)
 
-  * GitHub: [preenchimento.pgf](https://github.com/walmes/Tikz/blob/master/src/preenchimento.pgf)    
-  * GitLab: [preenchimento.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/preenchimento.pgf)
+  * [preenchimento.pgf](https://github.com/walmes/Tikz/blob/master/src/preenchimento.pgf)
 
 ```tex
 \makeatletter
@@ -8686,14 +8295,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/probtree1.png)
 
-  * GitHub: [probtree1.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree1.pgf)    
-  * GitLab: [probtree1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/probtree1.pgf)
+  * [probtree1.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree1.pgf)
 
 ```tex
 \tikzset{
@@ -8753,14 +8359,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   };
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/probtree2.png)
 
-  * GitHub: [probtree2.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree2.pgf)    
-  * GitLab: [probtree2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/probtree2.pgf)
+  * [probtree2.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree2.pgf)
 
 ```tex
 \tikzset{
@@ -8817,14 +8420,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/probtree3.png)
 
-  * GitHub: [probtree3.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree3.pgf)    
-  * GitLab: [probtree3.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/probtree3.pgf)
+  * [probtree3.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree3.pgf)
 
 ```tex
 \tikzset{
@@ -8880,14 +8480,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   };
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/quadratico.png)
 
-  * GitHub: [quadratico.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico.pgf)    
-  * GitLab: [quadratico.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/quadratico.pgf)
+  * [quadratico.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico.pgf)
 
 ```tex
 \def\by{2.1}
@@ -8903,14 +8500,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     node[below] {$\vartheta_x$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/quadratico_plato.png)
 
-  * GitHub: [quadratico_plato.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico_plato.pgf)    
-  * GitLab: [quadratico_plato.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/quadratico_plato.pgf)
+  * [quadratico_plato.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico_plato.pgf)
 
 ```tex
 \tikzset{
@@ -8981,14 +8575,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/quartis.png)
 
-  * GitHub: [quartis.pgf](https://github.com/walmes/Tikz/blob/master/src/quartis.pgf)    
-  * GitLab: [quartis.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/quartis.pgf)
+  * [quartis.pgf](https://github.com/walmes/Tikz/blob/master/src/quartis.pgf)
 
 ```tex
 \tikzset{
@@ -9085,14 +8676,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   % \draw[help lines,step=1] (-10,-5) grid (10,5);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/rbras.png)
 
-  * GitHub: [rbras.pgf](https://github.com/walmes/Tikz/blob/master/src/rbras.pgf)    
-  * GitLab: [rbras.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/rbras.pgf)
+  * [rbras.pgf](https://github.com/walmes/Tikz/blob/master/src/rbras.pgf)
 
 ```tex
 % Para fazer o quadrado.
@@ -9154,14 +8742,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[color = white] at (4.5, 0.5) {\Huge s};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/rectangle_split.png)
 
-  * GitHub: [rectangle_split.pgf](https://github.com/walmes/Tikz/blob/master/src/rectangle_split.pgf)    
-  * GitLab: [rectangle_split.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/rectangle_split.pgf)
+  * [rectangle_split.pgf](https://github.com/walmes/Tikz/blob/master/src/rectangle_split.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -9178,14 +8763,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   };
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_bands.png)
 
-  * GitHub: [reg_bands.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_bands.pgf)    
-  * GitLab: [reg_bands.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_bands.pgf)
+  * [reg_bands.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_bands.pgf)
 
 ```tex
 \begin{filecontents*}{cars.dat}
@@ -9304,14 +8886,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_components.png)
 
-  * GitHub: [reg_components.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_components.pgf)    
-  * GitLab: [reg_components.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_components.pgf)
+  * [reg_components.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_components.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9349,14 +8928,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_ellipse.png)
 
-  * GitHub: [reg_ellipse.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_ellipse.pgf)    
-  * GitLab: [reg_ellipse.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_ellipse.pgf)
+  * [reg_ellipse.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_ellipse.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9415,14 +8991,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_galton.png)
 
-  * GitHub: [reg_galton.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_galton.pgf)    
-  * GitLab: [reg_galton.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_galton.pgf)
+  * [reg_galton.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_galton.pgf)
 
 ```tex
 \begin{filecontents*}{galton.dat}
@@ -9514,14 +9087,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_geom.png)
 
-  * GitHub: [reg_geom.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_geom.pgf)    
-  * GitLab: [reg_geom.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_geom.pgf)
+  * [reg_geom.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_geom.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9556,14 +9126,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[above left] at (3,0,-3.5) {$C(\mathbf{X})$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_linear_simples.png)
 
-  * GitHub: [reg_linear_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_linear_simples.pgf)    
-  * GitLab: [reg_linear_simples.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_linear_simples.pgf)
+  * [reg_linear_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_linear_simples.pgf)
 
 ```tex
 \begin{tikzpicture}[domain=0:8, scale=0.7]
@@ -9591,14 +9158,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     +(1,-1);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_lof.png)
 
-  * GitHub: [reg_lof.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_lof.pgf)    
-  * GitLab: [reg_lof.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_lof.pgf)
+  * [reg_lof.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_lof.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9647,14 +9211,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_matricial.png)
 
-  * GitHub: [reg_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_matricial.pgf)    
-  * GitLab: [reg_matricial.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_matricial.pgf)
+  * [reg_matricial.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_matricial.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9692,14 +9253,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[subtxt] at (E.south) {$n\times 1$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_matriz_polin.png)
 
-  * GitHub: [reg_matriz_polin.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_matriz_polin.pgf)    
-  * GitLab: [reg_matriz_polin.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_matriz_polin.pgf)
+  * [reg_matriz_polin.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_matriz_polin.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9726,14 +9284,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[subtxt] at (beta.south) {$p\times 1$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_model_3d.png)
 
-  * GitHub: [reg_model_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_model_3d.pgf)    
-  * GitLab: [reg_model_3d.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_model_3d.pgf)
+  * [reg_model_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_model_3d.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9788,14 +9343,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_proj.png)
 
-  * GitHub: [reg_proj.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_proj.pgf)    
-  * GitLab: [reg_proj.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_proj.pgf)
+  * [reg_proj.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_proj.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9820,14 +9372,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     node [left] {$X_2 = (0,1,2)^\top$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_qqnorm.png)
 
-  * GitHub: [reg_qqnorm.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_qqnorm.pgf)    
-  * GitLab: [reg_qqnorm.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_qqnorm.pgf)
+  * [reg_qqnorm.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_qqnorm.pgf)
 
 ```tex
 \pgfplotsset{
@@ -9930,14 +9479,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_beta.png)
 
-  * GitHub: [regressao_beta.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_beta.pgf)    
-  * GitLab: [regressao_beta.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_beta.pgf)
+  * [regressao_beta.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_beta.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -9980,14 +9526,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_binomial.png)
 
-  * GitHub: [regressao_binomial.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_binomial.pgf)    
-  * GitLab: [regressao_binomial.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_binomial.pgf)
+  * [regressao_binomial.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_binomial.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10027,14 +9570,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_linear_simples.png)
 
-  * GitHub: [regressao_linear_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_linear_simples.pgf)    
-  * GitLab: [regressao_linear_simples.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_linear_simples.pgf)
+  * [regressao_linear_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_linear_simples.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10067,14 +9607,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   }
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_nao_linear_aleatorio.png)
 
-  * GitHub: [regressao_nao_linear_aleatorio.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear_aleatorio.pgf)    
-  * GitLab: [regressao_nao_linear_aleatorio.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_nao_linear_aleatorio.pgf)
+  * [regressao_nao_linear_aleatorio.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear_aleatorio.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10126,14 +9663,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_nao_linear_hetero.png)
 
-  * GitHub: [regressao_nao_linear_hetero.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear_hetero.pgf)    
-  * GitLab: [regressao_nao_linear_hetero.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_nao_linear_hetero.pgf)
+  * [regressao_nao_linear_hetero.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear_hetero.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10173,14 +9707,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   }
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_nao_linear.png)
 
-  * GitHub: [regressao_nao_linear.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear.pgf)    
-  * GitLab: [regressao_nao_linear.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_nao_linear.pgf)
+  * [regressao_nao_linear.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_nao_linear.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10214,14 +9745,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   }
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/regressao_poisson.png)
 
-  * GitHub: [regressao_poisson.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_poisson.pgf)    
-  * GitLab: [regressao_poisson.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/regressao_poisson.pgf)
+  * [regressao_poisson.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_poisson.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10252,14 +9780,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     }
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_simples.png)
 
-  * GitHub: [reg_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_simples.pgf)    
-  * GitLab: [reg_simples.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_simples.pgf)
+  * [reg_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_simples.pgf)
 
 ```tex
 % Set the random seed.
@@ -10318,14 +9843,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_sistema.png)
 
-  * GitHub: [reg_sistema.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sistema.pgf)    
-  * GitLab: [reg_sistema.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_sistema.pgf)
+  * [reg_sistema.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sistema.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -10356,14 +9878,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \path[pil] (machine) edge (y);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_sqr.png)
 
-  * GitHub: [reg_sqr.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sqr.pgf)    
-  * GitLab: [reg_sqr.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_sqr.pgf)
+  * [reg_sqr.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sqr.pgf)
 
 ```tex
 %% http://tex.stackexchange.com/questions/87674/how-to-coherently-combine-3d-and-contour-plots-with-pgfplots
@@ -10418,14 +9937,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reg_teorico.png)
 
-  * GitHub: [reg_teorico.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_teorico.pgf)    
-  * GitLab: [reg_teorico.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reg_teorico.pgf)
+  * [reg_teorico.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_teorico.pgf)
 
 ```tex
 \def\hscale{1}
@@ -10480,14 +9996,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reparamet_cra.png)
 
-  * GitHub: [reparamet_cra.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_cra.pgf)    
-  * GitLab: [reparamet_cra.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reparamet_cra.pgf)
+  * [reparamet_cra.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_cra.pgf)
 
 ```tex
 \tikzset{
@@ -10523,14 +10036,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     {$n \rightleftharpoons S$\\ $\alpha \rightleftharpoons I $} (pr2);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reparamet_exemplos1.png)
 
-  * GitHub: [reparamet_exemplos1.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_exemplos1.pgf)    
-  * GitLab: [reparamet_exemplos1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reparamet_exemplos1.pgf)
+  * [reparamet_exemplos1.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_exemplos1.pgf)
 
 ```tex
 \tikzset{
@@ -10577,14 +10087,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reparamet_exemplos2.png)
 
-  * GitHub: [reparamet_exemplos2.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_exemplos2.pgf)    
-  * GitLab: [reparamet_exemplos2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reparamet_exemplos2.pgf)
+  * [reparamet_exemplos2.pgf](https://github.com/walmes/Tikz/blob/master/src/reparamet_exemplos2.pgf)
 
 ```tex
 \tikzset{
@@ -10645,14 +10152,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/reparametrizacao.png)
 
-  * GitHub: [reparametrizacao.pgf](https://github.com/walmes/Tikz/blob/master/src/reparametrizacao.pgf)    
-  * GitLab: [reparametrizacao.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/reparametrizacao.pgf)
+  * [reparametrizacao.pgf](https://github.com/walmes/Tikz/blob/master/src/reparametrizacao.pgf)
 
 ```tex
 \tikzset{
@@ -10683,14 +10187,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{scope}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/segmentada.png)
 
-  * GitHub: [segmentada.pgf](https://github.com/walmes/Tikz/blob/master/src/segmentada.pgf)    
-  * GitLab: [segmentada.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/segmentada.pgf)
+  * [segmentada.pgf](https://github.com/walmes/Tikz/blob/master/src/segmentada.pgf)
 
 ```tex
 %% http://www.latex-community.org/forum/viewtopic.php?f=46&p=72503
@@ -10704,14 +10205,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/serie_coordinate.png)
 
-  * GitHub: [serie_coordinate.pgf](https://github.com/walmes/Tikz/blob/master/src/serie_coordinate.pgf)    
-  * GitLab: [serie_coordinate.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/serie_coordinate.pgf)
+  * [serie_coordinate.pgf](https://github.com/walmes/Tikz/blob/master/src/serie_coordinate.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -10757,14 +10255,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/serie_filecontents.png)
 
-  * GitHub: [serie_filecontents.pgf](https://github.com/walmes/Tikz/blob/master/src/serie_filecontents.pgf)    
-  * GitLab: [serie_filecontents.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/serie_filecontents.pgf)
+  * [serie_filecontents.pgf](https://github.com/walmes/Tikz/blob/master/src/serie_filecontents.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/94150/how-to-read-value-from-table-assign-to-variable-and-use-it-in-x-expr-thisrow
@@ -10794,14 +10289,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/sqreg_decomp.png)
 
-  * GitHub: [sqreg_decomp.pgf](https://github.com/walmes/Tikz/blob/master/src/sqreg_decomp.pgf)    
-  * GitLab: [sqreg_decomp.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/sqreg_decomp.pgf)
+  * [sqreg_decomp.pgf](https://github.com/walmes/Tikz/blob/master/src/sqreg_decomp.pgf)
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
@@ -10887,14 +10379,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/superficie_minimos.png)
 
-  * GitHub: [superficie_minimos.pgf](https://github.com/walmes/Tikz/blob/master/src/superficie_minimos.pgf)    
-  * GitLab: [superficie_minimos.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/superficie_minimos.pgf)
+  * [superficie_minimos.pgf](https://github.com/walmes/Tikz/blob/master/src/superficie_minimos.pgf)
 
 ```tex
 \begin{tikzpicture}[scale=1.2]
@@ -10967,14 +10456,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \draw (0,0) node[anchor=south west] {ap};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/surface_1.png)
 
-  * GitHub: [surface_1.pgf](https://github.com/walmes/Tikz/blob/master/src/surface_1.pgf)    
-  * GitLab: [surface_1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/surface_1.pgf)
+  * [surface_1.pgf](https://github.com/walmes/Tikz/blob/master/src/surface_1.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -10986,14 +10472,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/tab_anova.png)
 
-  * GitHub: [tab_anova.pgf](https://github.com/walmes/Tikz/blob/master/src/tab_anova.pgf)    
-  * GitLab: [tab_anova.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tab_anova.pgf)
+  * [tab_anova.pgf](https://github.com/walmes/Tikz/blob/master/src/tab_anova.pgf)
 
 ```tex
 \pgfplotstabletypeset[
@@ -11050,14 +10533,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 % I\sigma^2$.  Assim, a esperan\c{c}a da forma quadr\'atica $y^\top A y$
 % \'e: $$ E(y^\top A y) = \sigma^2 tr(A)+\mu^\top A \mu. $$
 ```
-
-
 ****
 
 ![](./src/tab_ic.png)
 
-  * GitHub: [tab_ic.pgf](https://github.com/walmes/Tikz/blob/master/src/tab_ic.pgf)    
-  * GitLab: [tab_ic.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tab_ic.pgf)
+  * [tab_ic.pgf](https://github.com/walmes/Tikz/blob/master/src/tab_ic.pgf)
 
 ```tex
 % Copiado de:
@@ -11165,14 +10645,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   }
   ]{\data}
 ```
-
-
 ****
 
 ![](./src/ternario.png)
 
-  * GitHub: [ternario.pgf](https://github.com/walmes/Tikz/blob/master/src/ternario.pgf)    
-  * GitLab: [ternario.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/ternario.pgf)
+  * [ternario.pgf](https://github.com/walmes/Tikz/blob/master/src/ternario.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/276496/draw-a-surface-on-a-ternary-diagram-with-pgfplots
@@ -11198,14 +10675,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{ternaryaxis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipChi1.png)
 
-  * GitHub: [testHipChi1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipChi1.pgf)    
-  * GitLab: [testHipChi1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipChi1.pgf)
+  * [testHipChi1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipChi1.pgf)
 
 ```tex
 \def\chiright{7.82}
@@ -11289,14 +10763,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipChi2.png)
 
-  * GitHub: [testHipChi2.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipChi2.pgf)    
-  * GitLab: [testHipChi2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipChi2.pgf)
+  * [testHipChi2.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipChi2.pgf)
 
 ```tex
 \def\chiright{12.59}
@@ -11361,14 +10832,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipMedia1.png)
 
-  * GitHub: [testHipMedia1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipMedia1.pgf)    
-  * GitLab: [testHipMedia1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipMedia1.pgf)
+  * [testHipMedia1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipMedia1.pgf)
 
 ```tex
 \def\zleft{-1.96}
@@ -11421,14 +10889,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipMedia2.png)
 
-  * GitHub: [testHipMedia2.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipMedia2.pgf)    
-  * GitLab: [testHipMedia2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipMedia2.pgf)
+  * [testHipMedia2.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipMedia2.pgf)
 
 ```tex
 \def\tright{1.761}
@@ -11489,14 +10954,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipProp1.png)
 
-  * GitHub: [testHipProp1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipProp1.pgf)    
-  * GitLab: [testHipProp1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipProp1.pgf)
+  * [testHipProp1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipProp1.pgf)
 
 ```tex
 \def\zright{1.645}
@@ -11543,14 +11005,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/testHipVar1.png)
 
-  * GitHub: [testHipVar1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipVar1.pgf)    
-  * GitLab: [testHipVar1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/testHipVar1.pgf)
+  * [testHipVar1.pgf](https://github.com/walmes/Tikz/blob/master/src/testHipVar1.pgf)
 
 ```tex
 \def\chiright{30.14}
@@ -11609,14 +11068,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \end{axis}
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/textos_retangulos.png)
 
-  * GitHub: [textos_retangulos.pgf](https://github.com/walmes/Tikz/blob/master/src/textos_retangulos.pgf)    
-  * GitLab: [textos_retangulos.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/textos_retangulos.pgf)
+  * [textos_retangulos.pgf](https://github.com/walmes/Tikz/blob/master/src/textos_retangulos.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/70154/draw-only-part-of-a-rectangle-in-tikz
@@ -11637,14 +11093,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/text_zoom.png)
 
-  * GitHub: [text_zoom.pgf](https://github.com/walmes/Tikz/blob/master/src/text_zoom.pgf)    
-  * GitLab: [text_zoom.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/text_zoom.pgf)
+  * [text_zoom.pgf](https://github.com/walmes/Tikz/blob/master/src/text_zoom.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/184911/magnify-text-using-spy-library
@@ -11672,14 +11125,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \spy[red] on (-2.1,.25) in node[right] at (-1,-2);
 \end{tikzpicture}%
 ```
-
-
 ****
 
 ![](./src/tipos_de_IC.png)
 
-  * GitHub: [tipos_de_IC.pgf](https://github.com/walmes/Tikz/blob/master/src/tipos_de_IC.pgf)    
-  * GitLab: [tipos_de_IC.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tipos_de_IC.pgf)
+  * [tipos_de_IC.pgf](https://github.com/walmes/Tikz/blob/master/src/tipos_de_IC.pgf)
 
 ```tex
 \def\Y{9}
@@ -11742,14 +11192,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/tipos_de_testes.png)
 
-  * GitHub: [tipos_de_testes.pgf](https://github.com/walmes/Tikz/blob/master/src/tipos_de_testes.pgf)    
-  * GitLab: [tipos_de_testes.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tipos_de_testes.pgf)
+  * [tipos_de_testes.pgf](https://github.com/walmes/Tikz/blob/master/src/tipos_de_testes.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -11789,14 +11236,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[left] at (\X+\dX/1.6,\Y-\dY/1.4) {escore};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/tree_1.png)
 
-  * GitHub: [tree_1.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_1.pgf)    
-  * GitLab: [tree_1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tree_1.pgf)
+  * [tree_1.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_1.pgf)
 
 ```tex
 % \tikzstyle{every node}=[
@@ -11879,14 +11323,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       {node {Longtext-\\teammate}}};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/tree_2.png)
 
-  * GitHub: [tree_2.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_2.pgf)    
-  * GitLab: [tree_2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tree_2.pgf)
+  * [tree_2.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_2.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -11938,14 +11379,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \draw (fatima) -- (ali);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/tree_3.png)
 
-  * GitHub: [tree_3.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_3.pgf)    
-  * GitLab: [tree_3.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/tree_3.pgf)
+  * [tree_3.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_3.pgf)
 
 ```tex
 \begin{tikzpicture}[
@@ -11985,14 +11423,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   };
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/ubuntu.png)
 
-  * GitHub: [ubuntu.pgf](https://github.com/walmes/Tikz/blob/master/src/ubuntu.pgf)    
-  * GitLab: [ubuntu.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/ubuntu.pgf)
+  * [ubuntu.pgf](https://github.com/walmes/Tikz/blob/master/src/ubuntu.pgf)
 
 ```tex
 % http://tex.stackexchange.com/questions/250198/draw-the-ubuntu-logo-with-tikz
@@ -12027,14 +11462,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/union_intersec.png)
 
-  * GitHub: [union_intersec.pgf](https://github.com/walmes/Tikz/blob/master/src/union_intersec.pgf)    
-  * GitLab: [union_intersec.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/union_intersec.pgf)
+  * [union_intersec.pgf](https://github.com/walmes/Tikz/blob/master/src/union_intersec.pgf)
 
 ```tex
 \def\firstcircle{(90:1cm) circle (1.35cm)}
@@ -12121,14 +11553,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/vangenuchten.png)
 
-  * GitHub: [vangenuchten.pgf](https://github.com/walmes/Tikz/blob/master/src/vangenuchten.pgf)    
-  * GitLab: [vangenuchten.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/vangenuchten.pgf)
+  * [vangenuchten.pgf](https://github.com/walmes/Tikz/blob/master/src/vangenuchten.pgf)
 
 ```tex
 \begin{tikzpicture}[domain=-3:5, xscale=1.5, yscale=8, >=latex]
@@ -12162,14 +11591,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
         (1+(\theta_a x)^{\theta_n})^{\theta_m}}$};
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/variavel_aleatoria1.png)
 
-  * GitHub: [variavel_aleatoria1.pgf](https://github.com/walmes/Tikz/blob/master/src/variavel_aleatoria1.pgf)    
-  * GitLab: [variavel_aleatoria1.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/variavel_aleatoria1.pgf)
+  * [variavel_aleatoria1.pgf](https://github.com/walmes/Tikz/blob/master/src/variavel_aleatoria1.pgf)
 
 ```tex
 \begin{tikzpicture}
@@ -12196,14 +11622,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     (KK) edge[bend left] (0,-2);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/variavel_aleatoria2.png)
 
-  * GitHub: [variavel_aleatoria2.pgf](https://github.com/walmes/Tikz/blob/master/src/variavel_aleatoria2.pgf)    
-  * GitLab: [variavel_aleatoria2.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/variavel_aleatoria2.pgf)
+  * [variavel_aleatoria2.pgf](https://github.com/walmes/Tikz/blob/master/src/variavel_aleatoria2.pgf)
 
 ```tex
 \def\A{\clubsuit}
@@ -12246,14 +11669,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     (000) edge[bend right] (0,-2);
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/workflow-labestData.png)
 
-  * GitHub: [workflow-labestData.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow-labestData.pgf)    
-  * GitLab: [workflow-labestData.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/workflow-labestData.pgf)
+  * [workflow-labestData.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow-labestData.pgf)
 
 ```tex
 % http://www.texample.net/tikz/examples/simple-flow-chart/
@@ -12403,14 +11823,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-
 ****
 
 ![](./src/workflow.png)
 
-  * GitHub: [workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow.pgf)    
-  * GitLab: [workflow.pgf](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/workflow.pgf)
+  * [workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/workflow.pgf)
 
 ```tex
 \tikzset{
@@ -12467,5 +11884,3 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 \end{tikzpicture}
 ```
-
-

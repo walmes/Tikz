@@ -10,10 +10,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-opts_chunk$set(
-    echo=FALSE, comment=NA, results="asis",
-    error=FALSE, warning=FALSE, message=FALSE
-)
+opts_chunk$set(echo = FALSE,
+               comment = NA,
+               results = "asis",
+               error = FALSE,
+               warning = FALSE,
+               message = FALSE)
 a <- "```tex"
 b <- "```"
 ```
@@ -22,18 +24,23 @@ file.remove("child.Rmd")
 tmp <- readLines("template.Rmd")
 
 pgf <- sub(x = list.files(path = "./src/", pattern = "*.pgf"),
-           pattern = "\\.pgf$", replacement = "")
+           pattern = "\\.pgf$",
+           replacement = "")
 png <- sub(x = list.files(path = "./src/", pattern = "*.png"),
-           pattern = "\\.png$", replacement = "")
+           pattern = "\\.png$",
+           replacement = "")
 
-## Lista de arquivos que tem os pares pgf e png.
+# Lista de arquivos que tem os pares pgf e png.
 i <- intersect(pgf, png)
 sapply(i,
        FUN = function(i){
-           tmpi <- gsub(x = tmp, pattern = "&PGF_FILE&",
+           tmpi <- gsub(x = tmp,
+                        pattern = "&PGF_FILE&",
                         replacement = i)
-           cat(tmpi, file = "child.Rmd",
-               append = TRUE, sep= "\n")
+           cat(tmpi,
+               file = "child.Rmd",
+               append = TRUE,
+               sep= "\n")
        })
 ```
 
@@ -42,27 +49,21 @@ Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
 There are `r length(i)` Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
-the zero.  Also, a lot were catch in the web and copied with few
-modifications.
+the scratch.  Also, a lot were caught in the web and copied with few
+modifications (I run tests on it).
 
-To build them, I use
-[ktikz editor](https://apps.ubuntu.com/cat/applications/ktikz/).
+I use [ktikz editor](https://apps.ubuntu.com/cat/applications/ktikz/) to
+edit these Tikz files.
 
-To the sake of accessibility and security, this repository is maintained
-in to git services: 1) officially in my profile on
-[GitHub](https://github.com/walmes/Tikz) and 2) mirrored in the
-[GitLab](http://git.leg.ufpr.br/walmes/Tikz) of my laboratory.
+This repository is maintained in to Git Version Control and is hosted on
+[GitHub](https://github.com/walmes/Tikz).
 
 If you want to reproduce these figures, do not forget of seeing the
 corresponding preamble that list all tikz libraries used:
+[TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
 
-  * GitHub:
-    [TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs);
-  * GitLab:
-    [TIKZ_PREAMBLE.pgs](http://git.leg.ufpr.br/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
+The figures are in file alphabetic order.  A page with all figures displayed
+in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
-The figures are in alphabetic order. A page with all figures displayed
-in on <http://www.leg.ufpr.br/~walmes/tikz/>.
-
-```{r, child="child.Rmd"}
+```{r, child = "child.Rmd"}
 ```
