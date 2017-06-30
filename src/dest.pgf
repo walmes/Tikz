@@ -1,3 +1,5 @@
+\def\textangle{3.3}%
+
 \begin{tikzpicture}[
   % scale = 0.5,
   shape1/.style = {
@@ -54,6 +56,26 @@
     \draw [fill = col3, shape1] \arcs;
   \end{scope}
 
-  \node at (0,-3.8) {\huge \textcolor{col3}{DEST/UFPR}};
+%   \node at (0,-3.8) {\huge \textcolor{col3}{DEST/UFPR}};
 
-\end{tikzpicture}
+% \draw[
+%   draw = none, very thick,
+%   postaction = {decorate},
+%   decoration = {text along path,
+%     text = {|\large|Departamento de Estat{\'i}stica {$\boldsymbol{\cdot}$} UFPR},
+%   text align = center,
+%   text color = col3}]
+%   (180:\textangle) arc [start angle = 180, end angle = 0, radius = \textangle];
+
+\draw[
+  draw = none, very thick,
+  postaction = {decorate},
+  decoration = {text along path,
+    text = {|\large|Departamento de Estat{\'i}stica {$\boldsymbol{\cdot}$} UFPR},
+  text align = center,
+  text color = col3}]
+  (180:\textangle+0.3) arc [start angle = -180, end angle = 0, radius = \textangle+0.3];
+
+% \draw[draw = gray] circle (\textangle+0.5);
+
+\end{tikzpicture}%

@@ -35,15 +35,24 @@
     \clip \thecircle;
     \fill[samples=100, blue] \thelowergauss;
   \end{scope}
-  % Texto.
-  % \draw[yshift=0.75cm, red] (-0:1.2cm) arc (-0:180:1.2cm);
+
+  % Contorno.
+  \draw[blue, thin] \thecircle;
+
+%   % Texto.
+%   % \draw[yshift=0.75cm, red] (-0:1.2cm) arc (-0:180:1.2cm);
   \path [
-    yshift=0.75cm,
-    postaction={decorate,
-      decoration={
-        raise=-1ex, text along path, reverse path, text align=center,
-        text={|\small\color{blue}|PET Estat{\'i}stica UFPR}
+%     draw = orange,
+    yshift = 0.75cm,
+    postaction = {decorate,
+      decoration = {
+        raise=-1ex,
+        text along path,
+        reverse path,
+        text align = center,
+        text color = blue,
+        text={|\small|PET Estat{\'i}stica {$\cdot$} UFPR}
       }
     }] (-0:1.2cm) arc (-0:180:1.2cm);
-  \draw[white] \thecircle;
+
 \end{tikzpicture}
