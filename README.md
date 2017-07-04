@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 193 Tikz figures in this gallery.  Most of them were
+There are 194 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -1559,6 +1559,27 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 ```
 ****
 
+![](./src/croqui-campo.png)
+
+  * [croqui-campo.pgf](https://github.com/walmes/Tikz/blob/master/src/croqui-campo.pgf)
+
+```tex
+\begin{tikzpicture}
+
+\draw[draw, step = 0.5, dotted] (0, 0) grid (10, 6);
+\draw [thick] (0, 0) rectangle (10, 6) node [below left] {C};
+\draw [thick] (7, 0) .. controls +(2, 5) and +(0, -5) .. (6, 6) node [below left] {B};
+\draw [thick] (2, 0) .. controls +(4, 4) and +(0, -3) .. (3, 6) node [below left] {A};
+\node [draw, rectangle, minimum width = 1cm, minimum height = 1cm] (parc) at (11, 5) {};
+\node [below] at (parc.south) {Parcela};
+\draw [thick, ->, >=latex'] (1, -0.75) -- node [above] {Gradiente} +(8, 0);
+
+\draw[draw = none] (-0.5, -1) rectangle (12, 6.5);
+
+\end{tikzpicture}
+```
+****
+
 ![](./src/cubos_fatoriais.png)
 
   * [cubos_fatoriais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)
@@ -1756,6 +1777,8 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   * [dest.pgf](https://github.com/walmes/Tikz/blob/master/src/dest.pgf)
 
 ```tex
+\def\textangle{3.3}%
+
 \begin{tikzpicture}[
   % scale = 0.5,
   shape1/.style = {
@@ -1812,9 +1835,29 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     \draw [fill = col3, shape1] \arcs;
   \end{scope}
 
-  \node at (0,-3.8) {\huge \textcolor{col3}{DEST/UFPR}};
+%   \node at (0,-3.8) {\huge \textcolor{col3}{DEST/UFPR}};
 
-\end{tikzpicture}
+% \draw[
+%   draw = none, very thick,
+%   postaction = {decorate},
+%   decoration = {text along path,
+%     text = {|\large|Departamento de Estat{\'i}stica {$\boldsymbol{\cdot}$} UFPR},
+%   text align = center,
+%   text color = col3}]
+%   (180:\textangle) arc [start angle = 180, end angle = 0, radius = \textangle];
+
+\draw[
+  draw = none, very thick,
+  postaction = {decorate},
+  decoration = {text along path,
+    text = {|\large|Departamento de Estat{\'i}stica {$\boldsymbol{\cdot}$} UFPR},
+  text align = center,
+  text color = col3}]
+  (180:\textangle+0.3) arc [start angle = -180, end angle = 0, radius = \textangle+0.3];
+
+% \draw[draw = gray] circle (\textangle+0.5);
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -7517,17 +7560,26 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     \clip \thecircle;
     \fill[samples=100, blue] \thelowergauss;
   \end{scope}
-  % Texto.
-  % \draw[yshift=0.75cm, red] (-0:1.2cm) arc (-0:180:1.2cm);
+
+  % Contorno.
+  \draw[blue, thin] \thecircle;
+
+%   % Texto.
+%   % \draw[yshift=0.75cm, red] (-0:1.2cm) arc (-0:180:1.2cm);
   \path [
-    yshift=0.75cm,
-    postaction={decorate,
-      decoration={
-        raise=-1ex, text along path, reverse path, text align=center,
-        text={|\small\color{blue}|PET Estat{\'i}stica UFPR}
+%     draw = orange,
+    yshift = 0.75cm,
+    postaction = {decorate,
+      decoration = {
+        raise=-1ex,
+        text along path,
+        reverse path,
+        text align = center,
+        text color = blue,
+        text={|\small|PET Estat{\'i}stica {$\cdot$} UFPR}
       }
     }] (-0:1.2cm) arc (-0:180:1.2cm);
-  \draw[white] \thecircle;
+
 \end{tikzpicture}
 ```
 ****

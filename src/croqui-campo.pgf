@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+
+\draw[draw, step = 0.5, dotted] (0, 0) grid (10, 6);
+\draw [thick] (0, 0) rectangle (10, 6) node [below left] {C};
+\draw [thick] (7, 0) .. controls +(2, 5) and +(0, -5) .. (6, 6) node [below left] {B};
+\draw [thick] (2, 0) .. controls +(4, 4) and +(0, -3) .. (3, 6) node [below left] {A};
+\node [draw, rectangle, minimum width = 1cm, minimum height = 1cm] (parc) at (11, 5) {};
+\node [below] at (parc.south) {Parcela};
+\draw [thick, ->, >=latex'] (1, -0.75) -- node [above] {Gradiente} +(8, 0);
+
+\draw[draw = none] (-0.5, -1) rectangle (12, 6.5);
+
+\end{tikzpicture}
