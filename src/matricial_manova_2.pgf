@@ -58,13 +58,13 @@
   \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
   \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
 
-  \draw[draw = black] ($(E.east)+(0, 0.9)$) -- 
+  \draw[draw = black] ($(E.east)+(0, 0.9)$) --
     +(0.25,0) |- node [pos = 0.25, anchor = west] {independent rows}
-     +(0, -0.2);
+    +(0, -0.2);
 
-  \draw[draw = black] ($(E.north)+(-0.05, 0)$) -- 
+  \draw[draw = black] ($(E.north)+(-0.05, 0)$) --
     +(0, 0.25) -| node [pos = 0.5, anchor = -90] {correlated columns}
-+(0.2, 0) ;
+    +(0.2, 0);
 
 %   \node (rec1) [draw, fit = (Y) (E)] {};
 %   \node [above=0cm of rec1] {$Y = XB + E$};
