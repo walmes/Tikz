@@ -5641,14 +5641,14 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   };
 
   \matrix[mtn, right=of Y] (X) {%
-    \matColumn{gray}{0.2, 4}; \\
+    \matColumn{gray}{0.6, 4}; \\
   };
 
   \matrix[mtn, right=-4pt of X] (beta) {%
-    \matColumn{red}{0.1, 0.4}; &
-    \matColumn{cyan}{0.1, 0.4}; &
-    \matColumn{green}{0.1, 0.4}; &
-    \matColumn{orange}{0.1, 0.4}; \\
+    \matColumn{red}{0.1, 0.6}; &
+    \matColumn{cyan}{0.1, 0.6}; &
+    \matColumn{green}{0.1, 0.6}; &
+    \matColumn{orange}{0.1, 0.6}; \\
   };
 
   \matrix[mtn, right=of beta] (E) {%
@@ -5658,22 +5658,22 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     \matColumn{orange}{0.1, 4}; \\
   };
 
-  \foreach \dy in {-1.8, -1.6, ..., 1.8}{
-    \draw ($(Y.west)+(0.1, \dy)$) -- ($(Y.east)+(-0.1, \dy)$);
-    \draw ($(X.west)+(0.1, \dy)$) -- ($(X.east)+(-0.1, \dy)$);
-    \draw ($(E.west)+(0.1, \dy)$) -- ($(E.east)+(-0.1, \dy)$);
+  \foreach \dy in {-1.9, -1.8, ..., 1.9}{
+    \draw[very thin] ($(Y.west)+(0.1, \dy)$) -- ($(Y.east)+(-0.1, \dy)$);
+    \draw[very thin] ($(X.west)+(0.1, \dy)$) -- ($(X.east)+(-0.1, \dy)$);
+    \draw[very thin] ($(E.west)+(0.1, \dy)$) -- ($(E.east)+(-0.1, \dy)$);
   }
 
   \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
   \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
 
-  \draw[draw = black] ($(E.east)+(0, 0.9)$) -- 
+  \draw[draw = black] ($(E.east)+(0, 0.9)$) --
     +(0.25,0) |- node [pos = 0.25, anchor = west] {independent rows}
-     +(0, -0.2);
+    +(0, -0.2);
 
-  \draw[draw = black] ($(E.north)+(-0.05, 0)$) -- 
+  \draw[draw = black] ($(E.north)+(-0.05, 0)$) --
     +(0, 0.25) -| node [pos = 0.5, anchor = -90] {correlated columns}
-+(0.2, 0) ;
+    +(0.2, 0);
 
 %   \node (rec1) [draw, fit = (Y) (E)] {};
 %   \node [above=0cm of rec1] {$Y = XB + E$};
