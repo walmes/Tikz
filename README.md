@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 195 Tikz figures in this gallery.  Most of them were
+There are 196 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5677,6 +5677,94 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 %   \node (rec1) [draw, fit = (Y) (E)] {};
 %   \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
+****
+
+![](./src/matricial_manova_3.png)
+
+  * [matricial_manova_3.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova_3.pgf)
+
+```tex
+\newcommand{\matColumn}[2]{
+  \draw [fill = #1, draw, thin] (0,0) rectangle (#2)
+}
+\newcommand{\matColumnBorder}[2]{
+  \draw [draw = #1] (0,0) rectangle (#2)
+}
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter
+\def\Vec{\mathop{\operator@font vec}\nolimits}
+\makeatother
+
+\begin{tikzpicture}[
+  node distance=0.3cm,
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[},
+    right delimiter={]}
+  },
+  mtn/.style={
+    matrix of nodes
+  },
+  ]
+
+\def\yw{0.1}
+\def\yh{0.8}
+\def\xw{0.25}
+\def\xh{0.5}
+
+\begin{scope}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{red}{\yw, \yh}; \\
+    \matColumn{cyan}{\yw, \yh}; \\
+    \matColumn{green}{\yw, \yh}; \\
+    \matColumn{orange}{\yw, \yh}; \\
+  };
+
+  \matrix[mtn, right=of Y] (X) {%
+    \matColumn{red}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; & 
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; \\
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumn{cyan}{\xw,\yh}; & 
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; \\
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; & 
+    \matColumn{green}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; \\
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumnBorder{gray}{\xw,\yh}; & 
+    \matColumnBorder{gray}{\xw,\yh}; &
+    \matColumn{orange}{\xw,\yh}; \\
+  };
+
+  \matrix[mtn, right=0.0cm of X] (beta) {%
+    \matColumn{red}{\yw,\xw}; \\
+    \matColumn{cyan}{\yw,\xw}; \\
+    \matColumn{green}{\yw,\xw}; \\
+    \matColumn{orange}{\yw,\xw}; \\
+  };
+
+  \matrix[mtn, right=of beta] (E) {%
+    \matColumn{red}{\yw,\yh}; \\
+    \matColumn{cyan}{\yw,\yh}; \\
+    \matColumn{green}{\yw,\yh}; \\
+    \matColumn{orange}{\yw,\yh}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+%   \node (rec2) [draw, fit = (Y) (E)] {};
+%   \node [above=0cm of rec2] {$\Vec(Y) = [\bigoplus_{i=1}^m X_i] \Vec(B) + \Vec(E)$};
 
 \end{scope}
 
