@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 196 Tikz figures in this gallery.  Most of them were
+There are 198 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -618,6 +618,63 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     \fill [white] (rel axis cs:0,0)
       rectangle (rel axis cs:1,1) (axis cs:0,0) circle [radius=7];         
   \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/canonical_discriminant.png)
+
+  * [canonical_discriminant.pgf](https://github.com/walmes/Tikz/blob/master/src/canonical_discriminant.pgf)
+
+```tex
+\begin{tikzpicture}[>=latex]
+
+\def\ellip{ellipse (2.4cm and 0.65cm)}%
+
+% The x and y-axis.
+\draw[->] (0, 0) -- (9, 0) node[right] {$y_1$};
+\draw[->] (0, 0) -- (0, 9) node[above] {$y_2$};
+
+% The z-axis.
+\draw[->, dashed] (5, 0) 
+  coordinate (b_1) -- +(4.5, 4.5) coordinate (b_2) node[right] {$z$};
+
+% Loop over a 3-level factor.
+\foreach \x/\y/\col in {4.3/6.7/red, 4.0/5.0/blue, 2.5/4.5/green} {
+
+  % Draw the ellipses.
+  \draw [thick, \col, xshift = \x cm, yshift = \y cm, rotate = -45]  \ellip;
+
+  % Projection on x-axis.
+  \draw[thick, color = \col, smooth, xshift = \x cm, yshift = -1.5cm]
+    plot [id = x, domain = -4:4] function{exp(-(x-0)**2/2)};
+
+  % Projection on y-axis.
+  \draw[thick, color = \col, smooth, rotate = 90, xshift = \y cm, yshift = 1.5cm]
+    plot [id = x, domain = -4:4] function{-exp(-(x-0)**2/2)};
+
+  \draw [draw = none] (\x, \y) coordinate (a_1) -- +(5, -5) coordinate (a_2);
+
+  % Define the coordinate `c` as the intersection of segments.
+  \coordinate (c) at (intersection of a_1--a_2 and b_1--b_2);
+
+  % Draw points.
+  \draw[fill = \col] (c) circle (2pt);
+  \draw[fill = \col] (\x, \y) circle (2pt);
+
+%   \draw [gray] let \p{c} = (c) in (\x{c}, \y{c}) -- (0, 0);
+%   \draw [gray] let \p{c} = (c) in node [anchor=west] at (\x{c}, \y{c}) {\x{c} -- \y{c}};
+
+  % Projection on the first canonical dimension ou z1-axis.
+  \draw [draw = \col, thick, smooth] let \p{c} = (c) in 
+    plot [id = x,
+          domain = -1.25:1.25,
+          yshift = \y{c},
+          xshift = \x{c},
+          rotate = 45] function{1.5*exp(-(x-0)**2/0.25)};
+
+}
+
 \end{tikzpicture}
 ```
 ****
@@ -5933,6 +5990,154 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
   \node (rec3) [draw, fit = (Y) (E)] {};
   \node [above=0cm of rec3] {$Y = [X_1,\ldots,X_m] [\bigoplus_{i=1}^m \beta_i] + E$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
+****
+
+![](./src/matricial_manova_reshape.png)
+
+  * [matricial_manova_reshape.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova_reshape.pgf)
+
+```tex
+% ATTENTION: to proper render the \mathcal{}, comment ou the
+% \usepackage{eulervm} in the preamble.
+
+\newcommand{\matColumn}[2]{%
+  \draw [fill = #2, draw, thin] (0, 0) rectangle (#1)
+}%
+\newcommand{\matColumnBorder}[2]{%
+  \draw [draw = #2] (0, 0) rectangle (#1)
+}%
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter%
+\def\Vec{\mathop{\operator@font vec}\nolimits}%
+\makeatother%
+
+\begin{tikzpicture}[
+  node distance = 0.3cm,
+  mtx/.style = {
+    matrix of math nodes,
+    left delimiter = {[},
+    right delimiter = {]}
+  },
+  mtn/.style = {
+    matrix of nodes
+  },
+  ]
+
+\begin{scope}
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of Y] (X) {%
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of X] (beta) {%
+    \matColumn{\yw, \xw}{red}; &
+    \matColumn{\yw, \xw}{cyan}; &
+    \matColumn{\yw, \xw}{green}; &
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of beta] (E) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  % \node (wide) [draw = gray, fit = (Y) (E)] {};
+  % \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\begin{scope}[xshift = -0.65cm, yshift = -4.5cm]
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+  \def\zerom{\matColumnBorder{\xw, \yh}{gray};}
+
+  \matrix[mtn] (vecY) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecY] (kronX) {%
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of kronX] (vecbeta) {%
+    \matColumn{\yw, \xw}{red}; \\
+    \matColumn{\yw, \xw}{cyan}; \\
+    \matColumn{\yw, \xw}{green}; \\
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecbeta] (vecE) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(vecY.east)!0.5!(kronX.west)$) {$=$};%
+  \node at ($(vecbeta.east)!0.5!(vecE.west)$) {$+$};%
+
+  % \node (long) [draw, fit = (vecY) (vecE)] {};
+
+\end{scope}
+
+\begin{scope}[
+  every node/.style = {inner sep = 1pt, fill = white},
+  every path/.style = {->, >=latex}]
+
+  \path (Y.west) edge[out = 180, in = 180, pos = 0.4]
+    node {$\mathcal{Y} = \text{vec}(\mathbf{Y})$}
+    (vecY.west);%
+  \path (X.south) edge[out = -120, in = 90, pos = 0.6]
+    node {$\mathcal{X} = \mathbf{I} \otimes \mathbf{X}$}
+    (kronX.north);%
+  \path (beta.south) edge[out = -60, in = 90, pos=0.25]
+    node {$\boldsymbol{\beta} = \text{vec}(\boldsymbol{B})$}
+    (vecbeta.north);%
+  \path (E.east) edge[out = 0, in = 0, pos = 0.4]
+    node {$\mathcal{E} = \text{vec}(\mathbf{E})$}
+    (vecE.east);%
 
 \end{scope}
 
