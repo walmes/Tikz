@@ -675,7 +675,9 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 }
 
-\end{tikzpicture}
+\draw[draw = none] (-2, -2) rectangle (10.25, 11.25);
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -6141,7 +6143,9 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 \end{scope}
 
-\end{tikzpicture}
+% \draw[thick, red] (-3, -7) rectangle (5.5, 1);
+
+\end{tikzpicture}%
 ```
 ****
 

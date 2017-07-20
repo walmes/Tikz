@@ -46,4 +46,6 @@
 
 }
 
-\end{tikzpicture}
+\draw[draw = none] (-2, -2) rectangle (10.25, 11.25);
+
+\end{tikzpicture}%
