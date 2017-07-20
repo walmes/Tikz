@@ -1,0 +1,140 @@
+% ATTENTION: to proper render the \mathcal{}, comment ou the
+% \usepackage{eulervm} in the preamble.
+
+\newcommand{\matColumn}[2]{%
+  \draw [fill = #2, draw, thin] (0, 0) rectangle (#1)
+}%
+\newcommand{\matColumnBorder}[2]{%
+  \draw [draw = #2] (0, 0) rectangle (#1)
+}%
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter%
+\def\Vec{\mathop{\operator@font vec}\nolimits}%
+\makeatother%
+
+\begin{tikzpicture}[
+  node distance = 0.3cm,
+  mtx/.style = {
+    matrix of math nodes,
+    left delimiter = {[},
+    right delimiter = {]}
+  },
+  mtn/.style = {
+    matrix of nodes
+  },
+  ]
+
+\begin{scope}
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of Y] (X) {%
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of X] (beta) {%
+    \matColumn{\yw, \xw}{red}; &
+    \matColumn{\yw, \xw}{cyan}; &
+    \matColumn{\yw, \xw}{green}; &
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of beta] (E) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  % \node (wide) [draw = gray, fit = (Y) (E)] {};
+  % \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\begin{scope}[xshift = -0.65cm, yshift = -4.5cm]
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+  \def\zerom{\matColumnBorder{\xw, \yh}{gray};}
+
+  \matrix[mtn] (vecY) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecY] (kronX) {%
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of kronX] (vecbeta) {%
+    \matColumn{\yw, \xw}{red}; \\
+    \matColumn{\yw, \xw}{cyan}; \\
+    \matColumn{\yw, \xw}{green}; \\
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecbeta] (vecE) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(vecY.east)!0.5!(kronX.west)$) {$=$};%
+  \node at ($(vecbeta.east)!0.5!(vecE.west)$) {$+$};%
+
+  % \node (long) [draw, fit = (vecY) (vecE)] {};
+
+\end{scope}
+
+\begin{scope}[
+  every node/.style = {inner sep = 1pt, fill = white},
+  every path/.style = {->, >=latex}]
+
+  \path (Y.west) edge[out = 180, in = 180, pos = 0.4]
+    node {$\mathcal{Y} = \text{vec}(\mathbf{Y})$}
+    (vecY.west);%
+  \path (X.south) edge[out = -120, in = 90, pos = 0.6]
+    node {$\mathcal{X} = \mathbf{I} \otimes \mathbf{X}$}
+    (kronX.north);%
+  \path (beta.south) edge[out = -60, in = 90, pos=0.25]
+    node {$\boldsymbol{\beta} = \text{vec}(\boldsymbol{B})$}
+    (vecbeta.north);%
+  \path (E.east) edge[out = 0, in = 0, pos = 0.4]
+    node {$\mathcal{E} = \text{vec}(\mathbf{E})$}
+    (vecE.east);%
+
+\end{scope}
+
+\end{tikzpicture}
