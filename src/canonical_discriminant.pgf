@@ -1,0 +1,49 @@
+\begin{tikzpicture}[>=latex]
+
+\def\ellip{ellipse (2.4cm and 0.65cm)}%
+
+% The x and y-axis.
+\draw[->] (0, 0) -- (9, 0) node[right] {$y_1$};
+\draw[->] (0, 0) -- (0, 9) node[above] {$y_2$};
+
+% The z-axis.
+\draw[->, dashed] (5, 0) 
+  coordinate (b_1) -- +(4.5, 4.5) coordinate (b_2) node[right] {$z$};
+
+% Loop over a 3-level factor.
+\foreach \x/\y/\col in {4.3/6.7/red, 4.0/5.0/blue, 2.5/4.5/green} {
+
+  % Draw the ellipses.
+  \draw [thick, \col, xshift = \x cm, yshift = \y cm, rotate = -45]  \ellip;
+
+  % Projection on x-axis.
+  \draw[thick, color = \col, smooth, xshift = \x cm, yshift = -1.5cm]
+    plot [id = x, domain = -4:4] function{exp(-(x-0)**2/2)};
+
+  % Projection on y-axis.
+  \draw[thick, color = \col, smooth, rotate = 90, xshift = \y cm, yshift = 1.5cm]
+    plot [id = x, domain = -4:4] function{-exp(-(x-0)**2/2)};
+
+  \draw [draw = none] (\x, \y) coordinate (a_1) -- +(5, -5) coordinate (a_2);
+
+  % Define the coordinate `c` as the intersection of segments.
+  \coordinate (c) at (intersection of a_1--a_2 and b_1--b_2);
+
+  % Draw points.
+  \draw[fill = \col] (c) circle (2pt);
+  \draw[fill = \col] (\x, \y) circle (2pt);
+
+%   \draw [gray] let \p{c} = (c) in (\x{c}, \y{c}) -- (0, 0);
+%   \draw [gray] let \p{c} = (c) in node [anchor=west] at (\x{c}, \y{c}) {\x{c} -- \y{c}};
+
+  % Projection on the first canonical dimension ou z1-axis.
+  \draw [draw = \col, thick, smooth] let \p{c} = (c) in 
+    plot [id = x,
+          domain = -1.25:1.25,
+          yshift = \y{c},
+          xshift = \x{c},
+          rotate = 45] function{1.5*exp(-(x-0)**2/0.25)};
+
+}
+
+\end{tikzpicture}
