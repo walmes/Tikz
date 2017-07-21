@@ -1,0 +1,56 @@
+\newcommand{\matColumn}[1]{%
+  \draw [fill = #1, draw, thin] (0, 0) rectangle (0.15, 0.15)
+}%
+
+\begin{tikzpicture}[
+  node distance = 0.3cm,
+  mtn/.style = {
+    matrix of nodes,
+    left delimiter = {[},
+    right delimiter = {]}
+  },
+  ]
+
+% R code to generate the content of the matrix.
+% v <- sprintf("\\matColumn{%s};", c("red", "cyan", "green", "orange"))
+% v <- rep(v, each = 6)
+% d <- matrix("", length(v), length(v))
+% diag(d) <- v
+% print(xtable(d),
+%       include.rownames = FALSE,
+%       include.colnames = FALSE,
+%       only.contents = TRUE,
+%       hline.after = NULL,
+%       sanitize.text.function = identity,
+%       comment = FALSE)
+
+  \matrix[mtn] (Y) {%
+   \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; \\ 
+  };
+
+  \node [left=of Y] {$\Omega = \Sigma \otimes \mathbf{I} = $};
+
+\end{tikzpicture}%

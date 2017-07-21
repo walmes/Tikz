@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 198 Tikz figures in this gallery.  Most of them were
+There are 199 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5828,6 +5828,70 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 \end{scope}
 
 \end{tikzpicture}
+```
+****
+
+![](./src/matricial_manova_Omega.png)
+
+  * [matricial_manova_Omega.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova_Omega.pgf)
+
+```tex
+\newcommand{\matColumn}[1]{%
+  \draw [fill = #1, draw, thin] (0, 0) rectangle (0.15, 0.15)
+}%
+
+\begin{tikzpicture}[
+  node distance = 0.3cm,
+  mtn/.style = {
+    matrix of nodes,
+    left delimiter = {[},
+    right delimiter = {]}
+  },
+  ]
+
+% R code to generate the content of the matrix.
+% v <- sprintf("\\matColumn{%s};", c("red", "cyan", "green", "orange"))
+% v <- rep(v, each = 6)
+% d <- matrix("", length(v), length(v))
+% diag(d) <- v
+% print(xtable(d),
+%       include.rownames = FALSE,
+%       include.colnames = FALSE,
+%       only.contents = TRUE,
+%       hline.after = NULL,
+%       sanitize.text.function = identity,
+%       comment = FALSE)
+
+  \matrix[mtn] (Y) {%
+   \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  & \matColumn{red}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  & \matColumn{cyan}; &  &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{green}; &  &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; &  \\ 
+   &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \matColumn{orange}; \\ 
+  };
+
+  \node [left=of Y] {$\Omega = \Sigma \otimes \mathbf{I} = $};
+
+\end{tikzpicture}%
 ```
 ****
 
