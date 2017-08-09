@@ -1,0 +1,156 @@
+% https://tex.stackexchange.com/questions/87945/tikz-picture-shapes
+
+\tikzset{
+  pth/.style = {
+    draw,
+    ->,
+    > = latex',
+  },
+  start-end/.style = {
+    draw,
+    fill = blue!20!white,
+    rectangle,
+    rounded corners,
+  },
+  input/.style = {% requires library shapes.geometric
+    draw,
+    fill = yellow!30!white,
+    trapezium,
+    trapezium left angle = 60,
+    trapezium right angle = 120,
+  },
+  operation/.style = {
+    draw,
+    fill = gray!30!white,
+    rectangle,
+    minimum width = 3.5cm,
+  },
+  loop/.style = {% requires library shapes.misc
+    draw,
+    fill = green!30!white,
+    chamfered rectangle,
+    chamfered rectangle xsep = 2cm
+  },
+  decision/.style = {% requires library shapes.geometric
+    draw,
+    fill = magenta!70!white,
+    diamond,
+    aspect = 2
+  },
+  decision/.default = 1,
+  print/.style = {% requires library shapes.symbols
+    draw,
+    tape,
+    tape bend top = none
+  },
+  connection/.style = {
+    draw,
+    circle,
+    radius = 5pt,
+  },
+  process rectangle outer width/.initial = 0.15cm,
+  predefined process/.style = {
+    rectangle,
+    draw,
+    append after command = {
+      \pgfextra{
+        \draw
+        ($(\tikzlastnode.north west) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north west) - (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (-\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, +0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (0, 0.5\pgflinewidth)$);
+        \draw
+        ($(\tikzlastnode.north east) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, -0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (0, 0.5\pgflinewidth)$);
+      }
+    },
+    text width = 3cm,
+    align = center
+  },
+  predefined process/.default = 1.75cm,
+  man op/.style = {% requires library shapes.geometric
+    draw,
+    trapezium,
+    shape border rotate = 180,
+    text width = 2cm,
+    align = center,
+  },
+  extract/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = 90
+  },
+  merge/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = -90
+  },
+}
+
+\begin{tikzpicture}
+
+  % Example of each structure ---------------
+  % \node[start-end] (start) {Start/End};
+  % \node[below of = start,input](inp){Input};
+  % \node[below of = inp,operation] (op) {Operation};
+  % \node[below of = op,loop] (lp) {Loop};
+  % \node[right = 10pt of lp,loop = 1.6] (lp2) {Preparation};
+  % \node[below = 5pt of lp,decision] (dec) {Decision};
+  % \node[right = 10pt of dec,decision = 1.6] (dec2) {Decision};
+  % \node[right = 10pt of dec2,decision = 2.5] (dec3) {Decision};
+  % \node[below = 5pt of dec,print] (pr) {Print};
+  % \node[below = 10pt of pr,predefined process] (prproc) {Predefined process};
+  % \node[below = 10pt of prproc,man op] (manop) {Manual Operation};
+  % \node[below of = manop,connection, label = below:Connection] (con) {};
+  % \node[below of = con,extract, label = below:Extract] (extr) {};
+  % \node[below of = extr,merge, label = below:Merge] (mrg) {};
+
+  % Nodes -------------------------------------
+
+  \node[start-end] (start) {In{\'i}cio};
+  \node[below of = start, operation] (fx) {Defina $f(x)$ e $f'(x)$.};
+  \node[below of = fx, input] (inp) {
+    Forne{\c c}a: $x_0$, $tol$ e $maxit$.};
+  \node[below of = inp, loop] (lp) {
+    Para $i = 1,\dots,maxit$, fa{\c c}a:};
+  \node[below = 1em of lp, operation, align = left] (calc) {
+    $h = f(x_{i-1})/f'(x_{i-1})$\\
+    $x_i = x_{i-1} - h$};
+  \node[below = 1em of calc, decision] (tol) {$|h| < tol$};
+  \node[below = 2em of tol, loop] (break) {Saia do loop.};
+  \node[below of = break, input] (resul) {Retorne $x_i$.};
+  \node[start-end, below of = resul] (end0) {Fim};
+
+  \node[right = 9em of tol, connection] (con) {};
+  \node[below of = con, loop] (out) {Encerre o loop.};
+  \node[below = 1em of out, input, align = left] (notcon) {
+    Exiba "Solu{\c c}{\~ a}o n{\~ a}o encontrada".\\
+    Retorne NULL.
+  };
+  \node[start-end, below of = notcon] (end1) {Fim};
+
+  % Paths -------------------------------------
+
+  \path[pth] (start)  -- (fx);
+  \path[pth] (fx)     -- (inp);
+  \path[pth] (inp)    -- (lp);
+  \path[pth] (lp)     -- (calc);
+  \path[pth] (calc)   -- (tol);
+  \path[pth] (tol)    -- node[right] {TRUE} (break);
+  \path[pth] (break)  -- (resul);
+  \path[pth] (resul)  -- (end0);
+  \path[pth] (tol)    -- node[above] {FALSE} (con);
+  \path[pth] (con)    |- (calc);
+  \path[pth] (con)    -- (out);
+  \path[pth] (out)    -- (notcon);
+  \path[pth] (notcon) -- (end1);
+
+\end{tikzpicture}
