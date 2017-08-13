@@ -113,6 +113,9 @@
   % \node[below of = con,extract, label = below:Extract] (extr) {};
   % \node[below of = extr,merge, label = below:Merge] (mrg) {};
 
+\begin{scope}
+% Using a `for` loop.
+
   % Nodes -------------------------------------
 
   \node[start-end] (start) {In{\'i}cio};
@@ -152,5 +155,56 @@
   \path[pth] (con)    -- (out);
   \path[pth] (out)    -- (notcon);
   \path[pth] (notcon) -- (end1);
+
+\end{scope}
+
+\begin{scope}[xshift = 11cm]
+% Using a `while` loop.
+
+  % Nodes -------------------------------------
+
+  \node[start-end] (start) {In{\'i}cio};
+  \node[below of = start, operation] (fx) {Defina $f(x)$ e $f'(x)$.};
+  \node[below of = fx, input] (inp) {
+    Forne{\c c}a: $x_0$, $tol$ e $maxit$.};
+  \node[below of = inp, operation] (init-i) {Defina $i = 1$.};
+  \node[below of = init-i, loop] (lp) {
+    Enquanto $i \leq maxit$, fa{\c c}a:};
+  \node[below = 1em of lp, operation, align = left] (calc) {
+    $h = f(x_{i-1})/f'(x_{i-1})$\\
+    $x_i = x_{i-1} - h$};
+  \node[below = 1em of calc, decision] (tol) {$|h| < tol$};
+  \node[below = 2em of tol, loop] (break) {Saia do loop.};
+  \node[below of = break, input] (resul) {Retorne $x_i$.};
+  \node[start-end, below of = resul] (end0) {Fim};
+
+  \node[right = 9em of tol, connection] (con) {};
+  \node[above of = con, operation] (incre) {$i = i + 1$};
+  \node[below of = con, loop] (out) {Encerre o loop.};
+  \node[below = 1em of out, input, align = left] (notcon) {
+    Exiba "Solu{\c c}{\~ a}o n{\~ a}o encontrada".\\
+    Retorne NULL.
+  };
+  \node[start-end, below of = notcon] (end1) {Fim};
+
+  % Paths -------------------------------------
+
+  \path[pth] (start)  -- (fx);
+  \path[pth] (fx)     -- (inp);
+  \path[pth] (inp)    -- (init-i);
+  \path[pth] (init-i) -- (lp);
+  \path[pth] (lp)     -- (calc);
+  \path[pth] (calc)   -- (tol);
+  \path[pth] (tol)    -- node[right] {TRUE} (break);
+  \path[pth] (break)  -- (resul);
+  \path[pth] (resul)  -- (end0);
+  \path[pth] (tol)    -- node[above] {FALSE} (con);
+  \path[pth] (con)    -- (incre);
+  \path[pth] (incre)  |- (calc);
+  \path[pth] (con)    -- (out);
+  \path[pth] (out)    -- (notcon);
+  \path[pth] (notcon) -- (end1);
+
+\end{scope}
 
 \end{tikzpicture}
