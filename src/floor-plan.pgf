@@ -1,0 +1,114 @@
+\def\cont{(0, 0)
+%   -- (18.3, 0) arc (180:90:9)
+%   -- +(0, -9)
+%   -- +(0.5, -9) %circle (2pt)
+  -- (28.3, 0)
+  -- (28.3, 26.3) %circle (2pt)
+  -- +(-4.7, 0)
+  -- +(-4.7, 4.2)
+  -- (3.6, 30.5)
+  -- +(0, -4.5)
+  -- +(-3.6, -4.5)
+  -- (0, 0)}%
+
+% \begin{tikzpicture}
+%
+%   % Room's border.
+%   \draw[ultra thick] \cont;
+%
+%   % Clip the floor.
+%   \begin{scope}
+%     \clip \cont;
+%     \draw [xshift = 0.8cm, yshift=2.2cm, step=3, gray]
+%     (-0.8, -2.2) grid (27.5, 28.2);
+%   \end{scope}
+%
+%   \begin{scope}[xshift = 0.5cm, yshift = 0.5cm]
+%     % Bookcase.
+%     \draw[fill = gray] (0, 0) rectangle (8, 5);
+%   \end{scope}
+%
+%   \begin{scope}[xshift = 6cm, yshift = 11cm]
+%     % Desk.
+%     \draw[fill = gray] (0, 0)
+%     -- (12, 0)
+%     -- (12, 14)
+%     -- (6, 14)
+%     -- (6, 8) arc (0:-90:2)
+%     -- (0, 6)
+%     -- cycle;
+%     % Drawer.
+%     \draw[fill = gray] (6, 14.2) -- +(6, 0) -- +(6, 4.5)
+%     -- +(0, 4.5) -- cycle;
+%   \end{scope}
+%
+%   \begin{scope}[xshift = 22.8cm, yshift = 9.3cm]
+%     % Low cupboard.
+%     \draw[fill = gray] (0, 0) rectangle (5, 16.5);
+%   \end{scope}
+%
+% \end{tikzpicture}
+
+\begin{tikzpicture}[
+  furniture/.style = {
+    ultra thick,
+    fill = gray!50!blue
+  }]
+
+  % Room's border.
+  \draw[ultra thick] \cont;
+
+  % Draw the door.
+  \draw[very thick, dashed] (18.3, 0) arc (180:90:9);
+  \draw[very thick] (18.3 + 9, 0) -- +(0, 9);
+  \draw[ultra thick, white] (18.3, 0) -- +(9, 0);
+
+  % Cliping the floor.
+  \begin{scope}
+    \clip \cont;
+    \draw [xshift = 0.8cm, yshift=2.2cm, step=3, gray]
+    (-0.8, -2.2) grid (27.5, 28.2);
+  \end{scope}
+
+  \begin{scope}[xshift = 0.5cm, yshift = 8.5cm, rotate = -90]
+    % Bookcase.
+    \draw[furniture] (0, 0) rectangle (8, 5);
+  \end{scope}
+
+  \begin{scope}[xshift = 9cm, yshift = 22cm, rotate = -90]
+    % Desk.
+    \draw[furniture] (0, 0)
+    -- (12, 0)
+    -- (12, 14)
+    -- (6, 14)
+    -- (6, 8) arc (0:-90:2)
+    -- (0, 6)
+    -- cycle;
+    % Drawer.
+    \draw[furniture] (6, 14.2) -- +(6, 0) -- +(6, 4.5) --
+    +(0, 4.5) -- cycle;
+  \end{scope}
+
+  \begin{scope}[xshift = 22cm, yshift = 25cm, rotate = 90]
+    % Low cupboard.
+    \draw[furniture] (0, 0) rectangle (5, 16.5);
+  \end{scope}
+
+  \begin{scope}[
+    chair/.style = {
+      ultra thick,
+      fill = red,
+      rounded corners = 3em
+    }]
+    % Chairs.
+    \draw[xshift = 17cm, yshift = 17cm, chair]
+    (0, 0) rectangle (4.4, 4.4);
+    \draw[xshift = 1cm, yshift = 20cm, chair]
+    (0, 0) rectangle (4.4, 4.4);
+    \draw[xshift = 1cm, yshift = 15cm, chair]
+    (0, 0) rectangle (4.4, 4.4);
+    \draw[xshift = 1cm, yshift =10cm, chair]
+    (0, 0) rectangle (4.4, 4.4);
+  \end{scope}
+
+\end{tikzpicture}
