@@ -66,8 +66,8 @@
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{palatino}
-\usepackage{eulervm}
+%\usepackage{palatino}
+%\usepackage{eulervm}
 % \usepackage[scaled=0.8]{beramono}
 \usepackage{inconsolata}
 \usepackage{scrextend}
@@ -78,7 +78,7 @@
 \usepackage{filecontents}
 \usepackage{multirow}
 \usepackage{eurosym}
-\usepackage{amsfonts, amssymb, amsxtra, amsmath} % Não usar empheq.
+\usepackage{amsfonts, amssymb, amsxtra, amsmath, amsbsy} % Não usar empheq.
 % \usepackage{siunitx} % Tem conflito com o pgfcalendar e o calendar.
 % \usepackage{textcomp}
 % \usepackage{chemmacros} % Macros para fórmulas químicas
