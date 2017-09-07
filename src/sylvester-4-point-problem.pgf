@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale = 3]
+
+  \begin{scope}
+    \path[draw = gray!90] (-1, 0) edge[out = -75, in = -90] (+1, 0);
+    \path[draw = gray!90] (+1, 0) edge[out = 90, in = 105] (-1, 0);
+    \draw[fill = black, draw = black]
+      (-0.50,  0   ) circle (1pt) --
+      (+0.25, +0.25) circle (1pt) --
+      (+0.50, -0.25) circle (1pt) --
+      (+0,    -0.30) circle (1pt) -- (-0.5, 0);
+  \end{scope}
+
+  \begin{scope}[xshift = 2.5cm]
+    \path[draw = gray!90] (-1, 0) edge[out = -75, in = -90] (+1, 0);
+    \path[draw = gray!90] (+1, 0) edge[out = 90, in = 105] (-1, 0);
+    \draw[fill = black, draw = black]
+      (-0.50,  0   ) circle (1pt) --
+      (+0.25, +0.25) circle (1pt) --
+      (+0,    -0.30) circle (1pt) -- (-0.5, 0);
+    \draw[fill = black, draw = black] (+0.0, -0.0) circle (1pt);
+  \end{scope}
+
+\end{tikzpicture}

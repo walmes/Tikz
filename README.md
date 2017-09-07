@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 201 Tikz figures in this gallery.  Most of them were
+There are 202 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -11305,6 +11305,37 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \begin{axis}[xshift=8cm, samples=50]
     \addplot3[surf, domain=-2:2] {x^2-y^2};
   \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/sylvester-4-point-problem.png)
+
+  * [sylvester-4-point-problem.pgf](https://github.com/walmes/Tikz/blob/master/src/sylvester-4-point-problem.pgf)
+
+```tex
+\begin{tikzpicture}[scale = 3]
+
+  \begin{scope}
+    \path[draw = gray!90] (-1, 0) edge[out = -75, in = -90] (+1, 0);
+    \path[draw = gray!90] (+1, 0) edge[out = 90, in = 105] (-1, 0);
+    \draw[fill = black, draw = black]
+      (-0.50,  0   ) circle (1pt) --
+      (+0.25, +0.25) circle (1pt) --
+      (+0.50, -0.25) circle (1pt) --
+      (+0,    -0.30) circle (1pt) -- (-0.5, 0);
+  \end{scope}
+
+  \begin{scope}[xshift = 2.5cm]
+    \path[draw = gray!90] (-1, 0) edge[out = -75, in = -90] (+1, 0);
+    \path[draw = gray!90] (+1, 0) edge[out = 90, in = 105] (-1, 0);
+    \draw[fill = black, draw = black]
+      (-0.50,  0   ) circle (1pt) --
+      (+0.25, +0.25) circle (1pt) --
+      (+0,    -0.30) circle (1pt) -- (-0.5, 0);
+    \draw[fill = black, draw = black] (+0.0, -0.0) circle (1pt);
+  \end{scope}
+
 \end{tikzpicture}
 ```
 ****
