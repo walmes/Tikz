@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 203 Tikz figures in this gallery.  Most of them were
+There are 204 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
