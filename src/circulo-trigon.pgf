@@ -1,0 +1,14 @@
+\begin{tikzpicture}[
+  very thick,
+  scale = 10,
+  every node/.style = {scale = 3},
+  >=latex']
+\def\lim{1.2}
+\draw[->] (-\lim, 0) -- (\lim, 0);
+\draw[->] (0, -\lim) -- (0, \lim);
+\draw (0, 0) circle (1cm);
+\draw (0, 0 ) -- node [above, sloped, pos = 0.5] {$v$} (0.65, 0.45) circle (0.3pt);
+\draw[dashed] (0.65, 0.45) -- (0.65, 0) node[below] {$u_1$};
+\draw[dashed] (0.65, 0.45) -- (0, 0.45) node[left] {$u_2$};
+\draw (0.2, 0) arc (0:35:0.2) node[pos = 0.7, right] {$\theta$};
+\end{tikzpicture}
