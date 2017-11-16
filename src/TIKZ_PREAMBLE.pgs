@@ -1,4 +1,4 @@
-\documentclass{standalone}
+\documentclass[border=4mm]{standalone}
 
 %-----------------------------------------------------------------------
 % Incluídos pelo knitr.
@@ -66,7 +66,7 @@
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-%\usepackage{palatino}
+\usepackage{palatino}
 %\usepackage{eulervm}
 % \usepackage[scaled=0.8]{beramono}
 \usepackage{inconsolata}
