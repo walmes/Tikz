@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 202 Tikz figures in this gallery.  Most of them were
+There are 203 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -858,6 +858,28 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \end{scope}
 
 \end{tikzpicture} 
+```
+****
+
+![](./src/circulo-trigon.png)
+
+  * [circulo-trigon.pgf](https://github.com/walmes/Tikz/blob/master/src/circulo-trigon.pgf)
+
+```tex
+\begin{tikzpicture}[
+  very thick,
+  scale = 10,
+  every node/.style = {scale = 3},
+  >=latex']
+\def\lim{1.2}
+\draw[->] (-\lim, 0) -- (\lim, 0);
+\draw[->] (0, -\lim) -- (0, \lim);
+\draw (0, 0) circle (1cm);
+\draw (0, 0 ) -- node [above, sloped, pos = 0.5] {$v$} (0.65, 0.45) circle (0.3pt);
+\draw[dashed] (0.65, 0.45) -- (0.65, 0) node[below] {$u_1$};
+\draw[dashed] (0.65, 0.45) -- (0, 0.45) node[left] {$u_2$};
+\draw (0.2, 0) arc (0:35:0.2) node[pos = 0.7, right] {$\theta$};
+\end{tikzpicture}
 ```
 ****
 
@@ -1745,6 +1767,79 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \node[sinal, right of=v3] {$-$};
   \node[sinal, right of=v7] {$+$};
 \end{tikzpicture}
+```
+****
+
+![](./src/data-science-workflow.png)
+
+  * [data-science-workflow.pgf](https://github.com/walmes/Tikz/blob/master/src/data-science-workflow.pgf)
+
+```tex
+\tikzset{
+  every path/.style = {
+   ->,
+   > = stealth, 
+   rounded corners},
+  state/.style = {
+    fill = white,
+    text centered
+  },
+  node distance=1.25cm,
+  hlt/.style = {opacity = 0.7, line cap = round}
+}%
+
+\begin{tikzpicture}
+
+  \node[state] (formular) {Formular};
+  \node[state, right = 0.5cm of formular] (desenhar) {Desenhar};
+  \node[state, below right of = desenhar] (coletar) {Coletar};
+  \node[state, below right of = coletar] (armazenar) {Armazenar};
+  \node[state, below right of = armazenar] (importar) {Importar};
+  \node[state, above right of = importar] (manipular) {Arrumar};
+  \node[state, above right of = manipular] (transformar) {Transformar};
+  \node[state, above right = 0.3cm of transformar] (visualizar) {Visualizar};
+  \node[state, below right = 0.3cm of transformar] (modelar) {Modelar};
+  \node[state, right = 0.5cm of modelar] (comunicar) {Compreender};
+  \node[state, below of = comunicar] (agir) {Agir};
+
+  \path[draw] (formular) -- (desenhar);
+  \path[draw] (desenhar) -- (coletar);
+  \path[draw] (coletar) -- (armazenar);
+  \path[draw] (armazenar) -- (importar);
+  \path[draw] (importar) -- (manipular);
+  \path[draw] (manipular) -- (transformar);
+
+%   \path[draw] (transformar) edge[out=90, in=180] (visualizar);
+%   \path[draw] (visualizar) edge[out=0, in=90] (modelar);
+%   \path[draw] (modelar) edge[out=270, in=270] (transformar);
+
+  \path[draw] (transformar) edge[bend left=30] (visualizar);
+  \path[draw] (visualizar) edge[bend left=30] (modelar);
+  \path[draw] (modelar) edge[bend left=30] (transformar);
+
+  \path[draw] (modelar) -- (comunicar);
+  \path[draw] (comunicar) -- (agir);
+
+  \begin{pgfonlayer}{background}
+  \node[hlt, 
+    draw = blue,
+%     fill = blue,
+    fit = (desenhar)(importar),
+    label = {[blue!70]below:Cientista da Computa{\c c}{\~a}o}] {};
+  \node[hlt, 
+    draw = red,
+%     fill = red,
+    fit = (importar)(visualizar),
+    label = {[red!70]below:Estat{\'i}stico}] {};
+  \node[hlt, 
+    inner sep = 2em,
+    draw = black, 
+    fill = none,
+    fit = (formular)(importar)(comunicar), 
+    label = above:Cientista de Dados] {};
+  \end{pgfonlayer}
+
+\end{tikzpicture}%
 ```
 ****
 
