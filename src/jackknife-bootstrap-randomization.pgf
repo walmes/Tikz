@@ -1,0 +1,24 @@
+% http://www.tandfonline.com/doi/pdf/10.1207/S15327906MBR3404_2
+% Joseph Lee Rodgers (1999). The Bootstrap, the Jackknife, and the
+% Randomization Test: A Sampling Taxonomy, Multivariate Behavioral Research, 34:4, 441-456, 
+% DOI: 10.1207/S15327906MBR3404_2
+\begin{tikzpicture}[
+  square/.style = {
+    draw, 
+    minimum width = 4cm,
+    minimum height = 2cm,
+    text width = 2.8cm, 
+    text centered},
+]
+
+\node[square] (jack) {Jackknife};
+\node[square, right = 0.25ex of jack] (rand) {Testes de aleatoriza{\c c}{\~a}o};
+\node[square, below = 0.25ex of rand] (boot) {Bootstrap};
+\node[square, below = 0.25ex of jack] (null) {};
+
+\node at (jack.north) [above] {Subamostras};
+\node at (rand.north) [above] {Amostras completas};
+\node at (jack.west) [left, align = right] {Amostras sem\\ reposi{\c c}{\~a}o};
+\node at (null.west) [left, align = right] {Amostras com\\ reposi{\c c}{\~a}o};
+
+\end{tikzpicture}%

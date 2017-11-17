@@ -7,7 +7,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 204 Tikz figures in this gallery.  Most of them were
+There are 205 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5660,6 +5660,38 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \draw[<-, rounded corners, line width=1.25pt]
     (2.65,-1.4) |- ++(-0,-0.4) -| (controlhazard);
 \end{tikzpicture}
+```
+****
+
+![](./src/jackknife-bootstrap-randomization.png)
+
+  * [jackknife-bootstrap-randomization.pgf](https://github.com/walmes/Tikz/blob/master/src/jackknife-bootstrap-randomization.pgf)
+
+```tex
+% http://www.tandfonline.com/doi/pdf/10.1207/S15327906MBR3404_2
+% Joseph Lee Rodgers (1999). The Bootstrap, the Jackknife, and the
+% Randomization Test: A Sampling Taxonomy, Multivariate Behavioral Research, 34:4, 441-456, 
+% DOI: 10.1207/S15327906MBR3404_2
+\begin{tikzpicture}[
+  square/.style = {
+    draw, 
+    minimum width = 4cm,
+    minimum height = 2cm,
+    text width = 2.8cm, 
+    text centered},
+]
+
+\node[square] (jack) {Jackknife};
+\node[square, right = 0.25ex of jack] (rand) {Testes de aleatoriza{\c c}{\~a}o};
+\node[square, below = 0.25ex of rand] (boot) {Bootstrap};
+\node[square, below = 0.25ex of jack] (null) {};
+
+\node at (jack.north) [above] {Subamostras};
+\node at (rand.north) [above] {Amostras completas};
+\node at (jack.west) [left, align = right] {Amostras sem\\ reposi{\c c}{\~a}o};
+\node at (null.west) [left, align = right] {Amostras com\\ reposi{\c c}{\~a}o};
+
+\end{tikzpicture}%
 ```
 ****
 
