@@ -1,5 +1,13 @@
-# Tikz Gallery
-Prof. Walmes M. Zeviani  
+---
+title: "Tikz Gallery"
+author: "Prof. Walmes M. Zeviani"
+output:
+  html_document:
+    css: style.css
+    keep_md: true
+    toc: true
+    number_sections: false
+---
 
 
 
@@ -7,7 +15,7 @@ Prof. Walmes M. Zeviani
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 205 Tikz figures in this gallery.  Most of them were
+There are 206 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5452,6 +5460,48 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   node[dir] {Interface gr\'{a}fica} (wg2);
 \fi	
 
+\end{tikzpicture}
+```
+****
+
+![](./src/ibs.png)
+
+  * [ibs.pgf](https://github.com/walmes/Tikz/blob/master/src/ibs.pgf)
+
+```tex
+% Para fazer o quadrado.
+\newcommand{\thesquare}[3]{
+  \def\dmin{0.04}
+  \def\dmax{0.96}
+  \draw[xshift = #1, yshift = #2, fill = #3]
+    (\dmin, \dmin) -- (\dmax, \dmin) --
+    (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
+}
+
+% Definicao das cores.
+\definecolor{v3}{HTML}{0071FD}
+\definecolor{v2}{HTML}{7FB7FF}
+\definecolor{v1}{HTML}{FFFFFF}
+
+\begin{tikzpicture}
+  \def\dist{0cm}
+  \thesquare{\dist}{2cm}{v3}
+  \thesquare{\dist}{3cm}{v2}
+  \thesquare{\dist}{4cm}{v1}
+
+  \def\dist{1cm}
+  \thesquare{\dist}{2cm}{v2}
+  \thesquare{\dist}{3cm}{v1}
+  \thesquare{\dist}{4cm}{v2}
+
+  \def\dist{2cm}
+  \thesquare{\dist}{2cm}{v1}
+  \thesquare{\dist}{3cm}{v2}
+  \thesquare{\dist}{4cm}{v3}
+
+  \node[color = black] at (0.5, 4.5) {\Huge \textbf I};
+  \node[color = black] at (1.5, 3.5) {\Huge \textbf B};
+  \node[color = black] at (2.5, 2.5) {\Huge \textbf S};
 \end{tikzpicture}
 ```
 ****
