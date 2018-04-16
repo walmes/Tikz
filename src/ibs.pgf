@@ -1,17 +1,17 @@
 % Para fazer o quadrado.
-\newcommand{\thesquare}[3]{
+\newcommand{\thesquare}[3]{%
   \def\dmin{0.04}
   \def\dmax{0.96}
   \draw[xshift = #1, yshift = #2, fill = #3]
     (\dmin, \dmin) -- (\dmax, \dmin) --
     (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
-}
-
+}%
+%
 % Definicao das cores.
-\definecolor{v3}{HTML}{0071FD}
-\definecolor{v2}{HTML}{7FB7FF}
-\definecolor{v1}{HTML}{FFFFFF}
-
+\definecolor{v3}{HTML}{0071FD}%
+\definecolor{v2}{HTML}{7FB7FF}%
+\definecolor{v1}{HTML}{FFFFFF}%
+%
 \begin{tikzpicture}
   \def\dist{0cm}
   \thesquare{\dist}{2cm}{v3}
@@ -31,4 +31,4 @@
   \node[color = black] at (0.5, 4.5) {\Huge \textbf I};
   \node[color = black] at (1.5, 3.5) {\Huge \textbf B};
   \node[color = black] at (2.5, 2.5) {\Huge \textbf S};
-\end{tikzpicture}
+\end{tikzpicture}%
