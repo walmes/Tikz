@@ -1,10 +1,11 @@
-\tikzset{
-  basic/.style={draw, text width=2cm, drop shadow, rectangle, minimum
+\tikzset{%
+  basic/.style={draw, text width=2cm, %drop shadow, 
+    rectangle, minimum
     height=4ex},
   root/.style={basic, rounded corners=2pt, align=center, fill=gray!30},
   level 2/.style={basic, rounded corners=3pt, align=center,
     fill=gray!60, text width=6em},
-  level 3/.style={basic, align=center, fill=gray, text width=6em},
+  level 3/.style={basic, align=center, fill=gray, text width=16em},
   table/.style={
     matrix of nodes,
     % matrix of math nodes,
@@ -17,26 +18,37 @@
   },
   vertex/.style={circle, minimum size=4pt, inner sep=1pt, fill=gray!90},
   edge/.style={draw, -, black}
-}
+}%
 
-\begin{tikzpicture}[
-  level 1/.append style={sibling distance=70mm},
-  level 2/.append style={sibling distance=30mm},
+\begin{tikzpicture}[%
+  level 1/.append style={sibling distance=40mm},
+  level 2/.append style={sibling distance=60mm},
+  level 3/.append style={sibling distance=30mm},
   edge from parent/.style={-, draw},
   >=stealth]
 
-  \node[root] {Arranjos fatoriais}
+  \node[draw, circle] (ini) {}
   child {
-    node[level 2] (cru) {Cruzados}
-    child {node[level 3] (com) {Completos}}
-    child {node[level 3] (inc) {Incompletos}}
-    child {node[level 3] (fra) {Fracionados}}
+    node[level 2] (um) {Um fator}
   }
   child {
-    node[level 2] (ani) {Aninhados}
+    node[level 2] (dois) {Dois ou mais}
+    child {
+      node[level 2] (cru) {Cruzada}
+      child {node[level 2] (com) {Completo}}
+      child {node[level 2] (fra) {Fra{\c c}{\~a}o}}
+      child {node[level 2] (inc) {Incompleto}}
+    }
+    child {
+      node[level 2] (ani) {Aninhada}
+    }
   };
-  
-  \begin{scope}
+
+  \draw[dashed] ($(um.90)+(0,0.4)$)  node[left] {N\'umero de fatores} -- ($(dois.90)+(0,0.4)$);
+  \draw[dashed] ($(cru.90)+(0,0.4)$) node[left] {Forma de combinar} -- ($(ani.90)+(0,0.4)$);
+  \draw[dashed] ($(com.90)+(0,0.4)$) node[left] {Cruzamento} -- ($(inc.90)+(0,0.4)$);
+
+ \begin{scope}
     \matrix[table, below=2mm of com] (tbcom) {
             & $B_1$    & $B_2$    \\
       $A_1$ & $\times$ & $\times$ \\ 
@@ -117,7 +129,7 @@
     cx/.style={rounded corners=2pt, thin, align=center, fill=gray!30},
     level 1/.append style={sibling distance=8mm, level distance=10mm},
     edge from parent/.style={-, draw}]
-    \coordinate[below=of ani] (anip);
+    \coordinate[below=.75cm of ani] (anip);
     \node[cx, below left=0mm and 0mm of anip] (A1) {$A_1$}
     child {node[cx] {$B_2$}}
     child {node[cx] {$B_1$}};
@@ -125,6 +137,10 @@
     child {node[cx] {$B_5$}}
     child {node[cx] {$B_4$}}
     child {node[cx] {$B_3$}};
+    \node[cx, below=15mm of A2] (A3) {$A_3$}
+    child {node[cx] {$B_7$}}
+    child {node[cx] {$B_6$}};
+
   \end{scope}
 
-\end{tikzpicture}
+\end{tikzpicture}%

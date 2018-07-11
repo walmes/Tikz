@@ -3942,13 +3942,14 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   * [factorials.pgf](https://github.com/walmes/Tikz/blob/master/src/factorials.pgf)
 
 ```tex
-\tikzset{
-  basic/.style={draw, text width=2cm, drop shadow, rectangle, minimum
+\tikzset{%
+  basic/.style={draw, text width=2cm, %drop shadow, 
+    rectangle, minimum
     height=4ex},
   root/.style={basic, rounded corners=2pt, align=center, fill=gray!30},
   level 2/.style={basic, rounded corners=3pt, align=center,
     fill=gray!60, text width=6em},
-  level 3/.style={basic, align=center, fill=gray, text width=6em},
+  level 3/.style={basic, align=center, fill=gray, text width=16em},
   table/.style={
     matrix of nodes,
     % matrix of math nodes,
@@ -3961,26 +3962,37 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   },
   vertex/.style={circle, minimum size=4pt, inner sep=1pt, fill=gray!90},
   edge/.style={draw, -, black}
-}
+}%
 
-\begin{tikzpicture}[
-  level 1/.append style={sibling distance=70mm},
-  level 2/.append style={sibling distance=30mm},
+\begin{tikzpicture}[%
+  level 1/.append style={sibling distance=40mm},
+  level 2/.append style={sibling distance=60mm},
+  level 3/.append style={sibling distance=30mm},
   edge from parent/.style={-, draw},
   >=stealth]
 
-  \node[root] {Arranjos fatoriais}
+  \node[draw, circle] (ini) {}
   child {
-    node[level 2] (cru) {Cruzados}
-    child {node[level 3] (com) {Completos}}
-    child {node[level 3] (inc) {Incompletos}}
-    child {node[level 3] (fra) {Fracionados}}
+    node[level 2] (um) {Um fator}
   }
   child {
-    node[level 2] (ani) {Aninhados}
+    node[level 2] (dois) {Dois ou mais}
+    child {
+      node[level 2] (cru) {Cruzada}
+      child {node[level 2] (com) {Completo}}
+      child {node[level 2] (fra) {Fra{\c c}{\~a}o}}
+      child {node[level 2] (inc) {Incompleto}}
+    }
+    child {
+      node[level 2] (ani) {Aninhada}
+    }
   };
-  
-  \begin{scope}
+
+  \draw[dashed] ($(um.90)+(0,0.4)$)  node[left] {N\'umero de fatores} -- ($(dois.90)+(0,0.4)$);
+  \draw[dashed] ($(cru.90)+(0,0.4)$) node[left] {Forma de combinar} -- ($(ani.90)+(0,0.4)$);
+  \draw[dashed] ($(com.90)+(0,0.4)$) node[left] {Cruzamento} -- ($(inc.90)+(0,0.4)$);
+
+ \begin{scope}
     \matrix[table, below=2mm of com] (tbcom) {
             & $B_1$    & $B_2$    \\
       $A_1$ & $\times$ & $\times$ \\ 
@@ -4061,7 +4073,7 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     cx/.style={rounded corners=2pt, thin, align=center, fill=gray!30},
     level 1/.append style={sibling distance=8mm, level distance=10mm},
     edge from parent/.style={-, draw}]
-    \coordinate[below=of ani] (anip);
+    \coordinate[below=.75cm of ani] (anip);
     \node[cx, below left=0mm and 0mm of anip] (A1) {$A_1$}
     child {node[cx] {$B_2$}}
     child {node[cx] {$B_1$}};
@@ -4069,9 +4081,13 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     child {node[cx] {$B_5$}}
     child {node[cx] {$B_4$}}
     child {node[cx] {$B_3$}};
+    \node[cx, below=15mm of A2] (A3) {$A_3$}
+    child {node[cx] {$B_7$}}
+    child {node[cx] {$B_6$}};
+
   \end{scope}
 
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -5470,19 +5486,19 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 ```tex
 % Para fazer o quadrado.
-\newcommand{\thesquare}[3]{
+\newcommand{\thesquare}[3]{%
   \def\dmin{0.04}
   \def\dmax{0.96}
   \draw[xshift = #1, yshift = #2, fill = #3]
     (\dmin, \dmin) -- (\dmax, \dmin) --
     (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
-}
-
+}%
+%
 % Definicao das cores.
-\definecolor{v3}{HTML}{0071FD}
-\definecolor{v2}{HTML}{7FB7FF}
-\definecolor{v1}{HTML}{FFFFFF}
-
+\definecolor{v3}{HTML}{0071FD}%
+\definecolor{v2}{HTML}{7FB7FF}%
+\definecolor{v1}{HTML}{FFFFFF}%
+%
 \begin{tikzpicture}
   \def\dist{0cm}
   \thesquare{\dist}{2cm}{v3}
@@ -5502,7 +5518,7 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \node[color = black] at (0.5, 4.5) {\Huge \textbf I};
   \node[color = black] at (1.5, 3.5) {\Huge \textbf B};
   \node[color = black] at (2.5, 2.5) {\Huge \textbf S};
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -5750,12 +5766,12 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   * [leg.pgf](https://github.com/walmes/Tikz/blob/master/src/leg.pgf)
 
 ```tex
-\def\outercircle{(0,0) circle (5cm)}
-\def\innercircle{(-0.4,0.4) circle (4.2cm)}
-\def\leg{
+\def\outercircle{(0,0) circle (5cm)}%
+\def\innercircle{(-0.4,0.4) circle (4.2cm)}%
+\def\leg{%
   \node[font=\fontsize{165}{144}\selectfont, color=white]
-  at (0,0) (leg) {leg}}
-\def\orangecircle{(1.9,0.5) circle (0.8cm)}
+  at (0,0) (leg) {leg}}%
+\def\orangecircle{(1.9,0.5) circle (0.8cm)}%
 
 \begin{tikzpicture}
   \draw[color=white!50!black, fill=white, line width=5pt]
@@ -5763,7 +5779,7 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \draw[draw=none, fill=white!50!black] \innercircle;
   \draw[draw=none, fill=orange] \orangecircle;
   \leg;
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -9696,20 +9712,20 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
 ```tex
 % Para fazer o quadrado.
-\newcommand{\thesquare}[3]{
+\newcommand{\thesquare}[3]{%
   \def\dmin{0.04}
   \def\dmax{0.96}
   \draw[xshift = #1, yshift = #2, fill = #3]
     (\dmin, \dmin) -- (\dmax, \dmin) --
     (\dmax, \dmax) -- (\dmin, \dmax) -- (\dmin, \dmin);
-}
+}%
 
 % Definicao das cores.
-\definecolor{v3}{HTML}{006600}
-\definecolor{v2}{HTML}{009900}
-\definecolor{v1}{HTML}{66FF33}
-\definecolor{am}{HTML}{FFFF00}
-\definecolor{az}{HTML}{0000FF}
+\definecolor{v3}{HTML}{006600}%
+\definecolor{v2}{HTML}{009900}%
+\definecolor{v1}{HTML}{66FF33}%
+\definecolor{am}{HTML}{FFFF00}%
+\definecolor{az}{HTML}{0000FF}%
 
 \begin{tikzpicture}
   \def\dist{0cm}
@@ -9752,7 +9768,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[color = white] at (2.5, 2.5) {\Huge r};
   \node[color = white] at (3.5, 1.5) {\Huge a};
   \node[color = white] at (4.5, 0.5) {\Huge s};
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
