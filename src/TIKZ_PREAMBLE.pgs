@@ -84,6 +84,7 @@
 % \usepackage{chemmacros} % Macros para fórmulas químicas
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{ifthen}
 
 \usepackage{tikz}
 \usepackage{pgfplots}

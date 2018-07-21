@@ -1,0 +1,119 @@
+﻿\begin{tikzpicture}[domain=-0.25:10]
+
+  \begin{scope} %-------------------------------------------------------
+
+  %   \draw [step=1.0, gray, very thin, dotted] (0, 0) grid (10, 10);
+
+    \def\A{1};     % intercept.
+    \def\B{0.75};  % slope.
+    \def\S{0.5};   % variance.
+    \def\Q{0.64};  % quantile from normal for 90% lower area.
+    \def\D{0.44};  % density at \Q.
+
+    \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+    \draw[-latex] (0,-0.2) -- (0,10) node[above] (E) {$Y$};
+    \draw[color=black, thick] plot[id=x] function{\A + \Q + \B * x};
+
+    \node[above] (eta) at (5.5, 1) {$q_{0.9}(Y|x) = \theta_0 + \theta_1 x$};
+    \draw (eta) edge[bend right=10, ->, -latex] (5, \A + \Q + \B * 5);
+
+    \foreach \x in {1.0, 3.5, 6, 8.5}{
+      \def\sr{1.75}
+      \begin{scope}[
+        xshift=\x cm,
+        yshift=\A cm + \B * \x cm,
+        rotate=-90,
+        smooth,
+        domain=-\sr:\sr]
+
+        \draw[color=gray, dashed] (2.25, 0) -- (-2.25, 0);
+        \filldraw[fill opacity=0.3, fill=white!50!black]
+          plot[id=x, domain=-\sr:-\Q] function{exp(-(x)**2/\S)} -- +(0, -\D) -- (-\sr, 0);
+        \filldraw[fill opacity=0.3, fill=white!90!black]
+          plot[id=x, domain=-\Q:\sr] function{exp(-(x)**2/\S)} -- (-\Q, 0);
+
+        \ifthenelse{\lengthtest{\x pt=1 pt}}{
+          % YES.
+          \draw[align=center] (-2, 1) edge[out=0, in=160, ->, -latex] (-\Q, 0)
+            node[above] {90\% \\ quantile};
+          }{
+          % NO.
+        }
+      \end{scope}
+    }
+
+    % Reference lines.
+    \draw (0.0,  9.0) node[above right] {$y_\text{max}$ inside the observed $x$ domain} -- ++(10, 0);
+    \draw (9.8, -0.2) node[below] {$x_\text{opt}$} -- ++(0, 9.5);
+    \draw (9.8,  9.0) circle (2pt);
+
+    \draw (0.0,  7.5) node[above right] {$y_\text{max} - \Delta$} -- ++(8, 0);
+    \draw (7.8, -0.2) node[below] {$x_\text{lower}$} -- ++(0, 8);
+    \draw (7.8,  7.5) circle (2pt);
+
+    % Intervals.
+    \draw[|<->|] (-0.25, 9.0) -- ++(0.0, -1.5) node[left, midway] {$\Delta$};
+    \draw[|<->|] (  7.8, 0.2) -- ++(2.0,  0.0) node[above, midway, align=center] {Reference\\ interval};
+  \end{scope}
+
+  \begin{scope}[xshift=12cm] %------------------------------------------
+
+  %   \draw [step=1.0, gray, very thin, dotted] (0, 0) grid (10, 10);
+
+    \def\A{1.5};     % intercept.
+    \def\B{2.2};  % slope.
+    \def\C{-0.2};
+    \def\S{0.5};   % variance.
+    \def\Q{0.64};  % quantile from normal for 90% lower area.
+    \def\D{0.44};  % density at \Q.
+
+    \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
+    \draw[-latex] (0,-0.2) -- (0,10) node[above] (E) {$Y$};
+    \draw[color=black, thick] plot[id=x] function{\A + \Q + \B * x + \C * x**2};
+
+    % Reference lines.
+    \draw (0.0,  8.2) node[above right] {$y_\text{max}$ inside the observed $x$ domain} -- ++(5.8, 0);
+    \draw (5.5, -0.2) node[below] {$x_\text{opt}$} -- ++(0, 9.5);
+    \draw (5.5,  8.2) circle (2pt);
+
+    \draw (0.0,  6.7) node[above right] {$y_\text{max} - \Delta$} -- ++(8.4, 0);
+    \draw (8.2, -0.2) node[below] {$x_\text{upper}$} -- ++(0, 8);
+    \draw (8.2,  6.7) circle (2pt);
+
+    \draw (2.8, -0.2) node[below] {$x_\text{lower}$} -- ++(0, 8);
+    \draw (2.8,  6.7) circle (2pt);
+
+    \foreach \x in {1.0, 3.5, 6, 8.5}{
+      \def\sr{1.75}
+      \begin{scope}[
+        xshift=\x cm,
+        yshift=\A cm + \B * \x cm + \C * \x*\x cm,
+        rotate=-90,
+        smooth,
+        domain=-\sr:\sr]
+
+        \draw[color=gray, dashed] (2.25, 0) -- (-2.25, 0);
+        \filldraw[fill opacity=0.3, fill=white!50!black]
+          plot[id=x, domain=-\sr:-\Q] function{exp(-(x)**2/\S)} -- +(0, -\D) -- (-\sr, 0);
+        \filldraw[fill opacity=0.3, fill=white!90!black]
+          plot[id=x, domain=-\Q:\sr] function{exp(-(x)**2/\S)} -- (-\Q, 0);
+
+        \ifthenelse{\lengthtest{\x pt=1 pt}}{
+          % YES.
+          \draw[align=center] (-0.7, 1.5) edge[out=0, in=160, ->, -latex] (-\Q, 0)
+            node[above, fill=white] {90\% \\ quantile};
+          }{
+          % NO.
+        }
+      \end{scope}
+    }
+
+    % Intervals.
+    \draw[|<->|] (-0.25, 8.2) -- ++(0.0, -1.5) node[left, midway] {$\Delta$};
+    \draw[|<->|] (  2.8, 0.4) -- ++(5.4,  0.0) node[above, midway, align=center, fill=white] {Reference\\ interval};
+
+    \node[above, fill=white] (eta) at (7.5, 2) {$q_{0.9}(Y|x) = \theta_0 + \theta_1 x + \theta_2 x^2$};
+    \draw (eta) edge[bend left=10, ->, -latex] (8, \A + \Q + \B * 8 + \C * 8 * 8);
+  \end{scope}
+
+\end{tikzpicture}%
