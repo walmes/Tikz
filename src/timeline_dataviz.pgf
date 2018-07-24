@@ -1,0 +1,93 @@
+﻿\newcommand{\mybox}[1]{%
+   #1
+}%
+
+\newcommand{\mydraw}[7]{%
+  \coordinate (#1) at (#2, 0);
+  \draw[fill=black] (#1) circle (2pt);
+  \coordinate (#1_box) at ($ (#1)+(#3) $);
+  \node[
+    #4,
+    draw,
+    rounded corners=2pt,
+    fill=white,
+    align=left] (#1_text) at (#1_box) {\\ \mybox{#6}};
+  \path[draw, rounded corners=2pt] (#1) #7 (#1_box);
+  \node[
+    yshift=1pt,
+    right=0.25em,
+    fill=white,
+    font=\small] at (#1_text.north west) {#5};
+}%
+
+\begin{tikzpicture}[xscale=1]%
+  \draw[->, -latex'] (185.0, 0) -- (202.2, 0);
+  \draw[dashed] (184.0, 0) -- (185.0, 0);
+
+  \foreach \x in {185.0, 186.0, ..., 201.8} {
+    \draw (\x, -0.1) -- (\x, 0.1);
+  }
+
+  \mydraw{playfair}{184.0}{0, 2}{anchor=-170} {1700s - Willian Playfair}{
+    Gr\'afico de linhas, barras, setores.
+  }{--}
+
+  \mydraw{florence}{185.8}{0, 0.5}{anchor=-168}{1858 - Florence Nightingale}{
+    Diagamas coxcomb do ex\'ercito brit\^anico.
+  }{--}
+
+  \mydraw{minard}{186.1}{0, -0.8}{anchor=168}{1861 - Charles Minard}{
+    Ex\'ercito de Napole\~ao marcha para R\'ussia.
+  }{|-}
+
+  \mydraw{brinton}{191.4}{ -0.2,  3.8}{anchor=0}{1914 - Willard Brinton}{
+    \emph{Graphic methods for presenting facts}\\
+    Visualiza\c c\~ao para neg\'ocios.
+  }{|-}
+
+  \mydraw{bertin}{196.7}{0, 1.0}{anchor=-16}{1967 - Jacques Bertin}{
+    \emph{S\'emiologie graphique}\\
+    Teoria da vis. e 7 variáveis visuais.
+  }{--}
+
+  \mydraw{tufte}{198.3}{0, 3.5}{anchor=-20}{1983 - Edward Tufte}{
+    \emph{The visual display of quantitative information}\\
+    Rigor estat\'istico, clareza, design.
+  }{--}
+
+  \mydraw{mackinlay}{198.6}{0.2, 2.7}{anchor=180}{1986 - Jock Mackinlay}{
+    J. Bertin para a era da digital.
+  }{|-}
+
+  \mydraw{spear}{195.2}{0, -0.8}{anchor=30}{1952 - Mary Eleanor Spear}{
+    \emph{Charting statistics}\\
+    Boas pr\'aticas no Governo\\ Americano.
+  }{--}
+
+  \mydraw{tukey}{197.0}{0, -3.0}{anchor=24}{1970s - John Tukey}{
+    Vis. com computadores e vis.\\ explorat\'oria e confirmat\'oria.
+  }{|-}
+
+  \mydraw{hoje}{201.8}{0, -0.8}{anchor=150}{Hoje}{
+    Recursos para constru\c c\~ao de vis.\\
+    Vis. interativa e em tempo real\\
+    Dashboards
+  }{--}
+
+  \mydraw{cleveland}{198.4}{0, -4.8}{anchor=90}{1984 - W. Cleveland \& R. McGill}{
+    Medir percep\c c\~ao gr\'afica e vis. efetiva
+  }{--}
+
+  \mydraw{rensink}{201.0}{0, 0.7}{anchor=-90}{2010 - Ronald Rensink}{
+    Percep\c c\~ao $\cdot$ Lei de Weber\\
+    Efetividade gr\'afica
+  }{--}
+
+  \mydraw{wilkinson}{199.9}{0, -3.0}{anchor=150}{1999 - Leland Wilkinson}{
+    \emph{The gammar of graphics}
+  }{--}
+
+  \draw[|<->|, thick, red] (199.0, 0) --
+    (200.0, 0) node[midway, above=2pt, font=\footnotesize] {1900 -- 2000};
+
+\end{tikzpicture}%
