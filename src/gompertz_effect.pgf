@@ -4,9 +4,9 @@
   mypoints/.style={fill=white,draw=black},
   pil/.style={->, shorten <=2pt, shorten >=2pt
   }
-}
+}%
 
-\begin{tikzpicture}[>=latex, xscale=2, yscale=2]
+\begin{tikzpicture}[>=latex, xscale=2, yscale=2]%
   \def\tha{1}; \def\thc{4}; \def\thi{0.6}; \def\thq{0.75}
   \node at (3.1, 1.8) {$f(x) = \theta_0 \exp\{-\exp\{\theta_1 (x - \theta_2)\}\} $};
   \begin{scope}
@@ -36,4 +36,4 @@
       function{\tha*exp(-exp(-\thc*(x-(\thi+\i/5.0))))};
     \draw[->] (0.4,0.5) -- +(1,0) node[right] {$\theta_2$};
   \end{scope}
-\end{tikzpicture}
+\end{tikzpicture}%

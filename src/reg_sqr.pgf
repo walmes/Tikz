@@ -1,7 +1,7 @@
 %% http://tex.stackexchange.com/questions/87674/how-to-coherently-combine-3d-and-contour-plots-with-pgfplots
-\newcommand\expr[2]{5+#1^2+#2^2-0.9*#2*#1}
+\newcommand\expr[2]{5+#1^2+#2^2-0.9*#2*#1}%
 
-\begin{tikzpicture}
+\begin{tikzpicture}%
   \begin{axis}[
     domain=-2:2.5,
     domain y=-2:2.5,
@@ -48,4 +48,4 @@
       to[out=0, in=90] (axis cs:0,0,-2);
 
   \end{axis}
-\end{tikzpicture}
+\end{tikzpicture}%

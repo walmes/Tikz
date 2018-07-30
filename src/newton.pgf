@@ -1,6 +1,6 @@
 % https://tex.stackexchange.com/questions/87945/tikz-picture-shapes
 
-\tikzset{
+\tikzset{%
   pth/.style = {
     draw,
     ->,
@@ -207,4 +207,4 @@
 
 \end{scope}
 
-\end{tikzpicture}
+\end{tikzpicture}%
