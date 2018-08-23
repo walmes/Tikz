@@ -1,4 +1,4 @@
-﻿\newcommand{\mybox}[1]{%
+\newcommand{\mybox}[1]{%
    #1
 }%
 
@@ -14,9 +14,11 @@
     align=left] (#1_text) at (#1_box) {\\ \mybox{#6}};
   \path[draw, rounded corners=2pt] (#1) #7 (#1_box);
   \node[
-    yshift=1pt,
+    yshift=3pt,
     right=0.25em,
-    fill=white,
+    fill=orange!90!gray,
+    rounded corners=2pt,
+    minimum height=1.5em,
     font=\small] at (#1_text.north west) {#5};
 }%
 
@@ -28,16 +30,20 @@
     \draw (\x, -0.1) -- (\x, 0.1);
   }
 
-  \mydraw{playfair}{184.0}{0, 2}{anchor=-170} {1700s - Willian Playfair}{
+  \mydraw{playfair}{183.9}{0, 1.9}{anchor=-170} {1786 - Willian Playfair}{
     Gr\'afico de linhas, barras, setores.
   }{--}
 
-  \mydraw{florence}{185.8}{0, 0.5}{anchor=-168}{1858 - Florence Nightingale}{
-    Diagamas coxcomb do ex\'ercito brit\^anico.
+  \mydraw{snow}{185.4}{0, -2.5}{anchor=140}{1854 - John Snow}{
+    Mapeamento e descoberta\\ da fonte de c\'olera.
   }{--}
 
-  \mydraw{minard}{186.1}{0, -0.8}{anchor=168}{1861 - Charles Minard}{
-    Ex\'ercito de Napole\~ao marcha para R\'ussia.
+  \mydraw{florence}{185.8}{0, 0.5}{anchor=-168.5}{1858 - Florence Nightingale}{
+    Diagamas ``coxcomb'' do ex\'ercito brit\^anico.
+  }{--}
+
+  \mydraw{minard}{186.1}{0, -0.8}{anchor=158}{1861 - Charles Minard}{
+    Ex\'ercito de Napole\~ao\\ marcha para R\'ussia.
   }{|-}
 
   \mydraw{brinton}{191.4}{ -0.2,  3.8}{anchor=0}{1914 - Willard Brinton}{
@@ -47,16 +53,16 @@
 
   \mydraw{bertin}{196.7}{0, 1.0}{anchor=-16}{1967 - Jacques Bertin}{
     \emph{S\'emiologie graphique}\\
-    Teoria da vis. e 7 variáveis visuais.
+    Teoria da vis. e 7 variÃ¡veis visuais.
   }{--}
 
-  \mydraw{tufte}{198.3}{0, 3.5}{anchor=-20}{1983 - Edward Tufte}{
+  \mydraw{tufte}{198.3}{0, 3.7}{anchor=-20}{1983 - Edward Tufte}{
     \emph{The visual display of quantitative information}\\
     Rigor estat\'istico, clareza, design.
   }{--}
 
-  \mydraw{mackinlay}{198.6}{0.2, 2.7}{anchor=180}{1986 - Jock Mackinlay}{
-    J. Bertin para a era da digital.
+  \mydraw{mackinlay}{198.6}{0.2, 2.8}{anchor=180}{1986 - Jock Mackinlay}{
+    Tese sobre J. Bertin para a era da digital.
   }{|-}
 
   \mydraw{spear}{195.2}{0, -0.8}{anchor=30}{1952 - Mary Eleanor Spear}{
@@ -74,17 +80,18 @@
     Dashboards
   }{--}
 
-  \mydraw{cleveland}{198.4}{0, -4.8}{anchor=90}{1984 - W. Cleveland \& R. McGill}{
-    Medir percep\c c\~ao gr\'afica e vis. efetiva
+  \mydraw{cleveland}{198.4}{0, -5.2}{anchor=90}{1984 - W. Cleveland \& R. McGill}{
+    Medir percep\c c\~ao gr\'afica e vis. efetiva.
   }{--}
 
   \mydraw{rensink}{201.0}{0, 0.7}{anchor=-90}{2010 - Ronald Rensink}{
     Percep\c c\~ao $\cdot$ Lei de Weber\\
-    Efetividade gr\'afica
+    Efetividade gr\'afica.
   }{--}
 
   \mydraw{wilkinson}{199.9}{0, -3.0}{anchor=150}{1999 - Leland Wilkinson}{
-    \emph{The gammar of graphics}
+    \emph{The gammar of graphics}\\
+    Gram\'atica concisa para repres.\\ componentes gr\'aficos.
   }{--}
 
   \draw[|<->|, thick, red] (199.0, 0) --
