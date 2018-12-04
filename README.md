@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 210 Tikz figures in this gallery.  Most of them were
+There are 211 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -6879,6 +6879,167 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 ```
 ****
 
+![](./src/mindmap-dsbd.png)
+
+  * [mindmap-dsbd.pgf](https://github.com/walmes/Tikz/blob/master/src/mindmap-dsbd.pgf)
+
+```tex
+% To write mode detais next each circle.
+\newcommand*{\info}[4][16.3]{%
+  \node [annotation, #3, text width = #1em, inner sep = 1mm, draw] at (#2) {%
+    \list{\tiny$\triangleright$}{
+      \topsep=0pt
+      \itemsep=0pt
+      \parsep=0pt
+      \parskip=0pt
+      \labelwidth=8pt
+      \leftmargin=8pt
+      \itemindent=0pt
+      \labelsep=2pt}%
+    #4
+    \endlist
+  };
+}%
+% A boolean variable.
+\newif\ifshow % Creates boolean variable.
+\showtrue     % Set its value.
+% The draw.
+\begin{tikzpicture}
+
+  % Paleta: http://www.perbang.dk/rgb/E5003D/
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+  \path[mindmap,
+  concept color = gray,
+  text = white,
+  every node/.style = {concept, circular drop shadow},
+  level 1 concept/.append style = {level distance = 13em, inner sep = 2pt},
+  level 2 concept/.append style = {level distance = 9em, sibling angle = 50},
+  ]
+
+  node [concept] {
+    Especializa\c{c}\~{a}o em\\
+    {\LARGE Data Science \& Big Data}\\
+    UFPR} [clockwise from = 180]
+  %------------------------------------------
+  child [concept color = color1, black] {
+    node [concept] {Linguagens de programa{\c c}{\~a}o} [clockwise from = -120]
+    \ifshow
+    child {
+      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python}
+    }
+    child {
+      node [concept] (rprog) {Progra\-ma{\c c}{\~a}o com R}
+    }
+    child {
+      node [concept] (manip) {Manipula{\c c}{\~a}o e visualiza{\c c}{\~a}o de dados}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color2, text = black] {
+    node [concept] {Infra\-estrutura computacional} [clockwise from = 180]
+    \ifshow
+    child {
+      node [concept] {Infra\-estrutura de software}
+    }
+    child {
+      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem e redes}
+    }
+    child {
+      node [concept] {Processa\-mento distribuido}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color3, text = black] {
+    node [concept] {Infer{\^e}ncia estat{\'\i}stica} [clockwise from = 120]
+    \ifshow
+    child {
+      node [concept] {C{\'a}lculo, {\'a}lgebra e otimiza{\c c}{\~a}o}
+    }
+    child {
+      node [concept] {Proba\-bilidades e vari{\'a}veis aleat{\'o}rias}
+    }
+    child {
+      node [concept] {Infer{\^e}ncia estat{\'\i}stica e decis{\~a}o}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color4, text = black] {
+    node [concept] {Modelos estat{\'\i}sticos} [clockwise from=60]
+    \ifshow
+    child {
+      node [concept] {Modelos de regress{\~ a}o}
+    }
+    child {
+      node [concept] {Extens{\~o}es de modelos de regress{\~a}o}
+    }
+    child {
+      node [concept] {T{\'o}picos avan{\c c}ados em modelagem}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color5, text = black] {
+    node [concept] {Minera{\c c}{\~a}o de dados e aprendizado de m{\'a}quinas} [clockwise from = 0]
+    \ifshow
+    child {
+      node [concept] {Aprendizado supervisionado}
+    }
+    child {
+      node [concept] {Aprendizado n{\~a}o supervisionado}
+    }
+    child {
+      node [concept] {Minera{\c c}{\~a}o de texto e an{\'a}lise de redes}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color6, text = black] {
+    node [concept] {Processa\-mento de big data} [clockwise from = -60]
+    \ifshow
+    child {
+      node [concept] {Sistemas SLQ, NoSQL e NewSQL}
+    }
+    child {
+      node [concept] {Data warehouse, data cleaning e integra{\c c}{\~a}o}
+    }
+    child {
+      node [concept] {Plataformas de processamento em larga escala}
+    }
+    \fi
+  }
+  %------------------------------------------
+  ; % <-- ATTENTION.
+
+  % \info[7]{pyprg.west}{anchor = east}{%
+  % \item Fundamentos da linguagem
+  % \item Programa{\c c}{\~a}o com Numpy
+  % \item Importa{\c c}{\~a}o de dados
+  % }
+  %   \info[7]{rprog.west}{anchor = east}{%
+  % \item Fundamentos da linguagem
+  % \item Programa{\c c}{\~a}o funcional
+  % \item Importa{\c c}{\~a}o de dados
+  % }
+  %   \info[7]{manip.west}{anchor = east}{%
+  %     % \item[] Seit 2008
+  % \item Pandas e Matplotlib
+  % \item Tidyverse e Ggplot
+  % \item Gr{\' a}ficos interativos
+  % }
+
+\end{tikzpicture}
+```
+****
+
 ![](./src/mindmapImovel.png)
 
   * [mindmapImovel.pgf](https://github.com/walmes/Tikz/blob/master/src/mindmapImovel.pgf)
@@ -12558,9 +12719,11 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     align=left] (#1_text) at (#1_box) {\\ \mybox{#6}};
   \path[draw, rounded corners=2pt] (#1) #7 (#1_box);
   \node[
-    yshift=1pt,
+    yshift=3pt,
     right=0.25em,
-    fill=white,
+    fill=orange!90!gray,
+    rounded corners=2pt,
+    minimum height=1.5em,
     font=\small] at (#1_text.north west) {#5};
 }%
 
@@ -12572,16 +12735,20 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     \draw (\x, -0.1) -- (\x, 0.1);
   }
 
-  \mydraw{playfair}{184.0}{0, 2}{anchor=-170} {1700s - Willian Playfair}{
+  \mydraw{playfair}{183.9}{0, 1.9}{anchor=-170} {1786 - Willian Playfair}{
     Gr\'afico de linhas, barras, setores.
   }{--}
 
-  \mydraw{florence}{185.8}{0, 0.5}{anchor=-168}{1858 - Florence Nightingale}{
-    Diagamas coxcomb do ex\'ercito brit\^anico.
+  \mydraw{snow}{185.4}{0, -2.5}{anchor=140}{1854 - John Snow}{
+    Mapeamento e descoberta\\ da fonte de c\'olera.
   }{--}
 
-  \mydraw{minard}{186.1}{0, -0.8}{anchor=168}{1861 - Charles Minard}{
-    Ex\'ercito de Napole\~ao marcha para R\'ussia.
+  \mydraw{florence}{185.8}{0, 0.5}{anchor=-168.5}{1858 - Florence Nightingale}{
+    Diagamas ``coxcomb'' do ex\'ercito brit\^anico.
+  }{--}
+
+  \mydraw{minard}{186.1}{0, -0.8}{anchor=158}{1861 - Charles Minard}{
+    Ex\'ercito de Napole\~ao\\ marcha para R\'ussia.
   }{|-}
 
   \mydraw{brinton}{191.4}{ -0.2,  3.8}{anchor=0}{1914 - Willard Brinton}{
@@ -12591,16 +12758,16 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 
   \mydraw{bertin}{196.7}{0, 1.0}{anchor=-16}{1967 - Jacques Bertin}{
     \emph{S\'emiologie graphique}\\
-    Teoria da vis. e 7 variáveis visuais.
+    Teoria da vis. e 7 vari\'aveis visuais.
   }{--}
 
-  \mydraw{tufte}{198.3}{0, 3.5}{anchor=-20}{1983 - Edward Tufte}{
+  \mydraw{tufte}{198.3}{0, 3.7}{anchor=-20}{1983 - Edward Tufte}{
     \emph{The visual display of quantitative information}\\
     Rigor estat\'istico, clareza, design.
   }{--}
 
-  \mydraw{mackinlay}{198.6}{0.2, 2.7}{anchor=180}{1986 - Jock Mackinlay}{
-    J. Bertin para a era da digital.
+  \mydraw{mackinlay}{198.6}{0.2, 2.8}{anchor=180}{1986 - Jock Mackinlay}{
+    Tese sobre J. Bertin para a era da digital.
   }{|-}
 
   \mydraw{spear}{195.2}{0, -0.8}{anchor=30}{1952 - Mary Eleanor Spear}{
@@ -12618,17 +12785,18 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     Dashboards
   }{--}
 
-  \mydraw{cleveland}{198.4}{0, -4.8}{anchor=90}{1984 - W. Cleveland \& R. McGill}{
-    Medir percep\c c\~ao gr\'afica e vis. efetiva
+  \mydraw{cleveland}{198.4}{0, -5.2}{anchor=90}{1984 - W. Cleveland \& R. McGill}{
+    Medir percep\c c\~ao gr\'afica e vis. efetiva.
   }{--}
 
   \mydraw{rensink}{201.0}{0, 0.7}{anchor=-90}{2010 - Ronald Rensink}{
     Percep\c c\~ao $\cdot$ Lei de Weber\\
-    Efetividade gr\'afica
+    Efetividade gr\'afica.
   }{--}
 
   \mydraw{wilkinson}{199.9}{0, -3.0}{anchor=150}{1999 - Leland Wilkinson}{
-    \emph{The gammar of graphics}
+    \emph{The gammar of graphics}\\
+    Gram\'atica concisa para repres.\\ componentes gr\'aficos.
   }{--}
 
   \draw[|<->|, thick, red] (199.0, 0) --

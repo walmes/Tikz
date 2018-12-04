@@ -1,0 +1,153 @@
+% To write mode detais next each circle.
+\newcommand*{\info}[4][16.3]{%
+  \node [annotation, #3, text width = #1em, inner sep = 1mm, draw] at (#2) {%
+    \list{\tiny$\triangleright$}{
+      \topsep=0pt
+      \itemsep=0pt
+      \parsep=0pt
+      \parskip=0pt
+      \labelwidth=8pt
+      \leftmargin=8pt
+      \itemindent=0pt
+      \labelsep=2pt}%
+    #4
+    \endlist
+  };
+}%
+% A boolean variable.
+\newif\ifshow % Creates boolean variable.
+\showtrue     % Set its value.
+% The draw.
+\begin{tikzpicture}
+
+  % Paleta: http://www.perbang.dk/rgb/E5003D/
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+  \path[mindmap,
+  concept color = gray,
+  text = white,
+  every node/.style = {concept, circular drop shadow},
+  level 1 concept/.append style = {level distance = 13em, inner sep = 2pt},
+  level 2 concept/.append style = {level distance = 9em, sibling angle = 50},
+  ]
+
+  node [concept] {
+    Especializa\c{c}\~{a}o em\\
+    {\LARGE Data Science \& Big Data}\\
+    UFPR} [clockwise from = 180]
+  %------------------------------------------
+  child [concept color = color1, black] {
+    node [concept] {Linguagens de programa{\c c}{\~a}o} [clockwise from = -120]
+    \ifshow
+    child {
+      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python}
+    }
+    child {
+      node [concept] (rprog) {Progra\-ma{\c c}{\~a}o com R}
+    }
+    child {
+      node [concept] (manip) {Manipula{\c c}{\~a}o e visualiza{\c c}{\~a}o de dados}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color2, text = black] {
+    node [concept] {Infra\-estrutura computacional} [clockwise from = 180]
+    \ifshow
+    child {
+      node [concept] {Infra\-estrutura de software}
+    }
+    child {
+      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem e redes}
+    }
+    child {
+      node [concept] {Processa\-mento distribuido}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color3, text = black] {
+    node [concept] {Infer{\^e}ncia estat{\'\i}stica} [clockwise from = 120]
+    \ifshow
+    child {
+      node [concept] {C{\'a}lculo, {\'a}lgebra e otimiza{\c c}{\~a}o}
+    }
+    child {
+      node [concept] {Proba\-bilidades e vari{\'a}veis aleat{\'o}rias}
+    }
+    child {
+      node [concept] {Infer{\^e}ncia estat{\'\i}stica e decis{\~a}o}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color4, text = black] {
+    node [concept] {Modelos estat{\'\i}sticos} [clockwise from=60]
+    \ifshow
+    child {
+      node [concept] {Modelos de regress{\~ a}o}
+    }
+    child {
+      node [concept] {Extens{\~o}es de modelos de regress{\~a}o}
+    }
+    child {
+      node [concept] {T{\'o}picos avan{\c c}ados em modelagem}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color5, text = black] {
+    node [concept] {Minera{\c c}{\~a}o de dados e aprendizado de m{\'a}quinas} [clockwise from = 0]
+    \ifshow
+    child {
+      node [concept] {Aprendizado supervisionado}
+    }
+    child {
+      node [concept] {Aprendizado n{\~a}o supervisionado}
+    }
+    child {
+      node [concept] {Minera{\c c}{\~a}o de texto e an{\'a}lise de redes}
+    }
+    \fi
+  }
+  %------------------------------------------
+  child [concept color = color6, text = black] {
+    node [concept] {Processa\-mento de big data} [clockwise from = -60]
+    \ifshow
+    child {
+      node [concept] {Sistemas SLQ, NoSQL e NewSQL}
+    }
+    child {
+      node [concept] {Data warehouse, data cleaning e integra{\c c}{\~a}o}
+    }
+    child {
+      node [concept] {Plataformas de processamento em larga escala}
+    }
+    \fi
+  }
+  %------------------------------------------
+  ; % <-- ATTENTION.
+
+  % \info[7]{pyprg.west}{anchor = east}{%
+  % \item Fundamentos da linguagem
+  % \item Programa{\c c}{\~a}o com Numpy
+  % \item Importa{\c c}{\~a}o de dados
+  % }
+  %   \info[7]{rprog.west}{anchor = east}{%
+  % \item Fundamentos da linguagem
+  % \item Programa{\c c}{\~a}o funcional
+  % \item Importa{\c c}{\~a}o de dados
+  % }
+  %   \info[7]{manip.west}{anchor = east}{%
+  %     % \item[] Seit 2008
+  % \item Pandas e Matplotlib
+  % \item Tidyverse e Ggplot
+  % \item Gr{\' a}ficos interativos
+  % }
+
+\end{tikzpicture}
