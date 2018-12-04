@@ -45,13 +45,13 @@
     node [concept] {Linguagens de programa{\c c}{\~a}o} [clockwise from = -120]
     \ifshow
     child {
-      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python}
+      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python e R}
     }
     child {
-      node [concept] (rprog) {Progra\-ma{\c c}{\~a}o com R}
+      node [concept] (rprog) {\textit{ETL} e vizualiza{\c c}{\~a}o de dados}
     }
     child {
-      node [concept] (manip) {Manipula{\c c}{\~a}o e visualiza{\c c}{\~a}o de dados}
+      node [concept] (manip) {Relat{\'o}rios din{\^a}micos e \textit{web scraping}}
     }
     \fi
   }
@@ -72,16 +72,16 @@
   }
   %------------------------------------------
   child [concept color = color3, text = black] {
-    node [concept] {Infer{\^e}ncia estat{\'\i}stica} [clockwise from = 120]
+    node [concept] {Fundamentos de \textit{data science}} [clockwise from = 120]
     \ifshow
     child {
       node [concept] {C{\'a}lculo, {\'a}lgebra e otimiza{\c c}{\~a}o}
     }
     child {
-      node [concept] {Proba\-bilidades e vari{\'a}veis aleat{\'o}rias}
+      node [concept] {Proba\-bilidades e simula{\c c}{\~a}o computacional}
     }
     child {
-      node [concept] {Infer{\^e}ncia estat{\'\i}stica e decis{\~a}o}
+      node [concept] {\textit{Statistical learning} e m{\'e}todos de infer{\^e}ncia}
     }
     \fi
   }
@@ -90,10 +90,10 @@
     node [concept] {Modelos estat{\'\i}sticos} [clockwise from=60]
     \ifshow
     child {
-      node [concept] {Modelos de regress{\~ a}o}
+      node [concept] {Modelos de regress{\~ a}o e extens{\~o}es}
     }
     child {
-      node [concept] {Extens{\~o}es de modelos de regress{\~a}o}
+      node [concept] {Modelos preditivos n{\~a}o param{\'e}tricos}
     }
     child {
       node [concept] {T{\'o}picos avan{\c c}ados em modelagem}
@@ -102,13 +102,13 @@
   }
   %------------------------------------------
   child [concept color = color5, text = black] {
-    node [concept] {Minera{\c c}{\~a}o de dados e aprendizado de m{\'a}quinas} [clockwise from = 0]
+    node [concept] {Minera{\c c}{\~a}o de dados} [clockwise from = 0]
     \ifshow
     child {
-      node [concept] {Aprendizado supervisionado}
+      node [concept] {\textit{Machine learning} e \textit{deep learning}}
     }
     child {
-      node [concept] {Aprendizado n{\~a}o supervisionado}
+      node [concept] {\textit{Data mining} e engenharia de caractet{\'\i}sticas}
     }
     child {
       node [concept] {Minera{\c c}{\~a}o de texto e an{\'a}lise de redes}
@@ -117,16 +117,16 @@
   }
   %------------------------------------------
   child [concept color = color6, text = black] {
-    node [concept] {Processa\-mento de big data} [clockwise from = -60]
+    node [concept] {Plataformas de \textit{big data}} [clockwise from = -60]
     \ifshow
     child {
       node [concept] {Sistemas SLQ, NoSQL e NewSQL}
     }
     child {
-      node [concept] {Data warehouse, data cleaning e integra{\c c}{\~a}o}
+      node [concept] {\textit{Data warehouse}, \textit{data cleaning} e integra{\c c}{\~a}o}
     }
     child {
-      node [concept] {Plataformas de processamento em larga escala}
+      node [concept] {Processa\-mento em \textit{MapReduce}: \textit{Hadoop} e \textit{Spark}}
     }
     \fi
   }
