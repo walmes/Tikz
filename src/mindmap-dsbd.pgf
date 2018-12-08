@@ -1,4 +1,4 @@
-% To write mode detais next each circle.
+﻿% To write mode detais next each circle.
 \newcommand*{\info}[4][16.3]{%
   \node [annotation, #3, text width = #1em, inner sep = 1mm, draw] at (#2) {%
     \list{\tiny$\triangleright$}{
@@ -32,8 +32,8 @@
   concept color = gray,
   text = white,
   every node/.style = {concept, circular drop shadow},
-  level 1 concept/.append style = {level distance = 13em, inner sep = 2pt},
-  level 2 concept/.append style = {level distance = 9em, sibling angle = 50},
+  level 1 concept/.append style = {level distance = 14em, minimum size = 8em, inner sep = 2pt},
+  level 2 concept/.append style = {level distance = 9.5em, minimum size = 6em, sibling angle = 50},
   ]
 
   node [concept] {
@@ -42,13 +42,13 @@
     UFPR} [clockwise from = 180]
   %------------------------------------------
   child [concept color = color1, black] {
-    node [concept] {Linguagens de programa{\c c}{\~a}o} [clockwise from = -120]
+    node [concept] {Linguagens de\\ programa{\c c}{\~a}o} [clockwise from = -120]
     \ifshow
     child {
-      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python e R}
+      node [concept] (pyprg) {\textit{ETL} com Python e R}
     }
     child {
-      node [concept] (rprog) {\textit{ETL} e vizualiza{\c c}{\~a}o de dados}
+      node [concept] (rprog) {Vizualiza{\c c}{\~a}o de dados}
     }
     child {
       node [concept] (manip) {Relat{\'o}rios din{\^a}micos e \textit{web scraping}}
@@ -57,16 +57,17 @@
   }
   %------------------------------------------
   child [concept color = color2, text = black] {
-    node [concept] {Infra\-estrutura computacional} [clockwise from = 180]
+    node [concept] {Infraestrutura\\ computacional} [clockwise from = 180]
     \ifshow
     child {
       node [concept] {Infra\-estrutura de software}
     }
     child {
-      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem e redes}
+      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem}
     }
     child {
-      node [concept] {Processa\-mento distribuido}
+%       node [concept] {Processa\-mento de alto desempenho}
+      node [concept] {Computa{\c c}{\~ a}o de alta\\ performance}
     }
     \fi
   }
@@ -75,13 +76,15 @@
     node [concept] {Fundamentos de \textit{data science}} [clockwise from = 120]
     \ifshow
     child {
-      node [concept] {C{\'a}lculo, {\'a}lgebra e otimiza{\c c}{\~a}o}
+      node [concept] {Otimiza{\c c}{\~a}o}
     }
     child {
-      node [concept] {Proba\-bilidades e simula{\c c}{\~a}o computacional}
+      node [concept] {Proba\-bilidades e simula{\c c}{\~a}o}
+      % Processos estocasticos?
     }
     child {
-      node [concept] {\textit{Statistical learning} e m{\'e}todos de infer{\^e}ncia}
+%       node [concept] {\textit{Statistical learning} e m{\'e}todos de infer{\^e}ncia}
+      node [concept] {M{\'e}todos de infer{\^e}ncia}
     }
     \fi
   }
@@ -90,13 +93,13 @@
     node [concept] {Modelos estat{\'\i}sticos} [clockwise from=60]
     \ifshow
     child {
-      node [concept] {Modelos de regress{\~ a}o e extens{\~o}es}
+      node [concept] {Regress{\~ a}o e extens{\~o}es}
     }
     child {
-      node [concept] {Modelos preditivos n{\~a}o param{\'e}tricos}
+      node [concept] {S{\' e}ries temporais e confiabilidade}
     }
     child {
-      node [concept] {T{\'o}picos avan{\c c}ados em modelagem}
+      node [concept] {Modelos preditivos e t{\' o}picos avan{\c c}ados}
     }
     \fi
   }
@@ -105,10 +108,10 @@
     node [concept] {Minera{\c c}{\~a}o de dados} [clockwise from = 0]
     \ifshow
     child {
-      node [concept] {\textit{Machine learning} e \textit{deep learning}}
+      node [concept] {\textit{Machine learning}}
     }
     child {
-      node [concept] {\textit{Data mining} e engenharia de caractet{\'\i}sticas}
+      node [concept] {Engenharia de caractet{\'\i}sticas}
     }
     child {
       node [concept] {Minera{\c c}{\~a}o de texto e an{\'a}lise de redes}
@@ -120,13 +123,16 @@
     node [concept] {Plataformas de \textit{big data}} [clockwise from = -60]
     \ifshow
     child {
-      node [concept] {Sistemas SLQ, NoSQL e NewSQL}
+      node [concept] {SQL, NoSQL e NewSQL}
+    }
+%     child {
+%       node [concept] {\textit{Data cleaning}}
+%     }
+    child {
+      node [concept] {\textit{Data warehouse} e integra{\c c}{\~a}o}
     }
     child {
-      node [concept] {\textit{Data warehouse}, \textit{data cleaning} e integra{\c c}{\~a}o}
-    }
-    child {
-      node [concept] {Processa\-mento em \textit{MapReduce}: \textit{Hadoop} e \textit{Spark}}
+      node [concept] {\textit{MapReduce} com \textit{Hadoop} e \textit{Spark}}
     }
     \fi
   }
