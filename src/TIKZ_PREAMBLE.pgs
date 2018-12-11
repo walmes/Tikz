@@ -65,11 +65,22 @@
 
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{palatino}
-%\usepackage{eulervm}
+
+% \usepackage{palatino}
+% \usepackage{eulervm}
+\usepackage[condensed, math]{iwona}
 % \usepackage[scaled=0.8]{beramono}
-\usepackage{inconsolata}
+% \usepackage{inconsolata}
+% \usepackage[sfdefault,condensed]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
+
+\usepackage[T1]{fontenc}
+
+% \usepackage[none]{ubuntu}
+% \usepackage[light]{ubuntu}
+% \renewcommand{\ttdefault}{ubuntumono}
+% \renewcommand{\ttfamily}{\small\fontUbuntuMono}
+% \renewcommand{\familydefault}{\fontUbuntuLight}
+
 \usepackage{scrextend}
 % \changefontsizes[11pt]{8pt}
 \usepackage{array}
