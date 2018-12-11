@@ -1856,20 +1856,20 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \node at ( 70:5.00) {Biologia};
   \node at (110:5.00) {Marketing};
   \node at ( 60:4.25) {Economia};
-  \node at (120:4.25) {ComunicaÃ§Ã£o};
-  \node at ( 90:4.25) {GestÃ£o};
+  \node at (120:4.25) {Comunica{\c c}{\~a}o};
+  \node at ( 90:4.25) {Gest{\~a}o};
 
-  \node at ( 05:4.0) {ProgramaÃ§Ã£o};
-  \node at (-05:4.5) {AlgorÃ­tmos};
+  \node at ( 05:4.0) {Programa{\c c}{\~a}o};
+  \node at (-05:4.5) {Algor{\'\i}tmos};
   \node at (-15:5.0) {Bancos de dados};
-  \node at (-50:3.5) {ComputaÃ§Ã£o em nÃºvem};
+  \node at (-50:3.5) {Computa{\c c}{\~a}o em n{\'u}vem};
   \node at (-60:4.5) {Machine learning};
 
-  \node at (175:4.0) {VisualizaÃ§Ã£o};
-  \node at (185:4.5) {OtimizaÃ§Ã£o};
-  \node at (195:5.0) {InferÃªncia estatÃ­stica};
-  \node at (230:3.5) {AnÃ¡lise multivariada};
-  \node at (240:4.5) {Modelagem estatÃ­stica};
+  \node at (175:4.0) {Visualiza{\c c}{\~a}o};
+  \node at (185:4.5) {Otimiza{\c c}{\~a}o};
+  \node at (195:5.0) {Infer{\^e}ncia estat{\'\i}stica};
+  \node at (230:3.5) {An{\'a}lise multivariada};
+  \node at (240:4.5) {Modelagem estat{\'\i}stica};
 
 \end{scope}
 
