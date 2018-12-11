@@ -1,0 +1,91 @@
+% References:
+% https://www.oreilly.com/library/view/python-data-science/9781491912126/assets/pyds_00in01.png
+% https://i.pinimg.com/originals/ca/4d/02/ca4d0248ae5831b0e9b0a2da9f7ba4e3.png
+% https://www.altius.co.uk/app/uploads/2018/07/data-science-venn-diagram.jpg
+% https://i.pinimg.com/originals/fc/61/40/fc61405983965a5ce1bea0e8a353d6f2.png
+% https://4.bp.blogspot.com/-G6EgWv_i9ns/V-FxPixL_tI/AAAAAAAAMHk/LQN1JN8lc9MnKuD-G_2PY6a9c0MEcyeDwCLcB/s1600/datascience_skills_venn_diagram2.png
+% https://www.researchgate.net/publication/313020352/figure/fig7/AS:455507778510851@1485612925120/The-Venn-diagram-for-data-science-graphic-by-author-based-on-Conway-2010_W640.jpg
+%
+% TODO: https://www.researchgate.net/publication/313020352_Think_big_learning_contexts_algorithms_and_data_science/figures?lo=1
+\begin{tikzpicture}[%
+  every path/.style = {
+   ->,
+   > = stealth, 
+   rounded corners},
+  state/.style = {
+    fill = white,
+    text centered
+  },
+  node distance=1.25cm]
+
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+\begin{scope}[
+  opacity = 1,
+  fill opacity = 0.25,
+  text opacity = 1,
+  text width = 6em,
+  text centered]
+
+  \def\firstcircle{(90:2.75cm) circle (3.5cm)}
+  \def\secondcircle{(210:2.75cm) circle (3.5cm)}
+  \def\thirdcircle{(330:2.75cm) circle (3.5cm)}
+  \draw [fill = color6] \firstcircle;
+  \draw [fill = color4] \secondcircle;
+  \draw [fill = color2] \thirdcircle;
+
+\end{scope}
+
+\begin{scope}[minimum width = 1em, text width = 5.0em, text centered]
+
+  \node[state] (int) at ( 90:5.5) {\emph{Intui{\c c}{\~ a}o e viabilidade}};
+  \node[state] (val) at (210:5.0) {\emph{Solu{\c c}{\~ a}o e valida{\c c}{\~ a}o}};
+  \node[state] (aut) at (-30:5.0) {\emph{Automa{\c c}{\~ a}o e escala}};
+
+  \node (con) at (90:3) {Dom{\' i}nio de\\ conhecimento};
+  \node (est) at (210:3) {Matem{\' a}tica \& Estat{\' i}stica};
+  \node[text width = 7em] (hac) at (-30:3) {Habilidades de\\ computa{\c c}{\~ a}o};
+
+  \node[color = red] (sof) at (30:2) {Processamento tradicional};
+  \node[color = red] (pes) at (150:2) {Pesquisa tradicional};
+  \node[color = red] (mac) at (-90:2) {Zona perigosa};
+
+  \node (ds) at (0:0) {\large Data Science};
+
+\end{scope}
+
+\begin{scope}[
+  every node/.style = {
+    text centered,
+    font = \footnotesize,
+    text width = 5em
+  }]
+
+  \node at ( 50:3.50) {Engenharia};
+  \node at (130:3.50) {Direito};
+  \node at ( 70:5.00) {Biologia};
+  \node at (110:5.00) {Marketing};
+  \node at ( 60:4.25) {Economia};
+  \node at (120:4.25) {ComunicaÃ§Ã£o};
+  \node at ( 90:4.25) {GestÃ£o};
+
+  \node at ( 05:4.0) {ProgramaÃ§Ã£o};
+  \node at (-05:4.5) {AlgorÃ­tmos};
+  \node at (-15:5.0) {Bancos de dados};
+  \node at (-50:3.5) {ComputaÃ§Ã£o em nÃºvem};
+  \node at (-60:4.5) {Machine learning};
+
+  \node at (175:4.0) {VisualizaÃ§Ã£o};
+  \node at (185:4.5) {OtimizaÃ§Ã£o};
+  \node at (195:5.0) {InferÃªncia estatÃ­stica};
+  \node at (230:3.5) {AnÃ¡lise multivariada};
+  \node at (240:4.5) {Modelagem estatÃ­stica};
+
+\end{scope}
+
+\end{tikzpicture}%

@@ -1,0 +1,69 @@
+\begin{tikzpicture}[
+  every path/.style = {
+   ->,
+   > = stealth, 
+   rounded corners},
+  state/.style = {
+    fill = white,
+    text centered
+  },
+  node distance=1.25cm]
+
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+\begin{scope}[
+  opacity = 1,
+  fill opacity = 0.25,
+  text opacity = 1,
+  text width = 6em,
+  text centered]
+
+  \def\firstcircle{(90:2.75cm) circle (3.5cm)}
+  \def\secondcircle{(210:2.75cm) circle (3.5cm)}
+  \def\thirdcircle{(330:2.75cm) circle (3.5cm)}
+  \draw [fill = color6] \firstcircle
+    node [above = 10em] {Conhecimento de neg{\' o}cios};
+  \draw [fill = color4] \secondcircle
+    node [below left = 10em] {Matem{\' a}tica \& Estat{\' i}stica};
+  \draw [fill = color2] \thirdcircle
+    node [below right = 10em] {Computa{\c c}{\~a}o};
+
+\end{scope}
+
+\begin{scope}
+
+  \node[state] (intuir) at (90:4.5) {Intuir};
+  \node[state] (formular) at (60:3.5) {Formular};
+  \node[state] (desenhar) at (30:2) {Desenhar};
+  \node[state] (coletar)  at (-10:4)  {Coletar};
+  \node[state] (armazenar) at (-30:5) {Armazenar};
+  \node[state] (importar) at (-55:4.5) {Importar};
+  \node[state] (manipular) at (-70:2.75) {Arrumar};
+  \node[state] (transformar) at (-90:1.5) {Transformar};
+  \node[state] (visualizar) at (-140:4.5) {Visualizar};
+  \node[state] (modelar) at (-170:4) {Modelar};
+  \node[state] (comunicar) at (150:2) {Compreender};
+  \node[state] (agir) at (120:3.5) {Agir};
+
+  \path[draw] (formular) edge[out=-90, in=90] (desenhar);
+  \path[draw] (desenhar) edge[out=-90, in=90] (coletar);
+  \path[draw] (coletar) edge[out=-70, in=90] (armazenar);
+  \path[draw] (armazenar) edge[out=-90, in=0] (importar);
+  \path[draw] (importar) edge[out=180, in=-90] (manipular);
+  \path[draw] (manipular) edge[out=90, in=-90] (transformar);
+  \path[draw] (transformar) edge[out=-120, in=0] (visualizar);
+  \path[draw] (visualizar) edge[out=160, in=210] (modelar);
+  \path[draw] (modelar) edge[out=0, in=140] (transformar);
+  \path[draw] (modelar) edge[out=90, in=-90] (comunicar);
+  \path[draw] (comunicar) edge[out=90, in=-90] (agir);
+  \path[draw] (agir) edge[out=90, in=180] (intuir);
+  \path[draw] (intuir) edge[out=0, in=90] (formular);
+
+\end{scope}
+
+\end{tikzpicture}%
