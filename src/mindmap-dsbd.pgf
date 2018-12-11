@@ -28,6 +28,10 @@
   \definecolor{color5}{HTML}{9033FF}
   \definecolor{color6}{HTML}{E5003D}
 
+  \draw [dashed] (0, -27em) -- (0, 27em);
+  \node at (30:10em) {1\textsuperscript{o} semestre};
+  \node at (150:10em) {2\textsuperscript{o} semestre};
+
   \path[mindmap,
   concept color = gray,
   text = white,
@@ -36,7 +40,7 @@
     level distance = 13.5em,
     minimum size = 8.5em,
     inner sep = 2pt,
-    font = \fontsize{10pt}{12pt}\selectfont},
+    font = \fontsize{11pt}{12pt}\selectfont},
   level 2 concept/.append style = {
     level distance = 10em,
     minimum size = 5.95em,
@@ -55,7 +59,7 @@
 %     node [concept] {Descoberta e comunica{\c c}{\~a}o de dados} [clockwise from = -120]
     \ifshow
     child {
-      node [concept] (pyprg) {\textit{ETL} com Python e R}
+      node [concept] (pyprg) {\textit{ETL} com \textit{Python} e \textit{R}}
     }
     child {
       node [concept] (rprog) {Vizualiza{\c c}{\~a}o de dados}
@@ -96,7 +100,7 @@
       % Processos estocasticos? Resampling methods?
     }
     child {
-      node [concept] {Amostragem\\ e\\ planejamento}
+      node [concept] {Amostragem e\\ planejamento}
     }
     child {
 %       node [concept] {\textit{Statistical learning} e m{\'e}todos de infer{\^e}ncia}
@@ -109,7 +113,7 @@
     node [concept] {Modelos estat{\'\i}sticos} [clockwise from = -80]
     \ifshow
     child {
-%       node [concept] {Regress{\~ a}o linear, nÃ£o linear e extens{\~o}es}
+%       node [concept] {Regress{\~ a}o linear, nÃÂ£o linear e extens{\~o}es}
       node [concept] {Regress{\~ a}o e extens{\~o}es}
     }
     child {
@@ -119,8 +123,8 @@
     child {
 %       node [concept] {Modelos preditivos e t{\' o}picos avan{\c c}ados}
       node [concept] {M{\' e}todos multivariados}
-      % Modelo nÃ£o lineares ou smooth.
-      % MÃ©todos multivariados.
+      % Modelo nÃÂ£o lineares ou smooth.
+      % MÃÂ©todos multivariados.
     }
     \fi
   }
@@ -147,7 +151,7 @@
     node [concept] {Plataformas de \textit{big data}} [clockwise from = 160]
     \ifshow
     child {
-      node [concept] {SQL, NoSQL e NewSQL}
+      node [concept] {\textit{SQL}, \textit{NoSQL} e \textit{NewSQL}}
     }
 %     child {
 %       node [concept] {\textit{Data cleaning}}
@@ -184,61 +188,63 @@
 
 % \draw[>->, >=latex] (0, 26.75em) [draw, color = gray, thick] arc (90:-265:26.75em);
 
-\node at (88.000:27em) [anchor = west] {Estruturas de programa{\c c}{\~a}o};
-\node at (70.341:27em) [anchor = west] {Introdu{\c c}{\~a}o ao R e Python};
-\node at (62.133:27em) [anchor = west] {Programa{\c c}{\~a}o funcional};
-\node at (55.727:27em) [anchor = west] {Estat{\'\i}stica descritiva};
-\node at (50.236:27em) [anchor = west] {\textit{Extract, transform and load}};
-\node at (45.317:27em) [anchor = west] {\textit{pandas} e \textit{tidyverse}};
-\node at (40.793:27em) [anchor = west] {\textit{matplotlib} e \textit{ggplot}};
-\node at (36.559:27em) [anchor = west] {Gr{\'a}ficos interativos};
-\node at (32.546:27em) [anchor = west] {\textit{Dashboards}};
-\node at (28.705:27em) [anchor = west] {Pesquisa reproduz{\'\i}vel};
+\node at (88.000:27em) [anchor = west] {L{\'o}gica e estruturas de programa{\c c}{\~a}o};
+\node at (69.277:27em) [anchor = west] {Introdu{\c c}{\~a}o ao \textit{R} e \textit{Python}};
+\node at (60.601:27em) [anchor = west] {\textit{Extract, transform and load (ETL)}};
+\node at (53.817:27em) [anchor = west] {Estat{\'\i}stica descritiva};
+\node at (47.992:27em) [anchor = west] {An{\'a}lise gr{\'a}fica explorat{\'o}ria};
+\node at (42.763:27em) [anchor = west] {\textit{pandas} e \textit{tidyverse}};
+\node at (37.943:27em) [anchor = west] {\textit{matplotlib} e \textit{ggplot2}};
+\node at (33.421:27em) [anchor = west] {Gr{\'a}ficos interativos};
+\node at (29.124:27em) [anchor = west] {Comunica{\c c}{\~a}o e relat{\'o}rios din{\^a}micos};
 \node at (25.000:27em) [anchor = west] {\textit{Web scraping}};
 \node at (15.000:27em) [anchor = west] {Componentes de \textit{hardware}};
 \node at (9.936:27em) [anchor = west] {\textit{Shell script}};
 \node at (4.949:27em) [anchor = west] {Tarefas agendadas};
 \node at (0.000:27em) [anchor = west] {Redes e seguran{\c c}a};
 \node at (-4.949:27em) [anchor = west] {Protocolos de conex{\~a}o};
-\node at (-9.936:27em) [anchor = west] {Paralelismo};
-\node at (-15.000:27em) [anchor = west] {Distribui{\c c}{\~a}o};
-\node at (-25.000:27em) [anchor = west] {C{\'a}lculo diferencial/integral};
+\node at (-9.936:27em) [anchor = west] {Processamento em paralelo};
+\node at (-15.000:27em) [anchor = west] {Processamento distribu{\'\i}do};
+\node at (-25.000:27em) [anchor = west] {C{\'a}lculo diferencial e integral};
 \node at (-29.124:27em) [anchor = west] {{\'A}lgebra linear};
 \node at (-33.421:27em) [anchor = west] {M{\'e}todos de otimiza{\c c}{\~a}o};
-\node at (-37.943:27em) [anchor = west] {Probabilidade};
-\node at (-42.763:27em) [anchor = west] {Distribui{\c c}{\~o}es de probabilidade};
+\node at (-37.943:27em) [anchor = west] {Teoria de probabilidade};
+\node at (-42.763:27em) [anchor = west] {Modelos de distribui{\c c}{\~o}es};
 \node at (-47.992:27em) [anchor = west] {Processos estoc{\'a}sticos};
 \node at (-53.817:27em) [anchor = west] {M{\'e}todos de amostragem};
 \node at (-60.601:27em) [anchor = west] {Procedimentos de infer{\^e}ncia};
 \node at (-69.277:27em) [anchor = west] {Testes de hip{\'o}tese};
 \node at (-88.000:27em) [anchor = west] {Estima{\c c}{\~a}o e previs{\~a}o};
 \node at (215.000:27em) [anchor = east] {An{\'a}lise de vari{\^a}ncia};
-\node at (218.263:27em) [anchor = east] {An{\'a}lise fatorial};
-\node at (221.679:27em) [anchor = east] {An{\'a}lise de sobreviv{\^e}ncia};
-\node at (225.288:27em) [anchor = east] {S{\'e}ries temporais};
-\node at (229.143:27em) [anchor = east] {Sele{\c c}{\~a}o de modelos};
-\node at (233.325:27em) [anchor = east] {{\'A}rvores de decis{\~a}o};
-\node at (237.966:27em) [anchor = east] {Modelos lineares generalizados};
-\node at (243.307:27em) [anchor = east] {Splines e GAMs};
-\node at (249.904:27em) [anchor = east] {Regress{\~a}o n{\~a}o linear};
+\node at (217.930:27em) [anchor = east] {An{\'a}lise fatorial};
+\node at (220.982:27em) [anchor = east] {Estat{\'\i}stica espacial};
+\node at (224.182:27em) [anchor = east] {S{\'e}ries temporais};
+\node at (227.567:27em) [anchor = east] {An{\'a}lise de sobreviv{\^e}ncia};
+\node at (231.187:27em) [anchor = east] {Sele{\c c}{\~a}o de modelos};
+\node at (235.116:27em) [anchor = east] {{\'A}rvores de decis{\~a}o};
+\node at (239.478:27em) [anchor = east] {Modelos lineares generalizados};
+\node at (244.497:27em) [anchor = east] {Splines e GAMs};
+\node at (250.680:27em) [anchor = east] {Regress{\~a}o n{\~a}o linear};
 \node at (260.000:27em) [anchor = east] {Regress{\~a}o linear};
-\node at (160.000:27em) [anchor = east] {Redes bayesianas};
-\node at (165.137:27em) [anchor = east] {Modelagem de t{\'o}picos};
-\node at (170.153:27em) [anchor = east] {An{\'a}lise de sentimentos};
-\node at (175.095:27em) [anchor = east] {Regras de associa{\c c}{\~a}o};
-\node at (180.000:27em) [anchor = east] {Redu{\c c}{\~a}o de dimens{\~a}o};
-\node at (184.905:27em) [anchor = east] {\textit{Deep learning}};
-\node at (189.847:27em) [anchor = east] {Ensembles};
-\node at (194.863:27em) [anchor = east] {Aprendizado n{\~a}o supevisionado};
-\node at (200.000:27em) [anchor = east] {Aprendizado supevisionado};
+\node at (160.000:27em) [anchor = east] {Redes Bayesianas};
+\node at (164.120:27em) [anchor = east] {Modelagem de t{\'o}picos};
+\node at (168.158:27em) [anchor = east] {An{\'a}lise de sentimentos};
+\node at (172.137:27em) [anchor = east] {Regras de associa{\c c}{\~a}o};
+\node at (176.078:27em) [anchor = east] {Redu{\c c}{\~a}o de dimens{\~a}o};
+\node at (180.000:27em) [anchor = east] {An{\'a}lise de agrupamento};
+\node at (183.922:27em) [anchor = east] {\textit{Deep learning}};
+\node at (187.863:27em) [anchor = east] {\textit{Ensembles}};
+\node at (191.842:27em) [anchor = east] {Algor{\'\i}tmos de regress{\~a}o};
+\node at (195.880:27em) [anchor = east] {Algor{\'\i}tmos de classifica{\c c}{\~a}o};
+\node at (200.000:27em) [anchor = east] {Tipos de aprendizado};
 \node at (100.000:27em) [anchor = east] {\textit{Hadoop} e \textit{Spark}};
-\node at (111.028:27em) [anchor = east] {Processamento em \textit{MapReduce}};
-\node at (118.115:27em) [anchor = east] {Integra{\c c}{\~a}o de dados};
-\node at (123.840:27em) [anchor = east] {\textit{Data cleaning}};
-\node at (128.813:27em) [anchor = east] {\textit{Data warehouse}};
-\node at (133.299:27em) [anchor = east] {BD em NoSQL};
-\node at (137.438:27em) [anchor = east] {ETL em SQL};
-\node at (141.319:27em) [anchor = east] {Modelagem de BD};
-\node at (145.000:27em) [anchor = east] {Modelo relacional};
-
+\node at (110.096:27em) [anchor = east] {Processamento em \textit{MapReduce}};
+\node at (116.693:27em) [anchor = east] {Integra{\c c}{\~a}o de dados};
+\node at (122.034:27em) [anchor = east] {\textit{Data cleaning}};
+\node at (126.675:27em) [anchor = east] {\textit{Data warehouse}};
+\node at (130.857:27em) [anchor = east] {Banco de dados \textit{NoSQL}};
+\node at (134.712:27em) [anchor = east] {\textit{ETL} em \textit{SQL}};
+\node at (138.321:27em) [anchor = east] {Modelagem de banco de dados};
+\node at (141.737:27em) [anchor = east] {Modelo relacional};
+\node at (145.000:27em) [anchor = east] {Sistemas de BD para \textit{Big Data}};
 \end{tikzpicture}
