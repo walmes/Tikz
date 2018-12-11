@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 211 Tikz figures in this gallery.  Most of them were
+There are 213 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -1775,6 +1775,182 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \node[sinal, right of=v3] {$-$};
   \node[sinal, right of=v7] {$+$};
 \end{tikzpicture}
+```
+****
+
+![](./src/data-science-venn-1.png)
+
+  * [data-science-venn-1.pgf](https://github.com/walmes/Tikz/blob/master/src/data-science-venn-1.pgf)
+
+```tex
+% References:
+% https://www.oreilly.com/library/view/python-data-science/9781491912126/assets/pyds_00in01.png
+% https://i.pinimg.com/originals/ca/4d/02/ca4d0248ae5831b0e9b0a2da9f7ba4e3.png
+% https://www.altius.co.uk/app/uploads/2018/07/data-science-venn-diagram.jpg
+% https://i.pinimg.com/originals/fc/61/40/fc61405983965a5ce1bea0e8a353d6f2.png
+% https://4.bp.blogspot.com/-G6EgWv_i9ns/V-FxPixL_tI/AAAAAAAAMHk/LQN1JN8lc9MnKuD-G_2PY6a9c0MEcyeDwCLcB/s1600/datascience_skills_venn_diagram2.png
+% https://www.researchgate.net/publication/313020352/figure/fig7/AS:455507778510851@1485612925120/The-Venn-diagram-for-data-science-graphic-by-author-based-on-Conway-2010_W640.jpg
+%
+% TODO: https://www.researchgate.net/publication/313020352_Think_big_learning_contexts_algorithms_and_data_science/figures?lo=1
+\begin{tikzpicture}[%
+  every path/.style = {
+   ->,
+   > = stealth, 
+   rounded corners},
+  state/.style = {
+    fill = white,
+    text centered
+  },
+  node distance=1.25cm]
+
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+\begin{scope}[
+  opacity = 1,
+  fill opacity = 0.25,
+  text opacity = 1,
+  text width = 6em,
+  text centered]
+
+  \def\firstcircle{(90:2.75cm) circle (3.5cm)}
+  \def\secondcircle{(210:2.75cm) circle (3.5cm)}
+  \def\thirdcircle{(330:2.75cm) circle (3.5cm)}
+  \draw [fill = color6] \firstcircle;
+  \draw [fill = color4] \secondcircle;
+  \draw [fill = color2] \thirdcircle;
+
+\end{scope}
+
+\begin{scope}[minimum width = 1em, text width = 5.0em, text centered]
+
+  \node[state] (int) at ( 90:5.5) {\emph{Intui{\c c}{\~ a}o e viabilidade}};
+  \node[state] (val) at (210:5.0) {\emph{Solu{\c c}{\~ a}o e valida{\c c}{\~ a}o}};
+  \node[state] (aut) at (-30:5.0) {\emph{Automa{\c c}{\~ a}o e escala}};
+
+  \node (con) at (90:3) {Dom{\' i}nio de\\ conhecimento};
+  \node (est) at (210:3) {Matem{\' a}tica \& Estat{\' i}stica};
+  \node[text width = 7em] (hac) at (-30:3) {Habilidades de\\ computa{\c c}{\~ a}o};
+
+  \node[color = red] (sof) at (30:2) {Processamento tradicional};
+  \node[color = red] (pes) at (150:2) {Pesquisa tradicional};
+  \node[color = red] (mac) at (-90:2) {Zona perigosa};
+
+  \node (ds) at (0:0) {\large Data Science};
+
+\end{scope}
+
+\begin{scope}[
+  every node/.style = {
+    text centered,
+    font = \footnotesize,
+    text width = 5em
+  }]
+
+  \node at ( 50:3.50) {Engenharia};
+  \node at (130:3.50) {Direito};
+  \node at ( 70:5.00) {Biologia};
+  \node at (110:5.00) {Marketing};
+  \node at ( 60:4.25) {Economia};
+  \node at (120:4.25) {ComunicaÃ§Ã£o};
+  \node at ( 90:4.25) {GestÃ£o};
+
+  \node at ( 05:4.0) {ProgramaÃ§Ã£o};
+  \node at (-05:4.5) {AlgorÃ­tmos};
+  \node at (-15:5.0) {Bancos de dados};
+  \node at (-50:3.5) {ComputaÃ§Ã£o em nÃºvem};
+  \node at (-60:4.5) {Machine learning};
+
+  \node at (175:4.0) {VisualizaÃ§Ã£o};
+  \node at (185:4.5) {OtimizaÃ§Ã£o};
+  \node at (195:5.0) {InferÃªncia estatÃ­stica};
+  \node at (230:3.5) {AnÃ¡lise multivariada};
+  \node at (240:4.5) {Modelagem estatÃ­stica};
+
+\end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/data-science-venn-2.png)
+
+  * [data-science-venn-2.pgf](https://github.com/walmes/Tikz/blob/master/src/data-science-venn-2.pgf)
+
+```tex
+\begin{tikzpicture}[
+  every path/.style = {
+   ->,
+   > = stealth, 
+   rounded corners},
+  state/.style = {
+    fill = white,
+    text centered
+  },
+  node distance=1.25cm]
+
+  \definecolor{color1}{HTML}{E7AD00}
+  \definecolor{color2}{HTML}{A5CC19}
+  \definecolor{color3}{HTML}{33B29A}
+  \definecolor{color4}{HTML}{3380FF}
+  \definecolor{color5}{HTML}{9033FF}
+  \definecolor{color6}{HTML}{E5003D}
+
+\begin{scope}[
+  opacity = 1,
+  fill opacity = 0.25,
+  text opacity = 1,
+  text width = 6em,
+  text centered]
+
+  \def\firstcircle{(90:2.75cm) circle (3.5cm)}
+  \def\secondcircle{(210:2.75cm) circle (3.5cm)}
+  \def\thirdcircle{(330:2.75cm) circle (3.5cm)}
+  \draw [fill = color6] \firstcircle
+    node [above = 10em] {Conhecimento de neg{\' o}cios};
+  \draw [fill = color4] \secondcircle
+    node [below left = 10em] {Matem{\' a}tica \& Estat{\' i}stica};
+  \draw [fill = color2] \thirdcircle
+    node [below right = 10em] {Computa{\c c}{\~a}o};
+
+\end{scope}
+
+\begin{scope}
+
+  \node[state] (intuir) at (90:4.5) {Intuir};
+  \node[state] (formular) at (60:3.5) {Formular};
+  \node[state] (desenhar) at (30:2) {Desenhar};
+  \node[state] (coletar)  at (-10:4)  {Coletar};
+  \node[state] (armazenar) at (-30:5) {Armazenar};
+  \node[state] (importar) at (-55:4.5) {Importar};
+  \node[state] (manipular) at (-70:2.75) {Arrumar};
+  \node[state] (transformar) at (-90:1.5) {Transformar};
+  \node[state] (visualizar) at (-140:4.5) {Visualizar};
+  \node[state] (modelar) at (-170:4) {Modelar};
+  \node[state] (comunicar) at (150:2) {Compreender};
+  \node[state] (agir) at (120:3.5) {Agir};
+
+  \path[draw] (formular) edge[out=-90, in=90] (desenhar);
+  \path[draw] (desenhar) edge[out=-90, in=90] (coletar);
+  \path[draw] (coletar) edge[out=-70, in=90] (armazenar);
+  \path[draw] (armazenar) edge[out=-90, in=0] (importar);
+  \path[draw] (importar) edge[out=180, in=-90] (manipular);
+  \path[draw] (manipular) edge[out=90, in=-90] (transformar);
+  \path[draw] (transformar) edge[out=-120, in=0] (visualizar);
+  \path[draw] (visualizar) edge[out=160, in=210] (modelar);
+  \path[draw] (modelar) edge[out=0, in=140] (transformar);
+  \path[draw] (modelar) edge[out=90, in=-90] (comunicar);
+  \path[draw] (comunicar) edge[out=90, in=-90] (agir);
+  \path[draw] (agir) edge[out=90, in=180] (intuir);
+  \path[draw] (intuir) edge[out=0, in=90] (formular);
+
+\end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -6914,105 +7090,139 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \definecolor{color5}{HTML}{9033FF}
   \definecolor{color6}{HTML}{E5003D}
 
+  \draw [dashed] (0, -27em) -- (0, 27em);
+  \node at (30:10em) {1\textsuperscript{o} semestre};
+  \node at (150:10em) {2\textsuperscript{o} semestre};
+
   \path[mindmap,
   concept color = gray,
   text = white,
-  every node/.style = {concept, circular drop shadow},
-  level 1 concept/.append style = {level distance = 13em, inner sep = 2pt},
-  level 2 concept/.append style = {level distance = 9em, sibling angle = 50},
+  every node/.style = {concept, circular drop shadow, color = white},
+  level 1 concept/.append style = {
+    level distance = 13.5em,
+    minimum size = 8.5em,
+    inner sep = 2pt,
+    font = \fontsize{11pt}{12pt}\selectfont},
+  level 2 concept/.append style = {
+    level distance = 10em,
+    minimum size = 5.95em,
+    sibling angle = 40},
   ]
 
   node [concept] {
     Especializa\c{c}\~{a}o em\\
     {\LARGE Data Science \& Big Data}\\
-    UFPR} [clockwise from = 180]
+    UFPR} [clockwise from = 60]
   %------------------------------------------
   child [concept color = color1, black] {
-    node [concept] {Linguagens de programa{\c c}{\~a}o} [clockwise from = -120]
+%     node [concept] {Linguagens de\\ programa{\c c}{\~a}o} [clockwise from = -120]
+    node [concept] {Explora{\c c}{\~a}o e comunica{\c c}{\~a}o de dados} [clockwise from = 120]
+%     node [concept] {Compreens{\~a}o e comunica{\c c}{\~a}o de dados} [clockwise from = -120]
+%     node [concept] {Descoberta e comunica{\c c}{\~a}o de dados} [clockwise from = -120]
     \ifshow
     child {
-      node [concept] (pyprg) {Progra\-ma{\c c}{\~a}o com Python}
+      node [concept] (pyprg) {\textit{ETL} com \textit{Python} e \textit{R}}
     }
     child {
-      node [concept] (rprog) {Progra\-ma{\c c}{\~a}o com R}
+      node [concept] (rprog) {Vizualiza{\c c}{\~a}o de dados}
     }
     child {
-      node [concept] (manip) {Manipula{\c c}{\~a}o e visualiza{\c c}{\~a}o de dados}
+      node [concept] (manip) {Relat{\'o}rios din{\^a}micos}
+    }
+    child {
+      node [concept] (manip) {\textit{Web scraping}}
     }
     \fi
   }
   %------------------------------------------
   child [concept color = color2, text = black] {
-    node [concept] {Infra\-estrutura computacional} [clockwise from = 180]
+    node [concept] {Infraestrutura\\ computacional} [clockwise from = 40]
     \ifshow
     child {
       node [concept] {Infra\-estrutura de software}
     }
     child {
-      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem e redes}
+      node [concept] {Computa{\c c}{\~a}o em n{\'u}vem}
     }
     child {
-      node [concept] {Processa\-mento distribuido}
+      node [concept] {Processa\-mento de alta performance}
+%       node [concept] {Computa{\c c}{\~ a}o de alta\\ performance}
     }
     \fi
   }
   %------------------------------------------
   child [concept color = color3, text = black] {
-    node [concept] {Infer{\^e}ncia estat{\'\i}stica} [clockwise from = 120]
+    node [concept] {Fundamentos para \textit{data science}} [clockwise from = 0]
     \ifshow
     child {
-      node [concept] {C{\'a}lculo, {\'a}lgebra e otimiza{\c c}{\~a}o}
+      node [concept] {Otimiza{\c c}{\~a}o}
     }
     child {
-      node [concept] {Proba\-bilidades e vari{\'a}veis aleat{\'o}rias}
+      node [concept] {Proba\-bilidades e simula{\c c}{\~a}o}
+      % Processos estocasticos? Resampling methods?
     }
     child {
-      node [concept] {Infer{\^e}ncia estat{\'\i}stica e decis{\~a}o}
+      node [concept] {Amostragem e\\ planejamento}
+    }
+    child {
+%       node [concept] {\textit{Statistical learning} e m{\'e}todos de infer{\^e}ncia}
+      node [concept] {M{\'e}todos de infer{\^e}ncia}
     }
     \fi
   }
   %------------------------------------------
   child [concept color = color4, text = black] {
-    node [concept] {Modelos estat{\'\i}sticos} [clockwise from=60]
+    node [concept] {Modelos estat{\'\i}sticos} [clockwise from = -80]
     \ifshow
     child {
-      node [concept] {Modelos de regress{\~ a}o}
+%       node [concept] {Regress{\~ a}o linear, nÃÂ£o linear e extens{\~o}es}
+      node [concept] {Regress{\~ a}o e extens{\~o}es}
     }
     child {
-      node [concept] {Extens{\~o}es de modelos de regress{\~a}o}
+%       node [concept] {S{\' e}ries temporais e confiabilidade}
+      node [concept] {\textit{Forecasting} e sobreviv{\^ e}ncia}
     }
     child {
-      node [concept] {T{\'o}picos avan{\c c}ados em modelagem}
+%       node [concept] {Modelos preditivos e t{\' o}picos avan{\c c}ados}
+      node [concept] {M{\' e}todos multivariados}
+      % Modelo nÃÂ£o lineares ou smooth.
+      % MÃÂ©todos multivariados.
     }
     \fi
   }
   %------------------------------------------
   child [concept color = color5, text = black] {
-    node [concept] {Minera{\c c}{\~a}o de dados e aprendizado de m{\'a}quinas} [clockwise from = 0]
+    node [concept] {Minera{\c c}{\~a}o de dados} [clockwise from = -120]
     \ifshow
     child {
-      node [concept] {Aprendizado supervisionado}
+      node [concept] {\textit{Machine learning}}
     }
     child {
-      node [concept] {Aprendizado n{\~a}o supervisionado}
+      node [concept] {Engenharia de caractet{\'\i}sticas}
     }
     child {
-      node [concept] {Minera{\c c}{\~a}o de texto e an{\'a}lise de redes}
+      node [concept] {Minera{\c c}{\~a}o de texto}
+    }
+    child {
+      node [concept] {An{\'a}lise de redes}
     }
     \fi
   }
   %------------------------------------------
   child [concept color = color6, text = black] {
-    node [concept] {Processa\-mento de big data} [clockwise from = -60]
+    node [concept] {Plataformas de \textit{big data}} [clockwise from = 160]
     \ifshow
     child {
-      node [concept] {Sistemas SLQ, NoSQL e NewSQL}
+      node [concept] {\textit{SQL}, \textit{NoSQL} e \textit{NewSQL}}
+    }
+%     child {
+%       node [concept] {\textit{Data cleaning}}
+%     }
+    child {
+      node [concept] {\textit{Data warehouse} e integra{\c c}{\~a}o}
     }
     child {
-      node [concept] {Data warehouse, data cleaning e integra{\c c}{\~a}o}
-    }
-    child {
-      node [concept] {Plataformas de processamento em larga escala}
+      node [concept] {\textit{MapReduce} com \textit{Hadoop} e \textit{Spark}}
     }
     \fi
   }
@@ -7036,6 +7246,69 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   % \item Gr{\' a}ficos interativos
   % }
 
+%   \draw [color = gray!40] circle (27em);
+
+% \draw[>->, >=latex] (0, 26.75em) [draw, color = gray, thick] arc (90:-265:26.75em);
+
+\node at (88.000:27em) [anchor = west] {L{\'o}gica e estruturas de programa{\c c}{\~a}o};
+\node at (69.277:27em) [anchor = west] {Introdu{\c c}{\~a}o ao \textit{R} e \textit{Python}};
+\node at (60.601:27em) [anchor = west] {\textit{Extract, transform and load (ETL)}};
+\node at (53.817:27em) [anchor = west] {Estat{\'\i}stica descritiva};
+\node at (47.992:27em) [anchor = west] {An{\'a}lise gr{\'a}fica explorat{\'o}ria};
+\node at (42.763:27em) [anchor = west] {\textit{pandas} e \textit{tidyverse}};
+\node at (37.943:27em) [anchor = west] {\textit{matplotlib} e \textit{ggplot2}};
+\node at (33.421:27em) [anchor = west] {Gr{\'a}ficos interativos};
+\node at (29.124:27em) [anchor = west] {Comunica{\c c}{\~a}o e relat{\'o}rios din{\^a}micos};
+\node at (25.000:27em) [anchor = west] {\textit{Web scraping}};
+\node at (15.000:27em) [anchor = west] {Componentes de \textit{hardware}};
+\node at (9.936:27em) [anchor = west] {\textit{Shell script}};
+\node at (4.949:27em) [anchor = west] {Tarefas agendadas};
+\node at (0.000:27em) [anchor = west] {Redes e seguran{\c c}a};
+\node at (-4.949:27em) [anchor = west] {Protocolos de conex{\~a}o};
+\node at (-9.936:27em) [anchor = west] {Processamento em paralelo};
+\node at (-15.000:27em) [anchor = west] {Processamento distribu{\'\i}do};
+\node at (-25.000:27em) [anchor = west] {C{\'a}lculo diferencial e integral};
+\node at (-29.124:27em) [anchor = west] {{\'A}lgebra linear};
+\node at (-33.421:27em) [anchor = west] {M{\'e}todos de otimiza{\c c}{\~a}o};
+\node at (-37.943:27em) [anchor = west] {Teoria de probabilidade};
+\node at (-42.763:27em) [anchor = west] {Modelos de distribui{\c c}{\~o}es};
+\node at (-47.992:27em) [anchor = west] {Processos estoc{\'a}sticos};
+\node at (-53.817:27em) [anchor = west] {M{\'e}todos de amostragem};
+\node at (-60.601:27em) [anchor = west] {Procedimentos de infer{\^e}ncia};
+\node at (-69.277:27em) [anchor = west] {Testes de hip{\'o}tese};
+\node at (-88.000:27em) [anchor = west] {Estima{\c c}{\~a}o e previs{\~a}o};
+\node at (215.000:27em) [anchor = east] {An{\'a}lise de vari{\^a}ncia};
+\node at (217.930:27em) [anchor = east] {An{\'a}lise fatorial};
+\node at (220.982:27em) [anchor = east] {Estat{\'\i}stica espacial};
+\node at (224.182:27em) [anchor = east] {S{\'e}ries temporais};
+\node at (227.567:27em) [anchor = east] {An{\'a}lise de sobreviv{\^e}ncia};
+\node at (231.187:27em) [anchor = east] {Sele{\c c}{\~a}o de modelos};
+\node at (235.116:27em) [anchor = east] {{\'A}rvores de decis{\~a}o};
+\node at (239.478:27em) [anchor = east] {Modelos lineares generalizados};
+\node at (244.497:27em) [anchor = east] {Splines e GAMs};
+\node at (250.680:27em) [anchor = east] {Regress{\~a}o n{\~a}o linear};
+\node at (260.000:27em) [anchor = east] {Regress{\~a}o linear};
+\node at (160.000:27em) [anchor = east] {Redes Bayesianas};
+\node at (164.120:27em) [anchor = east] {Modelagem de t{\'o}picos};
+\node at (168.158:27em) [anchor = east] {An{\'a}lise de sentimentos};
+\node at (172.137:27em) [anchor = east] {Regras de associa{\c c}{\~a}o};
+\node at (176.078:27em) [anchor = east] {Redu{\c c}{\~a}o de dimens{\~a}o};
+\node at (180.000:27em) [anchor = east] {An{\'a}lise de agrupamento};
+\node at (183.922:27em) [anchor = east] {\textit{Deep learning}};
+\node at (187.863:27em) [anchor = east] {\textit{Ensembles}};
+\node at (191.842:27em) [anchor = east] {Algor{\'\i}tmos de regress{\~a}o};
+\node at (195.880:27em) [anchor = east] {Algor{\'\i}tmos de classifica{\c c}{\~a}o};
+\node at (200.000:27em) [anchor = east] {Tipos de aprendizado};
+\node at (100.000:27em) [anchor = east] {\textit{Hadoop} e \textit{Spark}};
+\node at (110.096:27em) [anchor = east] {Processamento em \textit{MapReduce}};
+\node at (116.693:27em) [anchor = east] {Integra{\c c}{\~a}o de dados};
+\node at (122.034:27em) [anchor = east] {\textit{Data cleaning}};
+\node at (126.675:27em) [anchor = east] {\textit{Data warehouse}};
+\node at (130.857:27em) [anchor = east] {Banco de dados \textit{NoSQL}};
+\node at (134.712:27em) [anchor = east] {\textit{ETL} em \textit{SQL}};
+\node at (138.321:27em) [anchor = east] {Modelagem de banco de dados};
+\node at (141.737:27em) [anchor = east] {Modelo relacional};
+\node at (145.000:27em) [anchor = east] {Sistemas de BD para \textit{Big Data}};
 \end{tikzpicture}
 ```
 ****
