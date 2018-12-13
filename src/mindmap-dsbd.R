@@ -28,8 +28,10 @@ txt1 <- c(
     "Comunicação e relatórios dinâmicos",
     "\\textit{Web scraping}")
 txt2 <- c(
-    "Componentes de \\textit{hardware}",
-    "\\textit{Shell script}",
+    # "Componentes de \\textit{hardware}",
+    "Sistemas de alto desempenho",
+    # "\\textit{Shell script}",
+    "Linhas de comando",
     "Tarefas agendadas",
     "Redes e segurança",
     "Protocolos de conexão",

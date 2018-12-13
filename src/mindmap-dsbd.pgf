@@ -113,7 +113,7 @@
     node [concept] {Modelos estat{\'\i}sticos} [clockwise from = -80]
     \ifshow
     child {
-%       node [concept] {Regress{\~ a}o linear, nÃÂ£o linear e extens{\~o}es}
+%       node [concept] {Regress{\~ a}o linear, nÃÂÃÂ£o linear e extens{\~o}es}
       node [concept] {Regress{\~ a}o e extens{\~o}es}
     }
     child {
@@ -123,8 +123,8 @@
     child {
 %       node [concept] {Modelos preditivos e t{\' o}picos avan{\c c}ados}
       node [concept] {M{\' e}todos multivariados}
-      % Modelo nÃÂ£o lineares ou smooth.
-      % MÃÂ©todos multivariados.
+      % Modelo nÃÂÃÂ£o lineares ou smooth.
+      % MÃÂÃÂ©todos multivariados.
     }
     \fi
   }
@@ -198,8 +198,8 @@
 \node at (33.421:27em) [anchor = west] {Gr{\'a}ficos interativos};
 \node at (29.124:27em) [anchor = west] {Comunica{\c c}{\~a}o e relat{\'o}rios din{\^a}micos};
 \node at (25.000:27em) [anchor = west] {\textit{Web scraping}};
-\node at (15.000:27em) [anchor = west] {Componentes de \textit{hardware}};
-\node at (9.936:27em) [anchor = west] {\textit{Shell script}};
+\node at (15.000:27em) [anchor = west] {Sistemas de alto desempenho};
+\node at (9.936:27em) [anchor = west] {Linhas de comando};
 \node at (4.949:27em) [anchor = west] {Tarefas agendadas};
 \node at (0.000:27em) [anchor = west] {Redes e seguran{\c c}a};
 \node at (-4.949:27em) [anchor = west] {Protocolos de conex{\~a}o};
@@ -247,4 +247,5 @@
 \node at (138.321:27em) [anchor = east] {Modelagem de banco de dados};
 \node at (141.737:27em) [anchor = east] {Modelo relacional};
 \node at (145.000:27em) [anchor = east] {Sistemas de BD para \textit{Big Data}};
+
 \end{tikzpicture}
