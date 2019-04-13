@@ -1,0 +1,33 @@
+# Site settings
+baseurl = "http://leg.ufpr.br/~walmes/Tikz/"
+languageCode = "en-us"
+title = "WZ Tikz Gallery"
+themesDir = "./themes/"
+theme = "hugrid"
+# Enter your tracking code to enable Google Analytics
+# googleAnalytics = "UA-XXXXXXXX-Y"
+
+contentdir = "content"
+datadir = "data"
+layoutdir = "layouts"
+publishdir = "public"
+
+[params]
+    # Meta
+    title = "Walmes Zeviani · Tikz Gallery"
+    subtitle = "My personal collection of Tikz drawings"
+    author = "Walmes Zeviani"
+    description = "TODO TODO"
+    keywords = "LaTeX, Tikz, Drawing, Visualization, Fluxograms, Graphics"
+
+    # Body background color
+    bodybgcolor = "#f9f9f9"
+
+    # Preview container button text
+    buttontext = "Check the code on GitHub"
+
+    # Footer text
+    footertext = "Template made by [Codrops](http://tympanus.net/codrops/2013/03/19/thumbnail-grid-with-expanding-preview/), [Hugo](http://gohugo.io) and [Aerohub](https://github.com/aerohub)"
+
+    # add extra-css
+    # custom_css = ['css/extra1.css', 'css/extra2.css']
