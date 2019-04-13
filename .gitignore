@@ -9,3 +9,6 @@
 child.Rmd
 *.html
 
+site/themes
+site/public
+site/data
