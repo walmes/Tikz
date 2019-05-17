@@ -37,7 +37,17 @@ item_content <- function(file) {
         append = TRUE)
 }
 
-invisible(file.remove("site/data/items.toml"))
+if (!dir.exists("site/data")) {
+    dir.create("site/data")
+}
+
+if (!dir.exists("site/content")) {
+    dir.create("site/content")
+}
+
+if (file.exists("site/data/items.toml")) {
+    invisible(file.remove("site/data/items.toml"))
+}
 cat("Creating/updating the `site/data/items.toml` file.\n")
 invisible(sapply(fls, item_content))
 
