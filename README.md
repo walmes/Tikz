@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 213 Tikz figures in this gallery.  Most of them were
+There are 214 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -2661,6 +2661,42 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
   \end{axis}
 \end{tikzpicture}
+```
+****
+
+![](./src/dist-gaussian.png)
+
+  * [dist-gaussian.pgf](https://github.com/walmes/Tikz/blob/master/src/dist-gaussian.pgf)
+
+```tex
+\def\zright{1.645}%
+\def\muzero{0}%
+\def\muone{-1.95}%
+\pgfplotsset{%
+  myplot/.style={
+    width=12cm,
+    height=6cm,
+%     xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    legend style={draw=none, fill=none},
+  }%
+}%
+\begin{tikzpicture}[%
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, hide axis]
+    \addplot[Red, draw, smooth, thick, domain=-4:4]
+      {normalpdf(x,0,1)};
+  \end{axis}
+\end{tikzpicture}%
 ```
 ****
 

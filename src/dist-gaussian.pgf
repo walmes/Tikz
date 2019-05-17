@@ -1,0 +1,28 @@
+\def\zright{1.645}%
+\def\muzero{0}%
+\def\muone{-1.95}%
+\pgfplotsset{%
+  myplot/.style={
+    width=12cm,
+    height=6cm,
+%     xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    legend style={draw=none, fill=none},
+  }%
+}%
+\begin{tikzpicture}[%
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, hide axis]
+    \addplot[Red, draw, smooth, thick, domain=-4:4]
+      {normalpdf(x,0,1)};
+  \end{axis}
+\end{tikzpicture}%
