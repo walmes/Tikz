@@ -1,0 +1,48 @@
+﻿\begin{tikzpicture}[
+  decision/.style = {
+    diamond, 
+    aspect=1.5, 
+    draw,
+    fill=gray!20!black,
+    text=white,
+    text width=5em,
+    text centered,
+    inner sep=1pt},
+  block/.style = {
+    rectangle, 
+    draw,
+    fill=gray!30!white, 
+    minimum height=2em,
+    text centered,
+    rounded corners},
+  line/.style = {
+    draw,
+    -latex',
+    line width=1pt,
+    rounded corners}]
+
+\renewcommand{\baselinestretch}{0.5}
+
+\node (def) [block] {Definir plano de amostragem ($n$, $Ac$)};
+\node (ins) [block, below=4em of def] {Inspecionar amostra de tamanho $n$};
+\node [above=0ex of ins.north east, anchor=south east, align=right, text width=2cm] {
+  \footnotesize Inspe{\c c}{\~ a}o\\ para aceita{\c c}{\~ a}o};
+
+\node (dAc) [decision, below=2em of ins] {Comparar $d$ e $Ac$};
+
+\node (ace) [block, fill=cyan!90!white, right=5em of dAc] {Aceitar o lote};
+
+\node (rej) [block, fill=orange!90!white, left=5em of dAc] {Rejeitar o lote};
+\node (trc) [block, below=2em of dAc] {Inspecionar todo o lote e trocar itens defeituosos};
+\node [above=0ex of trc.north east, anchor=south east] {
+  \footnotesize Inspe{\c c}{\~ a}o retificadora};
+
+\path [line] (def) -- (ins);
+\path [line] (ins) -- (dAc);
+
+\path [line] (dAc) -- node [above] {$d \leq Ac$} (ace);
+\path [line] (dAc) -- node [above] {$d > Ac$} (rej);
+
+\path [line] (rej) |- (trc);
+
+\end{tikzpicture}%

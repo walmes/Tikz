@@ -1,0 +1,51 @@
+﻿\begin{tikzpicture}[
+  baseline,
+  decision/.style = {
+    diamond, 
+    aspect=1.5, 
+    draw,
+    fill=gray!20!black,
+    text=white,
+    text width=4em,
+    text centered,
+    inner sep=1pt},
+  block/.style = {
+    rectangle, 
+    draw,
+    fill=gray!30!white, 
+    minimum height=2em,
+    text centered,
+    text depth=0ex,
+    rounded corners},
+  line/.style = {
+    draw,
+    -latex',
+    line width=1pt,
+    rounded corners}]
+
+\renewcommand{\baselinestretch}{0.5}
+
+\node (def) [block] {Definir plano de amostragem ($n_1$, $n_2$, $Ac_1$, $Ac_2$, $Re_1$)};
+\node (ins1) [block, below=1em of def] {Inspecionar a primeira amostra $n_1$};
+\node (dAc1) [decision, below=1em of ins1] {Comparar $d_1$, $Ac_1$ e $Re_1$};
+
+\node (ins2) [block, below=2.5em of dAc1] {Inspecionar a segunda amostra $n_2$};
+\node (dAc2) [decision, below=1em of ins2] {Comparar $d_1 + d_2$ e $Ac_2$};
+
+\node (ace) [block, fill=cyan!90!white, right=2em of ins2] {Aceitar o lote};
+\node (rej) [block, fill=orange!90!white, left=2em of ins2] {Rejeitar o lote};
+
+\path [line] (def) -- (ins1);
+\path [line] (ins1) -- (dAc1);
+
+\path [line] (dAc1) -| node [above, pos=0.25] {$d_1 \leq Ac_1$} (ace);
+\path [line] (dAc1) -| node [above, pos=0.25] {$d_1 > Re_1$} (rej);
+
+\path [line] (dAc1) -- node [right] {$Ac_1 < d_1 <Re_1$} (ins2);
+
+\path [line] (ins2) -- (dAc2);
+
+\path [line] (dAc2) -| node [above, pos=0.25] {$d_1 + d_2 \leq Ac_2$} (ace);
+\path [line] (dAc2) -| node [above, pos=0.25] {$d_1 + d_2 > Ac_2$} (rej);
+
+\end{tikzpicture}%

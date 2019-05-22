@@ -5197,136 +5197,6 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 ```
 ****
 
-![](./src/fluxograms.png)
-
-  * [fluxograms.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograms.pgf)
-
-```tex
-% https://tex.stackexchange.com/questions/87945/tikz-picture-shapes
-\tikzset{%
-  pth/.style = {
-    draw,
-    ->,
-    > = latex',
-  },
-  start-end/.style = {
-    draw,
-    fill = blue!20!white,
-    rectangle,
-    rounded corners=6pt,
-    minimum width=2cm,
-  },
-  input/.style = {% requires library shapes.geometric
-    draw,
-    fill = yellow!30!white,
-    trapezium,
-    trapezium left angle = 60,
-    trapezium right angle = 120,
-  },
-  operation/.style = {
-    draw,
-    fill = gray!30!white,
-    rectangle,
-    minimum width = 3.5cm,
-  },
-  loop/.style = {% requires library shapes.misc
-    draw,
-    fill = green!30!white,
-    chamfered rectangle,
-    chamfered rectangle xsep = 2cm
-  },
-  decision/.style = {% requires library shapes.geometric
-    draw,
-    fill = magenta!70!white,
-    diamond,
-    aspect = 2
-  },
-  decision/.default = 1,
-  print/.style = {% requires library shapes.symbols
-    draw,
-    tape,
-    tape bend top = none
-  },
-  connection/.style = {
-    draw,
-    circle,
-    radius = 5pt,
-  },
-  process rectangle outer width/.initial = 0.15cm,
-  predefined process/.style = {
-    rectangle,
-    draw,
-    append after command = {
-      \pgfextra{
-        \draw
-        ($(\tikzlastnode.north west) - (0, 0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.north west) - (\pgfkeysvalueof{/tikz/process
-          rectangle outer width}, 0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.south west) + (-\pgfkeysvalueof{/tikz/process
-          rectangle outer width}, +0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.south west) + (0, 0.5\pgflinewidth)$);
-        \draw
-        ($(\tikzlastnode.north east) - (0, 0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.north east) + (\pgfkeysvalueof{/tikz/process
-          rectangle outer width}, -0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.south east) + (\pgfkeysvalueof{/tikz/process
-          rectangle outer width}, 0.5\pgflinewidth)$) --
-        ($(\tikzlastnode.south east) + (0, 0.5\pgflinewidth)$);
-      }
-    },
-    minimum width = 2cm,
-    align = center
-  },
-  predefined process/.default = 1.75cm,
-  man op/.style = {% requires library shapes.geometric
-    draw,
-    trapezium,
-    shape border rotate = 180,
-    text width = 2cm,
-    align = center,
-  },
-  extract/.style = {
-    draw,
-    isosceles triangle,
-    isosceles triangle apex angle = 60,
-    shape border rotate = 90
-  },
-  merge/.style = {
-    draw,
-    isosceles triangle,
-    isosceles triangle apex angle = 60,
-    shape border rotate = -90
-  },
-}%
-
-\begin{tikzpicture}%
-
-\matrix (m) [matrix of nodes,
-             column sep = 1em,
-             row sep = 0.75em,
-             column 2/.style={anchor=west}]{
-   \node[start-end] {\it start/end}; &
-   \node {In\'icio ou final de rotina.}; \\
-   \node[input, minimum width=2cm] {\it in/out}; &
-   \node {Entrada ou sa\'ida de dados.}; \\
-   \node[operation, minimum width=2cm] {\it processing}; &
-   \node[align=left] {C\'alculos e procedimentos\\ gerais.};\\
-   \node[decision, minimum width=2cm] {\it decision}; &
-   \node[align=left] {Estrutura de controle\\ condicional (decis\~ ao).};\\
-   \node[loop, minimum width=2cm]{\it loop}; &
-   \node[align=left] {Estruturas de repeti\c c\~ao\\ (la\c cos).};\\
-   \path[pth] (-1, 0) -| (0, 0.5) |- (1, 0.5); &
-   \node {Fluxo de execu\c c\~ao.};\\
-   \node[connection] {}; &
-   \node {Conex\~ao.};\\
-   \node[predefined process] {\it subrotine}; &
-   \node {Chamada de subrotina.};\\
- };
-
-\end{tikzpicture}%
-```
-****
-
 ![](./src/fun_3d.png)
 
   * [fun_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/fun_3d.pgf)
@@ -6271,20 +6141,20 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 % \tikzstyle{aponta}=[-latex, dashed]
 % \tikzstyle{eixos}=[-latex]
 % \tikzstyle{fun}=[very thick]
-\tikzset{
+\tikzset{%
   aponta/.style={-latex, dashed},
   eixos/.style={-latex},
   fun/.style={very thick}
-}
+}%
 
-\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]%
   % \draw[very thin,color=gray!30] (0,0) grid (10,10);
   % \draw[draw=gray!30] (-1,-1) rectangle (11,11);
   \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
   \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$\eta(x)$};
 
   \def\A{3}; \def\B{1}; \def\C{4.5};
-  \draw[fun]
+  \draw[fun, color=green!60!black]
     plot[id=x, samples=100]
     function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
 
@@ -6307,7 +6177,7 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     node[midway, below=3pt] {plat\^o};
   \draw[dashed] (9,\desc) -- (10,\desc);
 
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -7558,12 +7428,11 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 ```tex
 % http://stackoverflow.com/questions/2701902/standalone-diagrams-with-tikz
-\def\ptsize{0.75pt}
+\def\ptsize{0.75pt}%
 \tikzset{
   mypoints/.style={fill=white,draw=black},
   pil/.style={->, shorten <=2pt, shorten >=2pt}
-}
-
+}%
 \begin{tikzpicture}[>=latex, xscale=5, yscale=5]
   \def\thetah{0.3}; \def\thetac{5.6}; %\def\thetac{-2.8}
   \draw[->, thick] (-0.05,0) -- +(1.2,0) node[below] {tempo ($t$)};
@@ -7574,25 +7443,25 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \draw[-, color=green!60!black, ultra thick, samples=100]
     plot[id=x, domain=0:1]  
     function{\bet+\alp*2**(-x/\v)}
-    node[color=black, right] {$f(t) = tnp+tp \cdot 2^{-t/tmv}$};
+    node[color=black, right] {$f(t) = tnp+tp \cdot 2^{-t/\theta_{tmv}}$};
   \draw[|<->|] (-0.1,\bet) -- (-0.1,0.9)
     node[midway, left, text width=2cm, text ragged left]
-    {tanino polimerizado\\ ($tp$)};
+    {tanino\\ polimerizado\\ ($\theta_{tp}$)};
   \draw[|<->|] (-0.1,0) -- (-0.1,\bet)
-    node[midway, left, text width=2.8cm, text ragged left]
-    {tanino n\~{a}o polimerizado ($tnp$)};
-  \draw[<-, dashed] (0,\bet) -- +(0.25,0) node[right] {ass\'intota};
+    node[midway, left, text width=3.2cm, text ragged left]
+    {tanino n\~{a}o\\ polimerizado ($\theta_{tnp}$)};
+  \draw[<-, dashed] (0,\bet) -- +(0.18,0) node[right, text width=2cm] {ass\'intota\\ inferior};
   \draw[<-, dashed] (0,\bet+\alp) -- +(0.5,0)
-    node[right, text width=2cm] {tanino total\\ ($tnp+tp$)};
+    node[right, text width=2cm] {tanino total\\ ($\theta_{tnp}+\theta_{tp}$)};
   \draw[->,dashed] (\v,\bet+0.5*\alp) -- (\v,0)
     node[below, text width=2cm, text centered]
-    {tempo de meia vida ($tmv$)};
+    {tempo de meia vida ($\theta_{tmv}$)};
   \draw[dashed] (0,\bet+0.5*\alp) -- +(\v,0);
   \coordinate (a1) at (0.3,0.6);
   \path[<-, dashed] (0,\bet+0.5*\alp) edge[bend left=50] (a1);
-  \node[below right, text width=2.5cm] at (a1)
+  \node[below right, text width=3.25cm] at (a1)
     {metade do tanino polimerizado};
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -8210,17 +8079,17 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   * [modelos_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelos_regressao.pgf)
 
 ```tex
-\def\hd{0.9}
-\def\vd{1.1}
-\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\def\hd{0.9}%
+\def\vd{1.1}%
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}%
 \newcommand{\tmc}[2]{
   \tikz[overlay] \node[xshift=#2ex, yshift=1.25ex] (#1) {};
-}
-\renewcommand{\baselinestretch}{0.9}
+}%
+\renewcommand{\baselinestretch}{0.9}%
 
-\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{every picture}+=[remember picture]%
 
-\tikzset{ 
+\tikzset{% 
   rounded corners=4pt,
   every node/.style={color=black},
   every path/.style={
@@ -8237,9 +8106,9 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   },
   nodedir/.style={right, text width=3.5cm, align=flush left},
   nodeesq/.style={left, text width=2.6cm, align=flush right}
-}
+}%
 
-\begin{tikzpicture}
+\begin{tikzpicture}%
   \node (eq1) {$\tmc{Y}{1}Y\tmc{pipe1}{0.3}|\tm{X}x$};
   \node[below=1.5cm of eq1] (eq2)
   {$\tmc{Q}{1}Q(Y\tmc{pipe2}{0.3}|x) =
@@ -8249,14 +8118,14 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   node[nodeesq] {\footnotesize{Vari{\'a}vel resposta}};
   \draw (X.40) -- ++(1,0)
   node[nodedir] {
-    \footnotesize{Termos experimentais,\\
+    \footnotesize{Fatores experimentais,\\
       [-1ex] causas de varia{\c c}{\~a}o.}
   };
   \draw[shorten <=1pt] (pipe1) |- +(\vd,\hd)
   node[nodedir] {
     Distribui{\c c}{\~a}o\\
-    \footnotesize{Normal, Beta,\\
-      [-1ex] Poisson, Binomial, \ldots}
+    \footnotesize{Normal, binomial,\\
+      [-1ex] Poisson, beta, \ldots}
   } node[bola] {1};
   \draw[shorten <=6pt] (pipe1) |- ++(-0.25,-1) -| (pipe2)
   node[bola] {2};
@@ -8284,7 +8153,7 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     Par{\^a}metros\\
     \footnotesize{Emp{\'\i}ricos, interpret{\'a}veis.}
   } node[bola] {7};
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -11213,7 +11082,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   domain=-0.25:9, xscale=0.8, yscale=5,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
-  }]
+  }]%
 
   \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
   \draw[-latex] (0,-0.01) -- (0,1) node[above] (E) {$\textrm{E}(Y|x)$};
@@ -11225,7 +11094,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     {$\displaystyle\frac{1}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
 
   \node (Q) at (5,25/20) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22/20) {$[Y|x]\sim$ Beta($\mu$,$\phi$)};
+  \node (N) at (5,22/20) {$[Y|x]\sim$ Beta($\mu$, $\phi$)};
   \path[aponta] (3.9,12/20) edge[bend left=10] (N);
 
   \draw[aponta] (Q) -| (E);
@@ -11247,7 +11116,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       \end{scope}
     }
 
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -11256,7 +11125,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   * [regressao_binomial.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_binomial.pgf)
 
 ```tex
-\begin{tikzpicture}[
+\begin{tikzpicture}[%
   domain=-0.25:9, xscale=0.8, yscale=0.25,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
@@ -11272,7 +11141,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     {$\displaystyle\frac{n}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
 
   \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22) {$[Y|x]\sim$ Binomial($p$,$n$)};
+  \node (N) at (5,22) {$[Y|x]\sim$ Binomial($p$, $n$)};
   \path[aponta] (5.8,14.5) edge[bend left=10] (N);
 
   \draw[aponta] (Q) -| (E);
@@ -11291,7 +11160,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       \end{scope}
     }
     
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -11427,8 +11296,8 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   * [regressao_linear_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_linear_simples.pgf)
 
 ```tex
-\begin{tikzpicture}[
-  domain=-0.25:9, xscale=0.8, yscale=0.25,
+\begin{tikzpicture}[%
+  domain=-0.25:8.75, xscale=0.8, yscale=0.25,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
   }]
@@ -11439,7 +11308,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     plot[id=x] function{\A+\B*x}
     node[right] (eta) {$\theta_0+\theta_1 x$};
   \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$,$\sigma$)};
+  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$, $\sigma$)};
   \path[aponta] (3.25,10) edge[bend left=10] (N);
   \draw[aponta] (Q) -| (E);
   \draw[aponta] (Q) -| (eta);
@@ -11449,13 +11318,12 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     \begin{scope}[
       xshift=\x cm, yshift=\A cm+\B*\x cm,
       rotate=-90, smooth, domain=-\sr:\sr]
-      % \draw[color=gray] (-\sr,0) -- (\sr,0);
-      % \draw[color=gray] (0,0) -- (0,1);
       \filldraw[fill opacity=0.3, fill=gray!70!black]
         plot[id=x] function{exp(-(x)**2/3)};
+      \draw[dotted] (0, 0) -- (0, 1);
     \end{scope}
   }
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -11628,7 +11496,7 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
           function {-exp(-\lambda)*(\lambda)**x/gamma(x+1)};
       \end{scope}
     }
-\end{tikzpicture}
+\end{tikzpicture}%
 ```
 ****
 
@@ -12036,6 +11904,121 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     \path[<-, shorten >=1em] (modelo2) edge[bend right=30] (m2);
   \end{scope}
 \end{tikzpicture}
+```
+****
+
+![](./src/sampling-plan-1.png)
+
+  * [sampling-plan-1.pgf](https://github.com/walmes/Tikz/blob/master/src/sampling-plan-1.pgf)
+
+```tex
+\begin{tikzpicture}[
+  decision/.style = {
+    diamond, 
+    aspect=1.5, 
+    draw,
+    fill=gray!20!black,
+    text=white,
+    text width=5em,
+    text centered,
+    inner sep=1pt},
+  block/.style = {
+    rectangle, 
+    draw,
+    fill=gray!30!white, 
+    minimum height=2em,
+    text centered,
+    rounded corners},
+  line/.style = {
+    draw,
+    -latex',
+    line width=1pt,
+    rounded corners}]
+
+\renewcommand{\baselinestretch}{0.5}
+
+\node (def) [block] {Definir plano de amostragem ($n$, $Ac$)};
+\node (ins) [block, below=4em of def] {Inspecionar amostra de tamanho $n$};
+\node [above=0ex of ins.north east, anchor=south east, align=right, text width=2cm] {
+  \footnotesize Inspe{\c c}{\~ a}o\\ para aceita{\c c}{\~ a}o};
+
+\node (dAc) [decision, below=2em of ins] {Comparar $d$ e $Ac$};
+
+\node (ace) [block, fill=cyan!90!white, right=5em of dAc] {Aceitar o lote};
+
+\node (rej) [block, fill=orange!90!white, left=5em of dAc] {Rejeitar o lote};
+\node (trc) [block, below=2em of dAc] {Inspecionar todo o lote e trocar itens defeituosos};
+\node [above=0ex of trc.north east, anchor=south east] {
+  \footnotesize Inspe{\c c}{\~ a}o retificadora};
+
+\path [line] (def) -- (ins);
+\path [line] (ins) -- (dAc);
+
+\path [line] (dAc) -- node [above] {$d \leq Ac$} (ace);
+\path [line] (dAc) -- node [above] {$d > Ac$} (rej);
+
+\path [line] (rej) |- (trc);
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/sampling-plan-2.png)
+
+  * [sampling-plan-2.pgf](https://github.com/walmes/Tikz/blob/master/src/sampling-plan-2.pgf)
+
+```tex
+\begin{tikzpicture}[
+  baseline,
+  decision/.style = {
+    diamond, 
+    aspect=1.5, 
+    draw,
+    fill=gray!20!black,
+    text=white,
+    text width=4em,
+    text centered,
+    inner sep=1pt},
+  block/.style = {
+    rectangle, 
+    draw,
+    fill=gray!30!white, 
+    minimum height=2em,
+    text centered,
+    text depth=0ex,
+    rounded corners},
+  line/.style = {
+    draw,
+    -latex',
+    line width=1pt,
+    rounded corners}]
+
+\renewcommand{\baselinestretch}{0.5}
+
+\node (def) [block] {Definir plano de amostragem ($n_1$, $n_2$, $Ac_1$, $Ac_2$, $Re_1$)};
+\node (ins1) [block, below=1em of def] {Inspecionar a primeira amostra $n_1$};
+\node (dAc1) [decision, below=1em of ins1] {Comparar $d_1$, $Ac_1$ e $Re_1$};
+
+\node (ins2) [block, below=2.5em of dAc1] {Inspecionar a segunda amostra $n_2$};
+\node (dAc2) [decision, below=1em of ins2] {Comparar $d_1 + d_2$ e $Ac_2$};
+
+\node (ace) [block, fill=cyan!90!white, right=2em of ins2] {Aceitar o lote};
+\node (rej) [block, fill=orange!90!white, left=2em of ins2] {Rejeitar o lote};
+
+\path [line] (def) -- (ins1);
+\path [line] (ins1) -- (dAc1);
+
+\path [line] (dAc1) -| node [above, pos=0.25] {$d_1 \leq Ac_1$} (ace);
+\path [line] (dAc1) -| node [above, pos=0.25] {$d_1 > Re_1$} (rej);
+
+\path [line] (dAc1) -- node [right] {$Ac_1 < d_1 <Re_1$} (ins2);
+
+\path [line] (ins2) -- (dAc2);
+
+\path [line] (dAc2) -| node [above, pos=0.25] {$d_1 + d_2 \leq Ac_2$} (ace);
+\path [line] (dAc2) -| node [above, pos=0.25] {$d_1 + d_2 > Ac_2$} (rej);
+
+\end{tikzpicture}%
 ```
 ****
 
