@@ -2,7 +2,7 @@
   domain=-0.25:9, xscale=0.8, yscale=5,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
-  }]
+  }]%
 
   \draw[-latex] (-0.2,0) -- (10,0) node[right] {$x$};
   \draw[-latex] (0,-0.01) -- (0,1) node[above] (E) {$\textrm{E}(Y|x)$};
@@ -14,7 +14,7 @@
     {$\displaystyle\frac{1}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
 
   \node (Q) at (5,25/20) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22/20) {$[Y|x]\sim$ Beta($\mu$,$\phi$)};
+  \node (N) at (5,22/20) {$[Y|x]\sim$ Beta($\mu$, $\phi$)};
   \path[aponta] (3.9,12/20) edge[bend left=10] (N);
 
   \draw[aponta] (Q) -| (E);
@@ -36,4 +36,4 @@
       \end{scope}
     }
 
-\end{tikzpicture}
+\end{tikzpicture}%

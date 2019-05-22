@@ -24,4 +24,4 @@
           function {-exp(-\lambda)*(\lambda)**x/gamma(x+1)};
       \end{scope}
     }
-\end{tikzpicture}
+\end{tikzpicture}%

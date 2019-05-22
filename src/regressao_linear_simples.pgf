@@ -1,5 +1,5 @@
-\begin{tikzpicture}[
-  domain=-0.25:9, xscale=0.8, yscale=0.25,
+\begin{tikzpicture}[%
+  domain=-0.25:8.75, xscale=0.8, yscale=0.25,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
   }]
@@ -10,7 +10,7 @@
     plot[id=x] function{\A+\B*x}
     node[right] (eta) {$\theta_0+\theta_1 x$};
   \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$,$\sigma$)};
+  \node (N) at (5,22) {$[Y|x]\sim$ Normal($\mu$, $\sigma$)};
   \path[aponta] (3.25,10) edge[bend left=10] (N);
   \draw[aponta] (Q) -| (E);
   \draw[aponta] (Q) -| (eta);
@@ -20,10 +20,9 @@
     \begin{scope}[
       xshift=\x cm, yshift=\A cm+\B*\x cm,
       rotate=-90, smooth, domain=-\sr:\sr]
-      % \draw[color=gray] (-\sr,0) -- (\sr,0);
-      % \draw[color=gray] (0,0) -- (0,1);
       \filldraw[fill opacity=0.3, fill=gray!70!black]
         plot[id=x] function{exp(-(x)**2/3)};
+      \draw[dotted] (0, 0) -- (0, 1);
     \end{scope}
   }
-\end{tikzpicture}
+\end{tikzpicture}%

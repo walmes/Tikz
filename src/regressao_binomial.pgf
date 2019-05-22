@@ -1,4 +1,4 @@
-\begin{tikzpicture}[
+\begin{tikzpicture}[%
   domain=-0.25:9, xscale=0.8, yscale=0.25,
   aponta/.style={
     color=green!50!blue, rounded corners=5pt, -latex, thick
@@ -14,7 +14,7 @@
     {$\displaystyle\frac{n}{1+\exp\{-(\theta_0+\theta_1 x)\}}$};
 
   \node (Q) at (5,25) {$Q(Y|x) = \eta(x, \theta)$};
-  \node (N) at (5,22) {$[Y|x]\sim$ Binomial($p$,$n$)};
+  \node (N) at (5,22) {$[Y|x]\sim$ Binomial($p$, $n$)};
   \path[aponta] (5.8,14.5) edge[bend left=10] (N);
 
   \draw[aponta] (Q) -| (E);
@@ -33,4 +33,4 @@
       \end{scope}
     }
     
-\end{tikzpicture}
+\end{tikzpicture}%

@@ -1,14 +1,14 @@
-\def\hd{0.9}
-\def\vd{1.1}
-\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\def\hd{0.9}%
+\def\vd{1.1}%
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}%
 \newcommand{\tmc}[2]{
   \tikz[overlay] \node[xshift=#2ex, yshift=1.25ex] (#1) {};
-}
-\renewcommand{\baselinestretch}{0.9}
+}%
+\renewcommand{\baselinestretch}{0.9}%
 
-\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{every picture}+=[remember picture]%
 
-\tikzset{ 
+\tikzset{% 
   rounded corners=4pt,
   every node/.style={color=black},
   every path/.style={
@@ -25,9 +25,9 @@
   },
   nodedir/.style={right, text width=3.5cm, align=flush left},
   nodeesq/.style={left, text width=2.6cm, align=flush right}
-}
+}%
 
-\begin{tikzpicture}
+\begin{tikzpicture}%
   \node (eq1) {$\tmc{Y}{1}Y\tmc{pipe1}{0.3}|\tm{X}x$};
   \node[below=1.5cm of eq1] (eq2)
   {$\tmc{Q}{1}Q(Y\tmc{pipe2}{0.3}|x) =
@@ -37,14 +37,14 @@
   node[nodeesq] {\footnotesize{Vari{\'a}vel resposta}};
   \draw (X.40) -- ++(1,0)
   node[nodedir] {
-    \footnotesize{Termos experimentais,\\
+    \footnotesize{Fatores experimentais,\\
       [-1ex] causas de varia{\c c}{\~a}o.}
   };
   \draw[shorten <=1pt] (pipe1) |- +(\vd,\hd)
   node[nodedir] {
     Distribui{\c c}{\~a}o\\
-    \footnotesize{Normal, Beta,\\
-      [-1ex] Poisson, Binomial, \ldots}
+    \footnotesize{Normal, binomial,\\
+      [-1ex] Poisson, beta, \ldots}
   } node[bola] {1};
   \draw[shorten <=6pt] (pipe1) |- ++(-0.25,-1) -| (pipe2)
   node[bola] {2};
@@ -72,4 +72,4 @@
     Par{\^a}metros\\
     \footnotesize{Emp{\'\i}ricos, interpret{\'a}veis.}
   } node[bola] {7};
-\end{tikzpicture}
+\end{tikzpicture}%
