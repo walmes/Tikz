@@ -1,0 +1,50 @@
+\usetikzlibrary{trees}%
+\begin{tikzpicture}[
+  grow = right,
+  ->,
+  >=latex',
+  level 1/.style = {level distance = 2.0cm, sibling distance = 1.5cm},
+  edge from parent path = {
+    (\tikzparentnode.east) -| +(0.25,0) |- (\tikzchildnode.west)
+  },
+  % edge from parent fork right,
+  bag/.style={
+    text width = 7em,
+    text centered,
+    anchor = west,
+    fill = gray!50,
+    rounded corners,
+    minimum height = 2em},
+  ]
+
+  \node[bag] {Primeira amostra ($n_1$)} 
+    child  {
+      node[bag, fill = orange!50!white] (rj1) {$d_1 \geq Re_1$}
+    } 
+    child { 
+      node[bag, fill = yellow!90!white] {$Ac_1 < d_1 < Re_1$}
+      child  {
+        node[bag] {Primeira amostra ($n_2$)}
+          child {
+            node (b) [bag, fill = orange!50!white] {$d_2 > (Ac_2 - d_1)$}
+          }
+          child {
+            node (a) [bag, fill = cyan!50!white] {$d_2 \leq (Ac_2 - d_1)$}
+          }
+      }
+    } 
+    child {
+      node[bag, fill = cyan!50!white] (ac1) {$d_1 \leq Ac_1$}
+    }
+  ;
+
+  \node[bag, above = 3em of a, fill = cyan!90!white] (ac) {Aceitar lote};
+  \node[bag, below = 3em of b, fill = orange!90!white] (rj) {Rejeitar lote};
+
+  \path[draw] (ac1) |- (ac);
+  \path[draw] (rj1) |- (rj);
+
+  \path[draw] (a) -- (ac);
+  \path[draw] (b) -- (rj);
+
+\end{tikzpicture}%
