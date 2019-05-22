@@ -1,18 +1,27 @@
+\usetikzlibrary{trees}%
 \begin{tikzpicture}[
-  font=\small, edge from parent fork down, 
+  font=\small,
   every node/.style={
-    top color=white, bottom color=blue!25, 
-    rectangle,rounded corners, minimum size=6mm, draw=blue!75,
-    very thick, drop shadow, align=center
+%     top color=white,
+%     bottom color=blue!25,
+    rectangle,
+    rounded corners,
+    minimum size=6mm,
+%     draw=blue!75,
+    very thick,
+%     drop shadow,
+    align=center
   },
   edge from parent/.style={draw=blue!50,thick},
   level 1/.style={sibling distance=6cm},
-  level 2/.style={sibling distance=2.5cm}, 
-  level 3/.style={sibling distance=1.75cm}, 
-  level distance=2cm]
+  level 2/.style={sibling distance=2.5cm},
+  level 3/.style={sibling distance=1.75cm},
+  level distance=2cm,
+  edge from parent fork down
+]
 
   \node {Paletizador} % root
-  child { node {Inicializaaaao\\de sistema} 
+  child { node {Inicializaaaao\\de sistema}
     child { node {Sensor X}}
     child { node {Aaaaao Y}}
   }
@@ -29,8 +38,9 @@
       child { node {$z=?$}}
     }
   }
-  child { node {Sistema de despacho} 
+  child { node {Sistema de despacho}
     child { node {Sensor de peso\\/contador}}
     child { node {Tapete rolante\\de saaaaada}}
-  };
+  }
+  ;
 \end{tikzpicture}
