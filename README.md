@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 214 Tikz figures in this gallery.  Most of them were
+There are 218 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5197,6 +5197,136 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 ```
 ****
 
+![](./src/fluxograms.png)
+
+  * [fluxograms.pgf](https://github.com/walmes/Tikz/blob/master/src/fluxograms.pgf)
+
+```tex
+% https://tex.stackexchange.com/questions/87945/tikz-picture-shapes
+\tikzset{%
+  pth/.style = {
+    draw,
+    ->,
+    > = latex',
+  },
+  start-end/.style = {
+    draw,
+    fill = blue!20!white,
+    rectangle,
+    rounded corners=6pt,
+    minimum width=2cm,
+  },
+  input/.style = {% requires library shapes.geometric
+    draw,
+    fill = yellow!30!white,
+    trapezium,
+    trapezium left angle = 60,
+    trapezium right angle = 120,
+  },
+  operation/.style = {
+    draw,
+    fill = gray!30!white,
+    rectangle,
+    minimum width = 3.5cm,
+  },
+  loop/.style = {% requires library shapes.misc
+    draw,
+    fill = green!30!white,
+    chamfered rectangle,
+    chamfered rectangle xsep = 2cm
+  },
+  decision/.style = {% requires library shapes.geometric
+    draw,
+    fill = magenta!70!white,
+    diamond,
+    aspect = 2
+  },
+  decision/.default = 1,
+  print/.style = {% requires library shapes.symbols
+    draw,
+    tape,
+    tape bend top = none
+  },
+  connection/.style = {
+    draw,
+    circle,
+    radius = 5pt,
+  },
+  process rectangle outer width/.initial = 0.15cm,
+  predefined process/.style = {
+    rectangle,
+    draw,
+    append after command = {
+      \pgfextra{
+        \draw
+        ($(\tikzlastnode.north west) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north west) - (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (-\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, +0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (0, 0.5\pgflinewidth)$);
+        \draw
+        ($(\tikzlastnode.north east) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, -0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (0, 0.5\pgflinewidth)$);
+      }
+    },
+    minimum width = 2cm,
+    align = center
+  },
+  predefined process/.default = 1.75cm,
+  man op/.style = {% requires library shapes.geometric
+    draw,
+    trapezium,
+    shape border rotate = 180,
+    text width = 2cm,
+    align = center,
+  },
+  extract/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = 90
+  },
+  merge/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = -90
+  },
+}%
+
+\begin{tikzpicture}%
+
+\matrix (m) [matrix of nodes,
+             column sep = 1em,
+             row sep = 0.75em,
+             column 2/.style={anchor=west}]{
+   \node[start-end] {\it start/end}; &
+   \node {In\'icio ou final de rotina.}; \\
+   \node[input, minimum width=2cm] {\it in/out}; &
+   \node {Entrada ou sa\'ida de dados.}; \\
+   \node[operation, minimum width=2cm] {\it processing}; &
+   \node[align=left] {C\'alculos e procedimentos\\ gerais.};\\
+   \node[decision, minimum width=2cm] {\it decision}; &
+   \node[align=left] {Estrutura de controle\\ condicional (decis\~ ao).};\\
+   \node[loop, minimum width=2cm]{\it loop}; &
+   \node[align=left] {Estruturas de repeti\c c\~ao\\ (la\c cos).};\\
+   \path[pth] (-1, 0) -| (0, 0.5) |- (1, 0.5); &
+   \node {Fluxo de execu\c c\~ao.};\\
+   \node[connection] {}; &
+   \node {Conex\~ao.};\\
+   \node[predefined process] {\it subrotine}; &
+   \node {Chamada de subrotina.};\\
+ };
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/fun_3d.png)
 
   * [fun_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/fun_3d.pgf)
@@ -5765,6 +5895,122 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 \path[fpath] (wg1) -- ($(wg1)+(2.5,0)$) |-
   node[dir] {Interface gr\'{a}fica} (wg2);
 \fi	
+
+\end{tikzpicture}
+```
+****
+
+![](./src/hist_slider_shiny.png)
+
+  * [hist_slider_shiny.pgf](https://github.com/walmes/Tikz/blob/master/src/hist_slider_shiny.pgf)
+
+```tex
+\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\NANN}[2]{% caixa alta para facilitar encontrar.
+  \tikz[baseline] {%
+    \node[
+      anchor=base,%
+      inner sep=0pt,%
+      outer sep=0pt,%
+      text opacity=1,%
+    ] (#1) {#2};%
+  }%
+}%
+
+\tikzset{%
+  >=stealth,
+  epath/.style={draw, <->, shorten <=1pt, shorten >=1pt},
+  fpath/.style={draw, color=gray, rounded corners=2pt, shorten <=3pt, shorten >=3pt},
+  cir/.style={draw, circle, fill, inner sep=0.5pt, text=white},
+  dir/.style={near start, right, font=\footnotesize},
+}%
+
+\newif\ifopacity %
+%\opacitytrue     % Descomente para texto transparente.
+%\opacityfalse    % Ou descomente para texto forte.
+
+\ifopacity %
+  \tikzset{
+     nodeR/.style={text opacity=0.2},
+     fpath/.append style={color=white}}
+\else %
+  \tikzset{
+     nodeR/.style={text opacity=1}}
+\fi	%
+
+\begin{tikzpicture}%
+
+\node[nodeR] (slider) at (0,0)
+{
+
+\begin{minipage}{10cm}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+
+# Arquivo `server.R` -----------------------------------
+
+\hlkwd{library}\hlstd{(shiny)\NANN{gw1}{\phantom{1}}}
+
+\hlstd{x} \hlkwb{<-} \hlstd{precip\NANN{pr1}{\phantom{1}}}
+\hlstd{a} \hlkwb{<-} \hlkwd{extendrange}\hlstd{(x,} \hlkwc{f}\hlstd{ = }\hlnum{0.05}\hlstd{)\NANN{pr2}{\phantom{1}}}
+
+\hlkwd{\NANN{ss1}{shinyServer}}\hlstd{(}\hlkwa{function}\hlstd{(}\hlkwc{\NANN{in1}{input}}\hlstd{,} \hlkwc{\NANN{ou1}{output}}\hlstd{) \{\NANN{fc1}{\phantom{1}}}
+        \hlstd{\NANN{ou2}{output}}\hlopt{$}\hlstd{\NANN{hr1}{hist_reactive}} \hlkwb{<-} \hlkwd{\NANN{rp1}{renderPlot}}\hlstd{(\{}
+            \hlstd{bks} \hlkwb{<-} \hlkwd{seq}\hlstd{(\hlkwc{from} = a[}\hlnum{1}\hlstd{], 
+                       \hlkwc{to} = a[}\hlnum{2}\hlstd{],}
+                       \hlkwc{length.out}\hlstd{ = \NANN{in2}{input}}\hlopt{$}\hlstd{\NANN{nc1}{NCLASS}}\hlopt{ + }\hlnum{1}\hlstd{)}
+            \hlkwd{\NANN{asd}{hist}}\hlstd{(x,} \hlkwc{breaks}\hlstd{ = bks}\hlstd{)}
+        \hlstd{\})}
+    \hlstd{\})\NANN{fc2}{\phantom{1}}}
+
+
+# Arquivo `ui.R` ---------------------------------------
+
+\hlkwd{\NANN{ss2}{shinyUI}}\hlstd{(}\hlkwd{fluidPage}\hlstd{(\NANN{wg1}{\phantom{1}}}
+    \hlkwd{sidebarPanel}\hlstd{(}\{
+        \hlkwd{\NANN{si1}{sliderInput}}\hlstd{(}\hlkwc{\NANN{ss43}{inputId}}\hlstd{ = }\hlstr{"\NANN{nc2}{NCLASS}"}\hlstd{,}
+                    \hlkwc{label}\hlstd{ = }\hlstr{"N\'umero de classes:"}\hlstd{,}
+                    \hlkwc{min}\hlstd{ = }\hlnum{1}\hlstd{,} \hlkwc{max}\hlstd{ = }\hlnum{30}\hlstd{,}
+                    \hlkwc{step}\hlstd{ = }\hlnum{1}\hlstd{,} \hlkwc{value}\hlstd{ = }\hlnum{10}\hlstd{)}\}\hlstd{),}
+    \hlkwd{mainPanel}\hlstd{(}\{
+        \hlkwd{\NANN{rp2}{plotOutput}}\hlstd{(}\hlstr{"\NANN{hr2}{hist_reactive}"}\hlstd{)}\}\hlstd{)}
+    \hlstd{)}\hlstd{)\NANN{wg2}{\phantom{1}}}
+
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{minipage}
+
+}; %% \node
+
+\path[fpath, color=violet] (gw1) -- ($(gw1)+(5.85,0)$) node[dir, right, at end] {Pacote};
+
+\path[fpath, color=violet] (pr1) -- ($(pr1)+(6.25,0)$) |-
+  node[dir] {Objetos} (pr2);
+
+\path[fpath, color=cyan] (fc1) -- ($(fc1)+(2.6,0)$) |-
+  node[dir, text width=1cm] {\textbf{Backend}\\ Fun\c{c}\~ao\\ reativa} (fc2);
+
+\path[fpath, color=orange] (wg1) -- ($(wg1)+(5.25,0)$) |-
+  node[dir, text width=1cm] {\textbf{Frontend}\\ Interface\\ gr\'{a}fica} (wg2);
+
+\ifopacity
+
+\path[red, epath] (nc1) to[out=-90, in=90]
+  node[cir, pos=0.4] {1} (nc2);
+
+\path[green, epath] (rp1) to[out=-100, in=90]
+  node[cir, pos=0.4] {2} (rp2);
+
+\path[blue, epath] (hr1) to[out=-100, in=100]
+  node[cir, pos=0.4] {3} (hr2);
+
+% \path[cyan, epath] (in1) to[out=60, in=120] (in2);
+% \path[cyan, epath] (ou1) to[out=120, in=60] (ou2);
+
+\fi
 
 \end{tikzpicture}
 ```
@@ -13358,21 +13604,30 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   * [tree_3.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_3.pgf)
 
 ```tex
+\usetikzlibrary{trees}%
 \begin{tikzpicture}[
-  font=\small, edge from parent fork down, 
+  font=\small,
   every node/.style={
-    top color=white, bottom color=blue!25, 
-    rectangle,rounded corners, minimum size=6mm, draw=blue!75,
-    very thick, drop shadow, align=center
+%     top color=white,
+%     bottom color=blue!25,
+    rectangle,
+    rounded corners,
+    minimum size=6mm,
+%     draw=blue!75,
+    very thick,
+%     drop shadow,
+    align=center
   },
   edge from parent/.style={draw=blue!50,thick},
   level 1/.style={sibling distance=6cm},
-  level 2/.style={sibling distance=2.5cm}, 
-  level 3/.style={sibling distance=1.75cm}, 
-  level distance=2cm]
+  level 2/.style={sibling distance=2.5cm},
+  level 3/.style={sibling distance=1.75cm},
+  level distance=2cm,
+  edge from parent fork down
+]
 
   \node {Paletizador} % root
-  child { node {Inicializaaaao\\de sistema} 
+  child { node {Inicializaaaao\\de sistema}
     child { node {Sensor X}}
     child { node {Aaaaao Y}}
   }
@@ -13389,11 +13644,70 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       child { node {$z=?$}}
     }
   }
-  child { node {Sistema de despacho} 
+  child { node {Sistema de despacho}
     child { node {Sensor de peso\\/contador}}
     child { node {Tapete rolante\\de saaaaada}}
-  };
+  }
+  ;
 \end{tikzpicture}
+```
+****
+
+![](./src/two-phases-sampling.png)
+
+  * [two-phases-sampling.pgf](https://github.com/walmes/Tikz/blob/master/src/two-phases-sampling.pgf)
+
+```tex
+\usetikzlibrary{trees}%
+\begin{tikzpicture}[
+  grow = right,
+  ->,
+  >=latex',
+  level 1/.style = {level distance = 2.0cm, sibling distance = 1.5cm},
+  edge from parent path = {
+    (\tikzparentnode.east) -| +(0.25,0) |- (\tikzchildnode.west)
+  },
+  % edge from parent fork right,
+  bag/.style={
+    text width = 7em,
+    text centered,
+    anchor = west,
+    fill = gray!50,
+    rounded corners,
+    minimum height = 2em},
+  ]
+
+  \node[bag] {Primeira amostra ($n_1$)} 
+    child  {
+      node[bag, fill = orange!50!white] (rj1) {$d_1 \geq Re_1$}
+    } 
+    child { 
+      node[bag, fill = yellow!90!white] {$Ac_1 < d_1 < Re_1$}
+      child  {
+        node[bag] {Primeira amostra ($n_2$)}
+          child {
+            node (b) [bag, fill = orange!50!white] {$d_2 > (Ac_2 - d_1)$}
+          }
+          child {
+            node (a) [bag, fill = cyan!50!white] {$d_2 \leq (Ac_2 - d_1)$}
+          }
+      }
+    } 
+    child {
+      node[bag, fill = cyan!50!white] (ac1) {$d_1 \leq Ac_1$}
+    }
+  ;
+
+  \node[bag, above = 3em of a, fill = cyan!90!white] (ac) {Aceitar lote};
+  \node[bag, below = 3em of b, fill = orange!90!white] (rj) {Rejeitar lote};
+
+  \path[draw] (ac1) |- (ac);
+  \path[draw] (rj1) |- (rj);
+
+  \path[draw] (a) -- (ac);
+  \path[draw] (b) -- (rj);
+
+\end{tikzpicture}%
 ```
 ****
 

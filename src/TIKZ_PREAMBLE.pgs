@@ -70,7 +70,7 @@
 % \usepackage{eulervm}
 \usepackage[condensed, math]{iwona}
 % \usepackage[scaled=0.8]{beramono}
-% \usepackage{inconsolata}
+\usepackage{inconsolata}
 % \usepackage[sfdefault,condensed]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
 
 \usepackage[T1]{fontenc}
