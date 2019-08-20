@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 218 Tikz figures in this gallery.  Most of them were
+There are 220 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -34,6 +34,62 @@ The figures are in file alphabetic order.  A page with all figures displayed
 in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 
+****
+
+![](./src/analise-covarianca-efeitos.png)
+
+  * [analise-covarianca-efeitos.pgf](https://github.com/walmes/Tikz/blob/master/src/analise-covarianca-efeitos.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  auto, > = stealth',
+  node distance = 0.0ex and 2em,
+  pil/.style = {->},
+  punkt/.style = {
+    rectangle,
+    rounded corners = 3pt,
+    draw = black,
+    text width = 5.5em,
+    minimum height = 1.75em,
+    text centered}
+  ]
+
+\def\tratamentos{Tratamentos}
+\def\respostas{Respostas}
+\def\covariaveis{Covari{\' a}veis}
+\def\rede{Rede de efeitos}
+
+\begin{scope}
+  \node[punkt] (y1) {Respostas};
+  \node[punkt, above left = of y1] (t1) {\tratamentos};
+  \node[punkt, below left = of y1] (x1) {Covari{\' a}veis};
+  \path[pil] (t1) edge (y1);
+  \path[pil] (x1) edge (y1);
+  \node[fit = (t1)(x1)(y1), above, yshift = 1em] (fit1) {Rede de efeitos 1};
+\end{scope}
+
+\begin{scope}[xshift = 3.5cm]
+  \node[punkt] (t3) {\tratamentos};
+  \node[punkt, below right = of t3] (y3) {\respostas};
+  \node[punkt, above right = of t3] (x3) {\covariaveis};
+  \path[pil] (t3) edge (y3);
+  \path[pil] (t3) edge (x3);
+  \path[pil, dashed] (x3) edge (y3);
+  \node[fit = (t3)(x3)(y3), above, yshift = 1em] (fit3) {\rede{} 2};
+\end{scope}
+
+\begin{scope}[xshift = 3.25cm, yshift = -3cm]
+  \node[punkt] (y2) {\respostas};
+  \node[punkt, left = of y2] (t2) {\tratamentos};
+  \node[punkt, below left = 1.75em and -2em of y2] (x2) {\covariaveis};
+  \path[pil] (t2) edge (y2);
+  \path[pil] (x2) edge (y2);
+  \path[pil] (t2) edge (x2);
+  \node[fit = (t2)(x2)(y2), above, yshift = 1em] (fit2) {\rede{} 3};
+\end{scope}
+
+\end{tikzpicture}%
+```
 ****
 
 ![](./src/anotacoes_intersecao.png)
@@ -1666,6 +1722,187 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 \draw[draw = none] (-0.5, -1) rectangle (12, 6.5);
 
 \end{tikzpicture}
+```
+****
+
+![](./src/cubos_fatoriais_efeitos.png)
+
+  * [cubos_fatoriais_efeitos.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais_efeitos.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  scale = 2,
+  ->,
+  thick,
+  z = {(0.45, 0.25)},
+  node distance = 2em,
+  vertex/.style = {circle, minimum size = 5pt, inner sep = 0pt,
+    draw = black, fill = black},
+  axial/.style = {rectangle, minimum size = 20pt,
+    inner sep = 0pt, fill = gray!30},
+  edge/.style = {draw, thick, -, black},
+  rotu/.style = {midway},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  pointminus/.style = {draw = blue, fill = blue},
+  pointplus/.style = {draw = orange, fill = orange},
+  faceminus/.style = {blue, opacity = 0.4},
+  faceplus/.style = {orange, opacity = 0.4}
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+  } % \cube
+
+  % A effect.
+  \begin{scope}[]
+    \cube{};
+    \foreach \i in {0,...,7}{ \draw[fill= black] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {$2^3 = 8$};
+
+    % Axis text.
+    \path (v0) -- node[midway, below=1.5em] {$A$} (v2);
+    \path (v0) -- node[midway, left=1.5em] {$B$} (v1);
+    \path (v2) -- node[midway, right=3em] {$C$} (v6);
+
+    % Axis text.
+    \node[below of=v0, sinal, fill = blue] {$-$};
+    \node[below of=v2, sinal, fill = orange] {$+$};
+    \node[left of=v0, sinal, fill = blue] {$-$};
+    \node[left of=v1, sinal, fill = orange] {$+$};
+    \node[right = 3em of v2, sinal, fill = blue] {$-$};
+    \node[right = 3em of v6, sinal, fill = orange] {$+$};
+  \end{scope}
+
+  % A effect.
+  \begin{scope}[xshift = -2.5cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceminus]
+    (v0.center) -- (v1.center) -- (v5.center) -- (v4.center) -- cycle;
+    \foreach \i in {0, 1, 5, 4}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v2.center) -- (v3.center) -- (v7.center) -- (v6.center) -- cycle;
+    \foreach \i in {2, 3, 7, 6}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {A};
+  \end{scope}
+
+  % B effect.
+  \begin{scope}[xshift = 0.0cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceminus]
+    (v0.center) -- (v4.center) -- (v6.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 4, 6, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v1.center) -- (v5.center) -- (v7.center) -- (v3.center) -- cycle;
+    \foreach \i in {1, 5, 7, 3}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {B};
+  \end{scope}
+
+  % C effect.
+  \begin{scope}[xshift = 2.5cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceplus]
+    (v4.center) -- (v5.center) -- (v7.center) -- (v6.center) -- cycle;
+    \foreach \i in {4, 5, 7, 6}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v0.center) -- (v1.center) -- (v3.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 1, 3, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {C};
+  \end{scope}
+
+  % A:B effect.
+  \begin{scope}[xshift = -2.5cm, yshift = -5cm]
+    \cube{};
+    \fill[faceplus]
+    (v0.center) -- (v5.center) -- (v7.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 5, 7, 2}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v1.center) -- (v4.center) -- (v6.center) -- (v3.center) -- cycle;
+    \foreach \i in {1, 4, 6, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {BC};
+  \end{scope}
+
+  % A:C effect.
+  \begin{scope}[xshift = 0.0cm, yshift = -5cm]
+    \cube{};
+    \fill[faceminus]
+    (v2.center) -- (v4.center) -- (v5.center) -- (v3.center) -- cycle;
+    \foreach \i in {2, 4, 5, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v0.center) -- (v6.center) -- (v7.center) -- (v1.center) -- cycle;
+    \foreach \i in {0, 6, 7, 1}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {AC};
+  \end{scope}
+
+  % B:C effect.
+  \begin{scope}[xshift = 2.5cm, yshift = -5cm]
+    \cube{};
+    \fill[faceplus]
+    (v0.center) -- (v3.center) -- (v7.center) -- (v4.center) -- cycle;
+    \foreach \i in {0, 3, 7, 4}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v1.center) -- (v5.center) -- (v6.center) -- (v2.center) -- cycle;
+    \foreach \i in {1, 5, 6, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {AB};
+  \end{scope}
+
+  \begin{scope}[xshift = 0.0cm, yshift = -7.5cm]
+    \cube{};
+
+    % \draw[blue]
+    % (v0.center) -- (v5.center) -- (v6.center) -- cycle;
+    % \draw[blue]
+    % (v0.center) -- (v3.center) -- (v5.center) -- cycle;
+    % \draw[blue]
+    % (v3.center) -- (v5.center) -- (v6.center) -- cycle;
+    % \draw[blue]
+    % (v0.center) -- (v3.center) -- (v6.center) -- cycle;
+    %
+    % \draw[orange]
+    % (v1.center) -- (v2.center) -- (v7.center) -- cycle;
+    % \draw[orange]
+    % (v1.center) -- (v2.center) -- (v4.center) -- cycle;
+    % \draw[orange]
+    % (v2.center) -- (v4.center) -- (v7.center) -- cycle;
+    % \draw[orange]
+    % (v1.center) -- (v4.center) -- (v7.center) -- cycle;
+
+    \foreach \i in {1, 2, 7, 4}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \foreach \i in {0, 5, 6, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {ABC};
+  \end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
