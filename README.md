@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 220 Tikz figures in this gallery.  Most of them were
+There are 222 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -4862,6 +4862,507 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
     child [profator2, level3] {node[fator2] {6 L}};
   \node at ($(A1)!0.5!(A2)+(0,1)$) {Aduba\c{c}\~ao complementar};
 \end{tikzpicture}
+```
+****
+
+![](./src/fatorial-2k-codificacao.png)
+
+  * [fatorial-2k-codificacao.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial-2k-codificacao.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 1em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+
+% # Qualitative.
+% da <- expand.grid(A = c("$a_1$", "$a_2$"),
+%                   B = c("$b_1$", "$b_2$"),
+%                   C = c("$c_1$", "$c_2$"),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% # Quantitative in the original scale.
+% da <- expand.grid(A = c(3, 5),
+%                   B = c(5, 7),
+%                   C = c(1, 2),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% # Codified scale.
+% da <- expand.grid(A = c(-1, 1),
+%                   B = c(-1, 1),
+%                   C = c(-1, 1),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% xtable::print.xtable(xtable::xtable(da, digits = 0),
+%                      include.rownames = FALSE,
+%                      # include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      sanitize.text.function = identity,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+% 
+% X <- model.matrix(~A * B * C,
+%                   data = da)
+% 
+% xtable::print.xtable(xtable::xtable(X, digits = 0),
+%                      include.rownames = FALSE,
+%                      include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+% 
+% xtable::print.xtable(xtable::xtable(t(X) %*% X, digits = 0),
+%                      include.rownames = FALSE,
+%                      include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+
+\begin{scope}
+
+  \matrix (X) [mtx] {
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\ 
+    1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 \\ 
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  };
+
+  \node[left=1em of X] (Xequal) {$\Rightarrow X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
+
+  \node[left = 2em of X, anchor = east] (tb) {
+  \begin{minipage}{3cm}
+  \begin{tabular}{rrr}
+  \hline
+    A & B & C \\ \hline
+    $a_1$ & $b_1$ & $c_1$ \\ 
+    $a_2$ & $b_1$ & $c_1$ \\ 
+    $a_1$ & $b_2$ & $c_1$ \\ 
+    $a_2$ & $b_2$ & $c_1$ \\ 
+    $a_1$ & $b_1$ & $c_2$ \\ 
+    $a_2$ & $b_1$ & $c_2$ \\ 
+    $a_1$ & $b_2$ & $c_2$ \\ 
+    $a_2$ & $b_2$ & $c_2$ \\ \hline
+  \end{tabular}
+  \end{minipage}
+  };
+
+  \matrix (XX) [mtx, right=1em of Xarrow] {
+  8 & 4 & 4 & 4 & 2 & 2 & 2 & 1 \\ 
+  4 & 4 & 2 & 2 & 2 & 2 & 1 & 1 \\ 
+  4 & 2 & 4 & 2 & 2 & 1 & 2 & 1 \\ 
+  4 & 2 & 2 & 4 & 1 & 2 & 2 & 1 \\ 
+  2 & 2 & 2 & 1 & 2 & 1 & 1 & 1 \\ 
+  2 & 2 & 1 & 2 & 1 & 2 & 1 & 1 \\ 
+  2 & 1 & 2 & 2 & 1 & 1 & 2 & 1 \\ 
+  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  };
+
+  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
+    \textbf{Contraste/codifica{\c c}{\~ a}o de tratamento para fatores qualitativos}
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$A$};
+  \node[txtup] at (X-1-3.north) {$B$};
+  \node[txtup] at (X-1-4.north) {$C$};
+  \node[txtup] at (X-1-5.north) {$AB$};
+  \node[txtup] at (X-1-6.north) {$AC$};
+  \node[txtup] at (X-1-7.north) {$BC$};
+  \node[txtup] at (X-1-8.north) {$ABC$};
+
+\end{scope}
+
+\begin{scope}[yshift = -6cm]
+
+  \matrix (X) [mtx] {
+  1 & 3 & 5 & 1 & 15 & 3 & 5 & 15 \\ 
+  1 & 5 & 5 & 1 & 25 & 5 & 5 & 25 \\ 
+  1 & 3 & 7 & 1 & 21 & 3 & 7 & 21 \\ 
+  1 & 5 & 7 & 1 & 35 & 5 & 7 & 35 \\ 
+  1 & 3 & 5 & 2 & 15 & 6 & 10 & 30 \\ 
+  1 & 5 & 5 & 2 & 25 & 10 & 10 & 50 \\ 
+  1 & 3 & 7 & 2 & 21 & 6 & 14 & 42 \\ 
+  1 & 5 & 7 & 2 & 35 & 10 & 14 & 70 \\ 
+  };
+
+  \node[left=1em of X] (Xequal) {$\Rightarrow X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
+
+  \node[left = 2em of X, anchor = east] (tb) {
+  \begin{minipage}{3cm}
+  \begin{tabular}{rrr}
+  \hline
+    A & B & C \\ \hline
+    3 & 5 & 1 \\ 
+    5 & 5 & 1 \\ 
+    3 & 7 & 1 \\ 
+    5 & 7 & 1 \\ 
+    3 & 5 & 2 \\ 
+    5 & 5 & 2 \\ 
+    3 & 7 & 2 \\ 
+    5 & 7 & 2 \\ \hline
+  \end{tabular}
+  \end{minipage}
+  };
+
+  \matrix (XX) [mtx, right=1em of Xarrow,
+    every node/.style = {text width = 2em, align = right},
+  ] {
+  8 & 32 & 48 & 12 & 192 & 48 & 72 & 288 \\ 
+  32 & 136 & 192 & 48 & 816 & 204 & 288 & 1224 \\ 
+  48 & 192 & 296 & 72 & 1184 & 288 & 444 & 1776 \\ 
+  12 & 48 & 72 & 20 & 288 & 80 & 120 & 480 \\ 
+  192 & 816 & 1184 & 288 & 5032 & 1224 & 1776 & 7548 \\ 
+  48 & 204 & 288 & 80 & 1224 & 340 & 480 & 2040 \\ 
+  72 & 288 & 444 & 120 & 1776 & 480 & 740 & 2960 \\ 
+  288 & 1224 & 1776 & 480 & 7548 & 2040 & 2960 & 12580 \\ 
+ };
+
+  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
+    \textbf{Fatores quantitativos na escala original}
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$A$};
+  \node[txtup] at (X-1-3.north) {$B$};
+  \node[txtup] at (X-1-4.north) {$C$};
+  \node[txtup] at (X-1-5.north) {$AB$};
+  \node[txtup] at (X-1-6.north) {$AC$};
+  \node[txtup] at (X-1-7.north) {$BC$};
+  \node[txtup] at (X-1-8.north) {$ABC$};
+
+\end{scope}
+
+\begin{scope}[yshift = -12cm]
+
+  \matrix (X) [mtx] {
+  1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 \\ 
+  1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+  1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 \\ 
+  1 & 1 & 1 & -1 & 1 & -1 & -1 & -1 \\ 
+  1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 \\ 
+  1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 \\ 
+  1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 \\ 
+  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  };
+
+  \node[left=1em of X] (Xequal) {$X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
+
+  \matrix (XX) [mtx, right=1em of Xarrow] {
+  8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 8 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 8 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 8 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 8 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 8 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 0 & 8 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 8 \\ 
+ };
+
+  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
+    \textbf{Fatores na escala codificada}
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$A$};
+  \node[txtup] at (X-1-3.north) {$B$};
+  \node[txtup] at (X-1-4.north) {$C$};
+  \node[txtup] at (X-1-5.north) {$AB$};
+  \node[txtup] at (X-1-6.north) {$AC$};
+  \node[txtup] at (X-1-7.north) {$BC$};
+  \node[txtup] at (X-1-8.north) {$ABC$};
+
+\end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/fatorial-duplo-contrastes.png)
+
+  * [fatorial-duplo-contrastes.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial-duplo-contrastes.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 1em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+\begin{scope}
+
+  \matrix (X) at (0, 0) [mtx] {
+    1 & 1 & . & . & 1 & . & 1 & . & . & . & . & . \\
+    1 & . & 1 & . & 1 & . & . & 1 & . & . & . & . \\
+    1 & . & . & 1 & 1 & . & . & . & 1 & . & . & . \\
+    1 & 1 & . & . & . & 1 & . & . & . & 1 & . & . \\
+    1 & . & 1 & . & . & 1 & . & . & . & . & 1 & . \\
+    1 & . & . & 1 & . & 1 & . & . & . & . & . & 1 \\
+  };
+
+  \node[left=1em of X] (Xequal) {$X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X = $};
+
+  \node[above=5em of Xequal, anchor = south west, align = left] {
+    \textbf{Contraste tratamento}\\
+    $\theta_1 = 0$ para $\theta = \alpha, \beta$.
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$\alpha_1$};
+  \node[txtup] at (X-1-3.north) {$\alpha_2$};
+  \node[txtup] at (X-1-4.north) {$\alpha_3$};
+  \node[txtup] at (X-1-5.north) {$\beta_1$};
+  \node[txtup] at (X-1-6.north) {$\beta_2$};
+  \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+  \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+  \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+  \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+  \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+  \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+
+  % Restricoes.
+  \draw (X-6-2.south) |- +(0.25, -1em) node[right] {$\alpha_1 = 0$};
+  \draw (X-6-5.south) |- +(0.25, -1em) node[right] {$\beta_1 = 0$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+  \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+  \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+  \end{scope}
+
+  \matrix (XX) [mtx, right = 1em of Xarrow] {
+  1 & . & . & . & . & . \\ 
+  1 & 1 & . & . & . & . \\ 
+  1 & . & 1 & . & . & . \\ 
+  1 & . & . & 1 & . & . \\ 
+  1 & 1 & . & 1 & 1 & . \\ 
+  1 & . & 1 & 1 & . & 1 \\ 
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_3$};
+  \node[txtup] at (XX-1-4.north) {$\beta_2$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{22}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{32}$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+  \end{scope}
+
+  \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+
+  \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+
+\begin{scope}[yshift = -7cm]
+
+  \matrix (X) at (0, 0) [mtx] {
+    1 & 1 & . & . & 1 & . & 1 & . & . & . & . & . \\
+    1 & . & 1 & . & 1 & . & . & 1 & . & . & . & . \\
+    1 & . & . & 1 & 1 & . & . & . & 1 & . & . & . \\
+    1 & 1 & . & . & . & 1 & . & . & . & 1 & . & . \\
+    1 & . & 1 & . & . & 1 & . & . & . & . & 1 & . \\
+    1 & . & . & 1 & . & 1 & . & . & . & . & . & 1 \\
+  };
+
+  \node[left=1em of X] (Xequal) {$X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X = $};
+
+  \node[above=5em of Xequal, anchor = south west, align = left] {
+    \textbf{Contraste soma zero}\\
+    $\theta_k = -\displaystyle\sum_{i = 1}^{k - 1} \theta_i$ para $\theta = \alpha, \beta$
+    e $k$ {\' e} o n{\' u}mero de n{\' i}veis.
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$\alpha_1$};
+  \node[txtup] at (X-1-3.north) {$\alpha_2$};
+  \node[txtup] at (X-1-4.north) {$\alpha_3$};
+  \node[txtup] at (X-1-5.north) {$\beta_1$};
+  \node[txtup] at (X-1-6.north) {$\beta_2$};
+  \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+  \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+  \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+  \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+  \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+  \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+
+  % Restricoes.
+  \draw (X-6-4.south) |- +(0.25, -2.5em) node[right] {$\alpha_3 = -(\alpha_1 + \alpha_2)$};
+  \draw (X-6-6.south) |- +(0.25, -1em) node[right] {$\beta_2 = -\beta_1$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+  \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+  \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+  \end{scope}
+
+  \matrix (XX) [mtx, right = 1em of Xarrow] {
+  1 & 1 & . & 1 & 1 & . \\ 
+  1 & . & 1 & 1 & . & 1 \\ 
+  1 & -1 & -1 & 1 & -1 & -1 \\ 
+  1 & 1 & . & -1 & -1 & . \\ 
+  1 & . & 1 & -1 & . & -1 \\ 
+  1 & -1 & -1 & -1 & 1 & 1 \\ 
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_1$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-4.north) {$\beta_1$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{11}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{21}$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+  \end{scope}
+
+  \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+
+  \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+
+\begin{scope}[yshift = -14cm]
+
+  \matrix (X) at (0, 0) [mtx] {
+    1 & 1 & . & . & 1 & . & 1 & . & . & . & . & . \\
+    1 & . & 1 & . & 1 & . & . & 1 & . & . & . & . \\
+    1 & . & . & 1 & 1 & . & . & . & 1 & . & . & . \\
+    1 & 1 & . & . & . & 1 & . & . & . & 1 & . & . \\
+    1 & . & 1 & . & . & 1 & . & . & . & . & 1 & . \\
+    1 & . & . & 1 & . & 1 & . & . & . & . & . & 1 \\
+  };
+
+  \node[left=1em of X] (Xequal) {$X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X = $};
+
+  \node[above=5em of Xequal, anchor = south west, align = left] {
+    \textbf{Contraste de Helmert}\\
+    $(u - 1) \theta_u = -\displaystyle\sum_{i = 1}^{u - 1} \theta_i$ para $\theta = \alpha, \beta$
+    sendo $u = 2, \ldots, k$ e $k$ {\' e} o n{\' u}mero de n{\' i}veis.
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] (alpha1) at (X-1-2.north) {$\alpha_1$};
+  \node[txtup] (alpha2) at (X-1-3.north) {$\alpha_2$};
+  \node[txtup] at (X-1-4.north) {$\alpha_3$};
+  \node[txtup] (beta1) at (X-1-5.north) {$\beta_1$};
+  \node[txtup] at (X-1-6.north) {$\beta_2$};
+  \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+  \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+  \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+  \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+  \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+  \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+
+  % Restricoes.
+  \draw (X-6-2.south) |- +(0.25, -4.0em) node[right] {$-\alpha_1 = \alpha_2$};
+  \draw (X-6-3.south) |- +(0.25, -2.5em) node[right] {$-(\alpha_1 + \alpha_2) = 2\alpha_3$};
+  \draw (X-6-5.south) |- +(0.25, -1.0em) node[right] {$-\beta_1 = \beta_2$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+  \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+  \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+  \end{scope}
+
+  \matrix (XX) [mtx, right = 1em of Xarrow] {
+    1 & -1 & -1 & -1 & 1 & 1 \\
+    1 & 1 & -1 & -1 & -1 & 1 \\
+    1 & . & 2 & -1 & . & -2 \\
+    1 & -1 & -1 & 1 & -1 & -1 \\
+    1 & 1 & -1 & 1 & 1 & -1 \\
+    1 & . & 2 & 1 & . & 2 \\
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_1$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-4.north) {$\beta_1$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{11}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{21}$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+  \end{scope}
+
+  \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+
+  \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
