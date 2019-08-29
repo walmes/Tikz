@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 222 Tikz figures in this gallery.  Most of them were
+There are 223 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -13021,6 +13021,69 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       {x^2 > 4 ? -x^2+8 : x^2};
   \end{axis}
 \end{tikzpicture}
+```
+****
+
+![](./src/segmented-linear.png)
+
+  * [segmented-linear.pgf](https://github.com/walmes/Tikz/blob/master/src/segmented-linear.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  > = latex, xscale = 4, yscale = 4,
+  mypoints/.style = {fill = white, draw = black},
+  pil/.style = {->, shorten< = 2pt, shorten> = 2pt}
+  ]
+
+  \def\num{(1)}
+  \def\eixos{
+    \draw[->] (-0.05, 0) -- +(1.5, 0);
+    \draw[->] (0, -0.05) -- +(0, 1.1) node[right = 2em] {\num{}};
+  }
+
+  % Para fazer o quadrado.
+  \newcommand{\segmentedlinear}[5]{%
+    \draw[color = black, very thick, samples = 5]
+      plot[id = x, domain = 0:#1] function{#2 + #3 * x};
+    \draw[color = black, thin, dashed, samples = 5]
+      plot[id = x, domain = #1:1.4] function{#2 + #3 * x};
+    \draw[color = black, very thick, samples = 5]
+      plot[id = x, domain = #1:1.4] function{#4 + #5 * x};
+    \draw[color = black, thin, dashed, samples = 5]
+      plot[id = x, domain = 0:#1] function{#4 + #5 * x};
+  }%
+
+  \begin{scope}
+    \def\num{(1)}
+    \eixos{}
+    \segmentedlinear{0.7}{0.1}{0.5}{0.7}{-0.1}
+  \end{scope}
+
+  \begin{scope}[xshift = 1.8cm]
+    \def\num{(2)}
+    \eixos{}
+    \segmentedlinear{0.7}{0.1}{0.5}{0.3}{0.5}
+  \end{scope}
+
+  \begin{scope}[xshift = 3.6cm]
+    \def\num{(3)}
+    \eixos{}
+    \segmentedlinear{0.7}{0.1}{0.5}{0.1}{0.3}
+  \end{scope}
+
+  \begin{scope}[yshift = -1.4cm, xshift = 0cm]
+    \def\num{(4)}
+    \eixos{}
+    \segmentedlinear{0.7}{0.1}{0.5}{0.52}{-0.1}
+  \end{scope}
+
+  \begin{scope}[yshift = -1.4cm, xshift = 1.8cm]
+    \def\num{(5)}
+    \eixos{}
+    \segmentedlinear{0.7}{0.1}{0.5}{0.45}{0}
+  \end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
