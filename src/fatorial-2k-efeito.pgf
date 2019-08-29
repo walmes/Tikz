@@ -1,0 +1,177 @@
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 1em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+  every path/.style = {> = latex},
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+
+% # Qualitative.
+% da <- expand.grid(A = c("$a_1$", "$a_2$"),
+%                   B = c("$b_1$", "$b_2$"),
+%                   C = c("$c_1$", "$c_2$"),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% # Quantitative in the original scale.
+% da <- expand.grid(A = c(3, 5),
+%                   B = c(5, 7),
+%                   C = c(1, 2),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% # Codified scale.
+% da <- expand.grid(A = c(-1, 1),
+%                   B = c(-1, 1),
+%                   C = c(-1, 1),
+%                   KEEP.OUT.ATTRS = FALSE)
+% da
+% 
+% xtable::print.xtable(xtable::xtable(da, digits = 0),
+%                      include.rownames = FALSE,
+%                      # include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      sanitize.text.function = identity,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+% 
+% X <- model.matrix(~A * B * C,
+%                   data = da)
+% 
+% xtable::print.xtable(xtable::xtable(X, digits = 0),
+%                      include.rownames = FALSE,
+%                      include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+% 
+% xtable::print.xtable(xtable::xtable(t(X) %*% X, digits = 0),
+%                      include.rownames = FALSE,
+%                      include.colnames = FALSE,
+%                      only.contents = TRUE,
+%                      comment = FALSE,
+%                      hline.after = NULL)
+
+\begin{scope}
+
+  \matrix (X) [mtx] {
+  1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 \\ 
+  1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+  1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 \\ 
+  1 & 1 & 1 & -1 & 1 & -1 & -1 & -1 \\ 
+  1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 \\ 
+  1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 \\ 
+  1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 \\ 
+  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  };
+
+  \node[left=1em of X] (Xequal) {$\Rightarrow X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
+
+  \node[left = 2em of X, anchor = east] (tb) {
+  \begin{minipage}{4.25cm}
+  \begin{tabular}{rrrr}
+  \hline
+  nom. & A & B & C \\ \hline
+  $(1)$ & $a_1$ & $b_1$ & $c_1$ \\ 
+  $a$   & $a_2$ & $b_1$ & $c_1$ \\ 
+  $b$   & $a_1$ & $b_2$ & $c_1$ \\ 
+  $ab$  & $a_2$ & $b_2$ & $c_1$ \\ 
+  $c$   & $a_1$ & $b_1$ & $c_2$ \\ 
+  $ac$  & $a_2$ & $b_1$ & $c_2$ \\ 
+  $bc$  & $a_1$ & $b_2$ & $c_2$ \\ 
+  $abc$ & $a_2$ & $b_2$ & $c_2$ \\ \hline
+  \end{tabular}
+  \end{minipage}
+  };
+
+  \matrix (XX) [mtx, right=1em of Xarrow] {
+  8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 8 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 8 & 0 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 8 & 0 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 8 & 0 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 8 & 0 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 0 & 8 & 0 \\ 
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 8 \\ 
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$A$};
+  \node[txtup] at (X-1-3.north) {$B$};
+  \node[txtup] at (X-1-4.north) {$C$};
+  \node[txtup] at (X-1-5.north) {$AB$};
+  \node[txtup] at (X-1-6.north) {$AC$};
+  \node[txtup] at (X-1-7.north) {$BC$};
+  \node[txtup] at (X-1-8.north) {$ABC$};
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = gray, fit = (X-1-2) (X-8-2)] {};
+  \end{scope}
+
+  \matrix (Xtrans) [mtx, below = 6em of X, xshift = -3cm] {
+  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+  -1 & 1 & -1 & 1 & -1 & 1 & -1 & 1 \\ 
+  -1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 \\ 
+  -1 & -1 & -1 & -1 & 1 & 1 & 1 & 1 \\ 
+  1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 \\ 
+  1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 \\ 
+  1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+  -1 & 1 & 1 & -1 & 1 & -1 & -1 & 1 \\ 
+  };
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = gray, fit = (Xtrans-2-1) (Xtrans-2-8)] {};
+  \end{scope}
+
+  \path[->] (X-8-2) edge[out = -90, in = 120] (Xtrans-2-1);
+
+  \matrix (y) [mtx, right = 1.5em of Xtrans] {
+  $y_{(1)}$ \\ 
+  $y_{a}$ \\ 
+  $y_{b}$ \\ 
+  $y_{ab}$ \\ 
+  $y_{c}$ \\ 
+  $y_{ac}$ \\ 
+  $y_{bc}$ \\ 
+  $y_{abc}$ \\ 
+  };
+
+  \node[left = 1em of Xtrans] {$(X^\top X)^{-1} X^\top y = \displaystyle \frac{1}{8} \cdot$};
+  \node[right = 1em of y] (Xy) {$ = \displaystyle \frac{1}{8} \cdot$};
+
+  \matrix (beta) [mtx, right = 1em of Xy, every node/.style = {text width = 19em}] {
+  $y_{(1)} + y_{a} + y_{b} + y_{ab} + y_{c} + y_{ac} + y_{bc} + y_{abc}$\\
+  $\textcolor{orange!80!black}{(y_{a} + y_{ab} + y_{ac} + y_{abc})} - \textcolor{blue!80!black}{(y_{(1)} + y_{b} + y_{c} + y_{bc})}$\\
+  $\textcolor{orange!80!black}{(y_{b} + y_{ab} + y_{bc} + y_{abc})} - \textcolor{blue!80!black}{(y_{(1)} + y_{a} + y_{c} + y_{ac})}$\\
+  $\textcolor{orange!80!black}{(y_{c} + y_{ac} + y_{bc} + y_{abc})} - \textcolor{blue!80!black}{(y_{(1)} + y_{a} + y_{b} + y_{ab})}$\\
+  $\textcolor{orange!80!black}{(y_{(1)} + y_{ab} + y_{c} + y_{abc})} - \textcolor{blue!80!black}{(y_{a} + y_{b} + y_{ac} + y_{bc})}$\\
+  $\textcolor{orange!80!black}{(y_{(1)} + y_{b} + y_{ac} + y_{abc})} - \textcolor{blue!80!black}{(y_{a} + y_{ab} + y_{c} + y_{bc})}$\\
+  $\textcolor{orange!80!black}{(y_{(1)} + y_{a} + y_{bc} + y_{abc})} - \textcolor{blue!80!black}{(y_{b} + y_{ab} + y_{c} + y_{ac})}$\\
+  $\textcolor{orange!80!black}{(y_{a} + y_{b} + y_{c} + y_{abc})} - \textcolor{blue!80!black}{(y_{(1)} + y_{ab} + y_{ac} + y_{bc})}$\\
+  };
+
+  \node (ef) at ($(beta-2-1.east) + (-1.5, 1.5)$) {Efeito de A};
+  \path[->] (beta-2-1.east) edge[out = 45, in = 0] (ef);
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = gray, fit = (beta-2-1) (beta-2-1)] {};
+  \end{scope}
+
+\end{scope}
+
+\end{tikzpicture}%
