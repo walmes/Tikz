@@ -1,0 +1,98 @@
+﻿\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 1.8em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+  every path/.style = {> = latex},
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+\begin{scope}
+
+  \matrix (H1) [mtx] {
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  };
+
+  \node[left = 1em of H1] {$H_{\mu, A} - H_{\mu} = $};
+  \node[right = 1em of H1] (H1minusH0) {$ - $};
+
+  \matrix (H0) [mtx, right = 1em of H1minusH0] {
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  };
+
+  \matrix (H1H0) [mtx, below = 1em of H1] {
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  };
+
+  \node[left = 1em of H1H0] {$H_{\mu, A} - H_{\mu} = $};
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = blue, fit = (H1-1-1) (H1-1-8)] {};
+    \node[hltr, fill = orange, fit = (H1-2-1) (H1-2-8)] {};
+    \node[hltr, fill = blue, fit = (H1-3-1) (H1-3-8)] {};
+    \node[hltr, fill = orange, fit = (H1-4-1) (H1-4-8)] {};
+    \node[hltr, fill = blue, fit = (H1-5-1) (H1-5-8)] {};
+    \node[hltr, fill = orange, fit = (H1-6-1) (H1-6-8)] {};
+    \node[hltr, fill = blue, fit = (H1-7-1) (H1-7-8)] {};
+    \node[hltr, fill = orange, fit = (H1-8-1) (H1-8-8)] {};
+  \end{scope}
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = blue, fit = (H1H0-1-1) (H1H0-1-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-2-1) (H1H0-2-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-3-1) (H1H0-3-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-4-1) (H1H0-4-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-5-1) (H1H0-5-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-6-1) (H1H0-6-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-7-1) (H1H0-7-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-8-1) (H1H0-8-8)] {};
+  \end{scope}
+
+
+  \matrix (y) [mtx, right = 1.5em of H1H0] {
+  $y_{(1)}$ \\ 
+  $y_{a}$ \\ 
+  $y_{b}$ \\ 
+  $y_{ab}$ \\ 
+  $y_{c}$ \\ 
+  $y_{ac}$ \\ 
+  $y_{bc}$ \\ 
+  $y_{abc}$ \\ 
+  };
+
+
+\end{scope}
+
+\end{tikzpicture}%
