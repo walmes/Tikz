@@ -1,0 +1,75 @@
+\begin{tikzpicture}
+
+  % \fill[red] (0, 0) circle (1pt);
+  % \draw (0, 0) --
+  % ++(0.375, 0) --
+  % ++(60:2) --
+  % ++(-0.5, 0) --
+  % ++(-120:0.5) --
+  % ++(-1.25, 0) --
+  % ++(120:0.5) --
+  % ++(-0.5, 0) --
+  % ++(-60:2) --
+  % cycle;
+
+  \begin{scope}
+    \foreach \angle in {0, 60, ..., 300} {
+      \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+        \draw[draw = none, fill = green!40!black]
+          (0, 0) --
+          ++(0.375, 0) --
+          ++(60:2) --
+          ++(-0.5, 0) --
+          ++(-120:0.5) --
+          ++(-1.25, 0) --
+          ++(120:0.5) --
+          ++(-0.5, 0) --
+          ++(-60:2) --
+          cycle;
+      \end{scope}
+    }
+  \end{scope}
+
+  \begin{scope}[yshift = 0cm, xshift = 5.5cm, scale = 0.5]
+
+    \foreach \angle in {0, 60, 120} {
+      \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+        \draw[draw = none, fill = green!40!black]
+          (0, 0) --
+          ++(0.375, 0) --
+          ++(60:2) --
+          ++(-0.5, 0) --
+          ++(-120:0.5) --
+          ++(-1.25, 0) --
+          ++(120:0.5) --
+          ++(-0.5, 0) --
+          ++(-60:2) --
+          cycle;
+      \end{scope}
+    }
+
+    \begin{scope}[xshift = 2cm]
+      \foreach \angle in {180, 240, 300} {
+        \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+          \draw[draw = none, fill = green!40!black]
+            (0, 0) --
+            ++(0.375, 0) --
+            ++(60:2) --
+            ++(-0.5, 0) --
+            ++(-120:0.5) --
+            ++(-1.25, 0) --
+            ++(120:0.5) --
+            ++(-0.5, 0) --
+            ++(-60:2) --
+            cycle;
+        \end{scope}
+      }
+    \end{scope}
+
+    \node[color = green!40!black] at (0.75, 0.25) {\huge\it PET};
+    \node[color = green!40!black] at (0.95, -0.65) {\it Agronomia};
+    \node[color = green!40!black] at (0.2, -1.35) {\it UFGD};
+
+  \end{scope}
+
+\end{tikzpicture}
