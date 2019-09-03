@@ -15,7 +15,7 @@ output:
 This is my collection, or gallery, of Tikz Art.  The official Tikz
 Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
 
-There are 224 Tikz figures in this gallery.  Most of them were
+There are 226 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -34,6 +34,89 @@ The figures are in file alphabetic order.  A page with all figures displayed
 in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
 
+****
+
+![](./src/agronomia.png)
+
+  * [agronomia.pgf](https://github.com/walmes/Tikz/blob/master/src/agronomia.pgf)
+
+```tex
+\begin{tikzpicture}
+
+  % \fill[red] (0, 0) circle (1pt);
+  % \draw (0, 0) --
+  % ++(0.375, 0) --
+  % ++(60:2) --
+  % ++(-0.5, 0) --
+  % ++(-120:0.5) --
+  % ++(-1.25, 0) --
+  % ++(120:0.5) --
+  % ++(-0.5, 0) --
+  % ++(-60:2) --
+  % cycle;
+
+  \begin{scope}
+    \foreach \angle in {0, 60, ..., 300} {
+      \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+        \draw[draw = none, fill = green!40!black]
+          (0, 0) --
+          ++(0.375, 0) --
+          ++(60:2) --
+          ++(-0.5, 0) --
+          ++(-120:0.5) --
+          ++(-1.25, 0) --
+          ++(120:0.5) --
+          ++(-0.5, 0) --
+          ++(-60:2) --
+          cycle;
+      \end{scope}
+    }
+  \end{scope}
+
+  \begin{scope}[yshift = 0cm, xshift = 5.5cm, scale = 0.5]
+
+    \foreach \angle in {0, 60, 120} {
+      \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+        \draw[draw = none, fill = green!40!black]
+          (0, 0) --
+          ++(0.375, 0) --
+          ++(60:2) --
+          ++(-0.5, 0) --
+          ++(-120:0.5) --
+          ++(-1.25, 0) --
+          ++(120:0.5) --
+          ++(-0.5, 0) --
+          ++(-60:2) --
+          cycle;
+      \end{scope}
+    }
+
+    \begin{scope}[xshift = 2cm]
+      \foreach \angle in {180, 240, 300} {
+        \begin{scope}[rotate = \angle, shift = {(0, 1)}]
+          \draw[draw = none, fill = green!40!black]
+            (0, 0) --
+            ++(0.375, 0) --
+            ++(60:2) --
+            ++(-0.5, 0) --
+            ++(-120:0.5) --
+            ++(-1.25, 0) --
+            ++(120:0.5) --
+            ++(-0.5, 0) --
+            ++(-60:2) --
+            cycle;
+        \end{scope}
+      }
+    \end{scope}
+
+    \node[color = green!40!black] at (0.75, 0.25) {\huge\it PET};
+    \node[color = green!40!black] at (0.95, -0.65) {\it Agronomia};
+    \node[color = green!40!black] at (0.2, -1.35) {\it UFGD};
+
+  \end{scope}
+
+\end{tikzpicture}
+```
 ****
 
 ![](./src/analise-covarianca-efeitos.png)
@@ -5282,6 +5365,163 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
 
   \begin{scope}[on background layer]
     \node[hltr, fill = gray, fit = (beta-2-1) (beta-2-1)] {};
+  \end{scope}
+
+\end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/fatorial-2k-soma-de-quadrado.png)
+
+  * [fatorial-2k-soma-de-quadrado.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial-2k-soma-de-quadrado.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 1.8em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+  every path/.style = {> = latex},
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+\begin{scope}
+
+  \matrix (H1) [mtx] {
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 \\ 
+  0 & 1/4 & 0 & 1/4 & 0 & 1/4 & 0 & 1/4 \\ 
+  };
+
+  \node[left = 1em of H1] {$H_{\mu, A} - H_{\mu} = $};
+  \node[right = 1em of H1] (H1minusH0) {$ - $};
+
+  \matrix (H0) [mtx, right = 1em of H1minusH0] {
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 & 1/8 \\ 
+  };
+
+  \matrix (H1H0) [mtx, below = 1em of H1] {
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  };
+
+  \node[left = 1em of H1H0] {$H_{\mu, A} - H_{\mu} = $};
+
+  \node (times1) at (6, -3.5) {4x};
+  \node[below = 1em of times1] (times2) {4x};
+  \foreach \x in {1,3,...,7} {
+     \path[color = blue] (H1H0-\x-8.east) edge (times1.west);
+  }
+  \foreach \x in {2,4,...,8} {
+     \path[color = orange] (H1H0-\x-8.east) edge (times2.west);
+  }
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = blue, fit = (H1-1-1) (H1-1-8)] {};
+    \node[hltr, fill = orange, fit = (H1-2-1) (H1-2-8)] {};
+    \node[hltr, fill = blue, fit = (H1-3-1) (H1-3-8)] {};
+    \node[hltr, fill = orange, fit = (H1-4-1) (H1-4-8)] {};
+    \node[hltr, fill = blue, fit = (H1-5-1) (H1-5-8)] {};
+    \node[hltr, fill = orange, fit = (H1-6-1) (H1-6-8)] {};
+    \node[hltr, fill = blue, fit = (H1-7-1) (H1-7-8)] {};
+    \node[hltr, fill = orange, fit = (H1-8-1) (H1-8-8)] {};
+  \end{scope}
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = blue, fit = (H1H0-1-1) (H1H0-1-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-2-1) (H1H0-2-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-3-1) (H1H0-3-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-4-1) (H1H0-4-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-5-1) (H1H0-5-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-6-1) (H1H0-6-8)] {};
+    \node[hltr, fill = blue, fit = (H1H0-7-1) (H1H0-7-8)] {};
+    \node[hltr, fill = orange, fit = (H1H0-8-1) (H1H0-8-8)] {};
+  \end{scope}
+
+  \begin{scope}
+
+  \matrix (yH1H0y) [mtx, below = 2.5em of H1H0, xshift = 1.64cm] {
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 \\ 
+  -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 & -1/8 & 1/8 \\ 
+  };
+
+  \matrix (yH) [mtx, left = 1.5em of yH1H0y] {
+  $y_{(1)}$ \\ 
+  $y_{a}$ \\ 
+  $y_{b}$ \\ 
+  $y_{ab}$ \\ 
+  $y_{c}$ \\ 
+  $y_{ac}$ \\ 
+  $y_{bc}$ \\ 
+  $y_{abc}$ \\ 
+  };
+
+  \node[left = 1em of yH] {$y^\top (H_{\mu, A} - H_{\mu}) y = $};
+
+  \node at ($(yH-1-1) + (0.9, 0.5)$) {$\top$};
+
+  \matrix (Hy) [mtx, right = 1.5em of yH1H0y] {
+  $y_{(1)}$ \\ 
+  $y_{a}$ \\ 
+  $y_{b}$ \\ 
+  $y_{ab}$ \\ 
+  $y_{c}$ \\ 
+  $y_{ac}$ \\ 
+  $y_{bc}$ \\ 
+  $y_{abc}$ \\ 
+  };
+
+  \end{scope}
+
+  \begin{scope}[yshift = -12.5cm, xshift = 1.7cm]
+
+  \node {
+    $
+    SS_{A} = y^\top (H_{\mu, A} - H_{\mu}) y = 
+    \displaystyle\frac{ 
+      \left[ (y_{a} + y_{ab} + y_{ac} + y_{abc}) - (y_{(1)} + y_{b} + y_{c} + y_{bc})
+      \right]^2}{
+      8} = \frac{\text{Contraste}^2}{r2^k}
+    $
+  };
+
   \end{scope}
 
 \end{scope}
