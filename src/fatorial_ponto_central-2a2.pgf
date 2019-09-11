@@ -1,0 +1,63 @@
+% Figure 6-35, page 273 in MONTGOMERY, D. C. Design and analysis of experiments. 5th ed. New York: John Wiley & Sons, 2001.
+\usetikzlibrary{decorations.pathreplacing}%
+\begin{tikzpicture}[%
+  xscale = 2,
+  yscale = 2,
+  thick,
+  line cap = round]
+
+  \coordinate (1) at (-1, -1);
+  \node[anchor = south west] at (1) {39.9};
+
+  \coordinate (a) at (1, -1);
+  \node[anchor = south east] at (a) {40.9};
+
+  \coordinate (b) at (-1, 1);
+  \node[anchor = north west] at (b) {40.0};
+
+  \coordinate (ab) at (1, 1);
+  \node[anchor = north east] at (ab) {41.5};
+
+  \draw (1) -- (a) -- (ab) -- (b) -- (1);
+
+  \coordinate (pc) at (0, 0);
+  \node[xshift = 5.5pt, anchor = west, align = left]
+    at (pc) {40.3\\ 40.5\\ 40.7\\ 40.2\\ 40.6};
+  \draw [decorate, -, decoration = {brace, amplitude = 1ex},
+    xshift = 4.5pt, yshift = 0pt] (0, -0.5) -- (0, 0.5);
+
+  \foreach \p in {1, a, b, ab, pc} {
+    \fill (\p) circle (1.25pt);
+  }
+
+  \begin{scope}[yshift = -1.2cm]
+    \draw (-1, 0) -- (1, 0);
+    \foreach \x in {-1, 0, 1} {
+      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\x};
+    }
+  \end{scope}
+
+  \begin{scope}[yshift = -1.6cm]
+    \draw (-1, 0) -- (1, 0);
+    \foreach \x/\a in {-1/30, 0/35, 1/40} {
+      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\a};
+    }
+    \node at (0, -0.35) {Tempo de rea{\c c}{\~ a}o (min)};
+  \end{scope}
+
+  \begin{scope}[xshift = -1.2cm]
+    \draw (0, -1) -- (0, 1);
+    \foreach \y in {-1, 0, 1} {
+      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\y};
+    }
+  \end{scope}
+
+  \begin{scope}[xshift = -1.6cm]
+    \draw (0, -1) -- (0, 1);
+    \foreach \y/\a in {-1/150, 0/155, 1/160} {
+      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\a};
+    }
+    \node[rotate = 90] at (-0.45, 0) {Temperatura ($^\circ$C)};
+  \end{scope}
+
+\end{tikzpicture}%
