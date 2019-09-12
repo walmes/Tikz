@@ -13,9 +13,13 @@ output:
 
 
 This is my collection, or gallery, of Tikz Art.  The official Tikz
-Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
+Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/). A
+interesting exposition of Tikz features is done in
+<http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf>. The official
+manual is available at
+<http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 227 Tikz figures in this gallery.  Most of them were
+There are 228 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -30,8 +34,8 @@ If you want to reproduce these figures, do not forget of seeing the
 corresponding preamble that list all tikz libraries used:
 [TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
 
-The figures are in file alphabetic order.  A page with all figures displayed
-in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
+The figures are in file file order.  A page with all figures displayed
+in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 
 
 ****
@@ -4465,6 +4469,45 @@ in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
   \path[->, draw] (regex.south) |- ++(1,-1) node[right] {REGEX};
   \path[->, draw] (repl.north) |- ++(1,1) node[right] {REPL};
   \path[->, draw] (txt.east) -| ++(1,1) node[above] {FILE};
+\end{tikzpicture}
+```
+****
+
+![](./src/factorial-2k-lack-of-fit.png)
+
+  * [factorial-2k-lack-of-fit.pgf](https://github.com/walmes/Tikz/blob/master/src/factorial-2k-lack-of-fit.pgf)
+
+```tex
+\usetikzlibrary{decorations.pathreplacing}%
+\begin{tikzpicture}
+  \begin{axis}[
+    samples = 10,
+    view = {-25}{30},
+    xtick = {-1, 0, 1},
+    ytick = {-1, 0, 1},
+    % ztick = {0},
+    xlabel = A,
+    ylabel = B,
+    zlabel = y,
+    zlabel style = {rotate = -90}]
+
+    \addplot3[surf, domain = -1.05:1.05, opacity = 0.25] {5 + x + y + 0.5 * x * y};
+    \draw[thick] (axis cs: 0, 0, 5) -- (axis cs: 0, 0, 8);
+    \draw[dashed] (axis cs: 0, 0, 8) -- (axis cs: 1, 0, 8);
+    \draw[dashed] (axis cs: 0, 0, 8) -- (axis cs: 0, 1, 8);
+    \fill (axis cs: 0,  0, 8.0) circle (2pt) node[left] {$\bar{y}_{pc}$};
+
+    \draw (axis cs: 0,  0, 5.0) circle (2pt) node[left] {$\hat{y}$};
+    \fill (axis cs:-1, -1, 3.5) circle (2pt) node[right] {$\bar{y}_{(1)}$};
+    \fill (axis cs:-1,  1, 4.5) circle (2pt) node[right] {$\bar{y}_{b}$};
+    \fill (axis cs: 1, -1, 4.5) circle (2pt) node[left] {$\bar{y}_{a}$};
+    \fill (axis cs: 1,  1, 7.5) circle (2pt) node[left] {$\bar{y}_{ab}$};
+
+    \draw [decorate, -, decoration = {brace, amplitude = 1ex},
+      xshift = 5pt, yshift = 0pt] (axis cs: 0,  0, 8) -- (axis cs: 0,  0, 5) 
+      node [midway, xshift = 2pt, anchor = west] {LOF};
+
+  \end{axis}
 \end{tikzpicture}
 ```
 ****

@@ -1,0 +1,122 @@
+% https://tex.stackexchange.com/questions/87945/tikz-picture-shapes
+\tikzset{%
+  pth/.style = {
+    draw,
+    ->,
+    > = latex',
+  },
+  start-end/.style = {
+    draw,
+    fill = blue!20!white,
+    rectangle,
+    rounded corners=6pt,
+    minimum width=2cm,
+  },
+  input/.style = {% requires library shapes.geometric
+    draw,
+    fill = yellow!30!white,
+    trapezium,
+    trapezium left angle = 60,
+    trapezium right angle = 120,
+  },
+  operation/.style = {
+    draw,
+    fill = gray!30!white,
+    rectangle,
+    minimum width = 3.5cm,
+  },
+  loop/.style = {% requires library shapes.misc
+    draw,
+    fill = green!30!white,
+    chamfered rectangle,
+    chamfered rectangle xsep = 2cm
+  },
+  decision/.style = {% requires library shapes.geometric
+    draw,
+    fill = magenta!70!white,
+    diamond,
+    aspect = 2
+  },
+  decision/.default = 1,
+  print/.style = {% requires library shapes.symbols
+    draw,
+    tape,
+    tape bend top = none
+  },
+  connection/.style = {
+    draw,
+    circle,
+    radius = 5pt,
+  },
+  process rectangle outer width/.initial = 0.15cm,
+  predefined process/.style = {
+    rectangle,
+    draw,
+    append after command = {
+      \pgfextra{
+        \draw
+        ($(\tikzlastnode.north west) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north west) - (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (-\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, +0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south west) + (0, 0.5\pgflinewidth)$);
+        \draw
+        ($(\tikzlastnode.north east) - (0, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.north east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, -0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (\pgfkeysvalueof{/tikz/process
+          rectangle outer width}, 0.5\pgflinewidth)$) --
+        ($(\tikzlastnode.south east) + (0, 0.5\pgflinewidth)$);
+      }
+    },
+    minimum width = 2cm,
+    align = center
+  },
+  predefined process/.default = 1.75cm,
+  man op/.style = {% requires library shapes.geometric
+    draw,
+    trapezium,
+    shape border rotate = 180,
+    text width = 2cm,
+    align = center,
+  },
+  extract/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = 90
+  },
+  merge/.style = {
+    draw,
+    isosceles triangle,
+    isosceles triangle apex angle = 60,
+    shape border rotate = -90
+  },
+}%
+
+\begin{tikzpicture}%
+
+\matrix (m) [matrix of nodes,
+             column sep = 1em,
+             row sep = 0.75em,
+             column 2/.style={anchor=west}]{
+   \node[start-end] {\it start/end}; &
+   \node {In\'icio ou final de rotina.}; \\
+   \node[input, minimum width=2cm] {\it in/out}; &
+   \node {Entrada ou sa\'ida de dados.}; \\
+   \node[operation, minimum width=2cm] {\it processing}; &
+   \node[align=left] {C\'alculos e procedimentos\\ gerais.};\\
+   \node[decision, minimum width=2cm] {\it decision}; &
+   \node[align=left] {Estrutura de controle\\ condicional (decis\~ ao).};\\
+   \node[loop, minimum width=2cm]{\it loop}; &
+   \node[align=left] {Estruturas de repeti\c c\~ao\\ (la\c cos).};\\
+   \path[pth] (-1, 0) -| (0, 0.5) |- (1, 0.5); &
+   \node {Fluxo de execu\c c\~ao.};\\
+   \node[connection] {}; &
+   \node {Conex\~ao.};\\
+   \node[predefined process] {\it subrotine}; &
+   \node {Chamada de subrotina.};\\
+ };
+
+\end{tikzpicture}%

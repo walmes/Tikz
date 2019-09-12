@@ -45,7 +45,11 @@ sapply(i,
 ```
 
 This is my collection, or gallery, of Tikz Art.  The official Tikz
-Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/).
+Gallery is on [TeXample.net](http://www.texample.net/tikz/examples/). A
+interesting exposition of Tikz features is done in
+<http://tug.ctan.org/info/visualtikz/VisualTikZ.pdf>. The official
+manual is available at
+<http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
 There are `r length(i)` Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
@@ -62,8 +66,8 @@ If you want to reproduce these figures, do not forget of seeing the
 corresponding preamble that list all tikz libraries used:
 [TIKZ_PREAMBLE.pgs](https://github.com/walmes/Tikz/blob/master/src/TIKZ_PREAMBLE.pgs).
 
-The figures are in file alphabetic order.  A page with all figures displayed
-in on <http://www.leg.ufpr.br/~walmes/tikz/> (updated less frequently).
+The figures are in file file order.  A page with all figures displayed
+in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 
 ```{r, child = "child.Rmd"}
 ```

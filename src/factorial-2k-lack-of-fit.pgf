@@ -1,0 +1,31 @@
+\usetikzlibrary{decorations.pathreplacing}%
+\begin{tikzpicture}
+  \begin{axis}[
+    samples = 10,
+    view = {-25}{30},
+    xtick = {-1, 0, 1},
+    ytick = {-1, 0, 1},
+    % ztick = {0},
+    xlabel = A,
+    ylabel = B,
+    zlabel = y,
+    zlabel style = {rotate = -90}]
+
+    \addplot3[surf, domain = -1.05:1.05, opacity = 0.25] {5 + x + y + 0.5 * x * y};
+    \draw[thick] (axis cs: 0, 0, 5) -- (axis cs: 0, 0, 8);
+    \draw[dashed] (axis cs: 0, 0, 8) -- (axis cs: 1, 0, 8);
+    \draw[dashed] (axis cs: 0, 0, 8) -- (axis cs: 0, 1, 8);
+    \fill (axis cs: 0,  0, 8.0) circle (2pt) node[left] {$\bar{y}_{pc}$};
+
+    \draw (axis cs: 0,  0, 5.0) circle (2pt) node[left] {$\hat{y}$};
+    \fill (axis cs:-1, -1, 3.5) circle (2pt) node[right] {$\bar{y}_{(1)}$};
+    \fill (axis cs:-1,  1, 4.5) circle (2pt) node[right] {$\bar{y}_{b}$};
+    \fill (axis cs: 1, -1, 4.5) circle (2pt) node[left] {$\bar{y}_{a}$};
+    \fill (axis cs: 1,  1, 7.5) circle (2pt) node[left] {$\bar{y}_{ab}$};
+
+    \draw [decorate, -, decoration = {brace, amplitude = 1ex},
+      xshift = 5pt, yshift = 0pt] (axis cs: 0,  0, 8) -- (axis cs: 0,  0, 5) 
+      node [midway, xshift = 2pt, anchor = west] {LOF};
+
+  \end{axis}
+\end{tikzpicture}
