@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 228 Tikz figures in this gallery.  Most of them were
+There are 229 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -1809,6 +1809,84 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 \draw[draw = none] (-0.5, -1) rectangle (12, 6.5);
 
 \end{tikzpicture}
+```
+****
+
+![](./src/cubos-fatoriais-confundimento-2a3-em-2-blocos.png)
+
+  * [cubos-fatoriais-confundimento-2a3-em-2-blocos.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-confundimento-2a3-em-2-blocos.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  scale = 3,
+  thick,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  mtx/.style = {
+%     matrix of math nodes,
+    matrix of nodes,
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1em,
+      align = center,
+    }
+  },
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+
+  } % \cube
+
+  \begin{scope}[xshift = 1.7cm, ->, > = latex]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {B};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {C};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+    \foreach \i in {0, 3, 5, 6}{ \draw[fill = blue] (v\i) circle (1.5pt); }
+    \foreach \i in {1, 2, 4, 7}{ \draw[fill = orange] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {$2^3 = 8$ em $2^1$ blocos};
+  \end{scope}
+
+  \begin{scope}[xshift = 2cm, yshift = 1cm]
+    \coordinate (b1) at (0, 0);
+    \coordinate (b2) at (0, -0.5em);
+    \draw[fill = blue] (b1) circle (1.5pt) node[right = 0.7ex] {Bloco I};
+    \draw[fill = orange] (b2) circle (1.5pt) node[right = 0.7ex] {Bloco II};
+  \end{scope}
+
+  \begin{scope}[xshift = 3cm, yshift= 1.3cm]
+    \matrix (B1) at (0, 0) [mtx] {
+      (1) \\ ab \\ ac \\ bc \\
+    };
+    \matrix (B2) [mtx, below = 1em of B1] {
+      a \\ b \\ c \\ abc \\
+    };
+    \node[draw, color = blue, fit = (B1-1-1)(B1-4-1)] {};
+    \node[draw, color = orange, fit = (B2-1-1)(B2-4-1)] {};
+  \end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
