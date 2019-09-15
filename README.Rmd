@@ -69,5 +69,11 @@ corresponding preamble that list all tikz libraries used:
 The figures are in file file order.  A page with all figures displayed
 in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 
+Some useful tutorials or galleries:
+
+  * <https://tobiw.de/en/teotm/tikz-adventskalender>.
+  * <http://math.et.info.free.fr/TikZ/bdd/TikZ-Impatient.pdf>.
+  * <http://www.mat.ufpb.br/lenimar/introtikz.pdf>.
+
 ```{r, child = "child.Rmd"}
 ```
