@@ -1,0 +1,72 @@
+﻿\begin{tikzpicture}[
+  decision/.style = {
+    diamond,
+    aspect = 1.5,
+    draw,
+    fill = gray!20!black,
+    text = white,
+    text width = 6em,
+    text centered,
+    inner sep = 1pt},
+  block/.style = {
+    rectangle,
+    draw,
+    fill = gray!30!white,
+    minimum height = 2em,
+    text height = 1.5ex,
+    % text depth = 0.25ex,
+    text width = 12em,
+    text centered,
+    rounded corners},
+  line/.style = {
+    draw,
+    -latex',
+    line width = 1pt,
+    rounded corners}]
+
+  \renewcommand{\baselinestretch}{0.75}
+
+  \node (box1) [block] {Planejamento fatorial $2^k$ com pontos centrais};
+  \node (box2) [block, below = 2em of box1] {Testar $H_0: \text{curvatura} = 0$};
+  \node (dec1) [decision, below = 2em of box2] {Rejeitou $H_0$?};
+  \node (ace) [block, fill = cyan!90!white, below left = 3em of dec1] {Planejar novo experimento};
+  \node (rej) [block, fill = orange!90!white, below right = 3em of dec1] {Aumentar planejamento $2^k$};
+
+  \path [line] (box1) -- (box2);
+  \path [line] (box2) -- (dec1);
+  \path [line] (dec1) -| node [above, pos = 0.25] {n{\~a}o} (ace);
+  \path [line] (dec1) -| node [above, pos = 0.25 ] {sim} (rej);
+
+  \node[below = 1ex of ace, align = left] {
+    \begin{minipage}{12.5em}
+      \begin{flushleft}
+        \begin{enumerate}
+        \itemsep0em
+        \item O modelo linear em $x_i\,\, (i = 1, \ldots, k)$ {\'e} apropriado na regi{\~a}o experimental.
+        \item Determinar os termos e fatores relevantes.
+        \item Simplificar o modelo se poss{\'\i}vel.
+        \item Interpretar o fen{\^o}meno com o modelo obtido.
+        \item Obter dire{\c c}{\~a}o para um novo experimento.
+        \item Realizar o novo experimento e repetir.
+        \end{enumerate}
+      \end{flushleft}
+    \end{minipage}
+  };
+
+  \node[below = 1ex of rej, align = left] {
+    \begin{minipage}{12.5em}
+      \begin{flushleft}
+        \begin{enumerate}
+        \itemsep0em
+        \item Resultados baseados no modelo linear $x_i\,\, (i = 1, \ldots, k)$ s{\~a}o equivocados.
+        \item Aumentar o planejamento com novos pontos de suporte.
+        \item Assumir um modelo com termos n{\~a}o lineares em $x_i$, $i = 1, \ldots, k$.
+        \item Obter dados e ajustar o modelo.
+        \item Interpretar o fen{\^o}meno com o modelo obtido.
+        \item Determinar e caracterizar o ponto estacion{\'a}rio.
+        \end{enumerate}
+      \end{flushleft}
+    \end{minipage}
+  };
+
+\end{tikzpicture}%

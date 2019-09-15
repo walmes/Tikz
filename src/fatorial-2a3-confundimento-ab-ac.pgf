@@ -1,0 +1,95 @@
+﻿\usetikzlibrary{decorations.pathreplacing}%
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    % left delimiter = {[},
+    % right delimiter = {]},
+    nodes = {
+      text width = 1.25em,
+      text height = 1.5ex,
+      align = center,
+    }
+  },
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 0, above},
+  txtbt/.style = {yshift = -1ex}
+  ]
+
+  \begin{scope}[->, > = latex]
+
+    \matrix (X) [mtx] {
+      1 & - & - & - & + & + & + & - \\
+      1 & + & - & - & - & - & + & + \\
+      1 & - & + & - & - & + & - & + \\
+      1 & + & + & - & + & - & - & - \\
+      1 & - & - & + & + & - & - & + \\
+      1 & + & - & + & - & + & - & - \\
+      1 & - & + & + & - & - & + & - \\
+      1 & + & + & + & + & + & + & + \\
+    };
+
+    \foreach \col/\lab in {1/I, 2/A, 3/B, 4/C, 5/AB, 6/AC, 7/BC, 8/ABC} {
+      \node[txtup] (\lab) at (X-1-\col.north) {$\lab$};
+    }
+
+    \node[above = 4em of X-1-4] (I1) {$I_1 = AB$};
+    \node[right = 1em of I1] (I2) {$I_2 = AC$};
+    \node[right = 1em of I2] (I3) {$I_3 = I_1\cdot I_2 = BC$};
+
+    \path (I1) edge[out = -90, in = 90] (AB);
+    \path (I2) edge[out = -90, in = 90] (AC);
+    \path[gray, dashed] (I3) edge[out = -90, in = 90] (BC);
+
+    \draw [decorate, -, decoration = {brace, amplitude = 1.5ex}]
+    ($(X-8-7.south east) + (0, -0.1)$) -- ($(X-8-5.south west) + (0, -0.1)$)
+    node [midway, yshift = -1ex, anchor = north] {4 blocos $\rightarrow$ 3 GL};
+
+  \end{scope}
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill = green, fit = (X-1-5)(X-8-5)] {};
+    \node[hltr, fill = purple, fit = (X-1-6)(X-8-6)] {};
+    \node[hltr, draw, dashed, fit = (X-1-7)(X-8-7)] {};
+  \end{scope}
+
+  \begin{scope}[inner sep = 1ex]
+
+    \node[draw, fill = cyan!50!white] (bl1) at (5.25, 1.5) {
+      \begin{minipage}[c][1em]{8em}
+        \begin{center}
+          Bloco I:\quad (1)\quad abc
+        \end{center}
+      \end{minipage}
+    };
+
+    \node[draw, fill = orange!50!white, below = 1em of bl1] (bl2) {
+      \begin{minipage}[c][1em]{8em}
+        \begin{center}
+          Bloco II:\quad a\quad bc
+        \end{center}
+      \end{minipage}
+    };
+
+    \node[draw, fill = pink!50!white, below = 1em of bl2] (bl3) {
+      \begin{minipage}[c][1em]{8em}
+        \begin{center}
+          Bloco III:\quad b\quad ac
+        \end{center}
+      \end{minipage}
+    };
+
+    \node[draw, fill = yellow!50!white, below = 1em of bl3] (bl4) {
+      \begin{minipage}[c][1em]{8em}
+        \begin{center}
+          Bloco IV:\quad ab\quad c
+        \end{center}
+      \end{minipage}
+    };
+
+    \foreach \line/\blc in {1/1, 8/1, 2/2, 7/2, 3/3, 6/3, 4/4, 5/4} {
+      \path[draw] (X-\line-8.east) -- (bl\blc.west);
+    }
+
+  \end{scope}
+
+\end{tikzpicture}%

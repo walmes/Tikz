@@ -1,0 +1,89 @@
+﻿\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  mtx/.style = {
+%     matrix of math nodes,
+    matrix of nodes,
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1em,
+      align = center,
+    }
+  },
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+
+    % Points.
+    \foreach \i in {0, 1, ..., 7}{ \draw[fill = black] (v\i) circle (0.8pt); }
+
+    % Axis text.
+    \node[below of = v0, sinal, fill = blue] (Alow) {$-$};
+    \node[below of = v2, sinal, fill = orange] (Ahig) {$+$};
+    \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Alow) -- node[below] {A} (Ahig);
+
+%     \node[left of = v0, sinal, fill = blue] (Blow) {$-$};
+%     \node[left of = v1, sinal, fill = orange] (Bhig) {$+$};
+%     \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Blow) -- node[left] {B} (Bhig);
+
+    \node[right of = v6, sinal, fill = blue] (Blow) {$-$};
+    \node[right of = v7, sinal, fill = orange] (Bhig) {$+$};
+    \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Blow) -- node[right] {B} (Bhig);
+
+%     \node[below right = of v2, sinal, fill = blue] (Clow) {$-$};
+%     \node[below right = of v6, sinal, fill = orange] (Chig) {$+$};
+%     \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Clow) -- node[below right] {C} (Chig);
+
+    \node[above left = of v1, sinal, fill = blue] (Clow) {$-$};
+    \node[above left = of v5, sinal, fill = orange] (Chig) {$+$};
+    \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Clow) -- node[above left] {C} (Chig);
+
+  } % \cube
+
+  \begin{scope}[]
+    \cube{};
+  \end{scope}
+
+\end{tikzpicture}%
+5, 1.5, 1);
+    \coordinate (cube1lef) at (-0.5, 0.5, 0);
+  \end{scope}
+
+  \begin{scope}[xshift = 2.8cm]
+    \cube{};
+    \coordinate (cube2) at (0.25, 1.5, 1);
+  \end{scope}
+
+  \begin{scope}[node distance = 4ex]
+    \draw[edge, color = gray] (cube1top) |- ++(0, 0.1) -| (cube2);
+    \node[above = of cube1top, sinal, fill = blue] (Dlow) {$-$};
+    \node[above = of cube2, sinal, fill = orange] (Dhig) {$+$};
+    \path[draw, ->, shorten <= 10ex, shorten >= 10ex] (Dlow) -- node[above] {D} (Dhig);
+  \end{scope}
+
+\end{tikzpicture}%
