@@ -1,0 +1,49 @@
+﻿% https://tex.stackexchange.com/questions/431119/matrix-in-tikz-and-equation
+\begin{tikzpicture}[
+  baseline,
+  label distance=10pt % added
+]
+
+\matrix [matrix of math nodes,left delimiter=(,right delimiter=),row sep=0.1cm,column sep=0.1cm] (m) {
+      1 & *     &   *  & \dots & *   & 0 & \dots & 0 \\
+      0 & \pm 1 &   *  & \dots & *   & 0 & \dots & 0 \\
+      0 & 0     &\pm 1 & \dots & *   & 0 & \dots & 0 \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+        0 &  0    & 0    &   \dots   &\pm 1& 0 & \dots & 0 \\
+        0 &  0    & 0    &  \dots   & 0  & * & \dots & * \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+      0 &  0    & 0    &   0   & 0   & * & \dots & *\\ };
+
+\draw[dashed] ($0.5*(m-1-5.north east)+0.5*(m-1-6.north west)$) -- ($0.5*(m-8-6.south east)+0.5*(m-8-5.south west)$);
+
+\draw[dashed] ($0.5*(m-5-1.south west)+0.5*(m-6-1.north west)$) -- ($0.5*(m-5-8.south east)+0.5*(m-6-8.north east)$);
+
+\node[
+  fit=(m-1-1)(m-1-5),
+  inner xsep=0,
+  above delimiter=\{,
+  label=above:$k_1$
+] {};
+
+\node[
+  fit=(m-1-6)(m-1-8),
+  inner xsep=0,
+  above delimiter=\{,
+  label=above:$k-k_1$
+ ] {};
+
+\node[
+  fit=(m-1-8)(m-5-8),
+  inner xsep=15pt,inner ysep=0,
+  right delimiter=\},
+  label=right:$k_1$
+] {};
+
+\node[
+  fit=(m-6-8)(m-8-8),
+  inner xsep=15pt,inner ysep=0,
+  right delimiter=\},
+  label=right:$k-k_1$
+] {};
+
+\end{tikzpicture} 
