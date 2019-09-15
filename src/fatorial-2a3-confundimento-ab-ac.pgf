@@ -10,10 +10,34 @@
       align = center,
     }
   },
+  edge/.style = {draw, line cap = round, line join = round},
   hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
   txtup/.style = {rotate = 0, above},
   txtbt/.style = {yshift = -1ex}
   ]
+
+  \def\cube{
+
+    \foreach \x in {0, 1} {
+      \foreach \y in {0, 1} {
+        \foreach \z in {0, 1} {
+          \coordinate (v\x\y\z) at (\x, \y, \z);
+        }
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \y in {0, 1} {
+        \draw[edge] (v0\y0) -- (v1\y0) -- (v1\y1) -- (v0\y1) -- cycle;
+      }
+      \foreach \x in {0, 1} {
+        \foreach \z in {0, 1} {
+          \draw[edge] (v\x0\z) -- (v\x1\z);
+        }
+      }
+    \end{scope}
+
+  } % \cube
 
   \begin{scope}[->, > = latex]
 
@@ -52,44 +76,72 @@
     \node[hltr, draw, dashed, fit = (X-1-7)(X-8-7)] {};
   \end{scope}
 
+  \newcommand{\experimentalpoint}[1]{
+    \draw[fill = \mycol] (#1) circle (2.5pt);
+  }
+
   \begin{scope}[inner sep = 1ex]
 
-    \node[draw, fill = cyan!50!white] (bl1) at (5.25, 1.5) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco I:\quad (1)\quad abc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = 3cm]
+      \node[draw, fill = cyan!50!white] (bl1) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco I:\quad (1)\quad abc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{cyan!50!white}
+      \experimentalpoint{v110};
+      \experimentalpoint{v001};
+    \end{scope}
 
-    \node[draw, fill = orange!50!white, below = 1em of bl1] (bl2) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco II:\quad a\quad bc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = 1cm]
+      \node[draw, fill = orange!50!white] (bl2) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco II:\quad a\quad bc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{orange!50!white}
+      \experimentalpoint{v101};
+      \experimentalpoint{v010};
+    \end{scope}
 
-    \node[draw, fill = pink!50!white, below = 1em of bl2] (bl3) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco III:\quad b\quad ac
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = -1cm]
+      \node[draw, fill = pink!50!white] (bl3) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco III:\quad b\quad ac
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{pink!50!white}
+      \experimentalpoint{v011};
+      \experimentalpoint{v100};
+    \end{scope}
 
-    \node[draw, fill = yellow!50!white, below = 1em of bl3] (bl4) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco IV:\quad ab\quad c
-        \end{center}
-      \end{minipage}
-    };
-
-    \foreach \line/\blc in {1/1, 8/1, 2/2, 7/2, 3/3, 6/3, 4/4, 5/4} {
-      \path[draw] (X-\line-8.east) -- (bl\blc.west);
-    }
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = -3cm]
+      \node[draw, fill = yellow!50!white] (bl4) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco IV:\quad ab\quad c
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{yellow!50!white}
+      \experimentalpoint{v000};
+      \experimentalpoint{v111};
+    \end{scope}
 
   \end{scope}
+
+  \foreach \line/\blc in {1/1, 8/1, 2/2, 7/2, 3/3, 6/3, 4/4, 5/4} {
+    \path[draw] (X-\line-8.east) -- (bl\blc.west);
+  }
 
 \end{tikzpicture}%

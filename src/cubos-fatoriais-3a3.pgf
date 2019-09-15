@@ -58,14 +58,6 @@
     \cube{};
   \end{scope}
 
-\end{tikzpicture}%
-
-ll = blue] (Clow) {$-$};
-    \node[above left = of v5, sinal, fill = orange] (Chig) {$+$};
-    \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Clow) -- node[above left] {C} (Chig);
-
-  } % \cube
-
   \begin{scope}[]
     \cube{};
   \end{scope}
