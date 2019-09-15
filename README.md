@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 235 Tikz figures in this gallery.  Most of them were
+There are 239 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -2414,6 +2414,224 @@ ift = -2.5cm]
     \node[left = of cube1lef, sinal, fill = orange] (Ehig) {$+$};
     \node[left = of cube3, sinal, fill = blue] (Elow) {$-$};
     \path[draw, ->, shorten <= 10ex, shorten >= 10ex] (Elow) -- node[left] {E} (Ehig);
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/cubos-fatoriais-3a2.png)
+
+  * [cubos-fatoriais-3a2.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-3a2.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  axispath/.style = {draw, ->, shorten <= 1ex, shorten >= 1ex},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  ]
+
+  \def\cube{
+
+    \foreach \x in {0, 1, 2} {
+      \foreach \y in {0, 1, 2} {
+        \coordinate (v\x\y) at (\x, \y);
+        % \draw[fill = black] (v\x\y\z) circle (0.8pt);
+        \node[draw, circle, inner sep = 0.2ex,
+          fill = white, font = \footnotesize] at (v\x\y) {\x\y};
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \u in {0, 1, 2} {
+        \draw[edge] (v0\u) -- (v2\u);
+        \draw[edge] (v\u0) -- (v\u2);
+      }
+    \end{scope}
+
+    % Axis text.
+    \node[below of = v00, sinal, fill = blue] (Alow) {$0$};
+    \node[below of = v10, sinal, fill = green, label = {[below = 1ex]-90:A}] (Amid) {$1$};
+    \node[below of = v20, sinal, fill = orange] (Ahig) {$2$};
+    \path[axispath] (Alow) edge (Amid) (Amid) edge (Ahig);
+
+    \node[right of = v20, sinal, fill = blue] (Blow) {$0$};
+    \node[right of = v21, sinal, fill = green, label = {[right = 1ex]0:B}] (Bmid) {$1$};
+    \node[right of = v22, sinal, fill = orange] (Bhig) {$2$};
+    \path[axispath] (Blow) edge (Bmid) (Bmid) edge (Bhig);
+
+  } % \cube
+
+  \begin{scope}[]
+    \cube{};
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/cubos-fatoriais-3a3.png)
+
+  * [cubos-fatoriais-3a3.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-3a3.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.4, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  axispath/.style = {draw, ->, shorten <= 1ex, shorten >= 1ex},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  ]
+
+  \def\cube{
+
+    \foreach \x in {0, 1, 2} {
+      \foreach \y in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+          \coordinate (v\x\y\z) at (\x, \y, \z);
+          % \draw[fill = black] (v\x\y\z) circle (0.8pt);
+          \node[draw, circle, inner sep = 0.2ex,
+            fill = white, font = \footnotesize] at (v\x\y\z) {\x\y\z};
+        }
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \y in {0, 1, 2} {
+        \draw[edge] (v0\y0) -- (v0\y2) -- (v2\y2) -- (v2\y0) -- cycle;
+        \draw[edge] (v1\y0) -- (v1\y2);
+        \draw[edge] (v0\y1) -- (v2\y1);
+      }
+      \foreach \x in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+          \draw[edge] (v\x0\z) -- (v\x2\z);
+        }
+      }
+    \end{scope}
+
+    % Axis text.
+    \node[below of = v000, sinal, fill = blue] (Alow) {$0$};
+    \node[below of = v100, sinal, fill = green, label = {[below = 1ex]-90:A}] (Amid) {$1$};
+    \node[below of = v200, sinal, fill = orange] (Ahig) {$2$};
+    \path[axispath] (Alow) edge (Amid) (Amid) edge (Ahig);
+
+    \node[right of = v202, sinal, fill = blue] (Blow) {$0$};
+    \node[right of = v212, sinal, fill = green, label = {[right = 1ex]0:B}] (Bmid) {$1$};
+    \node[right of = v222, sinal, fill = orange] (Bhig) {$2$};
+    \path[axispath] (Blow) edge (Bmid) (Bmid) edge (Bhig);
+
+    \node[above left of = v020, sinal, fill = blue] (Clow) {$0$};
+    \node[above left of = v021, sinal, fill = green, label = {[above left = 1ex]105:C}] (Cmid) {$1$};
+    \node[above left of = v022, sinal, fill = orange] (Chig) {$2$};
+    \path[axispath] (Clow) edge (Cmid) (Cmid) edge (Chig);
+
+  } % \cube
+
+  \begin{scope}[]
+    \cube{};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/cubos-fatoriais-3a4.png)
+
+  * [cubos-fatoriais-3a4.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-3a4.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.4, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  axispath/.style = {draw, ->, shorten <= 1ex, shorten >= 1ex},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  ]
+
+  \newcommand{\cube}[1]{
+
+    \foreach \x in {0, 1, 2} {
+      \foreach \y in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+          \coordinate (v\x\y\z) at (\x, \y, \z);
+%             \draw[fill = black] (v\x\y\z) circle (0.8pt);
+          \node[draw, circle, inner sep = 0.2ex,
+            fill = white, font = \footnotesize] at (v\x\y\z) {\x\y\z#1};
+        }
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \y in {0, 1, 2} {
+        \draw[edge] (v0\y0) -- (v0\y2) -- (v2\y2) -- (v2\y0) -- cycle;
+        \draw[edge] (v1\y0) -- (v1\y2);
+        \draw[edge] (v0\y1) -- (v2\y1);
+      }
+      \foreach \x in {0, 1, 2} {
+        \foreach \z in {0, 1, 2} {
+          \draw[edge] (v\x0\z) -- (v\x2\z);
+        }
+      }
+    \end{scope}
+
+    % Axis text.
+    \node[below of = v000, sinal, fill = blue] (Alow) {$0$};
+    \node[below of = v100, sinal, fill = green, label = {[below = 1ex]-90:A}] (Amid) {$1$};
+    \node[below of = v200, sinal, fill = orange] (Ahig) {$2$};
+    \path[axispath] (Alow) edge (Amid) (Amid) edge (Ahig);
+
+    \node[right of = v202, sinal, fill = blue] (Blow) {$0$};
+    \node[right of = v212, sinal, fill = green, label = {[right = 1ex]0:B}] (Bmid) {$1$};
+    \node[right of = v222, sinal, fill = orange] (Bhig) {$2$};
+    \path[axispath] (Blow) edge (Bmid) (Bmid) edge (Bhig);
+
+    \node[above left of = v020, sinal, fill = blue] (Clow) {$0$};
+    \node[above left of = v021, sinal, fill = green, label = {[above left = 1ex]105:C}] (Cmid) {$1$};
+    \node[above left of = v022, sinal, fill = orange] (Chig) {$2$};
+    \path[axispath] (Clow) edge (Cmid) (Cmid) edge (Chig);
+
+  } % \cube
+
+  \begin{scope}[]
+    \cube{0};
+    \coordinate (cube0) at (1, 2.7, 1);
+  \end{scope}
+
+  \begin{scope}[xshift = 3.75cm]
+    \cube{1};
+    \coordinate (cube1) at (1, 2.7, 1);
+  \end{scope}
+
+  \begin{scope}[xshift = 7.50cm]
+    \cube{2};
+    \coordinate (cube2) at (1, 2.7, 1);
+  \end{scope}
+
+  \begin{scope}[node distance = 4ex]
+    \draw[edge, color = gray] (cube0) |- ++(0, 0.1) -| (cube1);
+    \draw[edge, color = gray] (cube1) |- ++(0, 0.1) -| (cube2);
+    \node[above = of cube0, sinal, fill = blue] (Dlow) {$0$};
+    \node[above = of cube1, sinal, fill = green, label = {[above = 1ex]90:D}] (Dmid) {$1$};
+    \node[above = of cube2, sinal, fill = orange] (Dhig) {$2$};
+    \path[axispath] (Dlow) edge (Dmid) (Dmid) edge (Dhig);
   \end{scope}
 
 \end{tikzpicture}%
@@ -5619,10 +5837,34 @@ ift = -2.5cm]
       align = center,
     }
   },
+  edge/.style = {draw, line cap = round, line join = round},
   hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
   txtup/.style = {rotate = 0, above},
   txtbt/.style = {yshift = -1ex}
   ]
+
+  \def\cube{
+
+    \foreach \x in {0, 1} {
+      \foreach \y in {0, 1} {
+        \foreach \z in {0, 1} {
+          \coordinate (v\x\y\z) at (\x, \y, \z);
+        }
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \y in {0, 1} {
+        \draw[edge] (v0\y0) -- (v1\y0) -- (v1\y1) -- (v0\y1) -- cycle;
+      }
+      \foreach \x in {0, 1} {
+        \foreach \z in {0, 1} {
+          \draw[edge] (v\x0\z) -- (v\x1\z);
+        }
+      }
+    \end{scope}
+
+  } % \cube
 
   \begin{scope}[->, > = latex]
 
@@ -5661,45 +5903,73 @@ ift = -2.5cm]
     \node[hltr, draw, dashed, fit = (X-1-7)(X-8-7)] {};
   \end{scope}
 
+  \newcommand{\experimentalpoint}[1]{
+    \draw[fill = \mycol] (#1) circle (2.5pt);
+  }
+
   \begin{scope}[inner sep = 1ex]
 
-    \node[draw, fill = cyan!50!white] (bl1) at (5.25, 1.5) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco I:\quad (1)\quad abc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = 3cm]
+      \node[draw, fill = cyan!50!white] (bl1) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco I:\quad (1)\quad abc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{cyan!50!white}
+      \experimentalpoint{v110};
+      \experimentalpoint{v001};
+    \end{scope}
 
-    \node[draw, fill = orange!50!white, below = 1em of bl1] (bl2) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco II:\quad a\quad bc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = 1cm]
+      \node[draw, fill = orange!50!white] (bl2) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco II:\quad a\quad bc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{orange!50!white}
+      \experimentalpoint{v101};
+      \experimentalpoint{v010};
+    \end{scope}
 
-    \node[draw, fill = pink!50!white, below = 1em of bl2] (bl3) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco III:\quad b\quad ac
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = -1cm]
+      \node[draw, fill = pink!50!white] (bl3) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco III:\quad b\quad ac
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{pink!50!white}
+      \experimentalpoint{v011};
+      \experimentalpoint{v100};
+    \end{scope}
 
-    \node[draw, fill = yellow!50!white, below = 1em of bl3] (bl4) {
-      \begin{minipage}[c][1em]{8em}
-        \begin{center}
-          Bloco IV:\quad ab\quad c
-        \end{center}
-      \end{minipage}
-    };
-
-    \foreach \line/\blc in {1/1, 8/1, 2/2, 7/2, 3/3, 6/3, 4/4, 5/4} {
-      \path[draw] (X-\line-8.east) -- (bl\blc.west);
-    }
+    \begin{scope}[scale = 0.75, xshift = 10.5cm, yshift = -3cm]
+      \node[draw, fill = yellow!50!white] (bl4) at (-3.5, 0.2) {
+        \begin{minipage}[c][1em]{8em}
+          \begin{center}
+            Bloco IV:\quad ab\quad c
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{yellow!50!white}
+      \experimentalpoint{v000};
+      \experimentalpoint{v111};
+    \end{scope}
 
   \end{scope}
+
+  \foreach \line/\blc in {1/1, 8/1, 2/2, 7/2, 3/3, 6/3, 4/4, 5/4} {
+    \path[draw] (X-\line-8.east) -- (bl\blc.west);
+  }
 
 \end{tikzpicture}%
 ```
@@ -5713,20 +5983,44 @@ ift = -2.5cm]
 \begin{tikzpicture}[%
   mtx/.style = {
     matrix of math nodes,
-%     left delimiter = {[},
-%     right delimiter = {]},
+    % left delimiter = {[},
+    % right delimiter = {]},
     nodes = {
       text width = 1.25em,
       text height = 1.5ex,
       align = center,
     }
   },
+  edge/.style = {draw, line cap = round, line join = round},
   hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
   txtup/.style = {rotate = 0, above},
   txtbt/.style = {yshift = -1ex}
   ]
 
-  \begin{scope}
+  \def\cube{
+
+    \foreach \x in {0, 1} {
+      \foreach \y in {0, 1} {
+        \foreach \z in {0, 1} {
+          \coordinate (v\x\y\z) at (\x, \y, \z);
+        }
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \y in {0, 1} {
+        \draw[edge] (v0\y0) -- (v1\y0) -- (v1\y1) -- (v0\y1) -- cycle;
+      }
+      \foreach \x in {0, 1} {
+        \foreach \z in {0, 1} {
+          \draw[edge] (v\x0\z) -- (v\x1\z);
+        }
+      }
+    \end{scope}
+
+  } % \cube
+
+  \begin{scope}[->, > = latex]
 
     \matrix (X) [mtx] {
       1 & - & - & - & + & + & + & - \\
@@ -5739,11 +6033,16 @@ ift = -2.5cm]
       1 & + & + & + & + & + & + & + \\
     };
 
-%     \node[left=1em of X] (Xequal) {$X = $};
-
     \foreach \col/\lab in {1/I, 2/A, 3/B, 4/C, 5/AB, 6/AC, 7/BC, 8/ABC} {
-      \node[txtup] at (X-1-\col.north) {$\lab$};
+      \node[txtup] (\lab) at (X-1-\col.north) {$\lab$};
     }
+
+    \node[above = 3em of X-1-8] (I1) {$I = ABC$};
+    \path (I1) edge[out = -90, in = 90] (ABC);
+
+    \draw [decorate, -, decoration = {brace, amplitude = 1.0ex}]
+      ($(X-8-8.south east) + (0, -0.1)$) -- ($(X-8-8.south west) + (0, -0.1)$)
+      node [midway, yshift = -1ex, anchor = north] {2 blocos $\rightarrow$ 1 GL};
 
   \end{scope}
 
@@ -5751,206 +6050,53 @@ ift = -2.5cm]
     \node[hltr, fill = green, fit = (X-1-8)(X-8-8)] {};
   \end{scope}
 
+  \newcommand{\experimentalpoint}[1]{
+    \draw[fill = \mycol] (#1) circle (2.5pt);
+  }
+
   \begin{scope}[inner sep = 1ex]
 
-    \node[draw, fill = cyan!50!white] (bl1) at (6.25, 0.7) {
-      \begin{minipage}[c][2.25em]{9em}
-        \begin{center}
-          Bloco I\\ (1)\quad ab \quad ac \quad bc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 11cm, yshift = 1cm]
+      \node[draw, fill = cyan!50!white] (bl1) at (-3.5, 0.3) {
+        \begin{minipage}[c][2.25em]{9em}
+          \begin{center}
+            Bloco I\\ (1)\quad ab \quad ac \quad bc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{cyan!50!white}
+      \experimentalpoint{v111};
+      \experimentalpoint{v100};
+      \experimentalpoint{v010};
+      \experimentalpoint{v001};
+    \end{scope}
 
-    \node[draw, fill = orange!50!white, below = 1em of bl1] (bl2) {
-      \begin{minipage}[c][2.25em]{9em}
-        \begin{center}
-          Bloco II\\ a \quad b \quad c \quad abc
-        \end{center}
-      \end{minipage}
-    };
+    \begin{scope}[scale = 0.75, xshift = 11cm, yshift = -1.5cm]
+      \node[draw, fill = orange!50!white] (bl2) at (-3.5, 0.3) {
+        \begin{minipage}[c][2.25em]{9em}
+          \begin{center}
+            Bloco II\\ a \quad b \quad c \quad abc
+          \end{center}
+        \end{minipage}
+      };
+      \cube{}
+      \def\mycol{orange!50!white}
+      \experimentalpoint{v000};
+      \experimentalpoint{v101};
+      \experimentalpoint{v110};
+      \experimentalpoint{v011};
+    \end{scope}
 
     \foreach \line in {1, 4, 6, 7} {
-      \path[draw, color = blue] (X-\line-8) -- (bl1.west);
+      \path[draw, color = cyan] (X-\line-8.east) -- (bl1.west);
     }
 
     \foreach \line in {2, 3, 5, 8} {
-      \path[draw, color = orange] (X-\line-8) -- (bl2.west);
+      \path[draw, color = orange] (X-\line-8.east) -- (bl2.west);
     }
 
   \end{scope}
-
-\end{tikzpicture}%
-igits = 0),
-%                      include.rownames = FALSE,
-%                      include.colnames = FALSE,
-%                      only.contents = TRUE,
-%                      comment = FALSE,
-%                      hline.after = NULL)
-
-\begin{scope}
-
-  \matrix (X) [mtx] {
-    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
-    1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\ 
-    1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 \\ 
-    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
-  };
-
-  \node[left=1em of X] (Xequal) {$\Rightarrow X = $};
-  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
-
-  \node[left = 2em of X, anchor = east] (tb) {
-  \begin{minipage}{3cm}
-  \begin{tabular}{rrr}
-  \hline
-    A & B & C \\ \hline
-    $a_1$ & $b_1$ & $c_1$ \\ 
-    $a_2$ & $b_1$ & $c_1$ \\ 
-    $a_1$ & $b_2$ & $c_1$ \\ 
-    $a_2$ & $b_2$ & $c_1$ \\ 
-    $a_1$ & $b_1$ & $c_2$ \\ 
-    $a_2$ & $b_1$ & $c_2$ \\ 
-    $a_1$ & $b_2$ & $c_2$ \\ 
-    $a_2$ & $b_2$ & $c_2$ \\ \hline
-  \end{tabular}
-  \end{minipage}
-  };
-
-  \matrix (XX) [mtx, right=1em of Xarrow] {
-  8 & 4 & 4 & 4 & 2 & 2 & 2 & 1 \\ 
-  4 & 4 & 2 & 2 & 2 & 2 & 1 & 1 \\ 
-  4 & 2 & 4 & 2 & 2 & 1 & 2 & 1 \\ 
-  4 & 2 & 2 & 4 & 1 & 2 & 2 & 1 \\ 
-  2 & 2 & 2 & 1 & 2 & 1 & 1 & 1 \\ 
-  2 & 2 & 1 & 2 & 1 & 2 & 1 & 1 \\ 
-  2 & 1 & 2 & 2 & 1 & 1 & 2 & 1 \\ 
-  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
-  };
-
-  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
-    \textbf{Contraste/codifica{\c c}{\~ a}o de tratamento para fatores qualitativos}
-  };
-
-  % Efeitos.
-  \node[txtup] at (X-1-1.north) {$\mu$};
-  \node[txtup] at (X-1-2.north) {$A$};
-  \node[txtup] at (X-1-3.north) {$B$};
-  \node[txtup] at (X-1-4.north) {$C$};
-  \node[txtup] at (X-1-5.north) {$AB$};
-  \node[txtup] at (X-1-6.north) {$AC$};
-  \node[txtup] at (X-1-7.north) {$BC$};
-  \node[txtup] at (X-1-8.north) {$ABC$};
-
-\end{scope}
-
-\begin{scope}[yshift = -6cm]
-
-  \matrix (X) [mtx] {
-  1 & 3 & 5 & 1 & 15 & 3 & 5 & 15 \\ 
-  1 & 5 & 5 & 1 & 25 & 5 & 5 & 25 \\ 
-  1 & 3 & 7 & 1 & 21 & 3 & 7 & 21 \\ 
-  1 & 5 & 7 & 1 & 35 & 5 & 7 & 35 \\ 
-  1 & 3 & 5 & 2 & 15 & 6 & 10 & 30 \\ 
-  1 & 5 & 5 & 2 & 25 & 10 & 10 & 50 \\ 
-  1 & 3 & 7 & 2 & 21 & 6 & 14 & 42 \\ 
-  1 & 5 & 7 & 2 & 35 & 10 & 14 & 70 \\ 
-  };
-
-  \node[left=1em of X] (Xequal) {$\Rightarrow X = $};
-  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
-
-  \node[left = 2em of X, anchor = east] (tb) {
-  \begin{minipage}{3cm}
-  \begin{tabular}{rrr}
-  \hline
-    A & B & C \\ \hline
-    3 & 5 & 1 \\ 
-    5 & 5 & 1 \\ 
-    3 & 7 & 1 \\ 
-    5 & 7 & 1 \\ 
-    3 & 5 & 2 \\ 
-    5 & 5 & 2 \\ 
-    3 & 7 & 2 \\ 
-    5 & 7 & 2 \\ \hline
-  \end{tabular}
-  \end{minipage}
-  };
-
-  \matrix (XX) [mtx, right=1em of Xarrow,
-    every node/.style = {text width = 2em, align = right},
-  ] {
-  8 & 32 & 48 & 12 & 192 & 48 & 72 & 288 \\ 
-  32 & 136 & 192 & 48 & 816 & 204 & 288 & 1224 \\ 
-  48 & 192 & 296 & 72 & 1184 & 288 & 444 & 1776 \\ 
-  12 & 48 & 72 & 20 & 288 & 80 & 120 & 480 \\ 
-  192 & 816 & 1184 & 288 & 5032 & 1224 & 1776 & 7548 \\ 
-  48 & 204 & 288 & 80 & 1224 & 340 & 480 & 2040 \\ 
-  72 & 288 & 444 & 120 & 1776 & 480 & 740 & 2960 \\ 
-  288 & 1224 & 1776 & 480 & 7548 & 2040 & 2960 & 12580 \\ 
- };
-
-  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
-    \textbf{Fatores quantitativos na escala original}
-  };
-
-  % Efeitos.
-  \node[txtup] at (X-1-1.north) {$\mu$};
-  \node[txtup] at (X-1-2.north) {$A$};
-  \node[txtup] at (X-1-3.north) {$B$};
-  \node[txtup] at (X-1-4.north) {$C$};
-  \node[txtup] at (X-1-5.north) {$AB$};
-  \node[txtup] at (X-1-6.north) {$AC$};
-  \node[txtup] at (X-1-7.north) {$BC$};
-  \node[txtup] at (X-1-8.north) {$ABC$};
-
-\end{scope}
-
-\begin{scope}[yshift = -12cm]
-
-  \matrix (X) [mtx] {
-  1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 \\ 
-  1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
-  1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 \\ 
-  1 & 1 & 1 & -1 & 1 & -1 & -1 & -1 \\ 
-  1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 \\ 
-  1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 \\ 
-  1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 \\ 
-  1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
-  };
-
-  \node[left=1em of X] (Xequal) {$X = $};
-  \node[right=1em of X] (Xarrow) {$\Rightarrow X^\top X = $};
-
-  \matrix (XX) [mtx, right=1em of Xarrow] {
-  8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-  0 & 8 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-  0 & 0 & 8 & 0 & 0 & 0 & 0 & 0 \\ 
-  0 & 0 & 0 & 8 & 0 & 0 & 0 & 0 \\ 
-  0 & 0 & 0 & 0 & 8 & 0 & 0 & 0 \\ 
-  0 & 0 & 0 & 0 & 0 & 8 & 0 & 0 \\ 
-  0 & 0 & 0 & 0 & 0 & 0 & 8 & 0 \\ 
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 8 \\ 
- };
-
-  \node[above=2.5em of X-1-1, anchor = south west, align = left] {
-    \textbf{Fatores na escala codificada}
-  };
-
-  % Efeitos.
-  \node[txtup] at (X-1-1.north) {$\mu$};
-  \node[txtup] at (X-1-2.north) {$A$};
-  \node[txtup] at (X-1-3.north) {$B$};
-  \node[txtup] at (X-1-4.north) {$C$};
-  \node[txtup] at (X-1-5.north) {$AB$};
-  \node[txtup] at (X-1-6.north) {$AC$};
-  \node[txtup] at (X-1-7.north) {$BC$};
-  \node[txtup] at (X-1-8.north) {$ABC$};
-
-\end{scope}
 
 \end{tikzpicture}%
 ```
@@ -9212,6 +9358,63 @@ igits = 0),
   \node [left=0cm of Y] {$\Sigma_m =$};%
 
 \end{tikzpicture}
+```
+****
+
+![](./src/matriz-particionada.png)
+
+  * [matriz-particionada.pgf](https://github.com/walmes/Tikz/blob/master/src/matriz-particionada.pgf)
+
+```tex
+% https://tex.stackexchange.com/questions/431119/matrix-in-tikz-and-equation
+\begin{tikzpicture}[
+  baseline,
+  label distance=10pt % added
+]
+
+\matrix [matrix of math nodes,left delimiter=(,right delimiter=),row sep=0.1cm,column sep=0.1cm] (m) {
+      1 & *     &   *  & \dots & *   & 0 & \dots & 0 \\
+      0 & \pm 1 &   *  & \dots & *   & 0 & \dots & 0 \\
+      0 & 0     &\pm 1 & \dots & *   & 0 & \dots & 0 \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+        0 &  0    & 0    &   \dots   &\pm 1& 0 & \dots & 0 \\
+        0 &  0    & 0    &  \dots   & 0  & * & \dots & * \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+      0 &  0    & 0    &   0   & 0   & * & \dots & *\\ };
+
+\draw[dashed] ($0.5*(m-1-5.north east)+0.5*(m-1-6.north west)$) -- ($0.5*(m-8-6.south east)+0.5*(m-8-5.south west)$);
+
+\draw[dashed] ($0.5*(m-5-1.south west)+0.5*(m-6-1.north west)$) -- ($0.5*(m-5-8.south east)+0.5*(m-6-8.north east)$);
+
+\node[
+  fit=(m-1-1)(m-1-5),
+  inner xsep=0,
+  above delimiter=\{,
+  label=above:$k_1$
+] {};
+
+\node[
+  fit=(m-1-6)(m-1-8),
+  inner xsep=0,
+  above delimiter=\{,
+  label=above:$k-k_1$
+ ] {};
+
+\node[
+  fit=(m-1-8)(m-5-8),
+  inner xsep=15pt,inner ysep=0,
+  right delimiter=\},
+  label=right:$k_1$
+] {};
+
+\node[
+  fit=(m-6-8)(m-8-8),
+  inner xsep=15pt,inner ysep=0,
+  right delimiter=\},
+  label=right:$k-k_1$
+] {};
+
+\end{tikzpicture} 
 ```
 ****
 
