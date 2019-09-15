@@ -10,15 +10,15 @@
     fill = blue, circle, text opacity = 1},
   ]
 
-  \def\cube{
+  \newcommand{\cube}[1]{
 
     \foreach \x in {0, 1, 2} {
       \foreach \y in {0, 1, 2} {
         \foreach \z in {0, 1, 2} {
           \coordinate (v\x\y\z) at (\x, \y, \z);
-          % \draw[fill = black] (v\x\y\z) circle (0.8pt);
+%             \draw[fill = black] (v\x\y\z) circle (0.8pt);
           \node[draw, circle, inner sep = 0.2ex,
-            fill = white, font = \footnotesize] at (v\x\y\z) {\x\y\z};
+            fill = white, font = \footnotesize] at (v\x\y\z) {\x\y\z#1};
         }
       }
     }
@@ -55,19 +55,27 @@
   } % \cube
 
   \begin{scope}[]
-    \cube{};
+    \cube{0};
+    \coordinate (cube0) at (1, 2.7, 1);
   \end{scope}
 
-\end{tikzpicture}%
+  \begin{scope}[xshift = 3.75cm]
+    \cube{1};
+    \coordinate (cube1) at (1, 2.7, 1);
+  \end{scope}
 
-ll = blue] (Clow) {$-$};
-    \node[above left = of v5, sinal, fill = orange] (Chig) {$+$};
-    \path[draw, ->, shorten <= 1ex, shorten >= 1ex] (Clow) -- node[above left] {C} (Chig);
+  \begin{scope}[xshift = 7.50cm]
+    \cube{2};
+    \coordinate (cube2) at (1, 2.7, 1);
+  \end{scope}
 
-  } % \cube
-
-  \begin{scope}[]
-    \cube{};
+  \begin{scope}[node distance = 4ex]
+    \draw[edge, color = gray] (cube0) |- ++(0, 0.1) -| (cube1);
+    \draw[edge, color = gray] (cube1) |- ++(0, 0.1) -| (cube2);
+    \node[above = of cube0, sinal, fill = blue] (Dlow) {$0$};
+    \node[above = of cube1, sinal, fill = green, label = {[above = 1ex]90:D}] (Dmid) {$1$};
+    \node[above = of cube2, sinal, fill = orange] (Dhig) {$2$};
+    \path[axispath] (Dlow) edge (Dmid) (Dmid) edge (Dhig);
   \end{scope}
 
 \end{tikzpicture}%

@@ -1,0 +1,48 @@
+﻿\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  axispath/.style = {draw, ->, shorten <= 1ex, shorten >= 1ex},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  ]
+
+  \def\cube{
+
+    \foreach \x in {0, 1, 2} {
+      \foreach \y in {0, 1, 2} {
+        \coordinate (v\x\y) at (\x, \y);
+        % \draw[fill = black] (v\x\y\z) circle (0.8pt);
+        \node[draw, circle, inner sep = 0.2ex,
+          fill = white, font = \footnotesize] at (v\x\y) {\x\y};
+      }
+    }
+
+    \begin{scope}[on background layer]
+      \foreach \u in {0, 1, 2} {
+        \draw[edge] (v0\u) -- (v2\u);
+        \draw[edge] (v\u0) -- (v\u2);
+      }
+    \end{scope}
+
+    % Axis text.
+    \node[below of = v00, sinal, fill = blue] (Alow) {$0$};
+    \node[below of = v10, sinal, fill = green, label = {[below = 1ex]-90:A}] (Amid) {$1$};
+    \node[below of = v20, sinal, fill = orange] (Ahig) {$2$};
+    \path[axispath] (Alow) edge (Amid) (Amid) edge (Ahig);
+
+    \node[right of = v20, sinal, fill = blue] (Blow) {$0$};
+    \node[right of = v21, sinal, fill = green, label = {[right = 1ex]0:B}] (Bmid) {$1$};
+    \node[right of = v22, sinal, fill = orange] (Bhig) {$2$};
+    \path[axispath] (Blow) edge (Bmid) (Bmid) edge (Bhig);
+
+  } % \cube
+
+  \begin{scope}[]
+    \cube{};
+  \end{scope}
+
+\end{tikzpicture}%
