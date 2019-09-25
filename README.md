@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 239 Tikz figures in this gallery.  Most of them were
+There are 240 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -36,6 +36,12 @@ corresponding preamble that list all tikz libraries used:
 
 The figures are in file file order.  A page with all figures displayed
 in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
+
+Some useful tutorials or galleries:
+
+  * <https://tobiw.de/en/teotm/tikz-adventskalender>.
+  * <http://math.et.info.free.fr/TikZ/bdd/TikZ-Impatient.pdf>.
+  * <http://www.mat.ufpb.br/lenimar/introtikz.pdf>.
 
 
 ****
@@ -1034,64 +1040,6 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 ```
 ****
 
-![](./src/conceito_regressao.png)
-
-  * [conceito_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/conceito_regressao.pgf)
-
-```tex
-\begin{tikzpicture}[domain=-0.25:9, scale=0.7, >=latex]
-  % \draw[very thin,color=gray!30] (-1.1,-1.1) grid (12.1,7.1);
-  \draw[->] (-0.2,0) -- (9.2,0) node[right] {$x$};
-  \draw[->] (0,-0.2) -- (0,5.5) node[above] {$Y$};
-
-  \begin{scope}[line width=1pt]
-    \coordinate (a1) at (0,0);
-    \coordinate (a2) at (4,3);
-    \coordinate (a3) at (9,5);
-    \draw (a1) ..controls (2,1) and (1,5).. (a2);
-    \draw (a2) ..controls (7,1) and (7,3).. (a3);
-    \node[right] at (a3) {$\eta(x)$};
-  \end{scope}
-
-  \begin{scope}[
-    color=gray, fill opacity=0.3, fill=gray, smooth, domain=-1:1]
-
-    \def\x{1.5}; \def\y{2.4};
-    \filldraw[xshift=\x cm, yshift=\y cm]
-      (0,-0.8) -| (0.8,0) |- (0,0.9);
-    \draw (\x,\y) -- ++(0.8,0);
-    \draw[dashed] (\x,0) -- ++(0,5.5);
-
-    \def\x{3.75}; \def\y{3.15};
-    \filldraw[xshift=\x cm, yshift=\y cm]
-      (0,-1) -- (1,0) -- (0,1);
-    \draw (\x,\y) -- ++(1,0);
-    \draw[dashed] (\x,0) -- ++(0,5.5);
-
-    \def\x{6}; \def\y{2.7};
-    \filldraw[xshift=\x cm, yshift=\y cm]
-      plot[id=x, rotate=-90]
-      function{0.55*(1+x)**3*(1-x)**0.9};
-    \draw (\x,2.17) -- ++(1,0);
-    \draw[dashed] (\x,0) -- ++(0,5.3);
-
-    \def\x{8}; \def\y{3.85};
-    \filldraw[xshift=\x cm, yshift=\y cm]
-      plot[id=x, rotate=-90, domain=-1.2:1.2]
-      function{exp(-(x)**2/0.29)};
-    \draw (\x,\y) -- ++(1,0);
-    \draw[dashed] (\x,0) -- ++(0,5.5);
-
-  \end{scope}
-
-  \coordinate (a) at (8.25,3.5);
-  \node (b) at (10,2.8) {$[Y|x]$};
-  \draw (a) edge[out=0, in=180,->] (b);
-
-\end{tikzpicture}
-```
-****
-
 ![](./src/conceitoregressao_modelo.png)
 
   * [conceitoregressao_modelo.pgf](https://github.com/walmes/Tikz/blob/master/src/conceitoregressao_modelo.pgf)
@@ -1153,6 +1101,64 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 \draw[bla] (theta) |- +(\vd,-\hd+0.25)
   node[nodedir] {Par\^ametros \\ \footnotesize{Emp\'iricos, interpret\'aveis.}}
   node[bola] {7};
+
+\end{tikzpicture}
+```
+****
+
+![](./src/conceito_regressao.png)
+
+  * [conceito_regressao.pgf](https://github.com/walmes/Tikz/blob/master/src/conceito_regressao.pgf)
+
+```tex
+\begin{tikzpicture}[domain=-0.25:9, scale=0.7, >=latex]
+  % \draw[very thin,color=gray!30] (-1.1,-1.1) grid (12.1,7.1);
+  \draw[->] (-0.2,0) -- (9.2,0) node[right] {$x$};
+  \draw[->] (0,-0.2) -- (0,5.5) node[above] {$Y$};
+
+  \begin{scope}[line width=1pt]
+    \coordinate (a1) at (0,0);
+    \coordinate (a2) at (4,3);
+    \coordinate (a3) at (9,5);
+    \draw (a1) ..controls (2,1) and (1,5).. (a2);
+    \draw (a2) ..controls (7,1) and (7,3).. (a3);
+    \node[right] at (a3) {$\eta(x)$};
+  \end{scope}
+
+  \begin{scope}[
+    color=gray, fill opacity=0.3, fill=gray, smooth, domain=-1:1]
+
+    \def\x{1.5}; \def\y{2.4};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      (0,-0.8) -| (0.8,0) |- (0,0.9);
+    \draw (\x,\y) -- ++(0.8,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+    \def\x{3.75}; \def\y{3.15};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      (0,-1) -- (1,0) -- (0,1);
+    \draw (\x,\y) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+    \def\x{6}; \def\y{2.7};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      plot[id=x, rotate=-90]
+      function{0.55*(1+x)**3*(1-x)**0.9};
+    \draw (\x,2.17) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.3);
+
+    \def\x{8}; \def\y{3.85};
+    \filldraw[xshift=\x cm, yshift=\y cm]
+      plot[id=x, rotate=-90, domain=-1.2:1.2]
+      function{exp(-(x)**2/0.29)};
+    \draw (\x,\y) -- ++(1,0);
+    \draw[dashed] (\x,0) -- ++(0,5.5);
+
+  \end{scope}
+
+  \coordinate (a) at (8.25,3.5);
+  \node (b) at (10,2.8) {$[Y|x]$};
+  \draw (a) edge[out=0, in=180,->] (b);
 
 \end{tikzpicture}
 ```
@@ -1300,114 +1306,92 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 ```
 ****
 
-![](./src/cra_parametros_SI.png)
+![](./src/contrastes-planejados.png)
 
-  * [cra_parametros_SI.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros_SI.pgf)
+  * [contrastes-planejados.pgf](https://github.com/walmes/Tikz/blob/master/src/contrastes-planejados.pgf)
 
 ```tex
-\def\f1{0.8}
-\def\xs{0.5}
-\def\ys{4}
+\begin{tikzpicture}[%
+  box/.style = {
+    rectangle split,
+    rectangle split parts = 3,
+    rectangle split part fill = {
+      gray!30,
+      orange!10!white,
+      green!10!white},
+    draw,
+    text width = 4.5cm},
+  every path/.style = {->, > = latex},
+  ]
 
-\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
-  \def\tr{0.1}
-  \def\ts{0.6}
-  \def\al{1.3}
-  \def\n{1.6}
-  \def\m{0.9}
-  \def\I{0.3506}
-  \def\ti{0.4071}
-  \def\S{-0.1340}
-  \def\Sangle{-42}
+  \node[box] (t0)
+  {\textbf{T0: Controle positivo}
+    \nodepart{second}
+    Preparo: solo com estrutura preservada.
+    \nodepart{third}
+    Objetivo: determinar a reten{\c c}{\~a}o de {\'a}gua (RA) {\'o}tima.
+  };
 
-  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-  % \node at (6,1) {van Genuchten reparametrizado para $S$ e $I$};
-  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-    node[below] {$\log(\psi)$};
-  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-    node[left] {$U(\psi)$};
-  \foreach \SS in {-0.125,-0.15,-0.175,-0.2}
-  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-    function{\tr-\SS*(1+1/\m)**(\m+1)/(\n*(1+exp(\n*(x-\I))/\m)**\m)};
-  \draw[->,xshift=-3.25cm] (0,0.4) -- (0,0.65) node[midway,left] {$S$};
+  \node[box, right = 5em of t0] (t1)
+  {\textbf{T1: Sem estrutura preservada}
+    \nodepart{second}
+    Preparo: solo peneirado em malha de 2 mm.
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da estrutura
+    preservada na RA.
+  };
 
-  \begin{scope}[xshift=11.5cm]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-      node[left] {$U(\psi)$};
-    \foreach \ttr in {0.05,0.1,0.15,0.2}
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\ttr-\S*(1+1/\m)**(\m+1)/(\n*(1+exp(\n*(x-\I))/\m)**\m)};
-    \draw[->,xshift=5.25cm] (0,0.025) -- (0,0.25)
-      node[midway,right] {$U_r$};
-  \end{scope}
+  \node[box, above right = 2em and 5em of t1, anchor = 180] (t2)
+  {\textbf{T2: T1 + sem a fra{\c c}{\~a}o leve da MOS}
+    \nodepart{second}
+    Preparo: T1 com fra{\c c}{\~o}es leve livre e oclusa da MOS
+    removidas.
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da fra{\c c}{\~a}o
+    leve da MOS na RA.
+  };
 
-  \begin{scope}[xshift=0cm, yshift=-1cm]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-      node[left] {$U(\psi)$};
-    \foreach \II in {-0.5,0,0.5,1}
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\tr-(\S-0.05)*(1+1/\m)**(\m+1)/
-        (\n*(1+exp(\n*(x-\II))/\m)**\m)};
-    \draw[<-] (1.75,0.35) -- ++(-3,0)
-      node[left,circle,fill=white] {$I$};
-  \end{scope}
+  \node[box, below right = 2em and 5em of t1, anchor = 180] (t3)
+  {\textbf{T3: T1 + sem MOS}
+    \nodepart{second}
+    Preparo: MOS removida com emprego de solu{\c c}{\~a}o de
+    solu{\c c}{\~a}o H$_2$O$_2$/H$_2$O (15:85 v/v)
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da MOS na RA.
+  };
 
-  \begin{scope}[xshift=11.5cm, yshift=-1cm]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-      node[left] {$U(\psi)$};
-    \foreach \nn in {1.5,2,2.5,3}
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\tr-(\S-0.05)*(1+1/\m)**(\m+1)/
-        (\nn*(1+exp(\nn*(x-\I))/\m)**\m)};
-    \path[->] (1,0.4) edge[bend left=3]
-      node[at end, left,circle,fill=white] {$n$} (-1,0.2);
-  \end{scope}
+  \path (t0) edge node[above] {T0 vs T1} (t1);
+  \path (t1) edge[bend left = 10] node[above = 1ex] {T1 vs T2} (t2);
+  \path (t1) edge[bend right = 10] node[below = 1ex] {T1 vs T3} (t3);
+  \path (t2) edge node[right = 1ex] {T2 vs T3} (t3);
 
-  \begin{scope}[xshift=0cm, yshift=-2cm]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-      node[left] {$U(\psi)$};
-    \foreach \mm in {0.75,1.25,1.75,2.25}
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\tr-(\S-0.05)*(1+1/\mm)**(\mm+1)/
-        (\n*(1+exp(\n*(x-\I))/\mm)**\mm)};
-    \path[->] (1,0.4) edge[bend left=3]
-      node[at end, left,circle,fill=white] {$m$} (-1,0.2);
-  \end{scope}
+\end{tikzpicture}%
+```
+****
 
-  \begin{scope}[xshift=11.5cm, yshift=-2cm]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-      node[left] {$U(\psi)$};
-    \foreach \nn in {1.5,2.25,3,3.75}
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\tr-\S*(1+1/(1-1/\nn))**(2-1/\nn)/
-        (\n*(1+exp(\n*(x-\I))/(1-1/\nn))**(1-1/\nn))};
-    \path[->] (1.25,0.5) edge[bend left=3]
-      node[at end, left,circle,fill=white] {$n$} ++(-2,-0.2);
-    \node[anchor=base,rectangle,fill=white] (i) at (2.5,0.6)
-      {$m=1-1/n$};
-  \end{scope}
+![](./src/cra-distporos.png)
 
+  * [cra-distporos.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-distporos.pgf)
+
+```tex
+\tikzset{state/.style={
+    rectangle, rounded corners, draw=black, thick, minimum height=2em,
+    minimum width=7cm, inner sep=10pt, text centered,
+  },
+}
+
+\begin{tikzpicture}[->, >=latex, line width=0.75pt]
+  \node[state] (cra) {
+    $U(x) = U_r+\displaystyle\frac{U_s-U_r}{(1+\exp\{a+x\})^n)^m}$\\
+  };
+  \node[above of=cra] {Curva de reten\c{c}\~{a}o de \'{a}gua no solo};
+  \node[state, right of=cra, node distance=8cm]
+  (dist) {
+    $f(r) = \displaystyle\frac{nm\, (2\gamma\,\exp\{a\}/r)^n}{
+      r(1+(2\gamma\,\exp\{a\}/r)^n)^{m+1}}$\\
+  };
+  \node[above of=dist] {Distribui\c{c}\~{a}o do tamanho de poros};
+  \path (cra) edge[<->, bend right=30] node[below] {} (dist);
 \end{tikzpicture}
 ```
 ****
@@ -1520,29 +1504,226 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 ```
 ****
 
-![](./src/cra-distporos.png)
+![](./src/cra_parametros_SI.png)
 
-  * [cra-distporos.pgf](https://github.com/walmes/Tikz/blob/master/src/cra-distporos.pgf)
+  * [cra_parametros_SI.pgf](https://github.com/walmes/Tikz/blob/master/src/cra_parametros_SI.pgf)
 
 ```tex
-\tikzset{state/.style={
-    rectangle, rounded corners, draw=black, thick, minimum height=2em,
-    minimum width=7cm, inner sep=10pt, text centered,
-  },
-}
+\def\f1{0.8}
+\def\xs{0.5}
+\def\ys{4}
 
-\begin{tikzpicture}[->, >=latex, line width=0.75pt]
-  \node[state] (cra) {
-    $U(x) = U_r+\displaystyle\frac{U_s-U_r}{(1+\exp\{a+x\})^n)^m}$\\
-  };
-  \node[above of=cra] {Curva de reten\c{c}\~{a}o de \'{a}gua no solo};
-  \node[state, right of=cra, node distance=8cm]
-  (dist) {
-    $f(r) = \displaystyle\frac{nm\, (2\gamma\,\exp\{a\}/r)^n}{
-      r(1+(2\gamma\,\exp\{a\}/r)^n)^{m+1}}$\\
-  };
-  \node[above of=dist] {Distribui\c{c}\~{a}o do tamanho de poros};
-  \path (cra) edge[<->, bend right=30] node[below] {} (dist);
+\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
+  \def\tr{0.1}
+  \def\ts{0.6}
+  \def\al{1.3}
+  \def\n{1.6}
+  \def\m{0.9}
+  \def\I{0.3506}
+  \def\ti{0.4071}
+  \def\S{-0.1340}
+  \def\Sangle{-42}
+
+  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+  % \node at (6,1) {van Genuchten reparametrizado para $S$ e $I$};
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+    node[below] {$\log(\psi)$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+    node[left] {$U(\psi)$};
+  \foreach \SS in {-0.125,-0.15,-0.175,-0.2}
+  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\tr-\SS*(1+1/\m)**(\m+1)/(\n*(1+exp(\n*(x-\I))/\m)**\m)};
+  \draw[->,xshift=-3.25cm] (0,0.4) -- (0,0.65) node[midway,left] {$S$};
+
+  \begin{scope}[xshift=11.5cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \ttr in {0.05,0.1,0.15,0.2}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\ttr-\S*(1+1/\m)**(\m+1)/(\n*(1+exp(\n*(x-\I))/\m)**\m)};
+    \draw[->,xshift=5.25cm] (0,0.025) -- (0,0.25)
+      node[midway,right] {$U_r$};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-1cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \II in {-0.5,0,0.5,1}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr-(\S-0.05)*(1+1/\m)**(\m+1)/
+        (\n*(1+exp(\n*(x-\II))/\m)**\m)};
+    \draw[<-] (1.75,0.35) -- ++(-3,0)
+      node[left,circle,fill=white] {$I$};
+  \end{scope}
+
+  \begin{scope}[xshift=11.5cm, yshift=-1cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \nn in {1.5,2,2.5,3}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr-(\S-0.05)*(1+1/\m)**(\m+1)/
+        (\nn*(1+exp(\nn*(x-\I))/\m)**\m)};
+    \path[->] (1,0.4) edge[bend left=3]
+      node[at end, left,circle,fill=white] {$n$} (-1,0.2);
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-2cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \mm in {0.75,1.25,1.75,2.25}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr-(\S-0.05)*(1+1/\mm)**(\mm+1)/
+        (\n*(1+exp(\n*(x-\I))/\mm)**\mm)};
+    \path[->] (1,0.4) edge[bend left=3]
+      node[at end, left,circle,fill=white] {$m$} (-1,0.2);
+  \end{scope}
+
+  \begin{scope}[xshift=11.5cm, yshift=-2cm]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+      grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+      node[left] {$U(\psi)$};
+    \foreach \nn in {1.5,2.25,3,3.75}
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\tr-\S*(1+1/(1-1/\nn))**(2-1/\nn)/
+        (\n*(1+exp(\n*(x-\I))/(1-1/\nn))**(1-1/\nn))};
+    \path[->] (1.25,0.5) edge[bend left=3]
+      node[at end, left,circle,fill=white] {$n$} ++(-2,-0.2);
+    \node[anchor=base,rectangle,fill=white] (i) at (2.5,0.6)
+      {$m=1-1/n$};
+  \end{scope}
+
+\end{tikzpicture}
+```
+****
+
+![](./src/cra.png)
+
+  * [cra.pgf](https://github.com/walmes/Tikz/blob/master/src/cra.pgf)
+
+```tex
+\def\xs{1}
+\def\ys{6}
+
+\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
+  % definicoes dos valores dos parametros e outras quantidades
+  \def\tr{0.1}
+  \def\ts{0.6}
+  \def\al{1.3}
+  \def\n{1.6}
+  \def\I{0.3506}
+  \def\ti{0.4071}
+  \def\S{-0.1340}
+  \def\Sangle{-42}
+  \def\f1{0.8}
+
+  % CRA
+  % grid e eixos
+  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
+    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
+  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+    node[below] {$\log(\psi)$};
+  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
+    node[left] {$U(\psi)$};
+  % funcao
+  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+    function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\n)**(1-1/\n)};
+  % textos e chave
+  \draw[dashed] (\I,0) node[below] {$I$} -- (\I,\ti) -- (-3,\ti)
+    node[left] {$u_i$};
+  \draw [decorate, decoration={brace, amplitude=4pt}]
+    (-3.5,\tr) -- (-3.5,\ts) node [black,midway,left=3pt] {$\Delta$};
+  % texto
+  \path[->, draw]
+    (\I,\ti) to[out=0, in=180] ++(0.75,0.1)
+    node[anchor=west, text ragged, text width=1.6cm, fill=white]
+    {ponto de inflex\~ao};
+  \node[above] at (1,0.7)
+    {Curva de reten\c{c}\~ao de {\'a}gua do solo (CRA)};
+
+  % parametro S
+  \draw[color=darkgreen, dashed] plot[id=x, domain=-1.5:2.6]
+    function{\ti+\S*(x-\I)} node[below, fill=white] {reta tangente};
+  \draw[|<->|] (\I,\ti)++(1,0) arc (0:\Sangle:0.8 and 0.15);
+  \path (\I,\ti)++(0.5*1.5\Sangle/8:1)
+    node[right=2pt, fill=white, inner sep=1pt] {$\tan^{-1}(S)$};
+
+  % DRCA
+  \def\ys{3}
+  \begin{scope}[yshift=-0.3cm, domain=-3:5, >=latex, yscale=\ys]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,-0.15-0.15*0.2/\ys)
+      grid[xstep=0.5, ystep=0.03] (5+0.2/\xs,0.03+0.15*0.2/\ys);
+    \draw[->, line width=1pt] (-3,-0.15) -- (5.25,-0.15)
+      node[below] {$\log(\psi)$};
+    \draw[->, line width=1pt] (-3,-0.15) -- (-3,0.05)
+      node[left] {$U'(\psi)$};
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{-(\ts-\tr)*\n*(1-1/\n)*\al**\n*exp(\n*x)*
+        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
+    \node[left] at (-3,0) {$0$};
+    \draw[dashed] (\I,0.03) -- (\I,\S) -- (-3,\S) node[left] {$U'(I)$};
+    \path[->, draw]
+      (\I,\S) to[out=-2, in=180] ++(1.75,0.02)
+      node[anchor=west, fill=white] {$S$};
+    \node[above] at (1,0.03) {Derivada da CRA (DCRA)};
+  \end{scope}
+
+  % funcao densidade 
+  \def\ys{1.75}
+  \begin{scope}[yshift=-1.5cm,domain=-3:5, >=latex, yscale=\ys]
+    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.025/\ys)
+      grid[xstep=0.5, ystep=0.05] (5+0.2/\xs,0.3+0.025/\ys);
+    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
+      node[below] {$x=\log(\psi)$};
+    \draw[->, line width=1pt] (-3,0) -- (-3,0.33) node[left] {$f(x)$};
+    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
+      function{\n*(1-1/\n)*\al**\n*exp(\n*x)*
+        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
+    \node[left] at (-3,0) {$0$};
+    \node[above] at (1,0.3) {Fun\c{c}\~ao densidade de probabilidade};
+    \draw[dashed] (\I,0) -- (\I,-2*\S);
+    \path[->, draw]
+      (\I+1,0.21) to[out=0, in=180] ++(0.75,0.05)
+      node[anchor=west, text ragged, text width=2.5cm, fill=white]
+      {$f(x) = -\frac{U'(x)}{\Delta}$};
+    \path[->, draw]
+      (\I,-\S*2) to[out=175, in=0] ++(-1.75,0)
+      node[anchor=east, fill=white] {$-S/\Delta$};
+    \node[above] at (\I+1.5, 0)
+      {$\displaystyle\int_{-\infty}^{\infty} f(x)\,\, dx=1$};
+  \end{scope}
+
+  % raios
+  \begin{scope}[yshift=-1.65cm, xscale=8, yscale=1.33]
+    \node[below right] at (\I-2.75cm/8,0) {$r$};
+    \node[below, text centered, text width=12em] at (1/8,-0.07)
+    {tamanho de poros ($r$)\\ $r = 2\gamma/\psi$};
+    \foreach \r/\x in {
+      10/\I-2.75cm, 7.5/\I-1.1cm, 5/\I, 3/\I+1.5cm,
+      2/\I+2.75cm, 1.5/\I+4cm, 1/\I+5cm}{
+      \draw (\x/8,0) circle (\r/150);
+      \draw (\x/8,0) -- ++(\r/150,0);
+    }
+  \end{scope}
 \end{tikzpicture}
 ```
 ****
@@ -1679,118 +1860,6 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 ```
 ****
 
-![](./src/cra.png)
-
-  * [cra.pgf](https://github.com/walmes/Tikz/blob/master/src/cra.pgf)
-
-```tex
-\def\xs{1}
-\def\ys{6}
-
-\begin{tikzpicture}[domain=-3:5, xscale=\xs, yscale=\ys, >=latex]
-  % definicoes dos valores dos parametros e outras quantidades
-  \def\tr{0.1}
-  \def\ts{0.6}
-  \def\al{1.3}
-  \def\n{1.6}
-  \def\I{0.3506}
-  \def\ti{0.4071}
-  \def\S{-0.1340}
-  \def\Sangle{-42}
-  \def\f1{0.8}
-
-  % CRA
-  % grid e eixos
-  \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.2/\ys)
-    grid[xstep=0.5, ystep=0.1] (5+0.2/\xs,0.7+0.2/\ys);
-  \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-    node[below] {$\log(\psi)$};
-  \draw[->, line width=1pt] (-3,0) -- (-3,0.75)
-    node[left] {$U(\psi)$};
-  % funcao
-  \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-    function{\tr+(\ts-\tr)/(1+(\al*exp(x))**\n)**(1-1/\n)};
-  % textos e chave
-  \draw[dashed] (\I,0) node[below] {$I$} -- (\I,\ti) -- (-3,\ti)
-    node[left] {$u_i$};
-  \draw [decorate, decoration={brace, amplitude=4pt}]
-    (-3.5,\tr) -- (-3.5,\ts) node [black,midway,left=3pt] {$\Delta$};
-  % texto
-  \path[->, draw]
-    (\I,\ti) to[out=0, in=180] ++(0.75,0.1)
-    node[anchor=west, text ragged, text width=1.6cm, fill=white]
-    {ponto de inflex\~ao};
-  \node[above] at (1,0.7)
-    {Curva de reten\c{c}\~ao de {\'a}gua do solo (CRA)};
-
-  % parametro S
-  \draw[color=darkgreen, dashed] plot[id=x, domain=-1.5:2.6]
-    function{\ti+\S*(x-\I)} node[below, fill=white] {reta tangente};
-  \draw[|<->|] (\I,\ti)++(1,0) arc (0:\Sangle:0.8 and 0.15);
-  \path (\I,\ti)++(0.5*1.5\Sangle/8:1)
-    node[right=2pt, fill=white, inner sep=1pt] {$\tan^{-1}(S)$};
-
-  % DRCA
-  \def\ys{3}
-  \begin{scope}[yshift=-0.3cm, domain=-3:5, >=latex, yscale=\ys]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,-0.15-0.15*0.2/\ys)
-      grid[xstep=0.5, ystep=0.03] (5+0.2/\xs,0.03+0.15*0.2/\ys);
-    \draw[->, line width=1pt] (-3,-0.15) -- (5.25,-0.15)
-      node[below] {$\log(\psi)$};
-    \draw[->, line width=1pt] (-3,-0.15) -- (-3,0.05)
-      node[left] {$U'(\psi)$};
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{-(\ts-\tr)*\n*(1-1/\n)*\al**\n*exp(\n*x)*
-        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
-    \node[left] at (-3,0) {$0$};
-    \draw[dashed] (\I,0.03) -- (\I,\S) -- (-3,\S) node[left] {$U'(I)$};
-    \path[->, draw]
-      (\I,\S) to[out=-2, in=180] ++(1.75,0.02)
-      node[anchor=west, fill=white] {$S$};
-    \node[above] at (1,0.03) {Derivada da CRA (DCRA)};
-  \end{scope}
-
-  % funcao densidade 
-  \def\ys{1.75}
-  \begin{scope}[yshift=-1.5cm,domain=-3:5, >=latex, yscale=\ys]
-    \draw[very thin,color=gray!30] (-3-0.2/\xs,0-0.025/\ys)
-      grid[xstep=0.5, ystep=0.05] (5+0.2/\xs,0.3+0.025/\ys);
-    \draw[->, line width=1pt] (-3,0) -- (5.25,0)
-      node[below] {$x=\log(\psi)$};
-    \draw[->, line width=1pt] (-3,0) -- (-3,0.33) node[left] {$f(x)$};
-    \draw[color=darkgreen, thick, smooth] plot[id=x, domain=-3:5]
-      function{\n*(1-1/\n)*\al**\n*exp(\n*x)*
-        (1+(\al*exp(x))**\n)**(-1+1/\n-1)};
-    \node[left] at (-3,0) {$0$};
-    \node[above] at (1,0.3) {Fun\c{c}\~ao densidade de probabilidade};
-    \draw[dashed] (\I,0) -- (\I,-2*\S);
-    \path[->, draw]
-      (\I+1,0.21) to[out=0, in=180] ++(0.75,0.05)
-      node[anchor=west, text ragged, text width=2.5cm, fill=white]
-      {$f(x) = -\frac{U'(x)}{\Delta}$};
-    \path[->, draw]
-      (\I,-\S*2) to[out=175, in=0] ++(-1.75,0)
-      node[anchor=east, fill=white] {$-S/\Delta$};
-    \node[above] at (\I+1.5, 0)
-      {$\displaystyle\int_{-\infty}^{\infty} f(x)\,\, dx=1$};
-  \end{scope}
-
-  % raios
-  \begin{scope}[yshift=-1.65cm, xscale=8, yscale=1.33]
-    \node[below right] at (\I-2.75cm/8,0) {$r$};
-    \node[below, text centered, text width=12em] at (1/8,-0.07)
-    {tamanho de poros ($r$)\\ $r = 2\gamma/\psi$};
-    \foreach \r/\x in {
-      10/\I-2.75cm, 7.5/\I-1.1cm, 5/\I, 3/\I+1.5cm,
-      2/\I+2.75cm, 1.5/\I+4cm, 1/\I+5cm}{
-      \draw (\x/8,0) circle (\r/150);
-      \draw (\x/8,0) -- ++(\r/150,0);
-    }
-  \end{scope}
-\end{tikzpicture}
-```
-****
-
 ![](./src/croqui-campo.png)
 
   * [croqui-campo.pgf](https://github.com/walmes/Tikz/blob/master/src/croqui-campo.pgf)
@@ -1808,296 +1877,6 @@ in on <http://www.leg.ufpr.br/~walmes/Tikz/> (updated less frequently).
 
 \draw[draw = none] (-0.5, -1) rectangle (12, 6.5);
 
-\end{tikzpicture}
-```
-****
-
-![](./src/cubos_fatoriais_efeitos.png)
-
-  * [cubos_fatoriais_efeitos.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais_efeitos.pgf)
-
-```tex
-\begin{tikzpicture}[%
-  scale = 2,
-  ->,
-  thick,
-  z = {(0.45, 0.25)},
-  node distance = 2em,
-  vertex/.style = {circle, minimum size = 5pt, inner sep = 0pt,
-    draw = black, fill = black},
-  axial/.style = {rectangle, minimum size = 20pt,
-    inner sep = 0pt, fill = gray!30},
-  edge/.style = {draw, thick, -, black},
-  rotu/.style = {midway},
-  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
-    fill = blue, circle, text opacity = 1},
-  pointminus/.style = {draw = blue, fill = blue},
-  pointplus/.style = {draw = orange, fill = orange},
-  faceminus/.style = {blue, opacity = 0.4},
-  faceplus/.style = {orange, opacity = 0.4}
-  ]
-
-  \def\dist{0.1}
-  \def\cube{
-    % Vertices.
-    \coordinate (v0) at (0, 0, 0);
-    \coordinate (v1) at (0, 1, 0);
-    \coordinate (v2) at (1, 0, 0);
-    \coordinate (v3) at (1, 1, 0);
-    \coordinate (v4) at (0, 0, 1);
-    \coordinate (v5) at (0, 1, 1);
-    \coordinate (v6) at (1, 0, 1);
-    \coordinate (v7) at (1, 1, 1);
-
-    % Edges.
-    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
-    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
-    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
-    \draw[edge] (v4) -- (v6);
-    \draw[edge] (v5) -- (v7);
-  } % \cube
-
-  % A effect.
-  \begin{scope}[]
-    \cube{};
-    \foreach \i in {0,...,7}{ \draw[fill= black] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {$2^3 = 8$};
-
-    % Axis text.
-    \path (v0) -- node[midway, below=1.5em] {$A$} (v2);
-    \path (v0) -- node[midway, left=1.5em] {$B$} (v1);
-    \path (v2) -- node[midway, right=3em] {$C$} (v6);
-
-    % Axis text.
-    \node[below of=v0, sinal, fill = blue] {$-$};
-    \node[below of=v2, sinal, fill = orange] {$+$};
-    \node[left of=v0, sinal, fill = blue] {$-$};
-    \node[left of=v1, sinal, fill = orange] {$+$};
-    \node[right = 3em of v2, sinal, fill = blue] {$-$};
-    \node[right = 3em of v6, sinal, fill = orange] {$+$};
-  \end{scope}
-
-  % A effect.
-  \begin{scope}[xshift = -2.5cm, yshift = -2.5cm]
-    \cube{};
-    \fill[faceminus]
-    (v0.center) -- (v1.center) -- (v5.center) -- (v4.center) -- cycle;
-    \foreach \i in {0, 1, 5, 4}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \fill[faceplus]
-    (v2.center) -- (v3.center) -- (v7.center) -- (v6.center) -- cycle;
-    \foreach \i in {2, 3, 7, 6}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {A};
-  \end{scope}
-
-  % B effect.
-  \begin{scope}[xshift = 0.0cm, yshift = -2.5cm]
-    \cube{};
-    \fill[faceminus]
-    (v0.center) -- (v4.center) -- (v6.center) -- (v2.center) -- cycle;
-    \foreach \i in {0, 4, 6, 2}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \fill[faceplus]
-    (v1.center) -- (v5.center) -- (v7.center) -- (v3.center) -- cycle;
-    \foreach \i in {1, 5, 7, 3}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {B};
-  \end{scope}
-
-  % C effect.
-  \begin{scope}[xshift = 2.5cm, yshift = -2.5cm]
-    \cube{};
-    \fill[faceplus]
-    (v4.center) -- (v5.center) -- (v7.center) -- (v6.center) -- cycle;
-    \foreach \i in {4, 5, 7, 6}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \fill[faceminus]
-    (v0.center) -- (v1.center) -- (v3.center) -- (v2.center) -- cycle;
-    \foreach \i in {0, 1, 3, 2}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {C};
-  \end{scope}
-
-  % A:B effect.
-  \begin{scope}[xshift = -2.5cm, yshift = -5cm]
-    \cube{};
-    \fill[faceplus]
-    (v0.center) -- (v5.center) -- (v7.center) -- (v2.center) -- cycle;
-    \foreach \i in {0, 5, 7, 2}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \fill[faceminus]
-    (v1.center) -- (v4.center) -- (v6.center) -- (v3.center) -- cycle;
-    \foreach \i in {1, 4, 6, 3}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {BC};
-  \end{scope}
-
-  % A:C effect.
-  \begin{scope}[xshift = 0.0cm, yshift = -5cm]
-    \cube{};
-    \fill[faceminus]
-    (v2.center) -- (v4.center) -- (v5.center) -- (v3.center) -- cycle;
-    \foreach \i in {2, 4, 5, 3}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \fill[faceplus]
-    (v0.center) -- (v6.center) -- (v7.center) -- (v1.center) -- cycle;
-    \foreach \i in {0, 6, 7, 1}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {AC};
-  \end{scope}
-
-  % B:C effect.
-  \begin{scope}[xshift = 2.5cm, yshift = -5cm]
-    \cube{};
-    \fill[faceplus]
-    (v0.center) -- (v3.center) -- (v7.center) -- (v4.center) -- cycle;
-    \foreach \i in {0, 3, 7, 4}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \fill[faceminus]
-    (v1.center) -- (v5.center) -- (v6.center) -- (v2.center) -- cycle;
-    \foreach \i in {1, 5, 6, 2}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {AB};
-  \end{scope}
-
-  \begin{scope}[xshift = 0.0cm, yshift = -7.5cm]
-    \cube{};
-
-    % \draw[blue]
-    % (v0.center) -- (v5.center) -- (v6.center) -- cycle;
-    % \draw[blue]
-    % (v0.center) -- (v3.center) -- (v5.center) -- cycle;
-    % \draw[blue]
-    % (v3.center) -- (v5.center) -- (v6.center) -- cycle;
-    % \draw[blue]
-    % (v0.center) -- (v3.center) -- (v6.center) -- cycle;
-    %
-    % \draw[orange]
-    % (v1.center) -- (v2.center) -- (v7.center) -- cycle;
-    % \draw[orange]
-    % (v1.center) -- (v2.center) -- (v4.center) -- cycle;
-    % \draw[orange]
-    % (v2.center) -- (v4.center) -- (v7.center) -- cycle;
-    % \draw[orange]
-    % (v1.center) -- (v4.center) -- (v7.center) -- cycle;
-
-    \foreach \i in {1, 2, 7, 4}{
-      \draw[pointplus] (v\i) circle (1.5pt); }
-    \foreach \i in {0, 5, 6, 3}{
-      \draw[pointminus] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {ABC};
-  \end{scope}
-
-\end{tikzpicture}%
-```
-****
-
-![](./src/cubos_fatoriais.png)
-
-  * [cubos_fatoriais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)
-
-```tex
-\tikzset{
-  vertex/.style={
-    circle, minimum size=20pt, inner sep=0pt, fill=gray!10},
-  axial/.style={
-    rectangle, minimum size=20pt, inner sep=0pt, fill=gray!30},
-  edge/.style={draw,thick,-,black},
-  rotu/.style={midway},
-  sinal/.style={draw, circle, inner sep=0pt, thin}
-}
-
-\def\dist{0.4}
-\begin{tikzpicture}[
-  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm]
-  \node[vertex] (v0) at (0,0,0) {$(1)$};
-  \node[vertex] (v1) at (0,1,0) {$b$};
-  \node[vertex] (v2) at (1,0,0) {$a$};
-  \node[vertex] (v3) at (1,1,0) {$ab$};
-  \node[vertex] (v4) at (0,0,1) {$c$};
-  \node[vertex] (v5) at (0,1,1) {$bc$};
-  \node[vertex] (v6) at (1,0,1) {$ac$};
-  \node[vertex] (v7) at (1,1,1) {$abc$};
-  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
-    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
-  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
-  \draw[edge] (v2) -- (v6)
-    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
-  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
-  \node[sinal, below of=v0] {$-$};
-  \node[sinal, left of=v0] {$-$};
-  \node[sinal, left of=v1] {$+$};
-  \node[sinal, below of=v2] {$+$};
-  \node[sinal, right of=v3] {$-$};
-  \node[sinal, right of=v7] {$+$};
-\end{tikzpicture}
-
-\def\dist{0.4}
-\def\ax{2}
-\begin{tikzpicture}[
-  scale=2, ->, thick, z={(0.55,0.3)}, node distance=0.65cm]
-  \node[vertex, fill=yellow] (c0) at (0,0,0) {$0$};
-  \node[vertex] (v0) at (-1,-1,-1) {$(1)$};
-  \node[vertex] (v1) at (-1,1,-1) {$b$};
-  \node[vertex] (v2) at (1,-1,-1) {$a$};
-  \node[vertex] (v3) at (1,1,-1) {$ab$};
-  \node[vertex] (v4) at (-1,-1,1) {$c$};
-  \node[vertex] (v5) at (-1,1,1) {$bc$};
-  \node[vertex] (v6) at (1,-1,1) {$ac$};
-  \node[vertex] (v7) at (1,1,1) {$abc$};
-  \node[axial] (a1) at (-\ax,0,0) {$W$};
-  \node[axial] (a2) at (\ax,0,0) {$W$};
-  \node[axial] (a3) at (0,-\ax,0) {$W$};
-  \node[axial] (a4) at (0,\ax,0) {$W$};
-  \node[axial] (a5) at (0,0,-\ax) {$W$};
-  \node[axial] (a6) at (0,0,\ax) {$W$};
-  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
-    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
-  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
-  \draw[edge] (v2) -- (v6)
-    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
-  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
-  \draw[edge] (a1) -- (c0) --(a2);
-  \draw[edge] (a3) -- (c0) --(a4);
-  \draw[edge] (a5) -- (c0) --(a6);
-  \node[sinal, below of=v0] {$-$};
-  \node[sinal, left of=v0] {$-$};
-  \node[sinal, left of=v1] {$+$};
-  \node[sinal, below of=v2] {$+$};
-  \node[sinal, right of=v3] {$-$};
-  \node[sinal, right of=v7] {$+$};
-\end{tikzpicture}
-
-\begin{tikzpicture}[
-  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm,
-  vertex/.style={
-    rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10
-  }]
-  \node[text centered] (title) at (0.7,1.7,0)
-    {Rendimento (\%) em um $2^3$};
-  \node[vertex] (v0) at (0,0,0) {$54.8$};
-  \node[vertex] (v1) at (0,1,0) {$48.0$};
-  \node[vertex] (v2) at (1,0,0) {$86.5$};
-  \node[vertex] (v3) at (1,1,0) {$63.0$};
-  \node[vertex] (v4) at (0,0,1) {$63.0$};
-  \node[vertex] (v5) at (0,1,1) {$58.5$};
-  \node[vertex] (v6) at (1,0,1) {$93.5$};
-  \node[vertex] (v7) at (1,1,1) {$72.0$};
-  \draw[edge] (v0) -- (v1)
-    node[rotu, rotate=90, yshift=1.2cm] {Catalizador} -- 
-    (v3) -- (v2) -- (v0) node[rotu, below=0.9cm] {Temperatura};
-  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
-  \draw[edge] (v2) -- (v6)
-    node[rotu, rotate=40, yshift=-1cm, xshift=0.5cm]
-    {Concentra\c{c}\~ao} -- (v7) -- (v3);
-  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
-  \node[sinal, below of=v0] {$-$};
-  \node[sinal, left of=v0] {$-$};
-  \node[sinal, left of=v1] {$+$};
-  \node[sinal, below of=v2] {$+$};
-  \node[sinal, right of=v3] {$-$};
-  \node[sinal, right of=v7] {$+$};
 \end{tikzpicture}
 ```
 ****
@@ -2713,6 +2492,296 @@ ift = -2.5cm]
   \end{scope}
 
 \end{tikzpicture}%
+```
+****
+
+![](./src/cubos_fatoriais_efeitos.png)
+
+  * [cubos_fatoriais_efeitos.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais_efeitos.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  scale = 2,
+  ->,
+  thick,
+  z = {(0.45, 0.25)},
+  node distance = 2em,
+  vertex/.style = {circle, minimum size = 5pt, inner sep = 0pt,
+    draw = black, fill = black},
+  axial/.style = {rectangle, minimum size = 20pt,
+    inner sep = 0pt, fill = gray!30},
+  edge/.style = {draw, thick, -, black},
+  rotu/.style = {midway},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  pointminus/.style = {draw = blue, fill = blue},
+  pointplus/.style = {draw = orange, fill = orange},
+  faceminus/.style = {blue, opacity = 0.4},
+  faceplus/.style = {orange, opacity = 0.4}
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+  } % \cube
+
+  % A effect.
+  \begin{scope}[]
+    \cube{};
+    \foreach \i in {0,...,7}{ \draw[fill= black] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {$2^3 = 8$};
+
+    % Axis text.
+    \path (v0) -- node[midway, below=1.5em] {$A$} (v2);
+    \path (v0) -- node[midway, left=1.5em] {$B$} (v1);
+    \path (v2) -- node[midway, right=3em] {$C$} (v6);
+
+    % Axis text.
+    \node[below of=v0, sinal, fill = blue] {$-$};
+    \node[below of=v2, sinal, fill = orange] {$+$};
+    \node[left of=v0, sinal, fill = blue] {$-$};
+    \node[left of=v1, sinal, fill = orange] {$+$};
+    \node[right = 3em of v2, sinal, fill = blue] {$-$};
+    \node[right = 3em of v6, sinal, fill = orange] {$+$};
+  \end{scope}
+
+  % A effect.
+  \begin{scope}[xshift = -2.5cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceminus]
+    (v0.center) -- (v1.center) -- (v5.center) -- (v4.center) -- cycle;
+    \foreach \i in {0, 1, 5, 4}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v2.center) -- (v3.center) -- (v7.center) -- (v6.center) -- cycle;
+    \foreach \i in {2, 3, 7, 6}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {A};
+  \end{scope}
+
+  % B effect.
+  \begin{scope}[xshift = 0.0cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceminus]
+    (v0.center) -- (v4.center) -- (v6.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 4, 6, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v1.center) -- (v5.center) -- (v7.center) -- (v3.center) -- cycle;
+    \foreach \i in {1, 5, 7, 3}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {B};
+  \end{scope}
+
+  % C effect.
+  \begin{scope}[xshift = 2.5cm, yshift = -2.5cm]
+    \cube{};
+    \fill[faceplus]
+    (v4.center) -- (v5.center) -- (v7.center) -- (v6.center) -- cycle;
+    \foreach \i in {4, 5, 7, 6}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v0.center) -- (v1.center) -- (v3.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 1, 3, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {C};
+  \end{scope}
+
+  % A:B effect.
+  \begin{scope}[xshift = -2.5cm, yshift = -5cm]
+    \cube{};
+    \fill[faceplus]
+    (v0.center) -- (v5.center) -- (v7.center) -- (v2.center) -- cycle;
+    \foreach \i in {0, 5, 7, 2}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v1.center) -- (v4.center) -- (v6.center) -- (v3.center) -- cycle;
+    \foreach \i in {1, 4, 6, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {BC};
+  \end{scope}
+
+  % A:C effect.
+  \begin{scope}[xshift = 0.0cm, yshift = -5cm]
+    \cube{};
+    \fill[faceminus]
+    (v2.center) -- (v4.center) -- (v5.center) -- (v3.center) -- cycle;
+    \foreach \i in {2, 4, 5, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \fill[faceplus]
+    (v0.center) -- (v6.center) -- (v7.center) -- (v1.center) -- cycle;
+    \foreach \i in {0, 6, 7, 1}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {AC};
+  \end{scope}
+
+  % B:C effect.
+  \begin{scope}[xshift = 2.5cm, yshift = -5cm]
+    \cube{};
+    \fill[faceplus]
+    (v0.center) -- (v3.center) -- (v7.center) -- (v4.center) -- cycle;
+    \foreach \i in {0, 3, 7, 4}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \fill[faceminus]
+    (v1.center) -- (v5.center) -- (v6.center) -- (v2.center) -- cycle;
+    \foreach \i in {1, 5, 6, 2}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {AB};
+  \end{scope}
+
+  \begin{scope}[xshift = 0.0cm, yshift = -7.5cm]
+    \cube{};
+
+    % \draw[blue]
+    % (v0.center) -- (v5.center) -- (v6.center) -- cycle;
+    % \draw[blue]
+    % (v0.center) -- (v3.center) -- (v5.center) -- cycle;
+    % \draw[blue]
+    % (v3.center) -- (v5.center) -- (v6.center) -- cycle;
+    % \draw[blue]
+    % (v0.center) -- (v3.center) -- (v6.center) -- cycle;
+    %
+    % \draw[orange]
+    % (v1.center) -- (v2.center) -- (v7.center) -- cycle;
+    % \draw[orange]
+    % (v1.center) -- (v2.center) -- (v4.center) -- cycle;
+    % \draw[orange]
+    % (v2.center) -- (v4.center) -- (v7.center) -- cycle;
+    % \draw[orange]
+    % (v1.center) -- (v4.center) -- (v7.center) -- cycle;
+
+    \foreach \i in {1, 2, 7, 4}{
+      \draw[pointplus] (v\i) circle (1.5pt); }
+    \foreach \i in {0, 5, 6, 3}{
+      \draw[pointminus] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {ABC};
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/cubos_fatoriais.png)
+
+  * [cubos_fatoriais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos_fatoriais.pgf)
+
+```tex
+\tikzset{
+  vertex/.style={
+    circle, minimum size=20pt, inner sep=0pt, fill=gray!10},
+  axial/.style={
+    rectangle, minimum size=20pt, inner sep=0pt, fill=gray!30},
+  edge/.style={draw,thick,-,black},
+  rotu/.style={midway},
+  sinal/.style={draw, circle, inner sep=0pt, thin}
+}
+
+\def\dist{0.4}
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm]
+  \node[vertex] (v0) at (0,0,0) {$(1)$};
+  \node[vertex] (v1) at (0,1,0) {$b$};
+  \node[vertex] (v2) at (1,0,0) {$a$};
+  \node[vertex] (v3) at (1,1,0) {$ab$};
+  \node[vertex] (v4) at (0,0,1) {$c$};
+  \node[vertex] (v5) at (0,1,1) {$bc$};
+  \node[vertex] (v6) at (1,0,1) {$ac$};
+  \node[vertex] (v7) at (1,1,1) {$abc$};
+  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}
+
+\def\dist{0.4}
+\def\ax{2}
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.55,0.3)}, node distance=0.65cm]
+  \node[vertex, fill=yellow] (c0) at (0,0,0) {$0$};
+  \node[vertex] (v0) at (-1,-1,-1) {$(1)$};
+  \node[vertex] (v1) at (-1,1,-1) {$b$};
+  \node[vertex] (v2) at (1,-1,-1) {$a$};
+  \node[vertex] (v3) at (1,1,-1) {$ab$};
+  \node[vertex] (v4) at (-1,-1,1) {$c$};
+  \node[vertex] (v5) at (-1,1,1) {$bc$};
+  \node[vertex] (v6) at (1,-1,1) {$ac$};
+  \node[vertex] (v7) at (1,1,1) {$abc$};
+  \node[axial] (a1) at (-\ax,0,0) {$W$};
+  \node[axial] (a2) at (\ax,0,0) {$W$};
+  \node[axial] (a3) at (0,-\ax,0) {$W$};
+  \node[axial] (a4) at (0,\ax,0) {$W$};
+  \node[axial] (a5) at (0,0,-\ax) {$W$};
+  \node[axial] (a6) at (0,0,\ax) {$W$};
+  \draw[edge] (v0) -- (v1) node[rotu, left=\dist] {$B$} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=\dist] {$A$};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, below right=\dist] {$C$} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \draw[edge] (a1) -- (c0) --(a2);
+  \draw[edge] (a3) -- (c0) --(a4);
+  \draw[edge] (a5) -- (c0) --(a6);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[
+  scale=2, ->, thick, z={(0.45,0.35)}, node distance=0.65cm,
+  vertex/.style={
+    rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10
+  }]
+  \node[text centered] (title) at (0.7,1.7,0)
+    {Rendimento (\%) em um $2^3$};
+  \node[vertex] (v0) at (0,0,0) {$54.8$};
+  \node[vertex] (v1) at (0,1,0) {$48.0$};
+  \node[vertex] (v2) at (1,0,0) {$86.5$};
+  \node[vertex] (v3) at (1,1,0) {$63.0$};
+  \node[vertex] (v4) at (0,0,1) {$63.0$};
+  \node[vertex] (v5) at (0,1,1) {$58.5$};
+  \node[vertex] (v6) at (1,0,1) {$93.5$};
+  \node[vertex] (v7) at (1,1,1) {$72.0$};
+  \draw[edge] (v0) -- (v1)
+    node[rotu, rotate=90, yshift=1.2cm] {Catalizador} -- 
+    (v3) -- (v2) -- (v0) node[rotu, below=0.9cm] {Temperatura};
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6)
+    node[rotu, rotate=40, yshift=-1cm, xshift=0.5cm]
+    {Concentra\c{c}\~ao} -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  \node[sinal, below of=v0] {$-$};
+  \node[sinal, left of=v0] {$-$};
+  \node[sinal, left of=v1] {$+$};
+  \node[sinal, below of=v2] {$+$};
+  \node[sinal, right of=v3] {$-$};
+  \node[sinal, right of=v7] {$+$};
+\end{tikzpicture}
 ```
 ****
 
@@ -3682,6 +3751,42 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/dist-gaussian.png)
+
+  * [dist-gaussian.pgf](https://github.com/walmes/Tikz/blob/master/src/dist-gaussian.pgf)
+
+```tex
+\def\zright{1.645}%
+\def\muzero{0}%
+\def\muone{-1.95}%
+\pgfplotsset{%
+  myplot/.style={
+    width=12cm,
+    height=6cm,
+%     xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    legend style={draw=none, fill=none},
+  }%
+}%
+\begin{tikzpicture}[%
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, hide axis]
+    \addplot[Red, draw, smooth, thick, domain=-4:4]
+      {normalpdf(x,0,1)};
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
 ![](./src/dist_hiper.png)
 
   * [dist_hiper.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_hiper.pgf)
@@ -3789,6 +3894,50 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/dist_normal.png)
+
+  * [dist_normal.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[
+    width=12cm, height=6cm,
+    samples=50,
+    xlabel=$x$, ylabel=$f(x)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    domain=-6:9,
+    legend cell align=left,
+    xmin=-7, xmax=11]
+
+    \addplot [smooth, thick] {normalpdf(x,0,1)}
+    node[pos=0.47, pin={right:$\mu=0,\sigma^2=1$}] {};
+    \addplot [smooth, blue] {normalpdf(x,0,2)}
+    node[pos=0.6, pin={45:$\mu=0,\sigma^2=2$}] {};
+    \addplot [smooth, red] {normalpdf(x,-2,1)}
+    node[pos=0.25, pin={[text centered, text width=8ex]
+      200:$\mu=-1$, $\sigma^2=1$}] {};
+
+    \addplot [hplot, samples at={0}] {normalpdf(x,0,1)};
+    \addplot [hplot, samples at={0}, blue] {normalpdf(x,0,2)};
+    \addplot [hplot, samples at={-2}, red] {normalpdf(x,-2,1)};
+
+    \node[anchor=north east] at (axis description cs: 0.975,  0.95)
+    {$f(x) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\cdot 
+      \exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}$};
+
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
 ![](./src/dist_normal_tab.png)
 
   * [dist_normal_tab.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_tab.pgf)
@@ -3872,50 +4021,6 @@ ift = -2.5cm]
     \node[above of=first-1-3] {Tabela da Normal Padr\~{a}o};
 
   \end{scope}
-\end{tikzpicture}
-```
-****
-
-![](./src/dist_normal.png)
-
-  * [dist_normal.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal.pgf)
-
-```tex
-\begin{tikzpicture}[
-  declare function={
-    normalpdf(\x,\mu,\sigma)=
-    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
-  },
-  hplot/.style={ycomb, mark=o, dashed}]
-
-  \begin{axis}[
-    width=12cm, height=6cm,
-    samples=50,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none},
-    domain=-6:9,
-    legend cell align=left,
-    xmin=-7, xmax=11]
-
-    \addplot [smooth, thick] {normalpdf(x,0,1)}
-    node[pos=0.47, pin={right:$\mu=0,\sigma^2=1$}] {};
-    \addplot [smooth, blue] {normalpdf(x,0,2)}
-    node[pos=0.6, pin={45:$\mu=0,\sigma^2=2$}] {};
-    \addplot [smooth, red] {normalpdf(x,-2,1)}
-    node[pos=0.25, pin={[text centered, text width=8ex]
-      200:$\mu=-1$, $\sigma^2=1$}] {};
-
-    \addplot [hplot, samples at={0}] {normalpdf(x,0,1)};
-    \addplot [hplot, samples at={0}, blue] {normalpdf(x,0,2)};
-    \addplot [hplot, samples at={-2}, red] {normalpdf(x,-2,1)};
-
-    \node[anchor=north east] at (axis description cs: 0.975,  0.95)
-    {$f(x) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\cdot 
-      \exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}$};
-
-  \end{axis}
 \end{tikzpicture}
 ```
 ****
@@ -4029,58 +4134,6 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/dist_t_quantil.png)
-
-  * [dist_t_quantil.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t_quantil.pgf)
-
-```tex
-% http://tex.stackexchange.com/questions/80345/student-t-distribution-with-tikz
-
-\begin{tikzpicture}[
-  >=stealth,
-  declare function={
-    gamma(\z)=
-    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
-    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
-    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
-  },
-  declare function={
-    student(\x,\n)=
-    gamma((\n+1)/2)/(sqrt(\n*pi)*
-    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
-  },
-  declare function={
-    normalpdf(\x,\mu,\sigma)=
-    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
-  }]
-
-  \begin{axis}[
-    width=8cm, height=5cm,
-    samples=30,
-    xlabel=$t$, ylabel=$f(t)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none},
-    domain=-5:5, xmin=-5.5, xmax=5.5]
-
-    %% Quantil para \nu=5 e \alpha=0.05
-    \addplot[domain=2.015:5, draw=none, fill=darkgreen, samples=30]
-    {student(x,5)} \closedcycle;
-
-    \addplot[smooth, thick, samples=100] {student(x,5)}
-    node[pos=0.55, anchor=mid west, xshift=2em,
-    append after command={
-      (\tikzlastnode.west) edge [thin, gray] +(-2em,0)}]
-    {$\nu=5$};
-
-    \path[<->, draw] (axis cs: 2.015, 0.0) to[out=90, in=-90]
-    (axis description cs: 0.82, 0.3) node[above] {$t_{\alpha}=2.0150$};
-
-  \end{axis}
-\end{tikzpicture}
-```
-****
-
 ![](./src/dist_t.png)
 
   * [dist_t.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t.pgf)
@@ -4137,6 +4190,58 @@ ift = -2.5cm]
       {$\nu=#1$};
     }
     
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/dist_t_quantil.png)
+
+  * [dist_t_quantil.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_t_quantil.pgf)
+
+```tex
+% http://tex.stackexchange.com/questions/80345/student-t-distribution-with-tikz
+
+\begin{tikzpicture}[
+  >=stealth,
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    student(\x,\n)=
+    gamma((\n+1)/2)/(sqrt(\n*pi)*
+    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[
+    width=8cm, height=5cm,
+    samples=30,
+    xlabel=$t$, ylabel=$f(t)$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+    domain=-5:5, xmin=-5.5, xmax=5.5]
+
+    %% Quantil para \nu=5 e \alpha=0.05
+    \addplot[domain=2.015:5, draw=none, fill=darkgreen, samples=30]
+    {student(x,5)} \closedcycle;
+
+    \addplot[smooth, thick, samples=100] {student(x,5)}
+    node[pos=0.55, anchor=mid west, xshift=2em,
+    append after command={
+      (\tikzlastnode.west) edge [thin, gray] +(-2em,0)}]
+    {$\nu=5$};
+
+    \path[<->, draw] (axis cs: 2.015, 0.0) to[out=90, in=-90]
+    (axis description cs: 0.82, 0.3) node[above] {$t_{\alpha}=2.0150$};
+
   \end{axis}
 \end{tikzpicture}
 ```
@@ -4392,42 +4497,6 @@ ift = -2.5cm]
 
   \end{axis}
 \end{tikzpicture}
-```
-****
-
-![](./src/dist-gaussian.png)
-
-  * [dist-gaussian.pgf](https://github.com/walmes/Tikz/blob/master/src/dist-gaussian.pgf)
-
-```tex
-\def\zright{1.645}%
-\def\muzero{0}%
-\def\muone{-1.95}%
-\pgfplotsset{%
-  myplot/.style={
-    width=12cm,
-    height=6cm,
-%     xlabel=$z$, ylabel=$f(z)$,
-    samples=50,
-    legend style={draw=none, fill=none},
-  }%
-}%
-\begin{tikzpicture}[%
-  >=stealth,
-  every node/.style={rounded corners},
-  Red/.style={
-    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
-  },
-  declare function={
-    normalpdf(\x,\mu,\sigma)=
-    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
-  }]
-
-  \begin{axis}[myplot, hide axis]
-    \addplot[Red, draw, smooth, thick, domain=-4:4]
-      {normalpdf(x,0,1)};
-  \end{axis}
-\end{tikzpicture}%
 ```
 ****
 
@@ -5360,44 +5429,6 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/fat_anin_regular.png)
-
-  * [fat_anin_regular.pgf](https://github.com/walmes/Tikz/blob/master/src/fat_anin_regular.pgf)
-
-```tex
-\def\d{1.35}
-
-\begin{tikzpicture}[
-  yscale=0.6,
-  node distance=1 and 0.5,
-  fator1/.style={%
-    fill=gray!50},
-  fator2/.style={%
-    fill=darkgreen!80, minimum height=1.8em},
-  profator2/.style={%
-    grow=down, xshift=0.1cm, solid, anchor=west,
-    edge from parent path={
-      (\tikzparentnode.south) |- (\tikzchildnode.west)
-    },
-  },
-  level1/.style ={level distance=\d cm},
-  level2/.style ={level distance=2*\d cm},
-  level3/.style ={level distance=3*\d cm},
-  level 1/.style={sibling distance=1cm, level distance=0.5cm}]
-
-  \node[fator1] (A1) {No solo}
-    child [profator2, level1] {node[fator2] {25 kg}}
-    child [profator2, level2] {node[fator2] {50 kg}}
-    child [profator2, level3] {node[fator2] {75 kg}};
-  \node[fator1, right=of A1] (A2) {Foliar}
-    child [profator2, level1] {node[fator2] {2 L}}
-    child [profator2, level2] {node[fator2] {4 L}}
-    child [profator2, level3] {node[fator2] {6 L}};
-  \node at ($(A1)!0.5!(A2)+(0,1)$) {Aduba\c{c}\~ao complementar};
-\end{tikzpicture}
-```
-****
-
 ![](./src/fatadi_arranjo_herbi.png)
 
   * [fatadi_arranjo_herbi.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_arranjo_herbi.pgf)
@@ -5481,100 +5512,6 @@ ift = -2.5cm]
   \draw (A1) |- ($(A2)+(0,\k)$);
   \draw (A2) |- ($(Tm)+(0,\k)$);
   \draw (Tm) |- ($(TM)+(0,\k)$) -- (TM);
-\end{tikzpicture}
-```
-****
-
-![](./src/fatadi_matricial_simples.png)
-
-  * [fatadi_matricial_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial_simples.pgf)
-
-```tex
-\tikzstyle{every picture}+=[remember picture]
-\newcommand{\nann}[2]{%
-  \tikz[baseline] {%
-    \node[%
-    anchor=base,%
-    inner sep=0pt,%
-    outer sep=0pt,%
-    ] (#1) {#2};%
-  }%
-}
-
-\begin{tikzpicture}[
-  >=stealth,
-  mtx/.style={
-    matrix of math nodes,
-    left delimiter={[}, right delimiter={]}
-  },
-  hlt/.style={
-    draw=red, thick, outer sep=0pt, inner sep=0pt, rounded corners,
-    inner sep=-1pt
-  },
-  hltr/.style={opacity=0.5, rounded corners=2pt, inner sep=-1pt},
-  rpath/.style={<->, draw, rounded corners},
-  epath/.style={draw, ->, rounded corners, shorten <=3pt, >=stealth},
-  every node/.style={rounded corners=false},
-  ann/.style={font=\footnotesize, color=darkgreen}]
-
-  \node (fat) {
-    $\mu+
-    \nann{a}{$\alpha$}_{i}+
-    \nann{t}{$\tau$}_{j}+
-    \nann{g}{$\gamma$}_{ij},
-    \qquad \text{se cela fatorial}$
-  };
-
-  \path[epath] (a.north) |- ++(0.5,1)
-    node[ann,right] (fa) {fator 1};
-  \path[epath] (t.north) |- ++(0.5,0.7)
-    node[ann,right] (ft) {fator 2};
-  \path[epath] (g.north) |- ++(0.5,0.4)
-    node[ann,right] (fg) {intera\c{c}\~ao};
-
-  \node[below=of fat] (adi) {
-    $\mu+
-    \nann{th}{$\theta$}_{k},
-    \qquad \text{se cela adicional}$
-  };
-
-  \path[epath] (th.south) |- ++(0.5,-0.5)
-    node[ann,right] (tt) {testemunhas};
-
-  \matrix[mtx, right=of fat] (X) {
-    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
-    1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
-    1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\ 
-    1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 
-    1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-  };
-
-  \begin{scope}[on background layer]
-    \node[hltr, fill=blue, fit=(X-7-7)(X-8-8)] {};
-    \node[hltr, fill=green, fit=(X-1-2)(X-6-6)] {};
-    % \node[hltr, fill=green, fit=(X-1-2)(X-16-4)] {};
-    % \node[hltr, fill=blue, fit=(X-1-5)(X-16-8)] {};
-    % \node[hltr, fill=yellow, fit=(X-1-9)(X-16-20)] {};
-  \end{scope}
-
-  \foreach \col/\th in {
-    1/$\mu$,2/$\alpha_2$,3/$\tau_2$,4/$\tau_3$,
-    5/$\gamma_{23}$,6/$\gamma_{33}$,7/$\theta_1$,8/$\theta_2$
-  }{
-    \node[right, rotate=90, font=\tt]
-      (p\col) at (X-1-\col.north) {\th};
-  }
-
-  \draw (fa) to[out=90, in=90] (p2.east);
-  \draw (ft) to[out=90, in=90] (p3.east);
-  \draw (fg) to[out=90, in=90] (p5.east);
-  % \draw (tt) .. controls (X-8-8.south east) and +(5,-5) .. (p7.east);
-  \draw (tt) to[out=0, in=180] ($(X-8-8.south)+(0.5,-0.25)$)
-  to[out=10, in=60] (p8.east);
-
 \end{tikzpicture}
 ```
 ****
@@ -5685,137 +5622,134 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/fatorial_fracionado.png)
+![](./src/fatadi_matricial_simples.png)
 
-  * [fatorial_fracionado.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_fracionado.pgf)
+  * [fatadi_matricial_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/fatadi_matricial_simples.pgf)
 
 ```tex
-\tikzstyle{vertex1}=[
-  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10]
-\tikzstyle{vertex2}=[
-  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!90]
-\tikzstyle{edge}=[draw,thick,-,black]
+\tikzstyle{every picture}+=[remember picture]
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[%
+    anchor=base,%
+    inner sep=0pt,%
+    outer sep=0pt,%
+    ] (#1) {#2};%
+  }%
+}
 
 \begin{tikzpicture}[
-  xscale=2.2, yscale=2.1, ->, thick,
-  z={(0.45,0.35)}, node distance=0.65cm]
-  \node[vertex1] (v0) at (0,0,0) {$(1) = 550$};
-  \node[vertex2] (v1) at (0,1,0) {$cd = 1075$};
-  \node[vertex2] (v2) at (1,0,0) {$ad = 749$};
-  \node[vertex1] (v3) at (1,1,0) {$ac = 642$};
-  \node[vertex2] (v4) at (0,0,1) {$bd = 1052$};
-  \node[vertex1] (v5) at (0,1,1) {$bc = 601$};
-  \node[vertex1] (v6) at (1,0,1) {$ab = 650$};
-  \node[vertex2] (v7) at (1,1,1) {$abcd = 729$};
-  \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
-  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
-  \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
-  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+  >=stealth,
+  mtx/.style={
+    matrix of math nodes,
+    left delimiter={[}, right delimiter={]}
+  },
+  hlt/.style={
+    draw=red, thick, outer sep=0pt, inner sep=0pt, rounded corners,
+    inner sep=-1pt
+  },
+  hltr/.style={opacity=0.5, rounded corners=2pt, inner sep=-1pt},
+  rpath/.style={<->, draw, rounded corners},
+  epath/.style={draw, ->, rounded corners, shorten <=3pt, >=stealth},
+  every node/.style={rounded corners=false},
+  ann/.style={font=\footnotesize, color=darkgreen}]
+
+  \node (fat) {
+    $\mu+
+    \nann{a}{$\alpha$}_{i}+
+    \nann{t}{$\tau$}_{j}+
+    \nann{g}{$\gamma$}_{ij},
+    \qquad \text{se cela fatorial}$
+  };
+
+  \path[epath] (a.north) |- ++(0.5,1)
+    node[ann,right] (fa) {fator 1};
+  \path[epath] (t.north) |- ++(0.5,0.7)
+    node[ann,right] (ft) {fator 2};
+  \path[epath] (g.north) |- ++(0.5,0.4)
+    node[ann,right] (fg) {intera\c{c}\~ao};
+
+  \node[below=of fat] (adi) {
+    $\mu+
+    \nann{th}{$\theta$}_{k},
+    \qquad \text{se cela adicional}$
+  };
+
+  \path[epath] (th.south) |- ++(0.5,-0.5)
+    node[ann,right] (tt) {testemunhas};
+
+  \matrix[mtx, right=of fat] (X) {
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\ 
+    1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+  };
+
+  \begin{scope}[on background layer]
+    \node[hltr, fill=blue, fit=(X-7-7)(X-8-8)] {};
+    \node[hltr, fill=green, fit=(X-1-2)(X-6-6)] {};
+    % \node[hltr, fill=green, fit=(X-1-2)(X-16-4)] {};
+    % \node[hltr, fill=blue, fit=(X-1-5)(X-16-8)] {};
+    % \node[hltr, fill=yellow, fit=(X-1-9)(X-16-20)] {};
+  \end{scope}
+
+  \foreach \col/\th in {
+    1/$\mu$,2/$\alpha_2$,3/$\tau_2$,4/$\tau_3$,
+    5/$\gamma_{23}$,6/$\gamma_{33}$,7/$\theta_1$,8/$\theta_2$
+  }{
+    \node[right, rotate=90, font=\tt]
+      (p\col) at (X-1-\col.north) {\th};
+  }
+
+  \draw (fa) to[out=90, in=90] (p2.east);
+  \draw (ft) to[out=90, in=90] (p3.east);
+  \draw (fg) to[out=90, in=90] (p5.east);
+  % \draw (tt) .. controls (X-8-8.south east) and +(5,-5) .. (p7.east);
+  \draw (tt) to[out=0, in=180] ($(X-8-8.south)+(0.5,-0.25)$)
+  to[out=10, in=60] (p8.east);
+
 \end{tikzpicture}
 ```
 ****
 
-![](./src/fatorial_ponto_central-2a2.png)
+![](./src/fat_anin_regular.png)
 
-  * [fatorial_ponto_central-2a2.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central-2a2.pgf)
-
-```tex
-% Figure 6-35, page 273 in MONTGOMERY, D. C. Design and analysis of experiments. 5th ed. New York: John Wiley & Sons, 2001.
-\usetikzlibrary{decorations.pathreplacing}%
-\begin{tikzpicture}[%
-  xscale = 2,
-  yscale = 2,
-  thick,
-  line cap = round]
-
-  \coordinate (1) at (-1, -1);
-  \node[anchor = south west] at (1) {39.9};
-
-  \coordinate (a) at (1, -1);
-  \node[anchor = south east] at (a) {40.9};
-
-  \coordinate (b) at (-1, 1);
-  \node[anchor = north west] at (b) {40.0};
-
-  \coordinate (ab) at (1, 1);
-  \node[anchor = north east] at (ab) {41.5};
-
-  \draw (1) -- (a) -- (ab) -- (b) -- (1);
-
-  \coordinate (pc) at (0, 0);
-  \node[xshift = 5.5pt, anchor = west, align = left]
-    at (pc) {40.3\\ 40.5\\ 40.7\\ 40.2\\ 40.6};
-  \draw [decorate, -, decoration = {brace, amplitude = 1ex},
-    xshift = 4.5pt, yshift = 0pt] (0, -0.5) -- (0, 0.5);
-
-  \foreach \p in {1, a, b, ab, pc} {
-    \fill (\p) circle (1.25pt);
-  }
-
-  \begin{scope}[yshift = -1.2cm]
-    \draw (-1, 0) -- (1, 0);
-    \foreach \x in {-1, 0, 1} {
-      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\x};
-    }
-  \end{scope}
-
-  \begin{scope}[yshift = -1.6cm]
-    \draw (-1, 0) -- (1, 0);
-    \foreach \x/\a in {-1/30, 0/35, 1/40} {
-      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\a};
-    }
-    \node at (0, -0.35) {Tempo de rea{\c c}{\~ a}o (min)};
-  \end{scope}
-
-  \begin{scope}[xshift = -1.2cm]
-    \draw (0, -1) -- (0, 1);
-    \foreach \y in {-1, 0, 1} {
-      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\y};
-    }
-  \end{scope}
-
-  \begin{scope}[xshift = -1.6cm]
-    \draw (0, -1) -- (0, 1);
-    \foreach \y/\a in {-1/150, 0/155, 1/160} {
-      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\a};
-    }
-    \node[rotate = 90] at (-0.45, 0) {Temperatura ($^\circ$C)};
-  \end{scope}
-
-\end{tikzpicture}%
-```
-****
-
-![](./src/fatorial_ponto_central.png)
-
-  * [fatorial_ponto_central.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central.pgf)
+  * [fat_anin_regular.pgf](https://github.com/walmes/Tikz/blob/master/src/fat_anin_regular.pgf)
 
 ```tex
-\def\dist{1.5}
-\tikzstyle{vertex1}=[
-  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10]
-\tikzstyle{edge}=[draw,thick,-,black]
+\def\d{1.35}
 
 \begin{tikzpicture}[
-  xscale=1.5, yscale=1.5, ->, thick, node distance=0.65cm]
-  \draw[<->] (-\dist,\dist) node[above left] {RP} |-
-    (\dist,-\dist) node[below right] {T};
-  \node[left] at (-\dist,-1) {1.1};
-  \node[left] at (-\dist,0) {1.2};
-  \node[left] at (-\dist,1) {1.3};
-  \node[below] at (-1,-\dist) {-225};
-  \node[below] at (0,-\dist) {-220};
-  \node[below] at (1,-\dist) {-215};
-  \node[vertex1] (1) at (-1,-1) {$82.8$};
-  \node[vertex1] (a) at (1,-1) {$84.7$};
-  \node[vertex1] (b) at (-1,1) {$83.5$};
-  \node[vertex1] (ab) at (1,1) {$85.0$};
-  \node[vertex1] (0) at (0,0) {
-    \begin{tabular}{c}
-      84.1 \\ 84.5 \\ 83.9 \\ 84.3
-    \end{tabular}
-  };
-  \draw[edge] (1) -- (a) -- (ab) -- (b) -- (1);
+  yscale=0.6,
+  node distance=1 and 0.5,
+  fator1/.style={%
+    fill=gray!50},
+  fator2/.style={%
+    fill=darkgreen!80, minimum height=1.8em},
+  profator2/.style={%
+    grow=down, xshift=0.1cm, solid, anchor=west,
+    edge from parent path={
+      (\tikzparentnode.south) |- (\tikzchildnode.west)
+    },
+  },
+  level1/.style ={level distance=\d cm},
+  level2/.style ={level distance=2*\d cm},
+  level3/.style ={level distance=3*\d cm},
+  level 1/.style={sibling distance=1cm, level distance=0.5cm}]
+
+  \node[fator1] (A1) {No solo}
+    child [profator2, level1] {node[fator2] {25 kg}}
+    child [profator2, level2] {node[fator2] {50 kg}}
+    child [profator2, level3] {node[fator2] {75 kg}};
+  \node[fator1, right=of A1] (A2) {Foliar}
+    child [profator2, level1] {node[fator2] {2 L}}
+    child [profator2, level2] {node[fator2] {4 L}}
+    child [profator2, level3] {node[fator2] {6 L}};
+  \node at ($(A1)!0.5!(A2)+(0,1)$) {Aduba\c{c}\~ao complementar};
 \end{tikzpicture}
 ```
 ****
@@ -7020,6 +6954,141 @@ ift = -2.5cm]
   \draw ($(XX-6-1.west)+(0, -1.8)$) -- ($(XX-6-6.east)+(0, -1.8)$) node[right] {$X_{\mu:\gamma}$};
 
 \end{tikzpicture}%
+```
+****
+
+![](./src/fatorial_fracionado.png)
+
+  * [fatorial_fracionado.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_fracionado.pgf)
+
+```tex
+\tikzstyle{vertex1}=[
+  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10]
+\tikzstyle{vertex2}=[
+  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!90]
+\tikzstyle{edge}=[draw,thick,-,black]
+
+\begin{tikzpicture}[
+  xscale=2.2, yscale=2.1, ->, thick,
+  z={(0.45,0.35)}, node distance=0.65cm]
+  \node[vertex1] (v0) at (0,0,0) {$(1) = 550$};
+  \node[vertex2] (v1) at (0,1,0) {$cd = 1075$};
+  \node[vertex2] (v2) at (1,0,0) {$ad = 749$};
+  \node[vertex1] (v3) at (1,1,0) {$ac = 642$};
+  \node[vertex2] (v4) at (0,0,1) {$bd = 1052$};
+  \node[vertex1] (v5) at (0,1,1) {$bc = 601$};
+  \node[vertex1] (v6) at (1,0,1) {$ab = 650$};
+  \node[vertex2] (v7) at (1,1,1) {$abcd = 729$};
+  \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+  \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+  \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+  \draw[edge] (v4) -- (v6); \draw[edge] (v5) -- (v7);
+\end{tikzpicture}
+```
+****
+
+![](./src/fatorial_ponto_central-2a2.png)
+
+  * [fatorial_ponto_central-2a2.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central-2a2.pgf)
+
+```tex
+% Figure 6-35, page 273 in MONTGOMERY, D. C. Design and analysis of experiments. 5th ed. New York: John Wiley & Sons, 2001.
+\usetikzlibrary{decorations.pathreplacing}%
+\begin{tikzpicture}[%
+  xscale = 2,
+  yscale = 2,
+  thick,
+  line cap = round]
+
+  \coordinate (1) at (-1, -1);
+  \node[anchor = south west] at (1) {39.9};
+
+  \coordinate (a) at (1, -1);
+  \node[anchor = south east] at (a) {40.9};
+
+  \coordinate (b) at (-1, 1);
+  \node[anchor = north west] at (b) {40.0};
+
+  \coordinate (ab) at (1, 1);
+  \node[anchor = north east] at (ab) {41.5};
+
+  \draw (1) -- (a) -- (ab) -- (b) -- (1);
+
+  \coordinate (pc) at (0, 0);
+  \node[xshift = 5.5pt, anchor = west, align = left]
+    at (pc) {40.3\\ 40.5\\ 40.7\\ 40.2\\ 40.6};
+  \draw [decorate, -, decoration = {brace, amplitude = 1ex},
+    xshift = 4.5pt, yshift = 0pt] (0, -0.5) -- (0, 0.5);
+
+  \foreach \p in {1, a, b, ab, pc} {
+    \fill (\p) circle (1.25pt);
+  }
+
+  \begin{scope}[yshift = -1.2cm]
+    \draw (-1, 0) -- (1, 0);
+    \foreach \x in {-1, 0, 1} {
+      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\x};
+    }
+  \end{scope}
+
+  \begin{scope}[yshift = -1.6cm]
+    \draw (-1, 0) -- (1, 0);
+    \foreach \x/\a in {-1/30, 0/35, 1/40} {
+      \draw (\x, 0) -- (\x, 0.05) node[below = 2pt] {\a};
+    }
+    \node at (0, -0.35) {Tempo de rea{\c c}{\~ a}o (min)};
+  \end{scope}
+
+  \begin{scope}[xshift = -1.2cm]
+    \draw (0, -1) -- (0, 1);
+    \foreach \y in {-1, 0, 1} {
+      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\y};
+    }
+  \end{scope}
+
+  \begin{scope}[xshift = -1.6cm]
+    \draw (0, -1) -- (0, 1);
+    \foreach \y/\a in {-1/150, 0/155, 1/160} {
+      \draw (0, \y) -- (0.05, \y) node[left = 2pt] {\a};
+    }
+    \node[rotate = 90] at (-0.45, 0) {Temperatura ($^\circ$C)};
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/fatorial_ponto_central.png)
+
+  * [fatorial_ponto_central.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial_ponto_central.pgf)
+
+```tex
+\def\dist{1.5}
+\tikzstyle{vertex1}=[
+  rectangle, minimum size=12pt, inner sep=1pt, fill=gray!10]
+\tikzstyle{edge}=[draw,thick,-,black]
+
+\begin{tikzpicture}[
+  xscale=1.5, yscale=1.5, ->, thick, node distance=0.65cm]
+  \draw[<->] (-\dist,\dist) node[above left] {RP} |-
+    (\dist,-\dist) node[below right] {T};
+  \node[left] at (-\dist,-1) {1.1};
+  \node[left] at (-\dist,0) {1.2};
+  \node[left] at (-\dist,1) {1.3};
+  \node[below] at (-1,-\dist) {-225};
+  \node[below] at (0,-\dist) {-220};
+  \node[below] at (1,-\dist) {-215};
+  \node[vertex1] (1) at (-1,-1) {$82.8$};
+  \node[vertex1] (a) at (1,-1) {$84.7$};
+  \node[vertex1] (b) at (-1,1) {$83.5$};
+  \node[vertex1] (ab) at (1,1) {$85.0$};
+  \node[vertex1] (0) at (0,0) {
+    \begin{tabular}{c}
+      84.1 \\ 84.5 \\ 83.9 \\ 84.3
+    \end{tabular}
+  };
+  \draw[edge] (1) -- (a) -- (ab) -- (b) -- (1);
+\end{tikzpicture}
 ```
 ****
 
@@ -8550,6 +8619,28 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/leg.png)
+
+  * [leg.pgf](https://github.com/walmes/Tikz/blob/master/src/leg.pgf)
+
+```tex
+\def\outercircle{(0,0) circle (5cm)}%
+\def\innercircle{(-0.4,0.4) circle (4.2cm)}%
+\def\leg{%
+  \node[font=\fontsize{165}{144}\selectfont, color=white]
+  at (0,0) (leg) {leg}}%
+\def\orangecircle{(1.9,0.5) circle (0.8cm)}%
+
+\begin{tikzpicture}
+  \draw[color=white!50!black, fill=white, line width=5pt]
+  \outercircle;
+  \draw[draw=none, fill=white!50!black] \innercircle;
+  \draw[draw=none, fill=orange] \orangecircle;
+  \leg;
+\end{tikzpicture}%
+```
+****
+
 ![](./src/leg-profs.png)
 
   * [leg-profs.pgf](https://github.com/walmes/Tikz/blob/master/src/leg-profs.pgf)
@@ -8607,28 +8698,6 @@ ift = -2.5cm]
 \end{scope}
 
 \end{tikzpicture}
-```
-****
-
-![](./src/leg.png)
-
-  * [leg.pgf](https://github.com/walmes/Tikz/blob/master/src/leg.pgf)
-
-```tex
-\def\outercircle{(0,0) circle (5cm)}%
-\def\innercircle{(-0.4,0.4) circle (4.2cm)}%
-\def\leg{%
-  \node[font=\fontsize{165}{144}\selectfont, color=white]
-  at (0,0) (leg) {leg}}%
-\def\orangecircle{(1.9,0.5) circle (0.8cm)}%
-
-\begin{tikzpicture}
-  \draw[color=white!50!black, fill=white, line width=5pt]
-  \outercircle;
-  \draw[draw=none, fill=white!50!black] \innercircle;
-  \draw[draw=none, fill=orange] \orangecircle;
-  \leg;
-\end{tikzpicture}%
 ```
 ****
 
@@ -8999,156 +9068,6 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/matricial_manova_reshape.png)
-
-  * [matricial_manova_reshape.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova_reshape.pgf)
-
-```tex
-% ATTENTION: to proper render the \mathcal{}, comment ou the
-% \usepackage{eulervm} in the preamble.
-
-\newcommand{\matColumn}[2]{%
-  \draw [fill = #2, draw, thin] (0, 0) rectangle (#1)
-}%
-\newcommand{\matColumnBorder}[2]{%
-  \draw [draw = #2] (0, 0) rectangle (#1)
-}%
-
-% \DeclareMathOperator{\vect}{vec}
-\makeatletter%
-\def\Vec{\mathop{\operator@font vec}\nolimits}%
-\makeatother%
-
-\begin{tikzpicture}[
-  node distance = 0.3cm,
-  mtx/.style = {
-    matrix of math nodes,
-    left delimiter = {[},
-    right delimiter = {]}
-  },
-  mtn/.style = {
-    matrix of nodes
-  },
-  ]
-
-\begin{scope}
-
-  \def\yh{1}
-  \def\yw{0.1}
-  \def\xw{0.6}
-
-  \matrix[mtn] (Y) {%
-    \matColumn{\yw, \yh}{red}; &
-    \matColumn{\yw, \yh}{cyan}; &
-    \matColumn{\yw, \yh}{green}; &
-    \matColumn{\yw, \yh}{orange}; \\
-  };
-
-  \matrix[mtn, right = of Y] (X) {%
-    \matColumn{\xw, \yh}{gray}; \\
-  };
-
-  \matrix[mtn, right = -4pt of X] (beta) {%
-    \matColumn{\yw, \xw}{red}; &
-    \matColumn{\yw, \xw}{cyan}; &
-    \matColumn{\yw, \xw}{green}; &
-    \matColumn{\yw, \xw}{orange}; \\
-  };
-
-  \matrix[mtn, right = of beta] (E) {%
-    \matColumn{\yw, \yh}{red}; &
-    \matColumn{\yw, \yh}{cyan}; &
-    \matColumn{\yw, \yh}{green}; &
-    \matColumn{\yw, \yh}{orange}; \\
-  };
-
-  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
-  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
-
-  % \node (wide) [draw = gray, fit = (Y) (E)] {};
-  % \node [above=0cm of rec1] {$Y = XB + E$};
-
-\end{scope}
-
-\begin{scope}[xshift = -0.65cm, yshift = -4.5cm]
-
-  \def\yh{1}
-  \def\yw{0.1}
-  \def\xw{0.6}
-  \def\zerom{\matColumnBorder{\xw, \yh}{gray};}
-
-  \matrix[mtn] (vecY) {%
-    \matColumn{\yw, \yh}{red}; \\
-    \matColumn{\yw, \yh}{cyan}; \\
-    \matColumn{\yw, \yh}{green}; \\
-    \matColumn{\yw, \yh}{orange}; \\
-  };
-
-  \matrix[mtn, right = of vecY] (kronX) {%
-    \matColumn{\xw, \yh}{gray}; &
-    \zerom &
-    \zerom &
-    \zerom \\
-    \zerom &
-    \matColumn{\xw, \yh}{gray}; &
-    \zerom &
-    \zerom \\
-    \zerom &
-    \zerom &
-    \matColumn{\xw, \yh}{gray}; &
-    \zerom \\
-    \zerom &
-    \zerom &
-    \zerom &
-    \matColumn{\xw, \yh}{gray}; \\
-  };
-
-  \matrix[mtn, right = -4pt of kronX] (vecbeta) {%
-    \matColumn{\yw, \xw}{red}; \\
-    \matColumn{\yw, \xw}{cyan}; \\
-    \matColumn{\yw, \xw}{green}; \\
-    \matColumn{\yw, \xw}{orange}; \\
-  };
-
-  \matrix[mtn, right = of vecbeta] (vecE) {%
-    \matColumn{\yw, \yh}{red}; \\
-    \matColumn{\yw, \yh}{cyan}; \\
-    \matColumn{\yw, \yh}{green}; \\
-    \matColumn{\yw, \yh}{orange}; \\
-  };
-
-  \node at ($(vecY.east)!0.5!(kronX.west)$) {$=$};%
-  \node at ($(vecbeta.east)!0.5!(vecE.west)$) {$+$};%
-
-  % \node (long) [draw, fit = (vecY) (vecE)] {};
-
-\end{scope}
-
-\begin{scope}[
-  every node/.style = {inner sep = 1pt, fill = white},
-  every path/.style = {->, >=latex}]
-
-  \path (Y.west) edge[out = 180, in = 180, pos = 0.4]
-    node {$\mathcal{Y} = \text{vec}(\mathbf{Y})$}
-    (vecY.west);%
-  \path (X.south) edge[out = -120, in = 90, pos = 0.6]
-    node {$\mathcal{X} = \mathbf{I} \otimes \mathbf{X}$}
-    (kronX.north);%
-  \path (beta.south) edge[out = -60, in = 90, pos=0.25]
-    node {$\boldsymbol{\beta} = \text{vec}(\boldsymbol{B})$}
-    (vecbeta.north);%
-  \path (E.east) edge[out = 0, in = 0, pos = 0.4]
-    node {$\mathcal{E} = \text{vec}(\mathbf{E})$}
-    (vecE.east);%
-
-\end{scope}
-
-% \draw[thick, red] (-3, -7) rectangle (5.5, 1);
-
-\end{tikzpicture}%
-```
-****
-
 ![](./src/matricial_manova.png)
 
   * [matricial_manova.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova.pgf)
@@ -9317,6 +9236,156 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/matricial_manova_reshape.png)
+
+  * [matricial_manova_reshape.pgf](https://github.com/walmes/Tikz/blob/master/src/matricial_manova_reshape.pgf)
+
+```tex
+% ATTENTION: to proper render the \mathcal{}, comment ou the
+% \usepackage{eulervm} in the preamble.
+
+\newcommand{\matColumn}[2]{%
+  \draw [fill = #2, draw, thin] (0, 0) rectangle (#1)
+}%
+\newcommand{\matColumnBorder}[2]{%
+  \draw [draw = #2] (0, 0) rectangle (#1)
+}%
+
+% \DeclareMathOperator{\vect}{vec}
+\makeatletter%
+\def\Vec{\mathop{\operator@font vec}\nolimits}%
+\makeatother%
+
+\begin{tikzpicture}[
+  node distance = 0.3cm,
+  mtx/.style = {
+    matrix of math nodes,
+    left delimiter = {[},
+    right delimiter = {]}
+  },
+  mtn/.style = {
+    matrix of nodes
+  },
+  ]
+
+\begin{scope}
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+
+  \matrix[mtn] (Y) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of Y] (X) {%
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of X] (beta) {%
+    \matColumn{\yw, \xw}{red}; &
+    \matColumn{\yw, \xw}{cyan}; &
+    \matColumn{\yw, \xw}{green}; &
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of beta] (E) {%
+    \matColumn{\yw, \yh}{red}; &
+    \matColumn{\yw, \yh}{cyan}; &
+    \matColumn{\yw, \yh}{green}; &
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(Y.east)!0.5!(X.west)$) {$=$};%
+  \node at ($(beta.east)!0.5!(E.west)$) {$+$};%
+
+  % \node (wide) [draw = gray, fit = (Y) (E)] {};
+  % \node [above=0cm of rec1] {$Y = XB + E$};
+
+\end{scope}
+
+\begin{scope}[xshift = -0.65cm, yshift = -4.5cm]
+
+  \def\yh{1}
+  \def\yw{0.1}
+  \def\xw{0.6}
+  \def\zerom{\matColumnBorder{\xw, \yh}{gray};}
+
+  \matrix[mtn] (vecY) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecY] (kronX) {%
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; &
+    \zerom \\
+    \zerom &
+    \zerom &
+    \zerom &
+    \matColumn{\xw, \yh}{gray}; \\
+  };
+
+  \matrix[mtn, right = -4pt of kronX] (vecbeta) {%
+    \matColumn{\yw, \xw}{red}; \\
+    \matColumn{\yw, \xw}{cyan}; \\
+    \matColumn{\yw, \xw}{green}; \\
+    \matColumn{\yw, \xw}{orange}; \\
+  };
+
+  \matrix[mtn, right = of vecbeta] (vecE) {%
+    \matColumn{\yw, \yh}{red}; \\
+    \matColumn{\yw, \yh}{cyan}; \\
+    \matColumn{\yw, \yh}{green}; \\
+    \matColumn{\yw, \yh}{orange}; \\
+  };
+
+  \node at ($(vecY.east)!0.5!(kronX.west)$) {$=$};%
+  \node at ($(vecbeta.east)!0.5!(vecE.west)$) {$+$};%
+
+  % \node (long) [draw, fit = (vecY) (vecE)] {};
+
+\end{scope}
+
+\begin{scope}[
+  every node/.style = {inner sep = 1pt, fill = white},
+  every path/.style = {->, >=latex}]
+
+  \path (Y.west) edge[out = 180, in = 180, pos = 0.4]
+    node {$\mathcal{Y} = \text{vec}(\mathbf{Y})$}
+    (vecY.west);%
+  \path (X.south) edge[out = -120, in = 90, pos = 0.6]
+    node {$\mathcal{X} = \mathbf{I} \otimes \mathbf{X}$}
+    (kronX.north);%
+  \path (beta.south) edge[out = -60, in = 90, pos=0.25]
+    node {$\boldsymbol{\beta} = \text{vec}(\boldsymbol{B})$}
+    (vecbeta.north);%
+  \path (E.east) edge[out = 0, in = 0, pos = 0.4]
+    node {$\mathcal{E} = \text{vec}(\mathbf{E})$}
+    (vecE.east);%
+
+\end{scope}
+
+% \draw[thick, red] (-3, -7) rectangle (5.5, 1);
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/matriz_covariancia.png)
 
   * [matriz_covariancia.pgf](https://github.com/walmes/Tikz/blob/master/src/matriz_covariancia.pgf)
@@ -9438,6 +9507,44 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/michaelis_menten2.png)
+
+  * [michaelis_menten2.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)
+
+```tex
+\def\xs{0.6}
+\def\ys{0.8}
+
+\def\thetaA{2}
+\def\thetaV{0.5}
+
+
+\begin{tikzpicture}[xscale=\xs, yscale=\ys, >=latex]
+  \begin{scope}
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
+    \foreach \thetaAA in {1.6,2,2.4}
+    \draw[color=blue, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\thetaAA * x/(\thetaV + x)};
+    \draw[->] (3, 1) -- +(0, 1.5)
+      node[above] {$\theta_a$};
+  \end{scope}
+
+  \begin{scope}[xshift=6.5cm]
+    \draw[->] (0,0) -- (5,0) node[below] {$x$};
+    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
+    \foreach \thetaVV in {0.2,0.6,1}
+    \draw[color=blue, thick, smooth]
+      plot[id=x, domain=0:4.8]
+      function{\thetaA * x/(\thetaVV + x)};
+    \draw[->] (-0.5, 1) -- +(2.5, 0)
+      node[below] {$\theta_v$};
+  \end{scope}
+\end{tikzpicture}
+```
+****
+
 ![](./src/michaelis_menten.png)
 
   * [michaelis_menten.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten.pgf)
@@ -9474,44 +9581,6 @@ ift = -2.5cm]
     \node at (2.5,3.5)
       {$\eta(x,\theta) =
         \displaystyle\frac{\theta_a x}{\theta_v +x}$};
-  \end{scope}
-\end{tikzpicture}
-```
-****
-
-![](./src/michaelis_menten2.png)
-
-  * [michaelis_menten2.pgf](https://github.com/walmes/Tikz/blob/master/src/michaelis_menten2.pgf)
-
-```tex
-\def\xs{0.6}
-\def\ys{0.8}
-
-\def\thetaA{2}
-\def\thetaV{0.5}
-
-
-\begin{tikzpicture}[xscale=\xs, yscale=\ys, >=latex]
-  \begin{scope}
-    \draw[->] (0,0) -- (5,0) node[below] {$x$};
-    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
-    \foreach \thetaAA in {1.6,2,2.4}
-    \draw[color=blue, thick, smooth]
-      plot[id=x, domain=0:4.8]
-      function{\thetaAA * x/(\thetaV + x)};
-    \draw[->] (3, 1) -- +(0, 1.5)
-      node[above] {$\theta_a$};
-  \end{scope}
-
-  \begin{scope}[xshift=6.5cm]
-    \draw[->] (0,0) -- (5,0) node[below] {$x$};
-    \draw[->] (0,0) -- (0,2.5) node[left] {$f(x)$};
-    \foreach \thetaVV in {0.2,0.6,1}
-    \draw[color=blue, thick, smooth]
-      plot[id=x, domain=0:4.8]
-      function{\thetaA * x/(\thetaVV + x)};
-    \draw[->] (-0.5, 1) -- +(2.5, 0)
-      node[below] {$\theta_v$};
   \end{scope}
 \end{tikzpicture}
 ```
@@ -10021,26 +10090,65 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/modelo_lactacao_rep.png)
+![](./src/modeloDIC1fator.png)
 
-  * [modelo_lactacao_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao_rep.pgf)
+  * [modeloDIC1fator.pgf](https://github.com/walmes/Tikz/blob/master/src/modeloDIC1fator.pgf)
 
 ```tex
-\begin{tikzpicture}[xscale=4, yscale=3, >=latex,  domain=0:1.3]
-  \def\vy{0.8}; \def\vx{0.4}; \def\th{4}
-  \filldraw[-, color=darkgreen!10, samples=50] plot[id=x]
-    function{\vy*(x/\vx)**\th*exp(\th*(1-x/\vx))} -- (1.3,0);
-  \draw[->] (0,0) -- (1.4,0);
-  \draw[->] (0,0) -- (0,1);
-  \draw[-, color=darkgreen, thick, samples=50] plot[id=x]
-    function{\vy*(x/\vx)**\th*exp(\th*(1-x/\vx))};
-  \draw[<->,dashed] (\vx,0) |- (0,\vy);
-  \draw[dashed, color=black, smooth] plot[id=x, domain=0.2:0.6]
-    function{\vy-8*(x-\vx)**2};
-  \node[left] at (\vx-0.2, \vy-0.3) {$\vartheta_p$};
-  \node[left] at (0,\vy) {$\vartheta_y$};
-  \node[below] at (\vx,0) {$\vartheta_x$};
-  \node[left] at (\vx+0.2,\vy-0.5) {$\vartheta_a$};
+%% http://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla
+
+\def\hscale{-1}
+\def\stderr{0.35}
+\def\fromto{1.8}
+
+\newcommand*{\ListXYvalues}{1/2, 2/0, 3/1.5, 4/0.5}
+\newcommand*\pgfplotsinvokeforeachmacro[1]
+{\expandafter\pgfplotsinvokeforeach\expandafter{#1}}
+
+\tikzset{ 
+  declare function={
+    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none}
+}
+
+\pgfplotsset{
+  my plot/.code args={#1/#2}{%
+    \addplot[domain=-\fromto:\fromto]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2);
+    \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
+    \addplot[halves, domain=0:\fromto, fill=darkgreen]
+    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
+    \node[rotate=90, below] at (axis cs: #1, #2) {$\mu+\tau_{#1}$};
+  }
+}
+
+\begin{tikzpicture}[rotate=-90]
+  \begin{axis}[
+    width=8cm, height=9cm,
+    xlabel=Tratamentos ($i$),
+    ylabel=Vari\'{a}vel resposta ($Y$),
+    x label style={rotate=180},
+    xtick=\empty, xticklabels=\empty, yticklabels=\empty,
+    extra x ticks={1,2,3,4},
+    extra x tick labels={$i=1$,$i=2$,$i=3$,$i=4$},
+    x tick label style={rotate=90, anchor=east},
+    extra tick style={grid=major},
+    samples=20, domain=-0:4, smooth]
+
+    \node[cx, rotate=90, anchor=north west] (eq)
+    at (axis description cs: 0.02, 0.01)
+    {$[Y|i]\sim$ Normal($\mu_i=\mu+\tau_i$, $\sigma^2$)};
+
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot={#1}}
+    }
+
+  \end{axis}
 \end{tikzpicture}
 ```
 ****
@@ -10067,6 +10175,30 @@ ift = -2.5cm]
     function{1.85-1*(x-\bo/\bt)**2}
     node[below, color=black] {$\vartheta_a$};
   \node[above] at (1, 1.85) {$\vartheta_p$};
+\end{tikzpicture}
+```
+****
+
+![](./src/modelo_lactacao_rep.png)
+
+  * [modelo_lactacao_rep.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_lactacao_rep.pgf)
+
+```tex
+\begin{tikzpicture}[xscale=4, yscale=3, >=latex,  domain=0:1.3]
+  \def\vy{0.8}; \def\vx{0.4}; \def\th{4}
+  \filldraw[-, color=darkgreen!10, samples=50] plot[id=x]
+    function{\vy*(x/\vx)**\th*exp(\th*(1-x/\vx))} -- (1.3,0);
+  \draw[->] (0,0) -- (1.4,0);
+  \draw[->] (0,0) -- (0,1);
+  \draw[-, color=darkgreen, thick, samples=50] plot[id=x]
+    function{\vy*(x/\vx)**\th*exp(\th*(1-x/\vx))};
+  \draw[<->,dashed] (\vx,0) |- (0,\vy);
+  \draw[dashed, color=black, smooth] plot[id=x, domain=0.2:0.6]
+    function{\vy-8*(x-\vx)**2};
+  \node[left] at (\vx-0.2, \vy-0.3) {$\vartheta_p$};
+  \node[left] at (0,\vy) {$\vartheta_y$};
+  \node[below] at (\vx,0) {$\vartheta_x$};
+  \node[left] at (\vx+0.2,\vy-0.5) {$\vartheta_a$};
 \end{tikzpicture}
 ```
 ****
@@ -10128,262 +10260,6 @@ ift = -2.5cm]
         \lambda &= \text{e}^\eta = \text{e}^{\beta_0+\beta_1 x}
       \end{aligned}$
     };
-    \pgfplotsinvokeforeachmacro\ListXYvalues{
-      \pgfplotsset{my plot={#1}}
-    }
-
-  \end{axis}
-\end{tikzpicture}
-```
-****
-
-![](./src/modelo_tamanho_aamostra.png)
-
-  * [modelo_tamanho_aamostra.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_tamanho_aamostra.pgf)
-
-```tex
-\tikzset{
-  aponta/.style={-latex, dashed},
-  eixos/.style={-latex},
-  fun/.style={very thick}
-}
-
-\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
-  \draw[very thin,color=gray!30] (0,0) grid (10,10);
-  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
-  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
-  \def\A{8}; \def\B{-1}; \def\C{4};
-  \draw[fun]
-    plot[id=x, samples=100] function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
-  \coordinate (b) at (\C,\A+\B*\C);
-  \draw (0,\A) circle (3pt) node[left] {$\beta_0$};
-  \draw (b) circle (3pt);
-  \draw[aponta] (b) -- (\C,0) node[below] {$x_b$};
-  \draw[|<->|] (1,7) -- (3,7)
-    node[midway, above, fill=white] {$\Delta y$};
-  \draw[|<->|] (3,7) -- (3,5)
-    node[midway, right, fill=white] {$\Delta x$};
-  \node[fill=white] (b1) at (5,8)
-    {$\beta_1 = \frac{\Delta y}{\Delta x}$};
-  \def\desc{-0.8}
-  \draw[->|] (1,\desc) -- (\C,\desc) node[midway, below=3pt] {linear};
-  \draw[dashed] (0,\desc) -- (1,\desc);
-  \draw[|<-] (\C,\desc) -- (9,\desc)
-    node[midway, below=3pt] {plat{\^o}};
-  \draw[dashed] (9,\desc) -- (10,\desc);
-  \node[above] (titulo) at (5,10) {Modelo linear-plat{\^o}};
-\end{tikzpicture}
-
-\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
-  \draw[very thin,color=gray!30] (0,0) grid (10,10);
-  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
-  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
-  \def\Y{3}; \def\X{5}; \def\C{0.2};
-  \draw[fun] plot[id=x, samples=100] function{\Y+\C*(x-\X)**2*(x<\X)};
-  \coordinate (b) at (\X,\Y);
-  \draw (0,8) circle (3pt) node[left] {$\beta_0$};
-  \draw (b) circle (3pt);
-  \draw[aponta] (b) -- (\X,0) node[below] {$x_b$};
-  \def\Xe{1.5}
-  \coordinate (ye) at (\Xe,{\Y+\C*(\X-\Xe)^2});
-  \draw[aponta] (ye) -- (\Xe,0) node[below] {$x_b-1$};
-  \draw[|<->|] (ye) -- ++(\X-\Xe,0) node[midway, above, fill=white] {};
-  \draw[|<->|] (\X,3) -- (\X,5.45)
-    node[midway, right, fill=white] {$\beta_2 = \Delta y$};
-  \def\desc{-0.8}
-  \draw[->|] (1,\desc) -- (\X,\desc)
-    node[midway, below=3pt] {quadr{\'a}tico};
-  \draw[dashed] (0,\desc) -- (1,\desc);
-  \draw[|<-] (\X,\desc) -- (9,\desc)
-    node[midway, below=3pt] {plat{\^o}};
-  \draw[dashed] (9,\desc) -- (10,\desc);
-  \node[above] (titulo) at (5,10) {Modelo quadr{\'a}tico-plat{\^o}};
-\end{tikzpicture}
-
-\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
-  \draw[very thin,color=gray!30] (0,0) grid (10,10);
-  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
-  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
-  \def\A{4}; \def\B{0.35};
-  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
-  % \begin{scope}[yscale=1]
-  %   \draw[fun, dashed]
-  %     plot[id=x, samples=100]
-  %     function{abs(-\A*\B*x**(-\B))/(1+(-\A*\B*(\B-1)*
-  %       x**(-\B-2))**2)**(3/2)};
-  %   \draw[fun, dashed]
-  %     plot[id=x, samples=100]
-  %     function{(abs(\A*(-\B)*(-\B-1)*x**(-\B-2)))/((1+(\A*(-\B)*
-  %       x**(-\B-1))**2)**(3/2))};
-  % \end{scope}
-  \def\xmc{1.138}; \def\ymc{3.823}
-  \draw[aponta] (\xmc,\ymc) -- (\xmc,0) node[below] {pmc}; 
-  \coordinate (pmc) at (\xmc, \ymc);
-  \begin{scope}[xshift=1pt, yshift=1pt]
-    \draw[dotted, color=black, fill=gray, fill opacity=0.1]
-      (pmc) arc (220:-135:3cm);
-    \draw[|<->|] (pmc) -- ++(40:3)
-      node [midway, below right] {$r=1/c$};
-  \end{scope}
-  \begin{scope}[yscale=5]
-    \draw[thick] plot coordinates {
-      (0.0526, 0.0046)
-      (0.1053, 0.015)
-      (0.1579, 0.0297)
-      (0.2105, 0.0482)
-      (0.2632, 0.0697)
-      (0.3158, 0.0938)
-      (0.3684, 0.1199)
-      (0.4211, 0.1473)
-      (0.4737, 0.1752)
-      (0.5263, 0.2032)
-      (0.5789, 0.2305)
-      (0.6316, 0.2565)
-      (0.6842, 0.2808)
-      (0.7368, 0.3028)
-      (0.7895, 0.3222)
-      (0.8421, 0.3388)
-      (0.8947, 0.3525)
-      (0.9474, 0.3633)
-      (1, 0.3711)
-      (1, 0.3711)
-      (1.069, 0.3773)
-      (1.1379, 0.3793)
-      (1.2069, 0.3775)
-      (1.2759, 0.3727)
-      (1.3448, 0.3653)
-      (1.4138, 0.3559)
-      (1.4828, 0.345)
-      (1.5517, 0.333)
-      (1.6207, 0.3204)
-      (1.6897, 0.3074)
-      (1.7586, 0.2943)
-      (1.8276, 0.2812)
-      (1.8966, 0.2683)
-      (1.9655, 0.2558)
-      (2, 0.2496)
-      (2.0345, 0.2436)
-      (2.1034, 0.2319)
-      (2.1724, 0.2207)
-      (2.2414, 0.21)
-      (2.3103, 0.1998)
-      (2.3793, 0.1902)
-      (2.4211, 0.1846)
-      (2.4483, 0.181)
-      (2.5172, 0.1724)
-      (2.5862, 0.1642)
-      (2.6552, 0.1564)
-      (2.7241, 0.1491)
-      (2.7931, 0.1422)
-      (2.8421, 0.1375)
-      (2.8621, 0.1357)
-      (2.931, 0.1296)
-      (3, 0.1238)
-      (3.2632, 0.1045)
-      (3.6842, 0.0811)
-      (4.1053, 0.0642)
-      (4.5263, 0.0518)
-      (4.9474, 0.0424)
-      (5.3684, 0.0353)
-      (5.7895, 0.0297)
-      (6.2105, 0.0253)
-      (6.6316, 0.0218)
-      (7.0526, 0.0189)
-      (7.4737, 0.0165)
-      (7.8947, 0.0146)
-      (8.3158, 0.0129)
-      (8.7368, 0.0115)
-      (9.1579, 0.0103)
-      (9.5789, 0.0093)
-      (10, 0.0084)
-    };
-    \coordinate (sai) at (3, 0.1238);
-  \end{scope}
-  \draw[aponta] (sai) |- ++(1,0.5) node[right]
-    {$c(x) = \frac{|f''(x)|}{(1+(f'(x))^2)^{3/2}}$};
-  \node[above] (titulo) at (5,10)
-    {Modelo potencial e m{\'a}xima curvatura};
-\end{tikzpicture}
-
-\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
-  \draw[very thin,color=gray!30] (0,0) grid (10,10);
-  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
-  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
-  \def\A{4}; \def\B{0.35};
-  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
-  \def\C{7}; \def\D{-0.7};
-  \draw[fun, dashed]
-    plot[id=x, samples=100, domain=0:8] function{\C+\D*x};
-  \draw (0.22,6.85) circle (4pt);
-  \draw (7.1,2) circle (4pt);
-  \draw[aponta] (1,\A) -| (2.8,9);
-  \draw[aponta] (3.5,\C+\D*3.5) -| (4.5,9);
-  \begin{scope}[xshift=5.25cm, yshift=5.5cm, scale=0.5]
-    \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
-    \draw[-latex] (0,-3.2) -- (0,8) node[left] (E) {$f(x)-g(x)$};
-    \draw[aponta] (1.59,-2.3) -- (1.59,0) node[above] {pmc};
-    \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)-\C-\D*x};
-  \end{scope}
-  \node[above] (titulo) at (5,10)
-    {Modelo potencial de Barros e Tavares (1995)};
-\end{tikzpicture}
-```
-****
-
-![](./src/modeloDIC1fator.png)
-
-  * [modeloDIC1fator.pgf](https://github.com/walmes/Tikz/blob/master/src/modeloDIC1fator.pgf)
-
-```tex
-%% http://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla
-
-\def\hscale{-1}
-\def\stderr{0.35}
-\def\fromto{1.8}
-
-\newcommand*{\ListXYvalues}{1/2, 2/0, 3/1.5, 4/0.5}
-\newcommand*\pgfplotsinvokeforeachmacro[1]
-{\expandafter\pgfplotsinvokeforeach\expandafter{#1}}
-
-\tikzset{ 
-  declare function={
-    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
-  },
-  >=stealth,
-  cx/.style={fill=white, font=\footnotesize},
-  pth/.style={draw, ->, color=darkgreen},
-  halves/.style={samples=30, fill opacity=0.5, draw=none}
-}
-
-\pgfplotsset{
-  my plot/.code args={#1/#2}{%
-    \addplot[domain=-\fromto:\fromto]
-    ({#1+\hscale*normal(0,\stderr)}, x+#2);
-    \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
-    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
-    \addplot[halves, domain=0:\fromto, fill=darkgreen]
-    ({#1+\hscale*normal(0,\stderr)}, x+#2) -- (axis cs: #1, #2);
-    \node[rotate=90, below] at (axis cs: #1, #2) {$\mu+\tau_{#1}$};
-  }
-}
-
-\begin{tikzpicture}[rotate=-90]
-  \begin{axis}[
-    width=8cm, height=9cm,
-    xlabel=Tratamentos ($i$),
-    ylabel=Vari\'{a}vel resposta ($Y$),
-    x label style={rotate=180},
-    xtick=\empty, xticklabels=\empty, yticklabels=\empty,
-    extra x ticks={1,2,3,4},
-    extra x tick labels={$i=1$,$i=2$,$i=3$,$i=4$},
-    x tick label style={rotate=90, anchor=east},
-    extra tick style={grid=major},
-    samples=20, domain=-0:4, smooth]
-
-    \node[cx, rotate=90, anchor=north west] (eq)
-    at (axis description cs: 0.02, 0.01)
-    {$[Y|i]\sim$ Normal($\mu_i=\mu+\tau_i$, $\sigma^2$)};
-
     \pgfplotsinvokeforeachmacro\ListXYvalues{
       \pgfplotsset{my plot={#1}}
     }
@@ -10903,6 +10779,199 @@ ift = -2.5cm]
     \footnotesize{Emp{\'\i}ricos, interpret{\'a}veis.}
   } node[bola] {7};
 \end{tikzpicture}%
+```
+****
+
+![](./src/modelo_tamanho_aamostra.png)
+
+  * [modelo_tamanho_aamostra.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_tamanho_aamostra.pgf)
+
+```tex
+\tikzset{
+  aponta/.style={-latex, dashed},
+  eixos/.style={-latex},
+  fun/.style={very thick}
+}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{8}; \def\B{-1}; \def\C{4};
+  \draw[fun]
+    plot[id=x, samples=100] function{\A+\B*x*(x<\C)+\B*\C*(x>\C)};
+  \coordinate (b) at (\C,\A+\B*\C);
+  \draw (0,\A) circle (3pt) node[left] {$\beta_0$};
+  \draw (b) circle (3pt);
+  \draw[aponta] (b) -- (\C,0) node[below] {$x_b$};
+  \draw[|<->|] (1,7) -- (3,7)
+    node[midway, above, fill=white] {$\Delta y$};
+  \draw[|<->|] (3,7) -- (3,5)
+    node[midway, right, fill=white] {$\Delta x$};
+  \node[fill=white] (b1) at (5,8)
+    {$\beta_1 = \frac{\Delta y}{\Delta x}$};
+  \def\desc{-0.8}
+  \draw[->|] (1,\desc) -- (\C,\desc) node[midway, below=3pt] {linear};
+  \draw[dashed] (0,\desc) -- (1,\desc);
+  \draw[|<-] (\C,\desc) -- (9,\desc)
+    node[midway, below=3pt] {plat{\^o}};
+  \draw[dashed] (9,\desc) -- (10,\desc);
+  \node[above] (titulo) at (5,10) {Modelo linear-plat{\^o}};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\Y{3}; \def\X{5}; \def\C{0.2};
+  \draw[fun] plot[id=x, samples=100] function{\Y+\C*(x-\X)**2*(x<\X)};
+  \coordinate (b) at (\X,\Y);
+  \draw (0,8) circle (3pt) node[left] {$\beta_0$};
+  \draw (b) circle (3pt);
+  \draw[aponta] (b) -- (\X,0) node[below] {$x_b$};
+  \def\Xe{1.5}
+  \coordinate (ye) at (\Xe,{\Y+\C*(\X-\Xe)^2});
+  \draw[aponta] (ye) -- (\Xe,0) node[below] {$x_b-1$};
+  \draw[|<->|] (ye) -- ++(\X-\Xe,0) node[midway, above, fill=white] {};
+  \draw[|<->|] (\X,3) -- (\X,5.45)
+    node[midway, right, fill=white] {$\beta_2 = \Delta y$};
+  \def\desc{-0.8}
+  \draw[->|] (1,\desc) -- (\X,\desc)
+    node[midway, below=3pt] {quadr{\'a}tico};
+  \draw[dashed] (0,\desc) -- (1,\desc);
+  \draw[|<-] (\X,\desc) -- (9,\desc)
+    node[midway, below=3pt] {plat{\^o}};
+  \draw[dashed] (9,\desc) -- (10,\desc);
+  \node[above] (titulo) at (5,10) {Modelo quadr{\'a}tico-plat{\^o}};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{4}; \def\B{0.35};
+  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
+  % \begin{scope}[yscale=1]
+  %   \draw[fun, dashed]
+  %     plot[id=x, samples=100]
+  %     function{abs(-\A*\B*x**(-\B))/(1+(-\A*\B*(\B-1)*
+  %       x**(-\B-2))**2)**(3/2)};
+  %   \draw[fun, dashed]
+  %     plot[id=x, samples=100]
+  %     function{(abs(\A*(-\B)*(-\B-1)*x**(-\B-2)))/((1+(\A*(-\B)*
+  %       x**(-\B-1))**2)**(3/2))};
+  % \end{scope}
+  \def\xmc{1.138}; \def\ymc{3.823}
+  \draw[aponta] (\xmc,\ymc) -- (\xmc,0) node[below] {pmc}; 
+  \coordinate (pmc) at (\xmc, \ymc);
+  \begin{scope}[xshift=1pt, yshift=1pt]
+    \draw[dotted, color=black, fill=gray, fill opacity=0.1]
+      (pmc) arc (220:-135:3cm);
+    \draw[|<->|] (pmc) -- ++(40:3)
+      node [midway, below right] {$r=1/c$};
+  \end{scope}
+  \begin{scope}[yscale=5]
+    \draw[thick] plot coordinates {
+      (0.0526, 0.0046)
+      (0.1053, 0.015)
+      (0.1579, 0.0297)
+      (0.2105, 0.0482)
+      (0.2632, 0.0697)
+      (0.3158, 0.0938)
+      (0.3684, 0.1199)
+      (0.4211, 0.1473)
+      (0.4737, 0.1752)
+      (0.5263, 0.2032)
+      (0.5789, 0.2305)
+      (0.6316, 0.2565)
+      (0.6842, 0.2808)
+      (0.7368, 0.3028)
+      (0.7895, 0.3222)
+      (0.8421, 0.3388)
+      (0.8947, 0.3525)
+      (0.9474, 0.3633)
+      (1, 0.3711)
+      (1, 0.3711)
+      (1.069, 0.3773)
+      (1.1379, 0.3793)
+      (1.2069, 0.3775)
+      (1.2759, 0.3727)
+      (1.3448, 0.3653)
+      (1.4138, 0.3559)
+      (1.4828, 0.345)
+      (1.5517, 0.333)
+      (1.6207, 0.3204)
+      (1.6897, 0.3074)
+      (1.7586, 0.2943)
+      (1.8276, 0.2812)
+      (1.8966, 0.2683)
+      (1.9655, 0.2558)
+      (2, 0.2496)
+      (2.0345, 0.2436)
+      (2.1034, 0.2319)
+      (2.1724, 0.2207)
+      (2.2414, 0.21)
+      (2.3103, 0.1998)
+      (2.3793, 0.1902)
+      (2.4211, 0.1846)
+      (2.4483, 0.181)
+      (2.5172, 0.1724)
+      (2.5862, 0.1642)
+      (2.6552, 0.1564)
+      (2.7241, 0.1491)
+      (2.7931, 0.1422)
+      (2.8421, 0.1375)
+      (2.8621, 0.1357)
+      (2.931, 0.1296)
+      (3, 0.1238)
+      (3.2632, 0.1045)
+      (3.6842, 0.0811)
+      (4.1053, 0.0642)
+      (4.5263, 0.0518)
+      (4.9474, 0.0424)
+      (5.3684, 0.0353)
+      (5.7895, 0.0297)
+      (6.2105, 0.0253)
+      (6.6316, 0.0218)
+      (7.0526, 0.0189)
+      (7.4737, 0.0165)
+      (7.8947, 0.0146)
+      (8.3158, 0.0129)
+      (8.7368, 0.0115)
+      (9.1579, 0.0103)
+      (9.5789, 0.0093)
+      (10, 0.0084)
+    };
+    \coordinate (sai) at (3, 0.1238);
+  \end{scope}
+  \draw[aponta] (sai) |- ++(1,0.5) node[right]
+    {$c(x) = \frac{|f''(x)|}{(1+(f'(x))^2)^{3/2}}$};
+  \node[above] (titulo) at (5,10)
+    {Modelo potencial e m{\'a}xima curvatura};
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=0:10, xscale=0.75, yscale=0.75]
+  \draw[very thin,color=gray!30] (0,0) grid (10,10);
+  \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+  \draw[-latex] (0,-0.2) -- (0,10) node[left] (E) {$f(x)$};
+  \def\A{4}; \def\B{0.35};
+  \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)};
+  \def\C{7}; \def\D{-0.7};
+  \draw[fun, dashed]
+    plot[id=x, samples=100, domain=0:8] function{\C+\D*x};
+  \draw (0.22,6.85) circle (4pt);
+  \draw (7.1,2) circle (4pt);
+  \draw[aponta] (1,\A) -| (2.8,9);
+  \draw[aponta] (3.5,\C+\D*3.5) -| (4.5,9);
+  \begin{scope}[xshift=5.25cm, yshift=5.5cm, scale=0.5]
+    \draw[eixos] (-0.2,0) -- (10,0) node[below] {$x$};
+    \draw[-latex] (0,-3.2) -- (0,8) node[left] (E) {$f(x)-g(x)$};
+    \draw[aponta] (1.59,-2.3) -- (1.59,0) node[above] {pmc};
+    \draw[fun] plot[id=x, samples=100] function{\A*(x)**(-\B)-\C-\D*x};
+  \end{scope}
+  \node[above] (titulo) at (5,10)
+    {Modelo potencial de Barros e Tavares (1995)};
+\end{tikzpicture}
 ```
 ****
 
@@ -11680,105 +11749,6 @@ ift = -2.5cm]
 ```
 ****
 
-![](./src/pgfplotstable_pgfcalendar.png)
-
-  * [pgfplotstable_pgfcalendar.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_pgfcalendar.pgf)
-
-```tex
-% \usepackage{siunitx} da conflito com formatacao de datas do
-% \usepackage{pgfcalendar}.
-
-\pgfplotstableread{
-  date        account1  account2  account3
-  2008-01-03  60        1200      400
-  2008-02-06  120       1600      410
-  2008-03-15  -10       1600      410
-  2008-04-01  1800      500       410
-  2008-05-20  2300      500       410
-  2008-06-15  800       1920      410
-}\accounts
-
-% requires: \usepackage{pgfcalendar}
-
-\pgfplotstableset{columns={date, account2}}
-\pgfplotstabletypeset[
-  every head row/.style={
-    before row=\toprule,after row=\midrule},
-  every last row/.style={
-    after row=\bottomrule},
-  columns/date/.style={string type},
-  columns/account2/.style={fixed, dec sep align}]
-\accounts
-
-% Pacote siunitx tem conflito com o pgfcalendar. Eles nao podem
-% coexistir no preambulo. O siunitx eh mais util e sera mantido.
-
-\hspace{1cm}
-
-\pgfplotstabletypeset[
-  columns={date, account1},
-  column type=r,
-  columns/date/.style={date type={\monthname\ \year}},
-  columns/account1/.style={
-  fixed, dec sep align,
-  fonts by sign={}{\color{red}}
-  }]
-\accounts
-```
-****
-
-![](./src/pgfplotstable_sunitx.png)
-
-  * [pgfplotstable_sunitx.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_sunitx.pgf)
-
-```tex
-\pgfplotstableread{
-  size        min         max         avg         med
-  1           2e-03       3e-03       2.5e-03     2.4e-03
-  10          2.02e-03    3.02e-03    2.72e-03    2.32e-03
-  123456789   2.02        123.72e9    2.72e9      2.32e-03
-}{\loadedtable}
-
-% require \usepackage{sunitx}
-\sisetup{
-  math-rm=\mathrm,
-  text-rm=\rmfamily,
-  table-format=3.2e+3,
-  round-precision=2,
-  round-mode=places,
-  scientific-notation=engineering,
-  group-digits=integer,
-  group-separator={,},
-  exponent-product=\cdot,
-}
-
-\pgfplotstabletypeset[
-  header=true,
-  string type,
-  multicolumn names,
-  columns={size,med,min,avg,max},
-  assign column name/.code={
-    \pgfkeyssetvalue{/pgfplots/table/column name}{
-      \multicolumn{1}{c}{\multirow{2}{*}{#1}}
-    }
-  },
-  columns/size/.style={
-    column name={\shortstack{Instance\\Size}},
-    column type={S[scientific-notation=false, table-format=9]},
-    int detect
-  },
-  columns/min/.style={column name=Minimum, column type=S},
-  columns/avg/.style={column name=Average, column type=S},
-  columns/med/.style={column name=Median, column type=S},
-  columns/max/.style={column name=Maximum, column type=S},
-  every head row/.style={
-    before row=\toprule,
-    after row=\\ \midrule
-  },
-  every last row/.style={after row=\bottomrule}]{\loadedtable}
-```
-****
-
 ![](./src/pgfplotstable1.png)
 
   * [pgfplotstable1.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable1.pgf)
@@ -12001,6 +11971,105 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   1 2 3
   4 5 6
 }
+```
+****
+
+![](./src/pgfplotstable_pgfcalendar.png)
+
+  * [pgfplotstable_pgfcalendar.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_pgfcalendar.pgf)
+
+```tex
+% \usepackage{siunitx} da conflito com formatacao de datas do
+% \usepackage{pgfcalendar}.
+
+\pgfplotstableread{
+  date        account1  account2  account3
+  2008-01-03  60        1200      400
+  2008-02-06  120       1600      410
+  2008-03-15  -10       1600      410
+  2008-04-01  1800      500       410
+  2008-05-20  2300      500       410
+  2008-06-15  800       1920      410
+}\accounts
+
+% requires: \usepackage{pgfcalendar}
+
+\pgfplotstableset{columns={date, account2}}
+\pgfplotstabletypeset[
+  every head row/.style={
+    before row=\toprule,after row=\midrule},
+  every last row/.style={
+    after row=\bottomrule},
+  columns/date/.style={string type},
+  columns/account2/.style={fixed, dec sep align}]
+\accounts
+
+% Pacote siunitx tem conflito com o pgfcalendar. Eles nao podem
+% coexistir no preambulo. O siunitx eh mais util e sera mantido.
+
+\hspace{1cm}
+
+\pgfplotstabletypeset[
+  columns={date, account1},
+  column type=r,
+  columns/date/.style={date type={\monthname\ \year}},
+  columns/account1/.style={
+  fixed, dec sep align,
+  fonts by sign={}{\color{red}}
+  }]
+\accounts
+```
+****
+
+![](./src/pgfplotstable_sunitx.png)
+
+  * [pgfplotstable_sunitx.pgf](https://github.com/walmes/Tikz/blob/master/src/pgfplotstable_sunitx.pgf)
+
+```tex
+\pgfplotstableread{
+  size        min         max         avg         med
+  1           2e-03       3e-03       2.5e-03     2.4e-03
+  10          2.02e-03    3.02e-03    2.72e-03    2.32e-03
+  123456789   2.02        123.72e9    2.72e9      2.32e-03
+}{\loadedtable}
+
+% require \usepackage{sunitx}
+\sisetup{
+  math-rm=\mathrm,
+  text-rm=\rmfamily,
+  table-format=3.2e+3,
+  round-precision=2,
+  round-mode=places,
+  scientific-notation=engineering,
+  group-digits=integer,
+  group-separator={,},
+  exponent-product=\cdot,
+}
+
+\pgfplotstabletypeset[
+  header=true,
+  string type,
+  multicolumn names,
+  columns={size,med,min,avg,max},
+  assign column name/.code={
+    \pgfkeyssetvalue{/pgfplots/table/column name}{
+      \multicolumn{1}{c}{\multirow{2}{*}{#1}}
+    }
+  },
+  columns/size/.style={
+    column name={\shortstack{Instance\\Size}},
+    column type={S[scientific-notation=false, table-format=9]},
+    int detect
+  },
+  columns/min/.style={column name=Minimum, column type=S},
+  columns/avg/.style={column name=Average, column type=S},
+  columns/med/.style={column name=Median, column type=S},
+  columns/max/.style={column name=Maximum, column type=S},
+  every head row/.style={
+    before row=\toprule,
+    after row=\\ \midrule
+  },
+  every last row/.style={after row=\bottomrule}]{\loadedtable}
 ```
 ****
 
@@ -12630,6 +12699,26 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 ```
 ****
 
+![](./src/quadratico.png)
+
+  * [quadratico.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico.pgf)
+
+```tex
+\def\by{2.1}
+\def\bx{3}
+\def\bc{-0.2}
+
+\begin{tikzpicture}[domain=-3:5, xscale=1.2, yscale=1.2, >=latex]
+  \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
+  \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
+  \draw[color=green!30!black, thick, smooth]
+    plot[id=x, domain=0:5] function{\by+\bc*(x-\bx)**2};
+  \draw[dashed] (0, \by) node[left] {$\vartheta_y$} -| (\bx,0)
+    node[below] {$\vartheta_x$};
+\end{tikzpicture}
+```
+****
+
 ![](./src/quadratico_plato.png)
 
   * [quadratico_plato.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico_plato.pgf)
@@ -12701,26 +12790,6 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     \node[above] (titulo) at (5,10) {Modelo quadr{\'a}tico-plat{\^o}};
   \end{scope}
 
-\end{tikzpicture}
-```
-****
-
-![](./src/quadratico.png)
-
-  * [quadratico.pgf](https://github.com/walmes/Tikz/blob/master/src/quadratico.pgf)
-
-```tex
-\def\by{2.1}
-\def\bx{3}
-\def\bc{-0.2}
-
-\begin{tikzpicture}[domain=-3:5, xscale=1.2, yscale=1.2, >=latex]
-  \draw[->, line width=1pt] (0,0) -- (5,0) node[below] {$x$};
-  \draw[->, line width=1pt] (0,0) -- (0,3) node[left] {$f(x,\theta)$};
-  \draw[color=green!30!black, thick, smooth]
-    plot[id=x, domain=0:5] function{\by+\bc*(x-\bx)**2};
-  \draw[dashed] (0, \by) node[left] {$\vartheta_y$} -| (\bx,0)
-    node[below] {$\vartheta_x$};
 \end{tikzpicture}
 ```
 ****
@@ -13629,222 +13698,6 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 ```
 ****
 
-![](./src/reg_simples.png)
-
-  * [reg_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_simples.pgf)
-
-```tex
-% Set the random seed.
-\pgfmathsetseed{12}
-
-% Define the equations for x and y.
-\pgfplotstableset{
-  create on use/x/.style={
-    create col/expr={42+2*\pgfplotstablerow}},
-  create on use/y/.style={
-    create col/expr={(0.6*\thisrow{x}+130)+8*rand}}
-}
-
-% Create a new table with 30 rows and columns x and y:
-\pgfplotstablenew[columns={x,y}]{20}\loadedtable
-
-% Calculate the regression line.
-\pgfplotstablecreatecol[linear regression]{regression}{\loadedtable}
-
-\pgfplotsset{
-  colored residuals/.style 2 args={
-    only marks,
-    scatter,
-    point meta=explicit,
-    colormap={redblue}{color=(#1) color=(#2)},
-    error bars/y dir=minus,
-    error bars/y explicit,
-    error bars/draw error bar/.code 2 args={
-      \pgfkeys{/pgf/fpu=true}
-      \pgfmathtruncatemacro\positiveresidual{\pgfplotspointmeta<0}
-      \pgfkeys{/pgf/fpu=false}
-      \ifnum\positiveresidual=0
-        \draw [#2] ##1 -- ##2;
-      \else
-        \draw [#1] ##1 -- ##2;
-      \fi
-    },
-    /pgfplots/table/.cd,
-    meta expr=(\thisrow{y}-\thisrow{regression})/
-    abs(\thisrow{y}-\thisrow{regression}),
-    y error expr=\thisrow{y}-\thisrow{regression}
-  },
-  colored residuals/.default={red}{blue}
-}
-
-\begin{tikzpicture}
-  \begin{axis}[
-    xlabel=Weight (kg),
-    ylabel=Height (cm)]
-
-    \makeatletter
-    \addplot[colored residuals]
-      table {\loadedtable};
-    \addplot[no markers, thick, black]
-      table [y=regression] {\loadedtable};
-  \end{axis}
-\end{tikzpicture}
-```
-****
-
-![](./src/reg_sistema.png)
-
-  * [reg_sistema.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sistema.pgf)
-
-```tex
-\begin{tikzpicture}[
-  auto, >=stealth', node distance=0.0ex and 2em,
-  pil/.style={->},
-  punkt/.style={
-    rectangle, rounded corners,
-    draw=black, text width=6.5em,
-    minimum height=3em, text centered},
-  ann/.style={font=\footnotesize, color=darkgreen}]
-
-  \node[punkt, color=darkgreen] (machine) at (0,0) {Sistema};
-  \node[left=of machine] (x3) {$x_3$};
-  \node[above=of x3] (x2) {$x_2$};
-  \node[above=of x2] (x1) {$x_1$};
-  \node[below=of x3] (x4) {$\vdots$};
-  \node[below=of x4] (x5) {$x_k$};
-  \node[ann, rotate=90, left=1pt of x3, anchor=south] {est\'{i}mulos};
-  \node[right=of machine,
-    % label={[darkgreen,font=\tiny]below:resposta},
-    draw, circle, fill=darkgreen!50] (y) {$y$};
-  \node[ann, rotate=-90, right=1pt of y, anchor=south] {resposta};
-
-  \path[pil] (x1) edge[bend left] (machine);
-  \path[pil] (x2) edge[bend left=10] (machine.162);
-  \path[pil] (x3) edge (machine);
-  \path[pil] (x5) edge[bend right] (machine);
-  \path[pil] (machine) edge (y);
-\end{tikzpicture}
-```
-****
-
-![](./src/reg_sqr.png)
-
-  * [reg_sqr.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sqr.pgf)
-
-```tex
-%% http://tex.stackexchange.com/questions/87674/how-to-coherently-combine-3d-and-contour-plots-with-pgfplots
-\newcommand\expr[2]{5+#1^2+#2^2-0.9*#2*#1}%
-
-\begin{tikzpicture}%
-  \begin{axis}[
-    domain=-2:2.5,
-    domain y=-2:2.5,
-    view={-40}{12},
-    xlabel=$\beta_0$,
-    ylabel=$\beta_1$,
-    zlabel={$SSE(\beta_0, \beta_1)$},
-    zmin=-2,
-    xticklabels=\empty,
-    yticklabels=\empty,
-    zticklabels=\empty]
-
-    \addplot3[
-      contour gnuplot={
-        output point meta=rawz,
-        number=30,
-        labels=false,
-      },
-      samples=30,
-      z filter/.code=\def\pgfmathresult{-2},
-    ] {\expr{x}{y}};
-
-    \addplot3[
-      surf,
-      samples=20,
-      opacity=0.75,
-      mesh/interior colormap={blueblack}{
-        color=(darkgreen) color=(orange)},
-      miter limit=1, 
-    ] {\expr{x}{y}};
-
-    \addplot3[
-      contour gnuplot={number=9, labels=false}
-    ] {\expr{x}{y}};
-
-    \draw (axis cs:-2,0,-2) -- (axis cs:2.5,0,-2);
-    \draw (axis cs:0,-2,-2) -- (axis cs:0,2.5,-2);
-
-    \path[draw, ->, >=stealth] (axis cs:1,-1,4)
-      node[right] {$\min\, SSE$}
-      to[out=180, in=-90] (axis cs:0,0,4);
-    \path[draw, ->, >=stealth] (axis cs:-1,1,4)
-      node[left] {$\hat\beta$}
-      to[out=0, in=90] (axis cs:0,0,-2);
-
-  \end{axis}
-\end{tikzpicture}%
-```
-****
-
-![](./src/reg_teorico.png)
-
-  * [reg_teorico.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_teorico.pgf)
-
-```tex
-\def\hscale{1}
-\def\stderr{0.5}
-\def\fromto{2}
-
-\begin{tikzpicture}[
-  >=stealth,
-  cx/.style={fill=white, font=\footnotesize},
-  pth/.style={draw, ->, color=darkgreen},
-  halves/.style={samples=30, fill opacity=0.5, draw=none},
-  declare function={
-    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
-  },
-  declare function={
-    reg(\x,\a,\b)=\a+\b*\x;
-  }]
-
-  \begin{axis}[
-    width=10cm, height=7cm,
-    xlabel=$x$: preditora,
-    ylabel=$y$: resposta,
-    xtick=\empty,
-    xticklabels=\empty,
-    yticklabels=\empty,
-    extra x ticks={1,2,3},
-    extra x tick labels={$x_1$,$x_2$,$x_3$},
-    extra tick style={grid=major},
-    samples=30, domain=-0:4,
-    ymin=-2, ymax=6, xmin=-1, xmax=5]
-
-    \addplot[color=black, thick, samples=2] (x, {reg(x,0,1)});
-
-    \node[cx] (dp) at (axis description cs: 0.65, 0.1)
-      {\footnotesize $[y|x]$};
-    \node[cx, anchor=south west] (eq)
-      at (axis description cs: 0.02, 0.03) {$E(y) = \beta_0+\beta_1 x$};
-    \path[pth, shorten >=2pt] (eq) to[out=90, in=-135] (axis cs: 0, 0);
-
-    \pgfplotsinvokeforeach{1,2,3}{
-      \addplot[domain=-\fromto:\fromto]
-        ({#1+\hscale*normal(0,\stderr)}, x+#1);
-      \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
-        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs:#1,#1);
-      \addplot[halves, domain=0:\fromto, fill=darkgreen]
-        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs: #1, #1);
-      \draw[dashed] (axis cs:#1,#1) -- (axis cs: #1+0.6, #1);
-      \path[pth] (dp) to[out=130, in=-45] (axis cs: #1+0.4, #1-\stderr);
-      \node[cx] (x#1) at (axis cs: #1-0.7, #1+2) {$E(y|x=x_{#1})$};
-      \path[pth] (x#1) to[out=-60, in=180] (axis cs: #1, #1);
-    }
-  \end{axis}
-\end{tikzpicture}
-```
-****
-
 ![](./src/regressao_beta.png)
 
   * [regressao_beta.pgf](https://github.com/walmes/Tikz/blob/master/src/regressao_beta.pgf)
@@ -14269,6 +14122,222 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
       \end{scope}
     }
 \end{tikzpicture}%
+```
+****
+
+![](./src/reg_simples.png)
+
+  * [reg_simples.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_simples.pgf)
+
+```tex
+% Set the random seed.
+\pgfmathsetseed{12}
+
+% Define the equations for x and y.
+\pgfplotstableset{
+  create on use/x/.style={
+    create col/expr={42+2*\pgfplotstablerow}},
+  create on use/y/.style={
+    create col/expr={(0.6*\thisrow{x}+130)+8*rand}}
+}
+
+% Create a new table with 30 rows and columns x and y:
+\pgfplotstablenew[columns={x,y}]{20}\loadedtable
+
+% Calculate the regression line.
+\pgfplotstablecreatecol[linear regression]{regression}{\loadedtable}
+
+\pgfplotsset{
+  colored residuals/.style 2 args={
+    only marks,
+    scatter,
+    point meta=explicit,
+    colormap={redblue}{color=(#1) color=(#2)},
+    error bars/y dir=minus,
+    error bars/y explicit,
+    error bars/draw error bar/.code 2 args={
+      \pgfkeys{/pgf/fpu=true}
+      \pgfmathtruncatemacro\positiveresidual{\pgfplotspointmeta<0}
+      \pgfkeys{/pgf/fpu=false}
+      \ifnum\positiveresidual=0
+        \draw [#2] ##1 -- ##2;
+      \else
+        \draw [#1] ##1 -- ##2;
+      \fi
+    },
+    /pgfplots/table/.cd,
+    meta expr=(\thisrow{y}-\thisrow{regression})/
+    abs(\thisrow{y}-\thisrow{regression}),
+    y error expr=\thisrow{y}-\thisrow{regression}
+  },
+  colored residuals/.default={red}{blue}
+}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel=Weight (kg),
+    ylabel=Height (cm)]
+
+    \makeatletter
+    \addplot[colored residuals]
+      table {\loadedtable};
+    \addplot[no markers, thick, black]
+      table [y=regression] {\loadedtable};
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/reg_sistema.png)
+
+  * [reg_sistema.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sistema.pgf)
+
+```tex
+\begin{tikzpicture}[
+  auto, >=stealth', node distance=0.0ex and 2em,
+  pil/.style={->},
+  punkt/.style={
+    rectangle, rounded corners,
+    draw=black, text width=6.5em,
+    minimum height=3em, text centered},
+  ann/.style={font=\footnotesize, color=darkgreen}]
+
+  \node[punkt, color=darkgreen] (machine) at (0,0) {Sistema};
+  \node[left=of machine] (x3) {$x_3$};
+  \node[above=of x3] (x2) {$x_2$};
+  \node[above=of x2] (x1) {$x_1$};
+  \node[below=of x3] (x4) {$\vdots$};
+  \node[below=of x4] (x5) {$x_k$};
+  \node[ann, rotate=90, left=1pt of x3, anchor=south] {est\'{i}mulos};
+  \node[right=of machine,
+    % label={[darkgreen,font=\tiny]below:resposta},
+    draw, circle, fill=darkgreen!50] (y) {$y$};
+  \node[ann, rotate=-90, right=1pt of y, anchor=south] {resposta};
+
+  \path[pil] (x1) edge[bend left] (machine);
+  \path[pil] (x2) edge[bend left=10] (machine.162);
+  \path[pil] (x3) edge (machine);
+  \path[pil] (x5) edge[bend right] (machine);
+  \path[pil] (machine) edge (y);
+\end{tikzpicture}
+```
+****
+
+![](./src/reg_sqr.png)
+
+  * [reg_sqr.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_sqr.pgf)
+
+```tex
+%% http://tex.stackexchange.com/questions/87674/how-to-coherently-combine-3d-and-contour-plots-with-pgfplots
+\newcommand\expr[2]{5+#1^2+#2^2-0.9*#2*#1}%
+
+\begin{tikzpicture}%
+  \begin{axis}[
+    domain=-2:2.5,
+    domain y=-2:2.5,
+    view={-40}{12},
+    xlabel=$\beta_0$,
+    ylabel=$\beta_1$,
+    zlabel={$SSE(\beta_0, \beta_1)$},
+    zmin=-2,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    zticklabels=\empty]
+
+    \addplot3[
+      contour gnuplot={
+        output point meta=rawz,
+        number=30,
+        labels=false,
+      },
+      samples=30,
+      z filter/.code=\def\pgfmathresult{-2},
+    ] {\expr{x}{y}};
+
+    \addplot3[
+      surf,
+      samples=20,
+      opacity=0.75,
+      mesh/interior colormap={blueblack}{
+        color=(darkgreen) color=(orange)},
+      miter limit=1, 
+    ] {\expr{x}{y}};
+
+    \addplot3[
+      contour gnuplot={number=9, labels=false}
+    ] {\expr{x}{y}};
+
+    \draw (axis cs:-2,0,-2) -- (axis cs:2.5,0,-2);
+    \draw (axis cs:0,-2,-2) -- (axis cs:0,2.5,-2);
+
+    \path[draw, ->, >=stealth] (axis cs:1,-1,4)
+      node[right] {$\min\, SSE$}
+      to[out=180, in=-90] (axis cs:0,0,4);
+    \path[draw, ->, >=stealth] (axis cs:-1,1,4)
+      node[left] {$\hat\beta$}
+      to[out=0, in=90] (axis cs:0,0,-2);
+
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
+![](./src/reg_teorico.png)
+
+  * [reg_teorico.pgf](https://github.com/walmes/Tikz/blob/master/src/reg_teorico.pgf)
+
+```tex
+\def\hscale{1}
+\def\stderr{0.5}
+\def\fromto{2}
+
+\begin{tikzpicture}[
+  >=stealth,
+  cx/.style={fill=white, font=\footnotesize},
+  pth/.style={draw, ->, color=darkgreen},
+  halves/.style={samples=30, fill opacity=0.5, draw=none},
+  declare function={
+    normal(\m,\s)=1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  declare function={
+    reg(\x,\a,\b)=\a+\b*\x;
+  }]
+
+  \begin{axis}[
+    width=10cm, height=7cm,
+    xlabel=$x$: preditora,
+    ylabel=$y$: resposta,
+    xtick=\empty,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    extra x ticks={1,2,3},
+    extra x tick labels={$x_1$,$x_2$,$x_3$},
+    extra tick style={grid=major},
+    samples=30, domain=-0:4,
+    ymin=-2, ymax=6, xmin=-1, xmax=5]
+
+    \addplot[color=black, thick, samples=2] (x, {reg(x,0,1)});
+
+    \node[cx] (dp) at (axis description cs: 0.65, 0.1)
+      {\footnotesize $[y|x]$};
+    \node[cx, anchor=south west] (eq)
+      at (axis description cs: 0.02, 0.03) {$E(y) = \beta_0+\beta_1 x$};
+    \path[pth, shorten >=2pt] (eq) to[out=90, in=-135] (axis cs: 0, 0);
+
+    \pgfplotsinvokeforeach{1,2,3}{
+      \addplot[domain=-\fromto:\fromto]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1);
+      \addplot[halves, domain=-\fromto:0, fill=darkgreen!50]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs:#1,#1);
+      \addplot[halves, domain=0:\fromto, fill=darkgreen]
+        ({#1+\hscale*normal(0,\stderr)}, x+#1) -- (axis cs: #1, #1);
+      \draw[dashed] (axis cs:#1,#1) -- (axis cs: #1+0.6, #1);
+      \path[pth] (dp) to[out=130, in=-45] (axis cs: #1+0.4, #1-\stderr);
+      \node[cx] (x#1) at (axis cs: #1-0.7, #1+2) {$E(y|x=x_{#1})$};
+      \path[pth] (x#1) to[out=-60, in=180] (axis cs: #1, #1);
+    }
+  \end{axis}
+\end{tikzpicture}
 ```
 ****
 
@@ -15553,6 +15622,31 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
 ```
 ****
 
+![](./src/textos_retangulos.png)
+
+  * [textos_retangulos.pgf](https://github.com/walmes/Tikz/blob/master/src/textos_retangulos.pgf)
+
+```tex
+% http://tex.stackexchange.com/questions/70154/draw-only-part-of-a-rectangle-in-tikz
+
+\begin{tikzpicture}
+  % first solution
+  \node (label) at (0,5) {text with line in the middle from rectangle};
+  \draw[rounded corners=3pt] (label) -| (-5,-5) -| (5,5) -- (label);
+
+  % second solution (with filled rectangle and node)
+  \node[draw,fill=lime!10,rounded corners=3pt] (label) at (0,4)
+    {text with line in the middle from rectangle};
+
+  \begin{scope}[on background layer]
+    \draw[rounded corners=3pt, fill=red!10]
+      (label) -| (-4,-4) -| (4,4) -- (label);
+  \end{scope}
+
+\end{tikzpicture}
+```
+****
+
 ![](./src/text_zoom.png)
 
   * [text_zoom.pgf](https://github.com/walmes/Tikz/blob/master/src/text_zoom.pgf)
@@ -15582,31 +15676,6 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
   \node[fancytitle, rounded corners] at (box.east) {$\clubsuit$};
   \spy[red] on (-2.1,.25) in node[right] at (-1,-2);
 \end{tikzpicture}%
-```
-****
-
-![](./src/textos_retangulos.png)
-
-  * [textos_retangulos.pgf](https://github.com/walmes/Tikz/blob/master/src/textos_retangulos.pgf)
-
-```tex
-% http://tex.stackexchange.com/questions/70154/draw-only-part-of-a-rectangle-in-tikz
-
-\begin{tikzpicture}
-  % first solution
-  \node (label) at (0,5) {text with line in the middle from rectangle};
-  \draw[rounded corners=3pt] (label) -| (-5,-5) -| (5,5) -- (label);
-
-  % second solution (with filled rectangle and node)
-  \node[draw,fill=lime!10,rounded corners=3pt] (label) at (0,4)
-    {text with line in the middle from rectangle};
-
-  \begin{scope}[on background layer]
-    \draw[rounded corners=3pt, fill=red!10]
-      (label) -| (-4,-4) -| (4,4) -- (label);
-  \end{scope}
-
-\end{tikzpicture}
 ```
 ****
 

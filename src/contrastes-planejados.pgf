@@ -1,0 +1,55 @@
+\begin{tikzpicture}[%
+  box/.style = {
+    rectangle split,
+    rectangle split parts = 3,
+    rectangle split part fill = {
+      gray!30,
+      orange!10!white,
+      green!10!white},
+    draw,
+    text width = 4.5cm},
+  every path/.style = {->, > = latex},
+  ]
+
+  \node[box] (t0)
+  {\textbf{T0: Controle positivo}
+    \nodepart{second}
+    Preparo: solo com estrutura preservada.
+    \nodepart{third}
+    Objetivo: determinar a reten{\c c}{\~a}o de {\'a}gua (RA) {\'o}tima.
+  };
+
+  \node[box, right = 5em of t0] (t1)
+  {\textbf{T1: Sem estrutura preservada}
+    \nodepart{second}
+    Preparo: solo peneirado em malha de 2 mm.
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da estrutura
+    preservada na RA.
+  };
+
+  \node[box, above right = 2em and 5em of t1, anchor = 180] (t2)
+  {\textbf{T2: T1 + sem a fra{\c c}{\~a}o leve da MOS}
+    \nodepart{second}
+    Preparo: T1 com fra{\c c}{\~o}es leve livre e oclusa da MOS
+    removidas.
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da fra{\c c}{\~a}o
+    leve da MOS na RA.
+  };
+
+  \node[box, below right = 2em and 5em of t1, anchor = 180] (t3)
+  {\textbf{T3: T1 + sem MOS}
+    \nodepart{second}
+    Preparo: MOS removida com emprego de solu{\c c}{\~a}o de
+    solu{\c c}{\~a}o H$_2$O$_2$/H$_2$O (15:85 v/v)
+    \nodepart{third}
+    Objetivo: quantificar o efeito da aus{\^e}ncia da MOS na RA.
+  };
+
+  \path (t0) edge node[above] {T0 vs T1} (t1);
+  \path (t1) edge[bend left = 10] node[above = 1ex] {T1 vs T2} (t2);
+  \path (t1) edge[bend right = 10] node[below = 1ex] {T1 vs T3} (t3);
+  \path (t2) edge node[right = 1ex] {T2 vs T3} (t3);
+
+\end{tikzpicture}%
