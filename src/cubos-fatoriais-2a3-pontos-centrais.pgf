@@ -1,0 +1,60 @@
+﻿\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {
+    draw, thick, -, black},
+  textbox/.style = {
+    fill = white, draw, rectangle, thin, rounded corners = 2pt},
+  ]
+
+  \def\cube{
+
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    \coordinate (v8) at (0.5, 0.5, 0.5);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge, very thin] (v0) -- (v4) -- (v5);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge, very thin] (v4) -- (v6);
+    \draw[edge] (v1) -- (v5) -- (v7);
+
+    % Points.
+    \foreach \i in {0, 1, ..., 8}{
+      \draw[fill = black] (v\i) circle (0.8pt);
+    }
+
+  } % \cube
+
+  \begin{scope}[xshift = 2.2cm, ->]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {C};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {B};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+    % Montgomery · Design and Analysis of Experiments (8th Edition), page 246, Example 6.1.
+    \foreach \i/\y in {
+      0/1154, 1/2089, 2/1319, 3/1617,
+      4/1234, 5/2138, 6/1277, 7/1589}{
+      \node[textbox] at (v\i) {\y};
+    }
+    \node[textbox, xshift = 3.5cm, align = left]
+      (pc) at (v8) {1754\\ 1620\\ 1810\\ 1513};
+    \draw[->, dashed] (v8) -- (pc);
+  \end{scope}
+
+\end{tikzpicture}%
