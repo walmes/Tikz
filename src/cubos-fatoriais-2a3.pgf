@@ -1,4 +1,4 @@
-﻿\begin{tikzpicture}[%
+\begin{tikzpicture}[%
   node distance = 4ex,
   scale = 3,
   thick,
@@ -67,23 +67,7 @@
 
   \begin{scope}[]
     \cube{};
-  \end{scope}
-
-\end{tikzpicture}%
-5, 1.5, 1);
-    \coordinate (cube1lef) at (-0.5, 0.5, 0);
-  \end{scope}
-
-  \begin{scope}[xshift = 2.8cm]
-    \cube{};
-    \coordinate (cube2) at (0.25, 1.5, 1);
-  \end{scope}
-
-  \begin{scope}[node distance = 4ex]
-    \draw[edge, color = gray] (cube1top) |- ++(0, 0.1) -| (cube2);
-    \node[above = of cube1top, sinal, fill = blue] (Dlow) {$-$};
-    \node[above = of cube2, sinal, fill = orange] (Dhig) {$+$};
-    \path[draw, ->, shorten <= 10ex, shorten >= 10ex] (Dlow) -- node[above] {D} (Dhig);
+    \coordinate (cube1top) at (0.25, 1.5, 1);
   \end{scope}
 
 \end{tikzpicture}%
