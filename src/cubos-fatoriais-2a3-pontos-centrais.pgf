@@ -1,0 +1,70 @@
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  mtx/.style = {
+%     matrix of math nodes,
+    matrix of nodes,
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1em,
+      align = center,
+    }
+  },
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    \coordinate (v8) at (0.5, 0.5, 0.5);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+
+    % Points.
+    \foreach \i in {0, 1, ..., 8}{ \draw[fill = black] (v\i) circle (0.8pt); }
+
+  } % \cube
+
+  \begin{scope}[xshift = 2.2cm, ->, > = latex]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {B};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {C};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+
+    \coordinate (cube1top) at (0.25, 1.5, 1);
+
+    \foreach \i/\y in {0/10, 1/10, 2/10, 3/10, 4/10, 5/10, 6/10, 7/10}{
+      \node[fill = white, draw, rectangle] at (v\i) {\y}; 
+    }
+
+    \node[xshift = 3.5cm, align = left] (pc) at (v8) {10\\ 10\\ 10\\ 10};
+
+   \draw[dashed] (pc) -- (v8);
+
+  \end{scope}
+
+\end{tikzpicture}%
