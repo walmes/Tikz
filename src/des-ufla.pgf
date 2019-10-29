@@ -1,0 +1,105 @@
+﻿\begin{tikzpicture}%
+
+  % 00793c % Verde UFLA.
+  % 224271 % Azul UFLA.
+  \definecolor{ufla_green}{HTML}{00793C}
+  \definecolor{ufla_blue}{HTML}{224271}
+
+  \begin{scope}[
+    xshift = 3.43cm,
+    yshift = 2.0cm,
+    scale = .5,
+    auto = left,
+    every node/.style = {circle, fill = black!20}
+    ]
+
+    \def\theangle{60}
+
+    % \foreach \x in {1, ..., 6} {
+    % \node[fill = ufla_green] (n\x) at (\x * \theangle:7.5) {};
+    % }
+
+    \foreach \x in {1, ..., 6} {
+      \coordinate (n\x) at (\x * \theangle:7.5);
+      \draw[color = ufla_blue, fill = ufla_green]
+      (n\x) circle [radius = 0.9em];
+    }
+
+    \foreach \a/\b in {
+      n1/n2,
+      n1/n3,
+      n1/n4,
+      n5/n1,
+      n6/n1,
+      n2/n3,
+      n2/n4,
+      n2/n5,
+      n6/n2,
+      n3/n4,
+      n3/n5,
+      n3/n6,
+      n4/n5,
+      n4/n6,
+      n5/n6} {
+      \path[
+      draw = ufla_blue,
+      shorten <= 0.6em,
+      shorten >= 0.6em] (\a) edge[bend right= 15] (\b);
+    }
+
+    % \draw circle [radius = 7.5cm];
+    % \draw (-4, 0) -- (4, 0);
+    % \draw (0, -4) -- (0, 4);
+
+  \end{scope}
+
+  \begin{scope}
+
+    \begin{axis}[
+      domain   = -3:3,
+      domain y = -3:3,
+      view = {-40}{12},
+      % xlabel=$\beta_0$,
+      % ylabel=$\beta_1$,
+      % zlabel={$SSE(\beta_0, \beta_1)$},
+      zmin = -0,
+      xticklabels = \empty,
+      yticklabels = \empty,
+      zticklabels = \empty,
+      axis lines = none,
+      declare function = {mu1 = 0;},
+      declare function = {mu2 = 0;},
+      declare function = {sigma1 = 0.5;},
+      declare function = {sigma2 = 1;},
+      declare function = {
+        bivar(\ma,\sa,\mb,\sb)=
+        1/(2*pi*\sa*\sb)*exp(-((x-\ma)^2/\sa^2+(y-\mb)^2/\sb^2))/2;
+      }
+      ]
+
+      \addplot3 [
+      surf,
+      samples = 50,
+      % z buffer = sort,
+      % z buffer=auto,
+      % opacity = 0.75,
+      faceted color = ufla_blue,
+      colormap = {blueblack}{
+        color = (ufla_blue)
+        color = (ufla_green!50!white)
+        color = (ufla_green)},
+      % miter limit = 1,
+      ] {bivar(mu1, sigma1, mu2, sigma2)};
+
+      % \addplot3[
+      % contour gnuplot = {number = 9, labels = false, draw color = ufla_blue, contour dir=z}
+      % ] {bivar(mu1, sigma1, mu2, sigma2)};
+
+      % \draw (axis cs:-3,  0, 0) -- (axis cs: 3, 0, 0);
+      % \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
+
+    \end{axis}
+
+  \end{scope}
+
+\end{tikzpicture}%
