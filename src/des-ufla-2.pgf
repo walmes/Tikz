@@ -1,5 +1,25 @@
 %-----------------------------------------------------------------------
 %
+% Logo do departamento de EstatÃ­stica da UFLA Â· DES. O DES tem o
+% programa de pÃ³s graduaÃ§Ã£o em EstatÃ­stica e ExperimentaÃ§Ã£o
+% AgropecuÃ¡ria.
+%
+% O logo foi elaborado em parceria com o Prof. Daniel F. Ferreira que
+% comeÃ§ou os esboÃ§os.  A ideia da normal bivariada Ã© do Prof. Daniel. A
+% ideia de adicionar o grafo Ã© minha. A lÃ³gica foi de usar a normal
+% bivariada para representar a EstatÃ­stica e o grafo para representar a
+% ExperimentaÃ§Ã£o AgropecuÃ¡ria.
+%
+% O grafo Ã© ligaÃ§Ã£o entre os tratamentos do mesmo bloco em um
+% delineamento lÃ¡tice reticulado 3 x 3. Neste delineamento sÃ£o 4
+% repetiÃ§Ãµes dos tratamentos (r = 4), cada uma delas com 3 blocos (b =
+% 3) de tamanho 3 (v = 3) para acomodar os 9 tratamentos (t = 9). Cada
+% par de tratamento ocorre junto uma vez no experimento.
+%
+%-----------------------------------------------------------------------
+
+%-----------------------------------------------------------------------
+%
 % library(tidyverse)
 %
 % # x <- scan()
@@ -13,7 +33,7 @@
 %                  trt = trt)
 % da
 %
-% # Quebra nas rpt/blc para criar as conexÃµes.
+% # Quebra nas rpt/blc para criar as conexÃÂµes.
 % da <- da %>%
 %     group_by(rpt, blc) %>%
 %     do(con = {
@@ -23,14 +43,14 @@
 %     }) %>%
 %     unnest()
 %
-% # Interpola o verde a azul da criar cores intermediÃ¡rias.
+% # Interpola o verde a azul da criar cores intermediÃÂ¡rias.
 % ufla_cols <- colorRampPalette(colors = c("#00793C", "#224271"))(4)
 % col_defs <- sprintf("\\definecolor{ufla_color%s}{HTML}{%s}",
 %                     LETTERS[seq_along(ufla_cols)],
 %                     gsub("#", "", my_cols))
 % cat(col_defs, sep = "\n")
 %
-% # Cria as conexÃµes em Tikz.
+% # Cria as conexÃÂµes em Tikz.
 % txt <- with(da,
 %             sprintf("\\path (u%d) edge[bend %s = \\bend, color = %s] (u%d);",
 %                     from,
@@ -42,8 +62,8 @@
 %-----------------------------------------------------------------------
 \begin{tikzpicture}%
 
-  % 00793C Ã© o verde UFLA.
-  % 224271 Ã© o azul UFLA.
+  % 00793C ÃÂ© o verde UFLA.
+  % 224271 ÃÂ© o azul UFLA.
   \definecolor{ufla_green}{HTML}{00793C}
   \definecolor{ufla_blue}{HTML}{224271}
 
@@ -66,7 +86,7 @@
 
     \end{scope}
 
-    % Reticulado quadrado 3 x 3. Definido no cÃ³digo R.
+    % Reticulado quadrado 3 x 3. Definido no cÃÂ³digo R.
     \def\bend{15}
 
     \definecolor{ufla_colorA}{HTML}{00793C}
@@ -119,7 +139,7 @@
 
     \end{scope}
 
-    % ReferÃªncias.
+    % ReferÃÂªncias.
     % \draw circle [radius = 7.5cm];
     % \draw (-4, 0) -- (4, 0);
     % \draw (0, -4) -- (0, 4);
@@ -132,9 +152,9 @@
     ]
 
     \begin{axis}[
-      domain   = -3:3,
-      domain y = -3:3,
-      view = {-40}{12},
+      domain   = -2.3:2.3,
+      domain y = -2.3:2.3,
+      view = {-45}{12},
       % xlabel=$\beta_0$,
       % ylabel=$\beta_1$,
       % zlabel={$SSE(\beta_0, \beta_1)$},
@@ -145,8 +165,8 @@
       axis lines = none,
       declare function = {mu1 = 0;},
       declare function = {mu2 = 0;},
-      declare function = {sigma1 = 0.5;},
-      declare function = {sigma2 = 1;},
+      declare function = {sigma1 = 1.0;},
+      declare function = {sigma2 = 1.0;},
       declare function = {
         bivar(\ma,\sa,\mb,\sb)=
         1/(2*pi*\sa*\sb)*exp(-((x-\ma)^2/\sa^2+(y-\mb)^2/\sb^2))/2;
@@ -155,15 +175,17 @@
 
       \addplot3 [
       surf,
-      samples = 50,
+      % samples = 10,
+      samples = 60,
       % opacity = 0.75,
       faceted color = ufla_blue,
       colormap = {blueblack}{
-        color = (ufla_blue)
-        color = (ufla_green!50!white)
-        color = (ufla_green)},
+       color = (ufla_blue!80!white)
+       color = (ufla_green!80!blue)
+       color = (ufla_green!90!blue!10!white)},
       ] {bivar(mu1, sigma1, mu2, sigma2)};
 
+      % Linhas de referencia.
       % \draw (axis cs:-3,  0, 0) -- (axis cs: 3, 0, 0);
       % \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
 
@@ -171,30 +193,47 @@
 
   \end{scope}
 
-  \def\radius{4.5}
+  \def\radius{4.25}
+
+  % Contornos de referencia.
+  % \draw[gray] circle (\radius);
+  % \draw[gray] circle (4.65);
+
+ \path [
+  postaction = {
+    decorate,
+    decoration = {
+      raise = -0ex,
+      text along path,
+      reverse path,
+      text align = center,
+      text color = ufla_blue,
+      text={|\Huge|Departamento de Estat{\'i}stica}
+    }
+  }] (0:\radius cm) arc (0:180:\radius cm);
 
   \path [
   postaction = {
     decorate,
     decoration = {
-      raise = -1ex,
+      raise = -2ex,
       text along path,
       reverse path,
       text align = center,
       text color = ufla_blue,
-      text={|\LARGE|Departamento de Estat{\'i}stica {$\cdot$} UFLA}
+      text={|\Huge|Universidade Federal de Lavras}
     }
-  }]
-  (-0:\radius cm) arc (-0:-180:\radius cm);   % por baixo.
-  % (-0:\radius cm) arc (-0:-180:\radius cm); % por cima.
+  }] (-0:1.02*\radius cm) arc (-0:-180:1.02*\radius cm);
 
   \node[
-  font = \Huge\bfseries,
-  color = ufla_green,
+  font = \Huge\scshape\bfseries,
+  color = ufla_blue,
   text opacity = 1,
   fill opacity = 0.75,
   fill = white,
   rectangle,
-  rounded corners = 3pt] at (0, -2.6) {DES};
+  rounded corners = 3pt] at (0.06, -2.72) {DES};
+
+  \draw[white] circle (5);
 
 \end{tikzpicture}%

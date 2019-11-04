@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 240 Tikz figures in this gallery.  Most of them were
+There are 242 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -1955,23 +1955,85 @@ Some useful tutorials or galleries:
 
   \begin{scope}[]
     \cube{};
+    \coordinate (cube1top) at (0.25, 1.5, 1);
   \end{scope}
 
 \end{tikzpicture}%
-5, 1.5, 1);
-    \coordinate (cube1lef) at (-0.5, 0.5, 0);
+```
+****
+
+![](./src/cubos-fatoriais-2a3-pontos-centrais.png)
+
+  * [cubos-fatoriais-2a3-pontos-centrais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-2a3-pontos-centrais.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  sinal/.style = {inner sep = 1pt, thin, opacity = 0.4,
+    fill = blue, circle, text opacity = 1},
+  mtx/.style = {
+%     matrix of math nodes,
+    matrix of nodes,
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1em,
+      align = center,
+    }
+  },
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    \coordinate (v8) at (0.5, 0.5, 0.5);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+
+    % Points.
+    \foreach \i in {0, 1, ..., 8}{ \draw[fill = black] (v\i) circle (0.8pt); }
+
+  } % \cube
+
+  \begin{scope}[xshift = 2.2cm, ->, > = latex]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {B};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {C};
   \end{scope}
 
-  \begin{scope}[xshift = 2.8cm]
+  \begin{scope}[]
     \cube{};
-    \coordinate (cube2) at (0.25, 1.5, 1);
-  \end{scope}
 
-  \begin{scope}[node distance = 4ex]
-    \draw[edge, color = gray] (cube1top) |- ++(0, 0.1) -| (cube2);
-    \node[above = of cube1top, sinal, fill = blue] (Dlow) {$-$};
-    \node[above = of cube2, sinal, fill = orange] (Dhig) {$+$};
-    \path[draw, ->, shorten <= 10ex, shorten >= 10ex] (Dlow) -- node[above] {D} (Dhig);
+    \coordinate (cube1top) at (0.25, 1.5, 1);
+
+    \foreach \i/\y in {0/10, 1/10, 2/10, 3/10, 4/10, 5/10, 6/10, 7/10}{
+      \node[fill = white, draw, rectangle] at (v\i) {\y}; 
+    }
+
+    \node[xshift = 3.5cm, align = left] (pc) at (v8) {10\\ 10\\ 10\\ 10};
+
+   \draw[dashed] (pc) -- (v8);
+
   \end{scope}
 
 \end{tikzpicture}%
@@ -3281,6 +3343,253 @@ ift = -2.5cm]
   (180:\textangle+0.3) arc [start angle = -180, end angle = 0, radius = \textangle+0.3];
 
 % \draw[draw = gray] circle (\textangle+0.5);
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/des-ufla-2.png)
+
+  * [des-ufla-2.pgf](https://github.com/walmes/Tikz/blob/master/src/des-ufla-2.pgf)
+
+```tex
+%-----------------------------------------------------------------------
+%
+% Logo do departamento de EstatÃ­stica da UFLA Â· DES. O DES tem o
+% programa de pÃ³s graduaÃ§Ã£o em EstatÃ­stica e ExperimentaÃ§Ã£o
+% AgropecuÃ¡ria.
+%
+% O logo foi elaborado em parceria com o Prof. Daniel F. Ferreira que
+% comeÃ§ou os esboÃ§os.  A ideia da normal bivariada Ã© do Prof. Daniel. A
+% ideia de adicionar o grafo Ã© minha. A lÃ³gica foi de usar a normal
+% bivariada para representar a EstatÃ­stica e o grafo para representar a
+% ExperimentaÃ§Ã£o AgropecuÃ¡ria.
+%
+% O grafo Ã© ligaÃ§Ã£o entre os tratamentos do mesmo bloco em um
+% delineamento lÃ¡tice reticulado 3 x 3. Neste delineamento sÃ£o 4
+% repetiÃ§Ãµes dos tratamentos (r = 4), cada uma delas com 3 blocos (b =
+% 3) de tamanho 3 (v = 3) para acomodar os 9 tratamentos (t = 9). Cada
+% par de tratamento ocorre junto uma vez no experimento.
+%
+%-----------------------------------------------------------------------
+
+%-----------------------------------------------------------------------
+%
+% library(tidyverse)
+%
+% # x <- scan()
+% # dput(x)
+%
+% # Os dados do delineamento.
+% trt <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 4, 7, 2, 5, 8, 3, 6, 9, 1, 5, 9,
+%          7, 2, 6, 4, 8, 3, 1, 8, 6, 4, 2, 9, 7, 5, 3)
+% da <- data.frame(rpt = gl(4, 9),
+%                  blc = gl(12, 3),
+%                  trt = trt)
+% da
+%
+% # Quebra nas rpt/blc para criar as conexÃÂµes.
+% da <- da %>%
+%     group_by(rpt, blc) %>%
+%     do(con = {
+%         x <- t(combn(x = sort(.$trt), m = 2))
+%         colnames(x) <- c("from", "to")
+%         as.data.frame(x)
+%     }) %>%
+%     unnest()
+%
+% # Interpola o verde a azul da criar cores intermediÃÂ¡rias.
+% ufla_cols <- colorRampPalette(colors = c("#00793C", "#224271"))(4)
+% col_defs <- sprintf("\\definecolor{ufla_color%s}{HTML}{%s}",
+%                     LETTERS[seq_along(ufla_cols)],
+%                     gsub("#", "", my_cols))
+% cat(col_defs, sep = "\n")
+%
+% # Cria as conexÃÂµes em Tikz.
+% txt <- with(da,
+%             sprintf("\\path (u%d) edge[bend %s = \\bend, color = %s] (u%d);",
+%                     from,
+%                     ifelse((to - from) > 4, "left", "right"),
+%                     sprintf("ufla_color%s", LETTERS[rpt]),
+%                     to))
+% cat(txt, sep = "\n")
+%
+%-----------------------------------------------------------------------
+\begin{tikzpicture}%
+
+  % 00793C ÃÂ© o verde UFLA.
+  % 224271 ÃÂ© o azul UFLA.
+  \definecolor{ufla_green}{HTML}{00793C}
+  \definecolor{ufla_blue}{HTML}{224271}
+
+  \begin{scope}[
+    scale = .5,
+    auto = left,
+    every node/.style = {circle, fill = black!20}
+    ]
+
+    \def\treatments{9}
+    \def\theangle{360/\treatments}
+
+    \begin{scope}[rotate = 0.25 * \theangle]
+
+      \foreach \x in {1, ..., \treatments} {
+        \coordinate (u\x) at (\x * \theangle:7.5);
+        \draw[color = ufla_blue, fill = ufla_green]
+        (u\x) circle [radius = 0.9em];
+      }
+
+    \end{scope}
+
+    % Reticulado quadrado 3 x 3. Definido no cÃÂ³digo R.
+    \def\bend{15}
+
+    \definecolor{ufla_colorA}{HTML}{00793C}
+    \definecolor{ufla_colorB}{HTML}{0B664D}
+    \definecolor{ufla_colorC}{HTML}{16545F}
+    \definecolor{ufla_colorD}{HTML}{224271}
+
+    \begin{scope}[
+      draw = ufla_blue,
+      shorten <= 0.6em,
+      shorten >= 0.6em
+      ]
+
+      \path (u1) edge[bend right = \bend, color = ufla_colorA] (u2);
+      \path (u1) edge[bend right = \bend, color = ufla_colorA] (u3);
+      \path (u2) edge[bend right = \bend, color = ufla_colorA] (u3);
+      \path (u4) edge[bend right = \bend, color = ufla_colorA] (u5);
+      \path (u4) edge[bend right = \bend, color = ufla_colorA] (u6);
+      \path (u5) edge[bend right = \bend, color = ufla_colorA] (u6);
+      \path (u7) edge[bend right = \bend, color = ufla_colorA] (u8);
+      \path (u7) edge[bend right = \bend, color = ufla_colorA] (u9);
+      \path (u8) edge[bend right = \bend, color = ufla_colorA] (u9);
+      \path (u1) edge[bend right = \bend, color = ufla_colorB] (u4);
+      \path (u1) edge[bend left = \bend, color = ufla_colorB] (u7);
+      \path (u4) edge[bend right = \bend, color = ufla_colorB] (u7);
+      \path (u2) edge[bend right = \bend, color = ufla_colorB] (u5);
+      \path (u2) edge[bend left = \bend, color = ufla_colorB] (u8);
+      \path (u5) edge[bend right = \bend, color = ufla_colorB] (u8);
+      \path (u3) edge[bend right = \bend, color = ufla_colorB] (u6);
+      \path (u3) edge[bend left = \bend, color = ufla_colorB] (u9);
+      \path (u6) edge[bend right = \bend, color = ufla_colorB] (u9);
+      \path (u1) edge[bend right = \bend, color = ufla_colorC] (u5);
+      \path (u1) edge[bend left = \bend, color = ufla_colorC] (u9);
+      \path (u5) edge[bend right = \bend, color = ufla_colorC] (u9);
+      \path (u2) edge[bend right = \bend, color = ufla_colorC] (u6);
+      \path (u2) edge[bend left = \bend, color = ufla_colorC] (u7);
+      \path (u6) edge[bend right = \bend, color = ufla_colorC] (u7);
+      \path (u3) edge[bend right = \bend, color = ufla_colorC] (u4);
+      \path (u3) edge[bend left = \bend, color = ufla_colorC] (u8);
+      \path (u4) edge[bend right = \bend, color = ufla_colorC] (u8);
+      \path (u1) edge[bend left = \bend, color = ufla_colorD] (u6);
+      \path (u1) edge[bend left = \bend, color = ufla_colorD] (u8);
+      \path (u6) edge[bend right = \bend, color = ufla_colorD] (u8);
+      \path (u2) edge[bend right = \bend, color = ufla_colorD] (u4);
+      \path (u2) edge[bend left = \bend, color = ufla_colorD] (u9);
+      \path (u4) edge[bend left = \bend, color = ufla_colorD] (u9);
+      \path (u3) edge[bend right = \bend, color = ufla_colorD] (u5);
+      \path (u3) edge[bend right = \bend, color = ufla_colorD] (u7);
+      \path (u5) edge[bend right = \bend, color = ufla_colorD] (u7);
+
+    \end{scope}
+
+    % ReferÃÂªncias.
+    % \draw circle [radius = 7.5cm];
+    % \draw (-4, 0) -- (4, 0);
+    % \draw (0, -4) -- (0, 4);
+
+  \end{scope}
+
+  \begin{scope}[
+    xshift = -3.43cm,
+    yshift = -2.0cm
+    ]
+
+    \begin{axis}[
+      domain   = -2.3:2.3,
+      domain y = -2.3:2.3,
+      view = {-45}{12},
+      % xlabel=$\beta_0$,
+      % ylabel=$\beta_1$,
+      % zlabel={$SSE(\beta_0, \beta_1)$},
+      zmin = -0,
+      xticklabels = \empty,
+      yticklabels = \empty,
+      zticklabels = \empty,
+      axis lines = none,
+      declare function = {mu1 = 0;},
+      declare function = {mu2 = 0;},
+      declare function = {sigma1 = 1.0;},
+      declare function = {sigma2 = 1.0;},
+      declare function = {
+        bivar(\ma,\sa,\mb,\sb)=
+        1/(2*pi*\sa*\sb)*exp(-((x-\ma)^2/\sa^2+(y-\mb)^2/\sb^2))/2;
+      }
+      ]
+
+      \addplot3 [
+      surf,
+      % samples = 10,
+      samples = 60,
+      % opacity = 0.75,
+      faceted color = ufla_blue,
+      colormap = {blueblack}{
+       color = (ufla_blue!80!white)
+       color = (ufla_green!80!blue)
+       color = (ufla_green!90!blue!10!white)},
+      ] {bivar(mu1, sigma1, mu2, sigma2)};
+
+      % Linhas de referencia.
+      % \draw (axis cs:-3,  0, 0) -- (axis cs: 3, 0, 0);
+      % \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
+
+    \end{axis}
+
+  \end{scope}
+
+  \def\radius{4.25}
+
+  % Contornos de referencia.
+  % \draw[gray] circle (\radius);
+  % \draw[gray] circle (4.65);
+
+ \path [
+  postaction = {
+    decorate,
+    decoration = {
+      raise = -0ex,
+      text along path,
+      reverse path,
+      text align = center,
+      text color = ufla_blue,
+      text={|\Huge|Departamento de Estat{\'i}stica}
+    }
+  }] (0:\radius cm) arc (0:180:\radius cm);
+
+  \path [
+  postaction = {
+    decorate,
+    decoration = {
+      raise = -2ex,
+      text along path,
+      reverse path,
+      text align = center,
+      text color = ufla_blue,
+      text={|\Huge|Universidade Federal de Lavras}
+    }
+  }] (-0:1.02*\radius cm) arc (-0:-180:1.02*\radius cm);
+
+  \node[
+  font = \Huge\scshape\bfseries,
+  color = ufla_blue,
+  text opacity = 1,
+  fill opacity = 0.75,
+  fill = white,
+  rectangle,
+  rounded corners = 3pt] at (0.06, -2.72) {DES};
+
+  \draw[white] circle (5);
 
 \end{tikzpicture}%
 ```
