@@ -1,0 +1,51 @@
+﻿% Based on: https://tex.stackexchange.com/questions/209241/gantt-chart-using-pgfgantt-with-years-divided-into-quarters
+\begin{ganttchart}[%Specs
+     y unit title = 0.5cm,
+     y unit chart = 0.7cm,
+     x unit = 0.2cm,
+%      vgrid,
+%      hgrid,
+     title height = 1,
+%     title/.style={fill=none},
+     title label font = \bfseries\footnotesize,
+%      bar/.style = {fill = orange},
+     bar height = 0.7,
+%   progress label text={},
+     group right shift = 0,
+     group top shift = 0.7,
+     group height = .3,
+     group peaks width = {0.2},
+     milestone inline label node/.append style = {below right = -3mm and 1mm, font = \rm, fill = white},
+     inline]{1}{68}
+    %labels
+    \gantttitle{Trajet\'oria acad\^emica}{68}\\  % title 1
+    \gantttitle[]{2003}{4}
+    \gantttitle[]{2004}{4}
+    \gantttitle[]{2005}{4}
+    \gantttitle[]{2006}{4}
+    \gantttitle[]{2007}{4}
+    \gantttitle[]{2008}{4}
+    \gantttitle[]{2009}{4}
+    \gantttitle[]{2010}{4}
+    \gantttitle[]{2011}{4}
+    \gantttitle[]{2012}{4}
+    \gantttitle[]{2013}{4}
+    \gantttitle[]{2014}{4}
+    \gantttitle[]{2015}{4}
+    \gantttitle[]{2016}{4}
+    \gantttitle[]{2017}{4}
+    \gantttitle[]{2018}{4}
+    \gantttitle[]{2019}{4} \\
+    % Setting group if any
+
+    \ganttgroup[inline = true]{Parte II}{1}{20} \\ 
+    \ganttbar[inline = true, bar/.append style = {fill = blue!30!white}]{Gradua\c c\~ao}{1}{20}\\
+    \ganttbar[inline = true, bar/.append style = {fill = orange!60!red}]{PET Agronomia}{7}{18}\\
+    \ganttgroup[inline = true]{Parte III}{21}{41} \\ 
+    \ganttbar[inline = true, bar/.append style = {fill = blue!50!white}]{Mestrado}{21}{27}\\
+    \ganttbar[inline = true, bar/.append style = {fill = blue!70!white}]{Doutorado}{28}{41}\\
+    \ganttgroup[inline = true]{Parte IV}{31}{68} \\ 
+    \ganttmilestone[inline = true]{Dpto de Estat\'istica UFPR}{30} \\       
+    \ganttbar[inline = true, bar/.append style = {fill = orange!70!white}]{Tutor · PET Estat\'istica}{52}{68}\\
+
+\end{ganttchart}

@@ -102,6 +102,8 @@
 \usepackage{pgfplotstable}
 % \usepackage{3dplot}
 \usepackage{pgfcalendar}
+\usepackage{pgfgantt}
+
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{groupplots}
 \usetikzlibrary{
