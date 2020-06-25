@@ -1,0 +1,130 @@
+% Contribution to the gallery by Emilio Torres Manzanera (Fac. de
+% Comercio - Universidad de Oviedo)
+
+\newcommand{\man}[2]{%
+  % #1 = draw options
+  % #2 = location
+  \begin{scope}[#1, shift = {(#2)}]
+    \fill [rounded corners = 1.5]
+    (0, 0.4) -- (0, 0.8) -- (0.4, 0.8) -- (0.4, 0.4) --
+    (0.325, 0.4) -- (0.325, 0.7) -- (0.3, 0.7) -- (0.3, 0) --
+    (0.225, 0) -- (0.225, 0.4) -- (0.175, 0.4) -- (0.175, 0) --
+    (0.1, 0) -- (0.1, 0.7) -- (0.075, 0.7) -- (0.075, 0.4) -- cycle;
+    \fill (0.2, 0.9) circle (0.1);
+  \end{scope}}
+
+\def\ellipseman(#1, #2);{%
+  \draw [thick] (#1 + 0.2, #2 + 0.5)
+    ellipse [x radius = 0.3cm, y radius = 0.6cm];
+}
+
+\begin{tikzpicture}
+  % \draw [very thick] (0, 0) rectangle (11, 11);
+  % \shadecircle(6, 7.3)(2.8);
+  % \shadecircle(3.2, 7.5)(2.3);
+  % \shadecircle(3.8, 4)(3.5);
+
+  %--------------------------------------------------------------------
+  \draw (2, 9) node {\textbf{Muestreo aleatorio}};
+
+  % \man{blue}{1.5, 7.2};
+  % \man{red}{1.5, 6};
+  % \ellipseman(1.5, 6);
+
+  \foreach \x in {0, 1, 1.5, 3, 3.5} {
+    \man{red}{\x, 7.2}
+  }
+  \foreach \x in {0.5, 2, 2.5} {
+    \man{blue}{\x, 7.2}
+  }
+  \foreach \x in {0.25, 0.75, 1.75, 2.75} {
+    \man{red}{\x, 6}
+  }
+  \foreach \x in {1.25, 2.25, 3.25} {
+    \man{blue}{\x, 6}
+  }
+  \foreach \x in {0, 1.5, 3.5} {
+    \ellipseman(\x, 7.2);
+  }
+  \foreach \x in {0.25, 1.25} {
+    \ellipseman(\x, 6);
+  }
+
+  %---------------------------------------------------------------------
+  \draw (8, 9) node {\textbf{Muestreo sistem\'atico}};
+
+  % \man{blue}{1.5, 7.2};
+  % \man{red}{1.5, 6};
+  % \ellipseman(1.5, 6);
+
+  \foreach \x in {0, 1, 1.5, 3, 3.5} {
+    \man{red}{\x+6, 7.2}
+  }
+  \foreach \x in {0.5, 2, 2.5} {
+    \man{blue}{\x+6, 7.2}
+  }
+  \foreach \x in {0.25, 0.75, 1.75, 2.75} {
+    \man{red}{\x+6, 6}
+  }
+  \foreach \x in {1.25, 2.25, 3.25} {
+    \man{blue}{\x+6, 6}
+  }
+  \foreach \x in {0, 1.5, 3} {
+    \ellipseman(\x+6, 7.2);
+  }
+  \foreach \x in {0.75, 2.25} {
+    \ellipseman(\x+6, 6);
+  }
+
+  %---------------------------------------------------------------------
+  \draw (2, 4.5) node {\textbf{Muestreo estratificado}};
+
+  % \man{blue}{1.5, 7.2};
+  % \man{red}{1.5, 6};
+  %% \ellipseman(1.5, 6);
+
+  \foreach \x in {0, 0.5, 1} {
+    \man{red}{\x, 7.2-4.4}
+  }
+  \foreach \x in {2, 2.5, ..., 4} {
+    \man{blue}{\x, 7.2-4.4}
+  }
+  \foreach \x in {0.25, 0.75} {
+    \man{red}{\x, 6-4.4}
+  }
+  \foreach \x in {2.25, 2.75, 3.25, 3.75} {
+    \man{blue}{\x, 6-4.4}
+  }
+  \foreach \x in {0, 2.5, 4} {
+    \ellipseman(\x, 7.2-4.4);
+  }
+  \foreach \x in {0.25, 2.75} {
+    \ellipseman(\x, 6-4.4);
+  }
+
+  %---------------------------------------------------------------------
+  \draw (2+6, 4.5) node {\textbf{Muestreo por conglomerados}};
+
+  % \man{blue}{1.5, 7.2};
+  % \man{red}{1.5, 6};
+  %% \ellipseman(1.5, 6);
+
+  \foreach \x in {0, 1, 2, 4, 5} {
+    \man{red}{\x+5.5, 7.2-4.4}
+  }
+  \foreach \x in {0.5, 2.5, 3, 4.5} {
+    \man{blue}{\x+5.5, 7.2-4.4}
+  }
+  \foreach \x in {0.25, 0.75, 3, 3.5} {
+    \man{red}{\x+5.5, 6-4.4}
+  }
+  \foreach \x in {1.25, 2.5} {
+    \man{blue}{\x+5.5, 6-4.4}
+  }
+
+  \draw [thick] (6.0 + 2 + 0.2, 7.2 - 4.4 + 0.5)
+    ellipse [x radius = 1.2cm, y radius = 0.6cm];
+  \draw [thick] (5.5 + 0.75 + 0.2, 6 - 4.4 + 0.5)
+    ellipse [x radius = 1.2cm, y radius = 0.6cm];
+
+\end{tikzpicture}
