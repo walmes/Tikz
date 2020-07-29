@@ -1,0 +1,68 @@
+﻿\tikzset{
+  level 1/.style={level distance=2.5cm, sibling distance=3.5cm},
+  level 2/.style={level distance=2.5cm, sibling distance=1.6cm},
+  bag/.style={text width=3em, text centered, anchor=west,
+    fill=gray!30, rounded corners, minimum height=2em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped, ->, >=stealth']
+  \node[bag] {$\Pr(\Omega)$}
+  child {
+    node[bag] {$\Pr(A^c)$}        
+    child {
+      node[end, label=right:
+      {$\Pr(B^c\cap A^c)$}] {}
+      edge from parent
+      node[below] {$\Pr(B^c|A^c)$}
+    }
+    child {
+      node[label=right:
+      {$\Pr(B\cap A^c)$}] {}
+      edge from parent
+      node[below] {$\Pr(B|A^c)$}
+    }
+    edge from parent 
+    node[below] {$\Pr(A^c|\Omega)$}
+  }
+  child {
+    node[bag] {$\Pr(A)$}        
+    child {
+      node[end, label=right:
+      {$\Pr(B^c\cap A)$}] {}
+      edge from parent
+      node[below] {$\Pr(B^c|A)$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(B\cap A)$}] {}
+      edge from parent
+      node[below] {$\Pr(B|A)$}
+    }
+    edge from parent         
+    node[below] {$\Pr(A|\Omega)$}
+  };
+\end{tikzpicture}
+
+ight:
+      {$\Pr(S\cap F^c)=\dfrac{40}{400}\cdot
+        \dfrac{30}{40}=\dfrac{30}{400}$}] {}
+      edge from parent
+      node[above] {n\~ao ($F^c$)}
+      node[below] {$\Pr(F^c|S)=\frac{30}{40}$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap F)=\dfrac{40}{400}\cdot
+        \dfrac{10}{40}=\dfrac{10}{400}$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|S)=\frac{10}{40}$}
+    }
+    edge from parent         
+    node[above] {sim ($S$)}
+    node[below] {$\Pr(S)=\frac{40}{400}$}
+  };
+\end{tikzpicture}
+
