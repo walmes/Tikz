@@ -1,0 +1,66 @@
+﻿\def\elementA{0.1}
+\def\elementB{0.2}
+\def\elementC{0.3}
+\def\elementD{0.4}
+
+\tikzset{
+  > = stealth,
+  draw = black,
+  every path/.style = {rounded corners = 0pt},
+  terminal/.style = {rectangle, minimum size = 6mm, draw = black},
+  point/.style = {coordinate},
+  mtx/.style = {
+    matrix of nodes,
+    column sep = 7mm, row sep = 4mm,
+    nodes = {draw, outer sep = 5pt, fill = orange,
+      text width = 2em, text centered}
+  },
+}
+
+\begin{tikzpicture}
+
+  \matrix[mtx] (Y) {
+    \elementA & \elementB \\
+    \elementC & \elementD \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(Y-1-1.south west) - (0.5,0)$) -- (Y-1-1.south west) |- (Y-1-1.east) |- (Y-1-2.south west) |- (Y-1-2.east) |- ($(Y-1-2.south east) + (0.5,0)$);
+    \path[draw] (Y-1-1.south west) |- (Y-2-1.east) |- (Y-1-2.south west) |- (Y-2-2.east) |- (Y-1-2.south east);
+  \end{scope}
+
+  \matrix[mtx, below=of Y] (X) {
+    \elementA & \elementB \\
+    \elementC & \elementD \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(X-1-1.south west) - (0.5,0)$) -- (X-1-1.south west) |- (X-1-1.east) |- (X-1-2.east) |- ($(X-1-2.south east) + (0.5,0)$);
+    \path[draw] (X-1-1.south west) |- (X-2-1.east) |- (X-2-2.east) |- (X-1-2.south east);
+  \end{scope}
+
+  \matrix[mtx, below=of X] (Z) {
+    \elementA & \\
+    \elementB & \elementD \\
+    \elementC & \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(Z-2-1.west) - (0.5,0)$) -| (Z-1-1.west) |- (Z-1-1.east) |- ($(Z-2-2.east) + (0.5,0)$);
+    \path[draw] (Z-2-1.west) -- (Z-2-1.east);
+    \path[draw] (Z-2-1.west) -| (Z-3-1.west) -| (Z-2-1.east);
+  \end{scope}
+
+  \matrix[mtx, below=of Z] (W) {
+              & \elementB & \\
+    \elementA &           & \elementD \\
+              & \elementC & \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(W-2-1.west) - (0.5, 0)$) -| (W-2-1.east) |- (W-1-2.east) -| (W-2-3.west) -- ($(W-2-3.east) + (0.5, 0)$);
+    \path[draw] (W-2-1.east) |- (W-3-2.east) -| (W-2-3.west);
+  \end{scope}
+
+\end{tikzpicture}3.west);
+  \end{scope}
+
+
+
+\end{tikzpicture} 
