@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 244 Tikz figures in this gallery.  Most of them were
+There are 246 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -881,6 +881,80 @@ Some useful tutorials or galleries:
   \draw (s1) -- ++(-0.8,0);
   \draw [->] (s2) -- ++(0.8,0);
 \end{tikzpicture}
+```
+****
+
+![](./src/circuitos_mistos_4_componentes.png)
+
+  * [circuitos_mistos_4_componentes.pgf](https://github.com/walmes/Tikz/blob/master/src/circuitos_mistos_4_componentes.pgf)
+
+```tex
+\def\elementA{0.1}
+\def\elementB{0.2}
+\def\elementC{0.3}
+\def\elementD{0.4}
+
+\tikzset{
+  > = stealth,
+  draw = black,
+  every path/.style = {rounded corners = 0pt},
+  terminal/.style = {rectangle, minimum size = 6mm, draw = black},
+  point/.style = {coordinate},
+  mtx/.style = {
+    matrix of nodes,
+    column sep = 7mm, row sep = 4mm,
+    nodes = {draw, outer sep = 5pt, fill = orange,
+      text width = 2em, text centered}
+  },
+}
+
+\begin{tikzpicture}
+
+  \matrix[mtx] (Y) {
+    \elementA & \elementB \\
+    \elementC & \elementD \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(Y-1-1.south west) - (0.5,0)$) -- (Y-1-1.south west) |- (Y-1-1.east) |- (Y-1-2.south west) |- (Y-1-2.east) |- ($(Y-1-2.south east) + (0.5,0)$);
+    \path[draw] (Y-1-1.south west) |- (Y-2-1.east) |- (Y-1-2.south west) |- (Y-2-2.east) |- (Y-1-2.south east);
+  \end{scope}
+
+  \matrix[mtx, below=of Y] (X) {
+    \elementA & \elementB \\
+    \elementC & \elementD \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(X-1-1.south west) - (0.5,0)$) -- (X-1-1.south west) |- (X-1-1.east) |- (X-1-2.east) |- ($(X-1-2.south east) + (0.5,0)$);
+    \path[draw] (X-1-1.south west) |- (X-2-1.east) |- (X-2-2.east) |- (X-1-2.south east);
+  \end{scope}
+
+  \matrix[mtx, below=of X] (Z) {
+    \elementA & \\
+    \elementB & \elementD \\
+    \elementC & \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(Z-2-1.west) - (0.5,0)$) -| (Z-1-1.west) |- (Z-1-1.east) |- ($(Z-2-2.east) + (0.5,0)$);
+    \path[draw] (Z-2-1.west) -- (Z-2-1.east);
+    \path[draw] (Z-2-1.west) -| (Z-3-1.west) -| (Z-2-1.east);
+  \end{scope}
+
+  \matrix[mtx, below=of Z] (W) {
+              & \elementB & \\
+    \elementA &           & \elementD \\
+              & \elementC & \\
+  };
+  \begin{scope}[on background layer]
+    \path[->, draw] ($(W-2-1.west) - (0.5, 0)$) -| (W-2-1.east) |- (W-1-2.east) -| (W-2-3.west) -- ($(W-2-3.east) + (0.5, 0)$);
+    \path[draw] (W-2-1.east) |- (W-3-2.east) -| (W-2-3.west);
+  \end{scope}
+
+\end{tikzpicture}3.west);
+  \end{scope}
+
+
+
+\end{tikzpicture} 
 ```
 ****
 
@@ -12878,6 +12952,81 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     \addlegendentry{z}
 
   \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/probtree_scheme.png)
+
+  * [probtree_scheme.pgf](https://github.com/walmes/Tikz/blob/master/src/probtree_scheme.pgf)
+
+```tex
+\tikzset{
+  level 1/.style={level distance=2.5cm, sibling distance=3.5cm},
+  level 2/.style={level distance=2.5cm, sibling distance=1.6cm},
+  bag/.style={text width=3em, text centered, anchor=west,
+    fill=gray!30, rounded corners, minimum height=2em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped, ->, >=stealth']
+  \node[bag] {$\Pr(\Omega)$}
+  child {
+    node[bag] {$\Pr(A^c)$}        
+    child {
+      node[end, label=right:
+      {$\Pr(B^c\cap A^c)$}] {}
+      edge from parent
+      node[below] {$\Pr(B^c|A^c)$}
+    }
+    child {
+      node[label=right:
+      {$\Pr(B\cap A^c)$}] {}
+      edge from parent
+      node[below] {$\Pr(B|A^c)$}
+    }
+    edge from parent 
+    node[below] {$\Pr(A^c|\Omega)$}
+  }
+  child {
+    node[bag] {$\Pr(A)$}        
+    child {
+      node[end, label=right:
+      {$\Pr(B^c\cap A)$}] {}
+      edge from parent
+      node[below] {$\Pr(B^c|A)$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(B\cap A)$}] {}
+      edge from parent
+      node[below] {$\Pr(B|A)$}
+    }
+    edge from parent         
+    node[below] {$\Pr(A|\Omega)$}
+  };
+\end{tikzpicture}
+
+ight:
+      {$\Pr(S\cap F^c)=\dfrac{40}{400}\cdot
+        \dfrac{30}{40}=\dfrac{30}{400}$}] {}
+      edge from parent
+      node[above] {n\~ao ($F^c$)}
+      node[below] {$\Pr(F^c|S)=\frac{30}{40}$}
+    }
+    child {
+      node[end, label=right:
+      {$\Pr(S\cap F)=\dfrac{40}{400}\cdot
+        \dfrac{10}{40}=\dfrac{10}{400}$}] {}
+      edge from parent
+      node[above] {sim ($F$)}
+      node[below] {$\Pr(F|S)=\frac{10}{40}$}
+    }
+    edge from parent         
+    node[above] {sim ($S$)}
+    node[below] {$\Pr(S)=\frac{40}{400}$}
+  };
 \end{tikzpicture}
 ```
 ****
