@@ -1,0 +1,83 @@
+﻿\begin{tikzpicture}%
+
+  \definecolor{colorA}{HTML}{66ffff}
+  \definecolor{colorB}{HTML}{0066ff}
+
+  \begin{scope}
+
+    \begin{axis}[
+      domain   = -3.5:3.5,
+      domain y = -3.5:3.5,
+      view = {-70}{12},
+      % xlabel=$\beta_0$,
+      % ylabel=$\beta_1$,
+      % zlabel={$SSE(\beta_0, \beta_1)$},
+      zmin = -0,
+      xticklabels = \empty,
+      yticklabels = \empty,
+      zticklabels = \empty,
+      axis lines = none,
+      declare function = {mu1 = 0;},
+      declare function = {mu2 = 0;},
+      declare function = {sigma1 = 1;},
+      declare function = {sigma2 = 1;},
+      declare function = {ro = 0.7;},
+      declare function = {
+        bivar(\ma,\sa,\mb,\sb,\ro)=
+        exp(-(((x-\ma)/\sa)^2+((y-\mb)/\sb)^2-(2*\ro)*((x-\ma)/\sa)*((y-\mb)/\sb))/(2*(1-\ro^2)))/(2*pi*\sa*\sb*(1-\ro^2)^0.5);
+      },
+      declare function = {condy = -0.75;},
+%       declare function = {
+%         conditionalnormal(\condy,\ma,\sa,\mb,\sb,\ro)=
+%         exp(-(x-(\ma+\sa*\ro*(\condy-\mb)/\sb))^2/(2*\sa^2*(1-\ro^2)))/(\sa*(1-\ro^2)^0.5*(2*pi)^0.5);
+%       },
+      declare function = {
+        bivarcond(\yc,\ma,\sa,\mb,\sb,\ro)=
+        exp(-(((x-\ma)/\sa)^2+((\yc-\mb)/\sb)^2-(2*\ro)*((x-\ma)/\sa)*((\yc-\mb)/\sb))/(2*(1-\ro^2)))/(2*pi*\sa*\sb*(1-\ro^2)^0.5);
+      },
+      ]
+
+    \addplot3 [domain = -3.5:3.5, samples = 31, samples y = 0,
+      thick, smooth, color = red, fill = orange, opacity = 0.75]
+          (x, condy, {bivarcond(condy, mu1, sigma1, mu2, sigma2, ro)});
+    \draw (axis cs:-3, condy, 0) -- (axis cs: 3, condy, 0);
+
+    \addplot3 [
+      surf,
+      samples = 31,
+      opacity = 0.15,
+      faceted color = colorB,
+      colormap = {blueblack}{
+        color = (colorB)
+        color = (colorA!50!white)
+        color = (colorA)},
+      ] {bivar(mu1, sigma1, mu2, sigma2, ro)};
+
+%     \addplot3 [domain = -3:3, samples = 31, samples y = 0,
+%       thick, smooth, color = red, fill = orange, opacity = 0.75]
+%           (x, condy, {exp(-(condy - mu2)^2/(2*sigma2))/(2*pi*sigma2^2)^0.5*conditionalnormal(condy, mu1, sigma1, mu2, sigma2, ro)});
+
+%       \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
+
+    \end{axis}
+
+  \end{scope}
+
+\end{tikzpicture}%
+
+
+\end{tikzpicture}%
+gma2, ro)});
+
+%       \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
+
+    \end{axis}
+
+  \end{scope}
+
+\end{tikzpicture}%
+axis}
+
+  \end{scope}
+
+\end{tikzpicture}%
