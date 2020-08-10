@@ -1,0 +1,40 @@
+﻿\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=3pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \scriptsize, text width = 15em}
+  ]
+
+  \def\m{\textcolor{orange}{m}}%
+  \def\n{\textcolor{orange}{n}}%
+  \def\r{\textcolor{orange}{r}}%
+  \def\y{\textcolor{cyan}{y}}%
+  \def\p{\textcolor{purple}{p}}%
+
+  \node {
+    $
+    \overset{\nann{p}{}}{\p}(\y; \m, \n, \r) =
+    \displaystyle
+    \binom{\overset{\nann{m}{}}{\m}}{\underset{\nann{y}{}}{\y}}\cdot
+    \binom{\overset{\nann{n}{}}{\n}}{\underset{\nann{ry}{}}{\r - \y}}\bigg/
+    \binom{\overset{\nann{mn}{}}{\m + \n}}{\underset{\nann{r}{}}{\r}}\cdot
+    $
+  };
+  \path[->, draw] (p) -- ++(0, 0.70) node[ann, above, text width = 10em] {
+    Fun{\c c}{\~a}o de probabilidade, de densidade de probabilidade ou de distribui{\c c}{\~a}o.};
+  \path[->, draw] (m) |- ++(0.5, 1.25) node[ann, right] {
+    Par{\^a}metro $\m$.\\ Espaço param{\'e}trico: $\m \geq 1$.};
+  \path[->, draw] (n) |- ++(0.5, 0.5) node[ann, right] {
+    Par{\^a}metro $\n$.\\ Espaço param{\'e}trico: $\n \geq 1$.};
+  \path[->, draw] (y.north) |- ++(0.5, -1.25) node[ann, right, text width = 20em] {
+    Vari{\'a}vel aleat{\'o}ria $\textcolor{cyan}{Y}$.\\ Suporte: $\{\y \in \mathbb{N}: \max(0, \r - \n) \leq \y \leq \min(\r, \m)\}$.};
+  \path[->, draw] (r.north) |- ++(0.5, -0.5) node[ann, right] {
+    Par{\^a}metro $\r$.\\ Espaço param{\'e}trico: $\r \geq 1$.};
+
+\end{tikzpicture}%

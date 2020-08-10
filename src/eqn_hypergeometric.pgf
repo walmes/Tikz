@@ -1,0 +1,30 @@
+﻿\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=3pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \footnotesize, text width = 6em}
+  ]
+
+  \node {
+    $
+    p(y) = 
+    \displaystyle
+    \underset{\nann{a1}{$\phantom{0}$}}{\binom{m}{\textcolor{cyan}{y}}}\cdot
+    \overset{\nann{a2}{$\phantom{0}$}}{\binom{n}{\textcolor{orange}{r - y}}}\bigg/
+    \underset{\nann{a3}{$\phantom{0}$}}{\binom{m + n}{r}}
+    $
+  };
+  \path[->, draw] (a1.north) |- ++(0.5, -1) node[ann, right] {Arranjos com bolas brancas};
+  \path[->, draw] (a2.south) |- ++(0.5, 0.5) node[ann,right] {Arranjos com bolas pretas};
+  \path[->, draw] (a3.north) |- ++(0.5, -0.5) node[ann,right] {Arranjos com todas as bolas};
+\end{tikzpicture}%
+
+ann,right] {testemunhas};
+
+\end{tikzpicture}
