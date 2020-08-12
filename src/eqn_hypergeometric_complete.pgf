@@ -27,13 +27,13 @@
     $
   };
   \path[->, draw] (p) -- ++(0, 0.70) node[ann, above, text width = 10em] {
-    Fun{\c c}{\~a}o de probabilidade, de densidade de probabilidade ou de distribui{\c c}{\~a}o.};
+    Fun{\c c}{\~a}o de probabilidade ou de densidade de probabilidade.};
   \path[->, draw] (m) |- ++(0.5, 1.25) node[ann, right] {
     Par{\^a}metro $\m$.\\ Espaço param{\'e}trico: $\m \geq 1$.};
   \path[->, draw] (n) |- ++(0.5, 0.5) node[ann, right] {
     Par{\^a}metro $\n$.\\ Espaço param{\'e}trico: $\n \geq 1$.};
   \path[->, draw] (y.north) |- ++(0.5, -1.25) node[ann, right, text width = 20em] {
-    Vari{\'a}vel aleat{\'o}ria $\textcolor{cyan}{Y}$.\\ Suporte: $\{\y \in \mathbb{N}: \max(0, \r - \n) \leq \y \leq \min(\r, \m)\}$.};
+    Vari{\'a}vel aleat{\'o}ria $\textcolor{cyan}{Y}$.\\ Suporte: $R_{\y} = \{\y \in \mathbb{N}: \max(0, \r - \n) \leq \y \leq \min(\r, \m)\}$.};
   \path[->, draw] (r.north) |- ++(0.5, -0.5) node[ann, right] {
     Par{\^a}metro $\r$.\\ Espaço param{\'e}trico: $\r \geq 1$.};
 
