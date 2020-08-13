@@ -1,0 +1,30 @@
+﻿% set.seed(123)
+% y <- round(cumsum(rexp(30, 1.25)), digits = 2)
+% cat(y[y <= 10], sep = ", ")
+\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}
+    \coordinate (arrowstart) at (-0.5, 0);
+    \node (arrowend) at (11.25, 0) {Tempo};
+    \draw[->] (arrowstart) -- (arrowend);
+
+    \foreach \x in {0, 2, ..., 10}{
+      \draw (\x, -0.10) -- (\x, 0.10);
+    }
+
+    \foreach \x in {0.67, 1.84, 2.2, 2.22, 2.27, 2.52, 2.77, 2.89, 5.07, 5.09, 5.9, 6.28, 6.51, 6.81, 6.96, 7.64, 8.89, 9.27, 9.75}{
+      \draw[fill = cyan, fill opacity = 0.5] (\x, 0.2) circle [radius = 3pt];
+    }
+
+  \draw[|<->|, color = magenta] (0.67, 0.75) -- (1.84, 0.75) node[right, text = black]
+    {Intervalo entre eventos: $Y_1 \sim \textcolor{magenta}{\text{Exp}(\lambda)}$};
+
+  \coordinate (A) at (4, -0.3);
+  \coordinate (B) at (6, -0.3);
+
+  \draw [decorate, decoration = {brace, amplitude = 5pt}] (B) -- (A) 
+    node [black, midway, yshift = -1.5em] {N{\'u}mero de eventos por intervalo: $Y_2 \sim \textcolor{cyan}{\text{Pois}(\lambda)}$};
+
+  \end{scope}
+
+\end{tikzpicture}%
