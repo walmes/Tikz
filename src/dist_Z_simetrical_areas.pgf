@@ -1,0 +1,48 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width=15cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xmin=-4.5, xmax=4.5
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, height=5cm]
+
+    \addplot[smooth, domain=-3:3, draw=none, fill=cyan!40] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-2:2, draw=none, fill=cyan!25] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-1:1, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+
+  \end{axis}
+
+  \begin{scope}[yshift=-3.5cm]
+    \begin{axis}[
+      myplot,
+      hide y axis,
+      height=4.5cm,
+      axis x line*=bottom,
+      xlabel = ,
+      xtick = {-3, -2, -1, 0, 1, 2, 3},
+      xticklabels = {$\mu -3\sigma$, $\mu - 2\sigma$, $\mu -1\sigma$, $\mu$, $\mu + 1\sigma$, $\mu + 2\sigma$, $\mu + 3\sigma$},
+      domain=-4:4, ymin = -0.05, ymax = 0.3]
+
+      \addplot[draw=none] {x};
+    \draw[|<->|] (axis cs: -1, 0.20) -- (axis cs: 1, 0.20) node [above, midway] {$\text{P}(-1 < Z < 1) \approx 0.6826$};
+    \draw[|<->|] (axis cs: -2, 0.10) -- (axis cs: 2, 0.10) node [above, midway] {$\text{P}(-2 < Z < 2) \approx 0.9546$};
+    \draw[|<->|] (axis cs: -3, 0.00) -- (axis cs: 3, 0.00) node [above, midway] {$\text{P}(-3 < Z < 3) \approx 0.9973$};
+
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}%
