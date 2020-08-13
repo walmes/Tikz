@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 246 Tikz figures in this gallery.  Most of them were
+There are 256 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -4131,6 +4131,74 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/dist_expon_hazard.png)
+
+  * [dist_expon_hazard.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_expon_hazard.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width=7cm, height=3.5cm,
+    samples=50, domain=0:5, smooth, no marks,
+    xlabel=$y$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth',
+  mypath/.style = {
+    draw, shorten <=3pt, shorten >=2pt,
+  },
+  hplot/.style = {ycomb, mark = o, dashed},
+  declare function={
+    exppdf(\x,\lambda) = \lambda*exp(-\lambda*\x);
+  },
+  declare function={
+    expcdf(\x,\lambda) = 1-exp(-\lambda*\x);
+  }]
+
+  \begin{axis}[myplot, ylabel = $f(y)$, title={\scriptsize Fun{\c c}{\~a}o de densidade de probabilidade}]
+    \addplot[domain = 0.35:5, draw=none, fill=blue!40] {exppdf(x,2)} \closedcycle;
+    \addplot[color=orange, thick] {exppdf(x,2)};
+    \addlegendentry{$\lambda = 2$};
+    \addplot[red, mark = *, only marks] coordinates {(0.35, {exppdf(0.35, 2)})};
+
+    \draw[dotted] (axis cs: 0, {exppdf(0.35,2)}) -- (axis cs: 0.35, {exppdf(0.35,2)});
+    \draw[dotted] (axis cs: 0.35, 0) -- (axis cs: 0.35, {exppdf(0.35,2)});
+    \path[->, mypath] (axis cs: 0.35, {exppdf(0.35,2)}) to[out = 90, in = 180]
+      ++(axis cs: 1, 0.5) node[right] {$f(y)$};
+    \path[->, mypath] (axis cs: 0.5, 0.2) to[out = 90, in = 180]
+      ++(axis cs: 1, 0.5) node[right] {$1 - F(y)$};
+  \end{axis}
+
+  \begin{axis}[myplot, yshift=-3.2cm, ylabel=$F(y)$, legend pos=south east,
+    title={\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o}]
+    \addplot[color=cyan, thick] {expcdf(x,2)};
+    \addlegendentry{$\lambda=2$};
+    \addplot[blue, mark = *, only marks] coordinates {(0.35, {expcdf(0.35, 2)})};
+
+    \draw[dotted] (axis cs: 0, {expcdf(0.35,2)}) -- (axis cs: 0.35, {expcdf(0.35,2)});
+    \draw[dotted] (axis cs: 0.35, 0) -- (axis cs: 0.35, {expcdf(0.35,2)});
+    \path[->, mypath] (axis cs: 0.35, {expcdf(0.35,2)}) to[out = 0, in = 180]
+      ++(axis cs: 1, 0) node[right] {$F(y)$};
+  \end{axis}
+
+  \begin{axis}[myplot, yshift=-6.4cm, ylabel=$h(y)$, legend pos=south east,
+%     ytick distance = 0.1,
+%     ytick = {0.45, 0.50, 0.55},
+    ymin = 0.35, ymax = 0.65,
+    title={\scriptsize Fun{\c c}{\~a}o de risco}]
+    \addplot[color=magenta, thick] {1/2};
+    \addlegendentry{$\lambda=2$};
+  \end{axis}
+
+\end{tikzpicture}
+```
+****
+
 ![](./src/dist_expon.png)
 
   * [dist_expon.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_expon.pgf)
@@ -4269,6 +4337,51 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/dist_normal_2.png)
+
+  * [dist_normal_2.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_2.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[
+    width=8cm,
+    height=6cm,
+    samples=50,
+    xlabel=$y$, ylabel=$f(y)$,
+    legend style={draw=none, fill=none},
+    domain=-5:5,
+    legend cell align=left,
+%     xmin=-7, xmax=11
+    clip=false]
+
+    \addplot [smooth, thick, fill = cyan, fill opacity=0.3] {normalpdf(x,0,1)}
+    node[pos=0.57, pin={[text opacity=1, text width=5em]right:$\mu=0$\\ $\sigma^2=1$}] {};
+    \addplot [ycomb, samples at={0}] {normalpdf(x,0,1)};
+
+    \node[anchor=north] at (axis description cs: 0.5,  1.30)
+    {$f(y) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\cdot 
+      \exp\left\{-\displaystyle\frac{(y-\mu)^2}{2\sigma^2}\right\}$};
+
+  \end{axis}
+\end{tikzpicture}\addplot [hplot, samples at={0}] {normalpdf(x,0,1)};
+    \addplot [hplot, samples at={0}, blue] {normalpdf(x,0,2)};
+    \addplot [hplot, samples at={-2}, red] {normalpdf(x,-2,1)};
+
+    \node[anchor=north east] at (axis description cs: 0.975,  0.95)
+    {$f(x) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\cdot 
+      \exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\}$};
+
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
 ![](./src/dist_normal_pad.png)
 
   * [dist_normal_pad.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_normal_pad.pgf)
@@ -4358,7 +4471,7 @@ ift = -2.5cm]
 
 \pgfplotsset{
   myplot/.style={
-    width=9cm, height=6cm,
+    width=9cm, height=5.8cm,
     samples=50, smooth, no marks,
     xlabel style={at={(1,0)}, anchor=north west},
     ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
@@ -4373,48 +4486,52 @@ ift = -2.5cm]
     (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
   }]
 
-  \begin{scope}
+  \begin{scope}[xshift = -1cm, yshift = 0.5cm]
     \begin{axis}[
       myplot,
       domain=-4:4,
       xlabel=$z$, ylabel=$f(z)$,
-      title={Densidade da Normal Padr\~{a}o ($Z$)}]
+      ]
 
-      \addplot[domain=0:1.64, draw=none, fill=darkgreen]
-      {normalpdf(x,0,1)} \closedcycle;
+      \addplot[domain=0:1.64, draw=none, fill=cyan!50] {normalpdf(x,0,1)} \closedcycle;
       \addplot[thick] {normalpdf(x,0,1)};
-      % \addlegendentry{$\mu=0$, $\sigma^2=1$}
-      \coordinate (p0) at (axis cs: 0.82,0.1);
-      \draw[<->] (axis cs: 1.64,  0) |- (axis cs: 2.2, 0.25)
-      node[right] {$z =1.64$};
+      \coordinate (p0) at (axis cs: 0.82, 0.1);
+      \node (zval) at (axis cs: 3.2, 0.25) {$z =1.64$};
+      \draw[<->] (axis cs: 1.64,  0) |- (zval);
     \end{axis}
   \end{scope}
 
   \begin{scope}[
     xshift=11cm, yshift=2.9cm,
-    every node/.style={rounded corners}]
+    every node/.style={rounded corners}
+  ]
 
     \matrix[table, text width=1.5em] (first) {
-                   & $\cdots$ & 0.03 & \textbf{0.04}                          & $\cdots$ \\
+                   & $\cdots$ & 0.03 & 0.04                                   & $\cdots$ \\
       $\vdots$     &          &      &                                        &          \\ 
       1.5          &          &      &                                        &          \\
-      \textbf{1.6} &          &      & \node[black, fill=darkgreen]{0.44950}; &          \\
+      1.6          &          &      & \node[black, fill=cyan!50]{0.44950};   &          \\
       $\vdots$     &          &      &                                        &          \\
     };
 
+   \node (decimal) at (-2, 2) {$1.64 = 1.60 + 0.04$};
+   \path[draw, ->] (-2, 1.8) to[out = -120, in = 180] (first-4-1.west);
+   \path[draw, ->] (-0.95, 1.8) to[out = -60, in = 90] (first-1-4.north);
+   \path[draw, ->] (-3.5, 2) to[out = 180, in = 0] (zval);
+
     \draw (first-1-2.north west) -- (first-5-2.south west);
     \draw (first-1-1.south west) -- (first-1-5.south east);
-    \draw[->] (first-1-4) -- (first-4-4);
-    \draw[->] (first-4-1) -- (first-4-4);
+    \path[->] (first-1-2.north west) -- (p0);
+
+    \draw[->] (first-1-4) -- (first-3-4.south);
+    \draw[->] (first-4-1) -- (first-4-3.east);
 
     \path[o->] (p0) edge[bend right=25]
-    node[below=1pt, fill=darkgreen,
-    draw=none, anchor=north west] {$\Pr(0<Z<z)$}
-    (first-4-4.-140);
-
-    \node[above of=first-1-3] {Tabela da Normal Padr\~{a}o};
+     node[below=1pt, fill=cyan!50,
+    draw=none, anchor=north west] {$\text{P}(0 < Z < 1.64)$} (first-5-4.120);
 
   \end{scope}
+
 \end{tikzpicture}
 ```
 ****
@@ -4938,6 +5055,98 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/dist_Z_simetrical_areas.png)
+
+  * [dist_Z_simetrical_areas.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_Z_simetrical_areas.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width=15cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xmin=-4.5, xmax=4.5
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, height=5cm]
+
+    \addplot[smooth, domain=-3:3, draw=none, fill=cyan!40] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-2:2, draw=none, fill=cyan!25] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-1:1, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+
+  \end{axis}
+
+  \begin{scope}[yshift=-3.5cm]
+    \begin{axis}[
+      myplot,
+      hide y axis,
+      height=4.5cm,
+      axis x line*=bottom,
+      xlabel = ,
+      xtick = {-3, -2, -1, 0, 1, 2, 3},
+      xticklabels = {$\mu -3\sigma$, $\mu - 2\sigma$, $\mu -1\sigma$, $\mu$, $\mu + 1\sigma$, $\mu + 2\sigma$, $\mu + 3\sigma$},
+      domain=-4:4, ymin = -0.05, ymax = 0.3]
+
+      \addplot[draw=none] {x};
+    \draw[|<->|] (axis cs: -1, 0.20) -- (axis cs: 1, 0.20) node [above, midway] {$\text{P}(-1 < Z < 1) \approx 0.6826$};
+    \draw[|<->|] (axis cs: -2, 0.10) -- (axis cs: 2, 0.10) node [above, midway] {$\text{P}(-2 < Z < 2) \approx 0.9546$};
+    \draw[|<->|] (axis cs: -3, 0.00) -- (axis cs: 3, 0.00) node [above, midway] {$\text{P}(-3 < Z < 3) \approx 0.9973$};
+
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/dist-gaussian.png)
+
+  * [dist-gaussian.pgf](https://github.com/walmes/Tikz/blob/master/src/dist-gaussian.pgf)
+
+```tex
+\def\zright{1.645}%
+\def\muzero{0}%
+\def\muone{-1.95}%
+\pgfplotsset{%
+  myplot/.style={
+    width=12cm,
+    height=6cm,
+%     xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    legend style={draw=none, fill=none},
+  }%
+}%
+\begin{tikzpicture}[%
+  >=stealth,
+  every node/.style={rounded corners},
+  Red/.style={
+    draw=none, text opacity=1, fill=red!70!blue, fill opacity=0.75
+  },
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, hide axis]
+    \addplot[Red, draw, smooth, thick, domain=-4:4]
+      {normalpdf(x,0,1)};
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
 ![](./src/efeito_manejo.png)
 
   * [efeito_manejo.pgf](https://github.com/walmes/Tikz/blob/master/src/efeito_manejo.pgf)
@@ -5401,6 +5610,92 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/eqn_hypergeometric_complete.png)
+
+  * [eqn_hypergeometric_complete.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_hypergeometric_complete.pgf)
+
+```tex
+\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=3pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \scriptsize, text width = 15em}
+  ]
+
+  \def\m{\textcolor{orange}{m}}%
+  \def\n{\textcolor{orange}{n}}%
+  \def\r{\textcolor{orange}{r}}%
+  \def\y{\textcolor{cyan}{y}}%
+  \def\p{\textcolor{purple}{p}}%
+
+  \node {
+    $
+    \overset{\nann{p}{}}{\p}(\y; \m, \n, \r) =
+    \displaystyle
+    \binom{\overset{\nann{m}{}}{\m}}{\underset{\nann{y}{}}{\y}}\cdot
+    \binom{\overset{\nann{n}{}}{\n}}{\underset{\nann{ry}{}}{\r - \y}}\bigg/
+    \binom{\overset{\nann{mn}{}}{\m + \n}}{\underset{\nann{r}{}}{\r}}\cdot
+    $
+  };
+  \path[->, draw] (p) -- ++(0, 0.70) node[ann, above, text width = 10em] {
+    Fun{\c c}{\~a}o de probabilidade ou de densidade de probabilidade.};
+  \path[->, draw] (m) |- ++(0.5, 1.25) node[ann, right] {
+    Par{\^a}metro $\m$.\\ Espaço param{\'e}trico: $\m \geq 1$.};
+  \path[->, draw] (n) |- ++(0.5, 0.5) node[ann, right] {
+    Par{\^a}metro $\n$.\\ Espaço param{\'e}trico: $\n \geq 1$.};
+  \path[->, draw] (y.north) |- ++(0.5, -1.25) node[ann, right, text width = 20em] {
+    Vari{\'a}vel aleat{\'o}ria $\textcolor{cyan}{Y}$.\\ Suporte: $R_{\y} = \{\y \in \mathbb{N}: \max(0, \r - \n) \leq \y \leq \min(\r, \m)\}$.};
+  \path[->, draw] (r.north) |- ++(0.5, -0.5) node[ann, right] {
+    Par{\^a}metro $\r$.\\ Espaço param{\'e}trico: $\r \geq 1$.};
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/eqn_hypergeometric.png)
+
+  * [eqn_hypergeometric.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_hypergeometric.pgf)
+
+```tex
+\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=3pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \footnotesize, text width = 6em}
+  ]
+
+  \node {
+    $
+    p(y) = 
+    \displaystyle
+    \underset{\nann{a1}{$\phantom{0}$}}{\binom{m}{\textcolor{cyan}{y}}}\cdot
+    \overset{\nann{a2}{$\phantom{0}$}}{\binom{n}{\textcolor{orange}{r - y}}}\bigg/
+    \underset{\nann{a3}{$\phantom{0}$}}{\binom{m + n}{r}}
+    $
+  };
+  \path[->, draw] (a1.north) |- ++(0.5, -1) node[ann, right] {Arranjos com bolas brancas};
+  \path[->, draw] (a2.south) |- ++(0.5, 0.5) node[ann,right] {Arranjos com bolas pretas};
+  \path[->, draw] (a3.north) |- ++(0.5, -0.5) node[ann,right] {Arranjos com todas as bolas};
+\end{tikzpicture}%
+
+ann,right] {testemunhas};
+
+\end{tikzpicture}
+```
+****
+
 ![](./src/eqn_LU.png)
 
   * [eqn_LU.pgf](https://github.com/walmes/Tikz/blob/master/src/eqn_LU.pgf)
@@ -5671,6 +5966,44 @@ ift = -2.5cm]
   \path[->, draw] (repl.north) |- ++(1,1) node[right] {REPL};
   \path[->, draw] (txt.east) -| ++(1,1) node[above] {FILE};
 \end{tikzpicture}
+```
+****
+
+![](./src/exponential-poisson.png)
+
+  * [exponential-poisson.pgf](https://github.com/walmes/Tikz/blob/master/src/exponential-poisson.pgf)
+
+```tex
+% set.seed(123)
+% y <- round(cumsum(rexp(30, 1.25)), digits = 2)
+% cat(y[y <= 10], sep = ", ")
+\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}
+    \coordinate (arrowstart) at (-0.5, 0);
+    \node (arrowend) at (11.25, 0) {Tempo};
+    \draw[->] (arrowstart) -- (arrowend);
+
+    \foreach \x in {0, 2, ..., 10}{
+      \draw (\x, -0.10) -- (\x, 0.10);
+    }
+
+    \foreach \x in {0.67, 1.84, 2.2, 2.22, 2.27, 2.52, 2.77, 2.89, 5.07, 5.09, 5.9, 6.28, 6.51, 6.81, 6.96, 7.64, 8.89, 9.27, 9.75}{
+      \draw[fill = cyan, fill opacity = 0.5] (\x, 0.2) circle [radius = 3pt];
+    }
+
+  \draw[|<->|, color = magenta] (0.67, 0.75) -- (1.84, 0.75) node[right, text = black]
+    {Intervalo entre eventos: $Y_1 \sim \textcolor{magenta}{\text{Exp}(\lambda)}$};
+
+  \coordinate (A) at (4, -0.3);
+  \coordinate (B) at (6, -0.3);
+
+  \draw [decorate, decoration = {brace, amplitude = 5pt}] (B) -- (A) 
+    node [black, midway, yshift = -1.5em] {N{\'u}mero de eventos por intervalo: $Y_2 \sim \textcolor{cyan}{\text{Pois}(\lambda)}$};
+
+  \end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -11960,6 +12293,113 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/normal-boxplot.png)
+
+  * [normal-boxplot.pgf](https://github.com/walmes/Tikz/blob/master/src/normal-boxplot.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width=15cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xmin=-4.5, xmax=4.5
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\perc{0.6744898}
+  \def\aiq{1.34898}
+  \def\lms{2.697959}
+  \def\prob{0.3488302}
+  \def\doubleprob{0.6976603}
+
+  \begin{axis}[myplot, height=6cm]
+
+    \addplot[smooth, domain=-4:4, draw=none, fill=cyan!40] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-4:-\lms, draw=none, fill=red] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=\lms:4, draw=none, fill=red] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-\perc:\perc, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+
+    \node at (axis cs: -1.25, 0.06) {$25\%$};
+    \node at (axis cs:  1.25, 0.06) {$25\%$};
+    \node at (axis cs:  0.00, 0.06) {$50\%$};
+
+    \draw[<-] (axis cs: -\perc, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.35)
+      node[left] {$z_{25\%} = -\perc$};
+    \draw[<-] (axis cs:  \perc, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.35)
+      node[right] {$z_{75\%} = -\perc$};
+
+    \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.25)
+      node[left] {$z_{25\%} - 1.5\cdot\text{AIQ} = -\lms$};
+    \draw[<-, shorten <=5pt] (axis cs:  \lms, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.25)
+      node[right] {$z_{75\%} + 1.5\cdot\text{AIQ} = \lms$};
+
+    \coordinate (area1) at (axis cs: -\lms*1.03, 0);
+    \coordinate (area2) at (axis cs:  \lms*1.03, 0);
+
+  \end{axis}
+
+  \begin{scope}[yshift=-6cm]
+    \begin{axis}[
+      myplot,
+      hide y axis,
+      height=6cm,
+      axis x line*=bottom,
+      xlabel = ,
+      domain=-4:4, ymin = -2.25, ymax = 2.25]
+
+    \addplot[draw=none] {x};
+    \draw[fill = cyan!20] (axis cs: -\perc, -0.5) rectangle (axis cs: \perc, 0.5);
+    \draw[thick] (axis cs: 0, -0.5) rectangle (axis cs: 0, 0.5);
+    \draw[|-] (axis cs: -\lms, 0) -- (axis cs: -\perc, 0);
+    \draw[|-] (axis cs:  \lms, 0) -- (axis cs:  \perc, 0);
+
+    \draw[dashed, color = red] (axis cs: -\lms, -2) -- (axis cs: -\lms, 2);
+    \draw[dashed, color = red] (axis cs:  \lms, -2) -- (axis cs:  \lms, 2);
+
+    \node[above] at (axis cs: -\perc, 0.5) {$q_1$};
+    \node[above] at (axis cs:      0, 0.5) {$q_2$};
+    \node[above] at (axis cs:  \perc, 0.5) {$q_3$};
+
+    \node (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
+
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: \perc, -0.7) -- (axis cs: -\perc, -0.7)
+     node [black, midway, yshift = -1.25em] {$\text{AIQ} = q_3 - q_1$};
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: \lms, -0.7) -- (axis cs: \perc, -0.7)
+     node [black, midway, yshift = -1.25em] {$1.5 \cdot \text{AIQ}$};
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: -\perc, -0.7) -- (axis cs: -\lms, -0.7)
+     node [black, midway, yshift = -1.25em] {$1.5 \cdot \text{AIQ}$};
+
+    \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = -90]
+      (axis cs: -1.4*\lms, 0.75) node[above] {$q_1 - 1.5 \cdot \text{AIQ}$};
+    \draw[<-, shorten <=5pt] (axis cs: \lms, 0) to[out = 90, in = -90]
+      (axis cs: 1.4*\lms, 0.75) node[above] {$q_3 + 1.5 \cdot \text{AIQ}$};
+
+    \end{axis}
+
+    \draw[<-, shorten <=5pt, color = red] (areas) to[out = 90, in = -90] (area1);
+    \draw[<-, shorten <=5pt, color = red] (areas) to[out = 90, in = -90] (area2);
+
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/onda_3d.png)
 
   * [onda_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/onda_3d.pgf)
@@ -13464,6 +13904,89 @@ ight:
   % \node[fit=(A)(B)(C)(D), draw] {};
   % \draw[help lines,step=1] (-10,-5) grid (10,5);
 \end{tikzpicture}
+```
+****
+
+![](./src/random-number-generation-inverse-method.png)
+
+  * [random-number-generation-inverse-method.pgf](https://github.com/walmes/Tikz/blob/master/src/random-number-generation-inverse-method.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 8cm, height = 6cm,
+    samples = 50, domain = 0:5, smooth, no marks,
+    xlabel = $y$,
+    xlabel style = {at = {(1,0)}, anchor = north west},
+    ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+  },
+  continous/.style = {
+    color = cyan, thick
+  },
+  discrete/.style = {
+    color = magenta, thick
+  },
+  close/.style = {color = magenta, only marks, mark = *},
+}%
+
+\begin{tikzpicture}[
+  > = stealth',
+  mypath/.style = {
+    draw, shorten <=3pt, shorten >=2pt,
+  },
+  declare function = {
+    expcdf(\x,\lambda) = 1-exp(-\lambda*\x);
+  }]
+
+  \begin{axis}[myplot, ylabel = $F(y)$, legend pos = south east,
+    ymin = -0.1, ymax = 1.1,
+    title = {\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o de uma v.a. \textcolor{magenta}{discreta}}]
+
+    \addplot[discrete, domain = 0:1] {0.1};
+    \addplot[discrete, domain = 1:2] {0.23};
+    \addplot[discrete, domain = 2:3] {0.67};
+    \addplot[discrete, domain = 3:4] {0.81};
+    \addplot[discrete, domain = 4:5] {1};
+    \addplot[close] coordinates{(0, 0.1)(1, 0.23) (2, 0.67) (3, 0.81) (4, 1)};
+
+    \def\y1{2}
+    \def\u1{0.478}
+
+    \addplot[blue, mark = *, only marks] coordinates {(0, \u1)};
+    \addplot[orange, mark = *, only marks] coordinates {(\y1, 0)};
+
+    \draw[->, shorten <= 5pt] (axis cs: 0, \u1) -- (axis cs: \y1, \u1);
+    \draw[<-, shorten <= 5pt] (axis cs: \y1, 0) -- (axis cs: \y1, \u1);
+
+    \path[draw, ->, shorten <= 4pt] (axis cs: 0, \u1)
+      to[out = 90, in = 190] ++(axis cs: 0.25, 0.3) node[right] {\footnotesize $U \sim \text{UC}(0, 1)$};
+    \path[draw, ->, shorten <= 4pt] (axis cs: \y1, 0)
+      to[out = 0, in = 190] ++(axis cs: 0.7, 0.2) node[right] {\footnotesize $y = \y1$};
+  \end{axis}
+
+  \begin{axis}[myplot, xshift = 8cm, ylabel = $F(y)$, legend pos = south east,
+    title = {\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o de uma v.a. \textcolor{cyan}{cont{\'i}nua}}]
+
+    \addplot[continous] {expcdf(x, 0.9)};
+
+    \def\y1{1.11}
+    \def\u1{{expcdf(\y1, 0.9)}}
+
+    \addplot[blue, mark = *, only marks] coordinates {(0, \u1)};
+    \addplot[orange, mark = *, only marks] coordinates {(\y1, 0)};
+
+    \draw[->, shorten <= 5pt] (axis cs: 0, \u1) -- (axis cs: \y1, \u1);
+    \draw[<-, shorten <= 5pt] (axis cs: \y1, 0) -- (axis cs: \y1, \u1);
+
+    \path[draw, ->, shorten <= 4pt] (axis cs: 0, \u1)
+      to[out = 90, in = 190] ++(axis cs: 0.25, 0.3) node[right] {\footnotesize $U \sim \text{UC}(0, 1)$};
+    \path[draw, ->, shorten <= 4pt] (axis cs: \y1, 0)
+      to[out = 0, in = 190] ++(axis cs: 0.7, 0.2) node[right] {\footnotesize $y = \y1$};
+
+  \end{axis}
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -16608,6 +17131,65 @@ ight:
 ```
 ****
 
+![](./src/tipos-tabela-normal.png)
+
+  * [tipos-tabela-normal.pgf](https://github.com/walmes/Tikz/blob/master/src/tipos-tabela-normal.pgf)
+
+```tex
+\def\zright{1.645}%
+\def\muzero{0}%
+\pgfplotsset{
+  myplot/.style = {
+    width = 10cm, height = 4.5cm,
+    % xlabel = $z$, ylabel = $f(z)$,
+    samples = 50,
+    legend style = {draw = none, fill = none},
+  }%
+}%
+
+\begin{tikzpicture}[
+  >=stealth,
+  Cyan/.style = {
+    draw = none, text opacity = 1, fill = cyan, fill opacity = 0.25
+  },
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot,
+    title = Tipos de valores em tabelas da Normal Padr{\~a}o]
+    \addplot[Cyan, smooth, domain = -4:\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \node (prob) at (axis cs: -3, 0.3) {$\text{P}(Z < z)$};
+    \path[->, draw] (axis cs: 0, 0.2)
+      to[out = 90, in = 0] (prob);
+  \end{axis}
+
+  \begin{axis}[myplot, yshift = -3.5cm]
+    \addplot[Cyan, smooth, domain = 0:\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \node (prob) at (axis cs: 3, 0.3) {$\text{P}(0 < Z < z)$};
+    \path[->, draw] (axis cs: 0.7, 0.15) to[out = 90, in = 180] (prob);
+  \end{axis}
+
+  \begin{axis}[myplot, yshift = -7cm]
+    \addplot[Cyan, smooth, domain = \zright:4] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[Cyan, smooth, domain = -4:-\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \path[<->, draw] (axis cs: -\zright, 0) to[out = 90, in = 0] (axis cs: -2.5, 0.15) node[left] {$-z$};
+    \node (prob) at (axis cs: 3, 0.3) {$\text{P}(Z > |z|)$};
+    \path[->, draw] (axis cs: -1.9, 0.02) to[out = 0, in = 180] (prob);
+    \path[->, draw] (axis cs: 1.9, 0.02) to[out = 180, in = 180] (prob);
+  \end{axis}
+
+\end{tikzpicture}}
+```
+****
+
 ![](./src/tree_1.png)
 
   * [tree_1.pgf](https://github.com/walmes/Tikz/blob/master/src/tree_1.pgf)
@@ -17070,41 +17652,76 @@ ight:
 \def\A{\clubsuit}
 \def\B{\heartsuit}
 
-\begin{tikzpicture}
-  \draw (-2,0) rectangle (7,3) node[above right] at (-2,0) {$\Omega$};
-  \node[above] at (2.5,3) {elementos de $\Omega$};
-  \node (111) at (6,2) {};
-  \node (110) at (5,1) {};
-  \node (011) at (4,2) {};
-  \node (101) at (3,1) {};
-  \node (001) at (2,2) {};
-  \node (100) at (1,1) {};
-  \node (010) at (0,2) {};
-  \node (000) at (-1,1) {};
-  \node[left, text width=3em, text centered] (arrowstart) at (-2,-2)
-    {valores de $X$ (U\$)};
-  \node (arrowend) at (7,-2) {$\mathbb{R}$};
-  \draw (111) circle (2pt) node[above] {$\A\A\A$};
-  \draw (110) circle (2pt) node[above] {$\A\A\B$};
-  \draw (011) circle (2pt) node[above] {$\B\A\A$};
-  \draw (101) circle (2pt) node[above] {$\A\B\A$};
-  \draw (001) circle (2pt) node[above] {$\B\B\A$};
-  \draw (100) circle (2pt) node[above] {$\A\B\B$};
-  \draw (010) circle (2pt) node[above] {$\B\A\B$};
-  \draw (000) circle (2pt) node[above] {$\B\B\B$};
-  \draw[->] (arrowstart) -- (arrowend);
-  \foreach \x/\y in {0/0,1/50,2/100,3/250,4/500,5/1000}{
-    \draw (\x,-1.8) -- (\x,-2) node[anchor=north] {\y};
-  }
-  \path [->,>=stealth']
-    (111) edge[bend left] (5,-2)
-    (110) edge[bend left] (4,-2)
-    (011) edge[bend left] (4,-2)
-    (101) edge[bend left] (3,-2)
-    (001) edge[bend left] (2,-2)
-    (100) edge[bend right] (2,-2)
-    (010) edge[bend right] (1,-2)
-    (000) edge[bend right] (0,-2);
+\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}[xshift = -1cm, yshift = 1.5cm]
+
+    \matrix[matrix of nodes,
+      row 2/.style = {nodes = {fill = gray}},
+      nodes = {draw,
+        rounded corners = 1pt,
+        minimum height = 1.5em,
+        text width = 1.5em,
+        anchor = center,
+        align = center,
+        inner sep = 0pt},
+     column sep = 1pt, row sep = 1pt] (X) {
+      $\B$ & $\B$ & $\B$ \\
+      $\A$ & $\A$ & $\A$ \\
+      $\B$ & $\B$ & $\B$ \\
+      $\B$ & $\A$ & $\B$ \\
+    };
+
+    \foreach \x in {1, 2, 3}{
+      \node[below = 0.8em] at (X-4-\x) {\x};
+    }
+    \node[below = 1.6em] at (X-4-2) {Cil{\' i}ndros};
+    \path[draw, ->, shorten >=1pt] (1, 1.5) node[above, anchor = east] {Resultado} -- +(0.2,0) |- (X-2-3);
+    \node[draw, dashed, fit = (X-2-1) (X-2-3)] {};
+
+  \end{scope}
+
+  \begin{scope}[xshift = 3cm]
+    \draw (-2, 0) rectangle (7, 3) node[above right] at (-2, 0) {$\Omega$};
+    \node[above] at (2.5, 3) {Pontos $\omega_i$ do espa{\c c}o amostral $\Omega$};
+    \coordinate (111) at (6,2);
+    \coordinate (110) at (5,1);
+    \coordinate (011) at (4,2);
+    \coordinate (101) at (3,1);
+    \coordinate (001) at (2,2);
+    \coordinate (100) at (1,1);
+    \coordinate (010) at (0,2);
+    \coordinate (000) at (-1,1);
+
+    \draw (111) circle (2pt) node[above] {$\A\A\A$};
+    \draw (110) circle (2pt) node[above] {$\A\A\B$};
+    \draw (011) circle (2pt) node[above] {$\B\A\A$};
+    \draw (101) circle (2pt) node[above] {$\A\B\A$};
+    \draw (001) circle (2pt) node[above] {$\B\B\A$};
+    \draw (100) circle (2pt) node[above] {$\A\B\B$};
+    \draw (010) circle (2pt) node[above] {$\B\A\B$};
+    \draw (000) circle (2pt) node[above] {$\B\B\B$};
+
+    \node[left, text width = 5em, align = right] (arrowstart) at (-2, -2) {Valores de $Y$ (U\$)};
+    \node (arrowend) at (7, -2) {$\mathbb{R}$};
+    \draw[->] (arrowstart) -- (arrowend);
+
+    \foreach \x/\y in {0/0, 0.5/100, 1.25/250, 2.5/500, 5/1000}{
+      \draw[xscale = 1.5, xshift = -1cm] (\x, -1.85) -- (\x, -2.25) node[anchor = north] {\y};
+    }
+    \draw[xscale = 1.5, xshift = -1cm] (0.25, -1.85) -- (0.25, -2.6) node[anchor = north] {50};
+
+    \path [xscale = 1.5, xshift = -1cm, ->, shorten <=3pt, shorten >=2pt]
+      (111) edge[bend left = 15] (5.00,-2)
+      (110) edge[bend left = 15] (2.50,-2)
+      (011) edge[bend left = 15] (2.50,-2)
+      (101) edge[bend left = 15] (1.25,-2)
+      (001) edge[bend left = 15] (0.50,-2)
+      (100) edge[bend right = 15] (0.50,-2)
+      (010) edge[bend right = 15] (0.25,-2)
+      (000) edge[bend right = 15] (0,-2);
+  \end{scope}
+
 \end{tikzpicture}
 ```
 ****
