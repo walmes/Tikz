@@ -1,0 +1,60 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width=7cm, height=3.5cm,
+    samples=50, domain=0:5, smooth, no marks,
+    xlabel=$y$,
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none},
+  }
+}
+
+\begin{tikzpicture}[
+  >=stealth',
+  mypath/.style = {
+    draw, shorten <=3pt, shorten >=2pt,
+  },
+  hplot/.style = {ycomb, mark = o, dashed},
+  declare function={
+    exppdf(\x,\lambda) = \lambda*exp(-\lambda*\x);
+  },
+  declare function={
+    expcdf(\x,\lambda) = 1-exp(-\lambda*\x);
+  }]
+
+  \begin{axis}[myplot, ylabel = $f(y)$, title={\scriptsize Fun{\c c}{\~a}o de densidade de probabilidade}]
+    \addplot[domain = 0.35:5, draw=none, fill=blue!40] {exppdf(x,2)} \closedcycle;
+    \addplot[color=orange, thick] {exppdf(x,2)};
+    \addlegendentry{$\lambda = 2$};
+    \addplot[red, mark = *, only marks] coordinates {(0.35, {exppdf(0.35, 2)})};
+
+    \draw[dotted] (axis cs: 0, {exppdf(0.35,2)}) -- (axis cs: 0.35, {exppdf(0.35,2)});
+    \draw[dotted] (axis cs: 0.35, 0) -- (axis cs: 0.35, {exppdf(0.35,2)});
+    \path[->, mypath] (axis cs: 0.35, {exppdf(0.35,2)}) to[out = 90, in = 180]
+      ++(axis cs: 1, 0.5) node[right] {$f(y)$};
+    \path[->, mypath] (axis cs: 0.5, 0.2) to[out = 90, in = 180]
+      ++(axis cs: 1, 0.5) node[right] {$1 - F(y)$};
+  \end{axis}
+
+  \begin{axis}[myplot, yshift=-3.2cm, ylabel=$F(y)$, legend pos=south east,
+    title={\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o}]
+    \addplot[color=cyan, thick] {expcdf(x,2)};
+    \addlegendentry{$\lambda=2$};
+    \addplot[blue, mark = *, only marks] coordinates {(0.35, {expcdf(0.35, 2)})};
+
+    \draw[dotted] (axis cs: 0, {expcdf(0.35,2)}) -- (axis cs: 0.35, {expcdf(0.35,2)});
+    \draw[dotted] (axis cs: 0.35, 0) -- (axis cs: 0.35, {expcdf(0.35,2)});
+    \path[->, mypath] (axis cs: 0.35, {expcdf(0.35,2)}) to[out = 0, in = 180]
+      ++(axis cs: 1, 0) node[right] {$F(y)$};
+  \end{axis}
+
+  \begin{axis}[myplot, yshift=-6.4cm, ylabel=$h(y)$, legend pos=south east,
+%     ytick distance = 0.1,
+%     ytick = {0.45, 0.50, 0.55},
+    ymin = 0.35, ymax = 0.65,
+    title={\scriptsize Fun{\c c}{\~a}o de risco}]
+    \addplot[color=magenta, thick] {1/2};
+    \addlegendentry{$\lambda=2$};
+  \end{axis}
+
+\end{tikzpicture}
