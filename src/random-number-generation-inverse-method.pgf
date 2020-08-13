@@ -1,0 +1,75 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 8cm, height = 6cm,
+    samples = 50, domain = 0:5, smooth, no marks,
+    xlabel = $y$,
+    xlabel style = {at = {(1,0)}, anchor = north west},
+    ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+  },
+  continous/.style = {
+    color = cyan, thick
+  },
+  discrete/.style = {
+    color = magenta, thick
+  },
+  close/.style = {color = magenta, only marks, mark = *},
+}%
+
+\begin{tikzpicture}[
+  > = stealth',
+  mypath/.style = {
+    draw, shorten <=3pt, shorten >=2pt,
+  },
+  declare function = {
+    expcdf(\x,\lambda) = 1-exp(-\lambda*\x);
+  }]
+
+  \begin{axis}[myplot, ylabel = $F(y)$, legend pos = south east,
+    ymin = -0.1, ymax = 1.1,
+    title = {\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o de uma v.a. \textcolor{magenta}{discreta}}]
+
+    \addplot[discrete, domain = 0:1] {0.1};
+    \addplot[discrete, domain = 1:2] {0.23};
+    \addplot[discrete, domain = 2:3] {0.67};
+    \addplot[discrete, domain = 3:4] {0.81};
+    \addplot[discrete, domain = 4:5] {1};
+    \addplot[close] coordinates{(0, 0.1)(1, 0.23) (2, 0.67) (3, 0.81) (4, 1)};
+
+    \def\y1{2}
+    \def\u1{0.478}
+
+    \addplot[blue, mark = *, only marks] coordinates {(0, \u1)};
+    \addplot[orange, mark = *, only marks] coordinates {(\y1, 0)};
+
+    \draw[->, shorten <= 5pt] (axis cs: 0, \u1) -- (axis cs: \y1, \u1);
+    \draw[<-, shorten <= 5pt] (axis cs: \y1, 0) -- (axis cs: \y1, \u1);
+
+    \path[draw, ->, shorten <= 4pt] (axis cs: 0, \u1)
+      to[out = 90, in = 190] ++(axis cs: 0.25, 0.3) node[right] {\footnotesize $U \sim \text{UC}(0, 1)$};
+    \path[draw, ->, shorten <= 4pt] (axis cs: \y1, 0)
+      to[out = 0, in = 190] ++(axis cs: 0.7, 0.2) node[right] {\footnotesize $y = \y1$};
+  \end{axis}
+
+  \begin{axis}[myplot, xshift = 8cm, ylabel = $F(y)$, legend pos = south east,
+    title = {\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o de uma v.a. \textcolor{cyan}{cont{\'i}nua}}]
+
+    \addplot[continous] {expcdf(x, 0.9)};
+
+    \def\y1{1.11}
+    \def\u1{{expcdf(\y1, 0.9)}}
+
+    \addplot[blue, mark = *, only marks] coordinates {(0, \u1)};
+    \addplot[orange, mark = *, only marks] coordinates {(\y1, 0)};
+
+    \draw[->, shorten <= 5pt] (axis cs: 0, \u1) -- (axis cs: \y1, \u1);
+    \draw[<-, shorten <= 5pt] (axis cs: \y1, 0) -- (axis cs: \y1, \u1);
+
+    \path[draw, ->, shorten <= 4pt] (axis cs: 0, \u1)
+      to[out = 90, in = 190] ++(axis cs: 0.25, 0.3) node[right] {\footnotesize $U \sim \text{UC}(0, 1)$};
+    \path[draw, ->, shorten <= 4pt] (axis cs: \y1, 0)
+      to[out = 0, in = 190] ++(axis cs: 0.7, 0.2) node[right] {\footnotesize $y = \y1$};
+
+  \end{axis}
+
+\end{tikzpicture}%
