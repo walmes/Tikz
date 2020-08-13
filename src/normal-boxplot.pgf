@@ -1,0 +1,99 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width=15cm, height=6cm,
+    xlabel=$z$, ylabel=$f(z)$,
+    samples=50,
+    xlabel style={at={(1,0)}, anchor=west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south west},
+    legend style={draw=none, fill=none},
+    xmin=-4.5, xmax=4.5
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\perc{0.6744898}
+  \def\aiq{1.34898}
+  \def\lms{2.697959}
+  \def\prob{0.3488302}
+  \def\doubleprob{0.6976603}
+
+  \begin{axis}[myplot, height=6cm]
+
+    \addplot[smooth, domain=-4:4, draw=none, fill=cyan!40] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-4:-\lms, draw=none, fill=red] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=\lms:4, draw=none, fill=red] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-\perc:\perc, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+
+    \node at (axis cs: -1.25, 0.06) {$25\%$};
+    \node at (axis cs:  1.25, 0.06) {$25\%$};
+    \node at (axis cs:  0.00, 0.06) {$50\%$};
+
+    \draw[<-] (axis cs: -\perc, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.35)
+      node[left] {$z_{25\%} = -\perc$};
+    \draw[<-] (axis cs:  \perc, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.35)
+      node[right] {$z_{75\%} = -\perc$};
+
+    \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.25)
+      node[left] {$z_{25\%} - 1.5\cdot\text{AIQ} = -\lms$};
+    \draw[<-, shorten <=5pt] (axis cs:  \lms, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.25)
+      node[right] {$z_{75\%} + 1.5\cdot\text{AIQ} = \lms$};
+
+    \coordinate (area1) at (axis cs: -\lms*1.03, 0);
+    \coordinate (area2) at (axis cs:  \lms*1.03, 0);
+
+  \end{axis}
+
+  \begin{scope}[yshift=-6cm]
+    \begin{axis}[
+      myplot,
+      hide y axis,
+      height=6cm,
+      axis x line*=bottom,
+      xlabel = ,
+      domain=-4:4, ymin = -2.25, ymax = 2.25]
+
+    \addplot[draw=none] {x};
+    \draw[fill = cyan!20] (axis cs: -\perc, -0.5) rectangle (axis cs: \perc, 0.5);
+    \draw[thick] (axis cs: 0, -0.5) rectangle (axis cs: 0, 0.5);
+    \draw[|-] (axis cs: -\lms, 0) -- (axis cs: -\perc, 0);
+    \draw[|-] (axis cs:  \lms, 0) -- (axis cs:  \perc, 0);
+
+    \draw[dashed, color = red] (axis cs: -\lms, -2) -- (axis cs: -\lms, 2);
+    \draw[dashed, color = red] (axis cs:  \lms, -2) -- (axis cs:  \lms, 2);
+
+    \node[above] at (axis cs: -\perc, 0.5) {$q_1$};
+    \node[above] at (axis cs:      0, 0.5) {$q_2$};
+    \node[above] at (axis cs:  \perc, 0.5) {$q_3$};
+
+    \node (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
+
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: \perc, -0.7) -- (axis cs: -\perc, -0.7)
+     node [black, midway, yshift = -1.25em] {$\text{AIQ} = q_3 - q_1$};
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: \lms, -0.7) -- (axis cs: \perc, -0.7)
+     node [black, midway, yshift = -1.25em] {$1.5 \cdot \text{AIQ}$};
+    \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      (axis cs: -\perc, -0.7) -- (axis cs: -\lms, -0.7)
+     node [black, midway, yshift = -1.25em] {$1.5 \cdot \text{AIQ}$};
+
+    \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = -90]
+      (axis cs: -1.4*\lms, 0.75) node[above] {$q_1 - 1.5 \cdot \text{AIQ}$};
+    \draw[<-, shorten <=5pt] (axis cs: \lms, 0) to[out = 90, in = -90]
+      (axis cs: 1.4*\lms, 0.75) node[above] {$q_3 + 1.5 \cdot \text{AIQ}$};
+
+    \end{axis}
+
+    \draw[<-, shorten <=5pt, color = red] (areas) to[out = 90, in = -90] (area1);
+    \draw[<-, shorten <=5pt, color = red] (areas) to[out = 90, in = -90] (area2);
+
+  \end{scope}
+
+\end{tikzpicture}%
