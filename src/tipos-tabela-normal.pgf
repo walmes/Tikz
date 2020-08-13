@@ -1,0 +1,51 @@
+﻿\def\zright{1.645}%
+\def\muzero{0}%
+\pgfplotsset{
+  myplot/.style = {
+    width = 10cm, height = 4.5cm,
+    % xlabel = $z$, ylabel = $f(z)$,
+    samples = 50,
+    legend style = {draw = none, fill = none},
+  }%
+}%
+
+\begin{tikzpicture}[
+  >=stealth,
+  Cyan/.style = {
+    draw = none, text opacity = 1, fill = cyan, fill opacity = 0.25
+  },
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot,
+    title = Tipos de valores em tabelas da Normal Padr{\~a}o]
+    \addplot[Cyan, smooth, domain = -4:\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \node (prob) at (axis cs: -3, 0.3) {$\text{P}(Z < z)$};
+    \path[->, draw] (axis cs: 0, 0.2)
+      to[out = 90, in = 0] (prob);
+  \end{axis}
+
+  \begin{axis}[myplot, yshift = -3.5cm]
+    \addplot[Cyan, smooth, domain = 0:\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \node (prob) at (axis cs: 3, 0.3) {$\text{P}(0 < Z < z)$};
+    \path[->, draw] (axis cs: 0.7, 0.15) to[out = 90, in = 180] (prob);
+  \end{axis}
+
+  \begin{axis}[myplot, yshift = -7cm]
+    \addplot[Cyan, smooth, domain = \zright:4] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[Cyan, smooth, domain = -4:-\zright] {normalpdf(x, \muzero, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, \muzero, 1)};
+    \path[<->, draw] (axis cs: \zright, 0) to[out = 90, in = 180] (axis cs: 2.5, 0.15) node[right] {$z$};
+    \path[<->, draw] (axis cs: -\zright, 0) to[out = 90, in = 0] (axis cs: -2.5, 0.15) node[left] {$-z$};
+    \node (prob) at (axis cs: 3, 0.3) {$\text{P}(Z > |z|)$};
+    \path[->, draw] (axis cs: -1.9, 0.02) to[out = 0, in = 180] (prob);
+    \path[->, draw] (axis cs: 1.9, 0.02) to[out = 180, in = 180] (prob);
+  \end{axis}
+
+\end{tikzpicture}}
