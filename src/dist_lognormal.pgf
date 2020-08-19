@@ -1,0 +1,34 @@
+﻿\begin{tikzpicture}[
+  declare function = {
+    lognormal(\x,\theta,\omega)=
+    exp(-(ln(x)-\theta)^2/(2*\omega^2))/(x*\omega*(2*3.1415)^(-0.5));
+  }]
+
+  \def\parA{\theta}
+  \def\parB{\omega}
+  \def\va{y}
+
+  \begin{axis}[
+    width = 9cm, height = 6cm,
+    samples = 250, smooth, domain = -0.2:10,
+    xlabel = $\va$, ylabel = $f(\va)$,
+%     xlabel style = {at = {(1,0)}, anchor = north west},
+%     ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    clip = false]
+
+    \addplot[black, thick] {lognormal(x, 0, 1)};
+    \addlegendentry{$\parA = 0.00, \parB = 1.00$};
+
+    \addplot[cyan, thick] {lognormal(x, 1.25, 0.5)};
+    \addlegendentry{$\parA = 1.25, \parB = 0.50$};
+
+    \addplot[orange, thick] {lognormal(x, 0.75, 0.25)};
+    \addlegendentry{$\parA = 0.75, \parB = 0.25$};
+
+    \node[anchor = south] at  (axis description cs: 0.5,  1.05)
+    {$f(\va) = \displaystyle\frac{1}{\va \parB \sqrt{2 \pi}}
+      \exp\left\{-\frac{\left(\ln(\va) - \parA\right)^2}{2 \parB^2}
+      \right\}$};
+  \end{axis}
+\end{tikzpicture}
