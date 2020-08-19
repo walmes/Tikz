@@ -1,4 +1,4 @@
-﻿\tikzset{ 
+﻿\tikzset{
   >=stealth,
   table/.style={
     matrix of nodes,
@@ -55,11 +55,11 @@
   ]
 
     \matrix[table, text width=1.5em] (first) {
-                   & $\cdots$ & 0.03 & 0.04                                   & $\cdots$ \\
-      $\vdots$     &          &      &                                        &          \\ 
-      1.5          &          &      &                                        &          \\
-      1.6          &          &      & \node[black, fill=cyan!50]{0.44950};   &          \\
-      $\vdots$     &          &      &                                        &          \\
+                   & $\cdots$ & $0.03$ & $0.04$                                   & $\cdots$ \\
+      $\vdots$     &          &        &                                          &          \\
+      $1.5$        &          &        &                                          &          \\
+      $1.6$        &          &        & \node[black, fill = cyan!50]{$0.44950$};   &          \\
+      $\vdots$     &          &        &                                          &          \\
     };
 
    \node (decimal) at (-2, 2) {$1.64 = 1.60 + 0.04$};
@@ -80,4 +80,4 @@
 
   \end{scope}
 
-\end{tikzpicture}
+\end{tikzpicture}%
