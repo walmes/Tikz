@@ -1,0 +1,45 @@
+﻿\begin{tikzpicture}[%
+  edge from parent/.style = {->, draw},
+  >=stealth',
+  basic/.style = {
+    draw, rectangle, fill = gray!60},
+  boxtitle/.style = {
+    minimum height = 2em, fill = gray!60},
+  description/.style = {
+    minimum height = 6em, text width = 4cm, fill = gray!20},
+  item/.style = {
+    fill = cyan, minimum height = 1.5em,
+    text width = 3.7cm, minimum width = 3.7cm},
+  subject/.style = {%
+    grow = down, xshift = -1.7cm, solid, anchor = west,
+    edge from parent path = {
+      ($(\tikzparentnode.south west)+(0.2,0)$) |- (\tikzchildnode.west)
+    }
+  },
+  level 1/.append style = {
+    sibling distance = 5cm},
+  level 2/.style = {basic,
+    rounded corners = 3pt, align = center,
+    minimum width = 4.5cm, level distance = 2cm}
+  ]
+
+  \def\dist{0.7cm}
+  \def\shft{1.0cm}
+
+  \node[level 2, minimum width = 6cm, minimum height = 2em] {M{\'e}todos de amostragem}
+  child {
+    node[level 2, boxtitle, fill = cyan!60] {Probabil{\'i}stica}
+    child [subject, level distance = 0*\dist + \shft] {node[item, fill = cyan!20] {Aleat{\'o}ria simples}}
+    child [subject, level distance = 1*\dist + \shft] {node[item, fill = cyan!20] {Sistem{\'a}tica}}
+    child [subject, level distance = 2*\dist + \shft] {node[item, fill = cyan!20] {Por conglomerados}}
+    child [subject, level distance = 3*\dist + \shft] {node[item, fill = cyan!20] {Estratificada}}
+  }
+  child {
+    node[level 2, boxtitle, fill = orange!60] {N{\~a}o probabil{\'i}stica}
+    child [subject, level distance = 0*\dist + \shft] {node[item, fill = orange!20] {Por conveni{\^e}ncia}}
+    child [subject, level distance = 1*\dist + \shft] {node[item, fill = orange!20] {Intencional}}
+    child [subject, level distance = 2*\dist + \shft] {node[item, fill = orange!20] {Bola de neve}}
+    child [subject, level distance = 3*\dist + \shft] {node[item, fill = orange!20] {Por cotas}}
+  };
+
+\end{tikzpicture}%

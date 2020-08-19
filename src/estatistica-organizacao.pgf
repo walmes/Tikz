@@ -1,0 +1,61 @@
+﻿\begin{tikzpicture}[%
+  >=stealth',
+  edge from parent/.style = {
+    ->, draw},
+  basic/.style = {
+    draw, rectangle, fill = orange!60},
+  boxtitle/.style = {
+    minimum height = 3em, fill = gray!60},
+  description/.style = {
+    minimum height = 6em, text width = 4cm, fill = gray!20},
+  item/.style={
+    fill = cyan, minimum height = 1.8em,
+    text width = 3.7cm, minimum width = 3.7cm},
+  subject/.style = {
+    grow = down, xshift = -1.7cm, solid, anchor = west,
+    edge from parent path = {
+      ($(\tikzparentnode.south west)+(0.2,0)$) |- (\tikzchildnode.west)
+    }
+  },
+  level 1/.append style = {
+    sibling distance = 5cm},
+  level 2/.style = {
+    basic, rounded corners = 3pt, align = center,
+    minimum width = 4.5cm, level distance = 2cm}
+  ]
+
+  \node[level 2, minimum width = 6cm, minimum height = 2em] {Estat{\'i}stica}
+  child {
+    node[level 2, boxtitle] (EstDes) {Estat{\'i}stica Descritiva}
+    child {
+      node[level 2, description] (EstDesObj) {
+        Coleta, organiza{\c c}{\~a}o, tratamento, an{\'a}lise, apresenta{\c c}{\~a}o e interpreta{\c c}{\~a}o de dados.
+      }
+      child [subject, level distance=1.75cm] {node[item] {An{\'a}lise gr{\'a}fica}}
+      child [subject, level distance=2.75cm] {node[item] {Medidas resumo}}
+    }
+  }
+  child {
+    node[level 2, boxtitle] (Prob) {Probabilidades}
+    child {
+      node[level 2, description] (PrbObj) {
+        An{\'a}lise de situa{\c c}{\~o}es que lidam com o acaso para determina{\c c}{\~a}o de probabilidades.
+      }
+      child [subject, level distance=1.75cm] {node[item] {Probabilidades}}
+      child [subject, level distance=2.75cm] {node[item] {Vari{\'a}veis aleat{\'o}rias}}
+      child [subject, level distance=3.75cm] {node[item] {Distribui{\c c}{\~o}es de probabilidade}}
+    }
+  }
+  child {
+    node[level 2, boxtitle] (InfEst) {Infer{\^e}ncia Estat{\'i}stica}
+    child {
+      node[level 2, description] (InfEstObj) {
+        M{\'e}todos para realiza{\c c}{\~a}o de infer{\^e}ncia estat{\'\i}stica a partir de dados observados.
+      }
+      child [subject, level distance=1.75cm] {node[item] {M{\'e}todos de amostragem}}
+      child [subject, level distance=2.75cm] {node[item] {Estima{\c c}{\~a}o}}
+      child [subject, level distance=3.75cm] {node[item] {Testes de hip{\'o}tese}}
+    }
+  };
+
+\end{tikzpicture}%
