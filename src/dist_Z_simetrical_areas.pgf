@@ -23,6 +23,7 @@
     \addplot[smooth, domain=-2:2, draw=none, fill=cyan!25] {normalpdf(x, 0, 1)} \closedcycle;
     \addplot[smooth, domain=-1:1, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
     \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+    \addplot [ycomb, samples at={0}, color = cyan, thick] {normalpdf(x,0,1)};
 
   \end{axis}
 
