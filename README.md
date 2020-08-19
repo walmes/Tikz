@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 256 Tikz figures in this gallery.  Most of them were
+There are 260 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -3944,49 +3944,51 @@ ift = -2.5cm]
 
 ```tex
 \begin{tikzpicture}[
-  declare function={
+  declare function = {
     gamma(\z) =
     (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
     0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
     (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
   },
-  declare function={
+  declare function = {
     beta(\a,\b) = gamma(\a)*gamma(\b)/gamma(\a+\b);
   },
-  declare function={
+  declare function = {
     betapdf(\x,\a,\b) = \x^(\a-1)*(1-\x)^(\b-1)/beta(\a,\b);
   }]
 
+  \def\parA{\alpha}
+  \def\parB{\beta}
+  \def\va{y}
+
   \begin{axis}[
-    width=9cm, height=6cm,
-    samples=30,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none},
-    domain=0.01:0.99,
-    legend pos=outer north east,
-    legend cell align=left,
-    clip=false]
+    width = 9cm, height = 6cm,
+    samples = 150,
+    xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    domain = 0.01:0.99,
+    % legend pos = outer east,
+    legend style = {at = {(0.5,-0.3)}, anchor = north},
+    legend cell align = left,
+    clip = false]
 
-    \addplot[smooth] {betapdf(x,1,1)};
-    \addlegendentry{$\alpha=1$, $\phantom{.}\beta=1$};
+    \addplot[smooth, thick, black] {betapdf(x, 5, 5)};
+    \addlegendentry{$\parA = 5.0$, $\parB = 5.0$};
 
-    \addplot[smooth, red] {betapdf(x,5,5)};
-    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=5$};
+    \addplot[smooth, thick, cyan] {betapdf(x, .7, .7)};
+    \addlegendentry{$\parA = 0.7$, $\parB = 0.7$};
 
-    \addplot[smooth, blue] {betapdf(x,.7,.7)};
-    \addlegendentry{$\alpha=.7$, $\beta=.7$};
+    \addplot[smooth, thick, orange] {betapdf(x, .7, 1.2)};
+    \addlegendentry{$\parA = 0.7$, $\parB = 1.2$};
 
-    \addplot[smooth, orange] {betapdf(x,.7,1.2)};
-    \addlegendentry{$\alpha=.7$, $\beta=1.2$};
+    \addplot[smooth, thick, green] {betapdf(x, 5, 2)};
+    \addlegendentry{$\parA = 5.0$, $\parB = 2.0$};
 
-    \addplot[smooth, purple] {betapdf(x,5,2)};
-    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=2$};
-
-    \node[anchor=west] at (axis description cs: 1.05, 0.2)
-    {$f(x) = \dfrac{x^{\alpha-1}\cdot(1-x)^{\beta-1}}{
-        B(\alpha, \beta)}$};
+    \node[anchor = south] at (axis description cs: 0.5, 1.05)
+    {$f(\va) = \dfrac{\va^{\parA - 1}\cdot(1 - \va)^{\parB - 1}}{
+        \mathrm{B}(\parA, \parB)}$};
 
   \end{axis}
 \end{tikzpicture}
@@ -4163,7 +4165,7 @@ ift = -2.5cm]
   \begin{axis}[myplot, ylabel = $f(y)$, title={\scriptsize Fun{\c c}{\~a}o de densidade de probabilidade}]
     \addplot[domain = 0.35:5, draw=none, fill=blue!40] {exppdf(x,2)} \closedcycle;
     \addplot[color=orange, thick] {exppdf(x,2)};
-    \addlegendentry{$\lambda = 2$};
+%     \addlegendentry{$\lambda = 2$};
     \addplot[red, mark = *, only marks] coordinates {(0.35, {exppdf(0.35, 2)})};
 
     \draw[dotted] (axis cs: 0, {exppdf(0.35,2)}) -- (axis cs: 0.35, {exppdf(0.35,2)});
@@ -4177,7 +4179,7 @@ ift = -2.5cm]
   \begin{axis}[myplot, yshift=-3.2cm, ylabel=$F(y)$, legend pos=south east,
     title={\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o}]
     \addplot[color=cyan, thick] {expcdf(x,2)};
-    \addlegendentry{$\lambda=2$};
+%     \addlegendentry{$\lambda=2$};
     \addplot[blue, mark = *, only marks] coordinates {(0.35, {expcdf(0.35, 2)})};
 
     \draw[dotted] (axis cs: 0, {expcdf(0.35,2)}) -- (axis cs: 0.35, {expcdf(0.35,2)});
@@ -4192,7 +4194,7 @@ ift = -2.5cm]
     ymin = 0.35, ymax = 0.65,
     title={\scriptsize Fun{\c c}{\~a}o de risco}]
     \addplot[color=magenta, thick] {1/2};
-    \addlegendentry{$\lambda=2$};
+%     \addlegendentry{$\lambda=2$};
   \end{axis}
 
 \end{tikzpicture}
@@ -4256,37 +4258,46 @@ ift = -2.5cm]
 
 ```tex
 \begin{tikzpicture}[
-  declare function={
+  declare function = {
     gamma(\z) =
     (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
     0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
     (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
   },
-  declare function={
+  declare function = {
     gammapdf(\x,\a,\b) = (\b^\a)*\x^(\a-1)*exp(-\b*\x)/gamma(\a);
   }]
 
+  \def\parA{r}
+  \def\parB{\lambda}
+  \def\va{y}
+
   \begin{axis}[
-    width=9cm, height=6cm,
-    samples=80, no marks, smooth,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none},
-    domain=0:22]
+    width = 9cm, height = 6cm,
+    samples = 150, no marks, smooth,
+    xlabel = $y$, ylabel = $f(y)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    domain = 0:22,
+    clip = false]
 
-    \addplot[black] {gammapdf(x,3,1)};
-    \addlegendentry{$\alpha=3, \beta=1$}
+    \addplot[black, thick] {gammapdf(x,3,1)};
+    \addlegendentry{$\parA = 3, \parB = 1$}
 
-    \addplot[blue] {gammapdf(x,8,1)};
-    \addlegendentry{$\alpha=8, \beta=1$}
+    \addplot[orange, thick] {gammapdf(x,8,1)};
+    \addlegendentry{$\parA = 8, \parB = 1$}
 
-    \addplot[red] {gammapdf(x,8,2)};
-    \addlegendentry{$\alpha=8, \beta=2$}
+    \addplot[cyan, thick] {gammapdf(x,8,2)};
+    \addlegendentry{$\parA = 8, \parB = 2$}
 
-    \node[anchor=east] at (axis description cs: 1,  0.5)
-    {$f(x) = \dfrac{\beta^{\alpha}}{\Gamma(\alpha)}\cdot
-      x^{\alpha-1} \cdot \text{e}^{-\beta x}$};
+    % \node[anchor = east] at (axis description cs: 1,  0.5)
+    %   {$f(\va) = \dfrac{\parB^{\parA}}{\Gamma(\parA)}\cdot
+    %   \va^{\parA-1} \cdot \exp\{-\parB \va\}$};
+
+    \node[anchor = south] at (axis description cs: 0.5,  1.05)
+    {$f(\va) = \dfrac{\parB^{\parA}}{\Gamma(\parA)}\cdot
+      \va^{\parA-1} \cdot \exp\{-\parB \va\}$};
 
   \end{axis}
 \end{tikzpicture}
@@ -4331,6 +4342,83 @@ ift = -2.5cm]
 
     \node[anchor=north] at (axis description cs: 0.25, 0.95)
     {$p(x) = \dfrac{\binom{K}{x} \binom{N-k}{n-x}}{\binom{N}{n}}$};
+
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/dist_lognormal.png)
+
+  * [dist_lognormal.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_lognormal.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function = {
+    lognormal(\x,\theta,\omega)=
+    exp(-(ln(x)-\theta)^2/(2*\omega^2))/(x*\omega*(2*3.1415)^(-0.5));
+  }]
+
+  \def\parA{\theta}
+  \def\parB{\omega}
+  \def\va{y}
+
+  \begin{axis}[
+    width = 9cm, height = 6cm,
+    samples = 250, smooth, domain = -0.2:10,
+    xlabel = $\va$, ylabel = $f(\va)$,
+%     xlabel style = {at = {(1,0)}, anchor = north west},
+%     ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    clip = false]
+
+    \addplot[black, thick] {lognormal(x, 0, 1)};
+    \addlegendentry{$\parA = 0.00, \parB = 1.00$};
+
+    \addplot[cyan, thick] {lognormal(x, 1.25, 0.5)};
+    \addlegendentry{$\parA = 1.25, \parB = 0.50$};
+
+    \addplot[orange, thick] {lognormal(x, 0.75, 0.25)};
+    \addlegendentry{$\parA = 0.75, \parB = 0.25$};
+
+    \node[anchor = south] at  (axis description cs: 0.5,  1.05)
+    {$f(\va) = \displaystyle\frac{1}{\va \parB \sqrt{2 \pi}}
+      \exp\left\{-\frac{\left(\ln(\va) - \parA\right)^2}{2 \parB^2}
+      \right\}$};
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
+![](./src/dist_lognormal2.png)
+
+  * [dist_lognormal2.pgf](https://github.com/walmes/Tikz/blob/master/src/dist_lognormal2.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function={
+    lognormalpdf(\x,\theta,\omega)=
+    exp(-(ln(x)-\theta)^2/(2*\omega^2))/(x*\omega*(2*3.1415)^(-0.5));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[
+    width=8cm,
+    height=6cm,
+    samples=50,
+    xlabel=$y$, ylabel=$f(y)$,
+    legend style={draw=none, fill=none},
+    domain=0.001:10,
+    legend cell align=left,
+%     xmin=-7, xmax=11
+    clip=false]
+
+    \addplot [smooth, thick, fill = cyan, fill opacity=0.3] {lognormalpdf(x, 0.5, 0.75)}
+    node[pos=0.4, pin={[text opacity=1, text width=5em]right:$\theta = 0.5$\\ $\omega = 0.75$}] {};
+    \addplot [ycomb, samples at={0}] {lognormalpdf(x, 0.5, 0.75)};
+
+    \node[anchor=north] at (axis description cs: 0.5,  1.30)
+    {$f(y) = \displaystyle\frac{1}{y \omega \sqrt{2 \pi}} \exp\left\{-\frac{\left(\ln(y) - \theta\right)^2}{2 \omega^2} \right\}$};
 
   \end{axis}
 \end{tikzpicture}
@@ -4910,29 +4998,36 @@ ift = -2.5cm]
 
 ```tex
 \begin{tikzpicture}[
-  declare function={
-    weibullpdf(\x,\a,\b) = \b*\a*\x^(\a-1)*exp(-\b*\x^(\a));
+  declare function = {
+    weibullpdf(\x,\a,\b) = (\b/\a)*(\x/\a)^(\b-1)*exp(-(\x/\a)^(\b));
   }]
 
+  \def\parA{\delta}
+  \def\parB{\beta}
+  \def\va{y}
+
   \begin{axis}[
-    width=9cm, height=6cm,
-    samples=50, smooth, domain=0:5,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none}]
+    width = 9cm, height = 6cm,
+    samples = 50, smooth, domain = 0:5,
+    xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    clip = false]
 
-    \addplot[black] {weibullpdf(x,1,1)};
-    \addlegendentry{$\alpha=1, \beta=1$};
+    \addplot[black, thick] {weibullpdf(x, 1, 1)};
+    \addlegendentry{$\parA = 1, \parB = 1$};
 
-    \addplot[blue] {weibullpdf(x,3,1)};
-    \addlegendentry{$\alpha=3, \beta=1$};
+    \addplot[cyan, thick] {weibullpdf(x, 3, 6)};
+    \addlegendentry{$\parA = 3, \parB = 6$};
 
-    \addplot[red] {weibullpdf(x,3,3)};
-    \addlegendentry{$\alpha=3, \beta=3$};
+    \addplot[orange, thick] {weibullpdf(x, 2, 3)};
+    \addlegendentry{$\parA = 2, \parB = 3$};
 
-    \node at (axis cs: 3.5,  0.6)
-    {$f(x) = \alpha\beta x^{\alpha-1} \text{e}^{-\beta x^{\alpha}}$};
+    \node[anchor = south] at (axis description cs: 0.5, 1.05)
+      {$f(\va) = \displaystyle\frac{\parB}{\parA}\left(
+          \frac{\va}{\parA} \right)^{\parB - 1}
+      \exp\left\{-\left(\frac{\va}{\parA} \right)^{\parB} \right\}$};
   \end{axis}
 \end{tikzpicture}
 ```
@@ -5085,6 +5180,7 @@ ift = -2.5cm]
     \addplot[smooth, domain=-2:2, draw=none, fill=cyan!25] {normalpdf(x, 0, 1)} \closedcycle;
     \addplot[smooth, domain=-1:1, draw=none, fill=cyan!10] {normalpdf(x, 0, 1)} \closedcycle;
     \addplot[smooth, thick, domain=-4:4] {normalpdf(x, 0, 1)};
+    \addplot [ycomb, samples at={0}, color = cyan, thick] {normalpdf(x,0,1)};
 
   \end{axis}
 
@@ -12338,7 +12434,7 @@ ann,right] {testemunhas};
     \draw[<-] (axis cs: -\perc, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.35)
       node[left] {$z_{25\%} = -\perc$};
     \draw[<-] (axis cs:  \perc, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.35)
-      node[right] {$z_{75\%} = -\perc$};
+      node[right] {$z_{75\%} = \perc$};
 
     \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.25)
       node[left] {$z_{25\%} - 1.5\cdot\text{AIQ} = -\lms$};
@@ -12357,7 +12453,7 @@ ann,right] {testemunhas};
       height=6cm,
       axis x line*=bottom,
       xlabel = ,
-      domain=-4:4, ymin = -2.25, ymax = 2.25]
+      domain=-4:4, ymin = -2.25, ymax = 2.35]
 
     \addplot[draw=none] {x};
     \draw[fill = cyan!20] (axis cs: -\perc, -0.5) rectangle (axis cs: \perc, 0.5);
@@ -12372,7 +12468,7 @@ ann,right] {testemunhas};
     \node[above] at (axis cs:      0, 0.5) {$q_2$};
     \node[above] at (axis cs:  \perc, 0.5) {$q_3$};
 
-    \node (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
+    \node[draw] (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
 
     \draw [decorate, decoration = {brace, amplitude = 5pt}]
       (axis cs: \perc, -0.7) -- (axis cs: -\perc, -0.7)
@@ -13394,6 +13490,262 @@ level   dof     error1  error2  info    grad(log(dof),log(error2))      quot(err
     }
   \end{semilogxaxis}
 \end{tikzpicture}
+```
+****
+
+![](./src/population_sample_vertical.png)
+
+  * [population_sample_vertical.pgf](https://github.com/walmes/Tikz/blob/master/src/population_sample_vertical.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth', scale = 0.8]
+
+  %---------------------------------------------------------------------
+  \begin{scope}[rotate = -90]
+    % This were generated using R language. Check the code below.
+    \input{population_sample.tex}
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}[rotate = -90]
+
+    % \draw [help lines, dashed, step = 1,color = gray!20] (-4, -4) grid (12, 4);
+
+    \node[above = 2pt] at (-3, 0) {\textbf{Popula{\c c}{\~a}o}};
+    \draw[rounded corners = 4pt] (-3.1, -3.1) rectangle (3.1, 3.1);
+
+    \node[below = 2pt] at (9.6, 0) {\textbf{Amostra}};
+    \draw[rounded corners = 4pt] (8.4, -0.6) rectangle (9.6, 0.6);
+
+    \path[->, draw, very thick] (3.1, 0) -- (8.15, 0) node[draw, rounded corners = 2pt, fill = white, pos = 0.25, thin] {Amostragem};
+
+    \path[<->, draw, thick, color = orange] (3.2,  2) to[out = 0, in = 180]
+    node[right = 0.5em, align = center, text = black, pos = 0.25] {Estat{\'i}stica\\ Descritiva} (8.15,  0.25);
+
+    \path[<-, draw, thick, color = cyan] (3.2, -2) to[out = 0, in = 180]
+    node[left = 0.5em, align = center, text = black, pos = 0.9] {Infer{\^e}ncia\\ Estat{\'i}stica} (8.15, -0.25);
+
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}[xshift = 3.5cm, yshift = -2cm]
+
+    \foreach \x/\col/\freq in {1/67001F/2, 2/B2182B/2, 3/D6604D/5, 4/F4A582/14, 5/FDDBC7/20, 6/F7F7F7/27, 7/D1E5F0/19, 8/92C5DE/20, 9/4393C3/6, 10/2166AC/5, 11/053061/2} {
+      \foreach \y in {1, ..., \freq} {
+        \definecolor{tempcolor}{HTML}{\col}
+        \draw[fill = tempcolor] (\x*0.2, \y*0.2) circle (2pt);
+      }
+    }
+
+    \node[below, anchor = north west] at (0, 0) {
+      \begin{minipage}{8em}
+        Par{\^a}metros:
+
+        $\mu$, $\sigma^2$, $\theta$, $\rho$,\\ $\text{P}(Y \leq y)$, etc.
+      \end{minipage}
+    };
+
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}[xshift = 1.1cm, yshift = -8.6cm]
+    \foreach \x/\col/\freq in {1/67001F/1, 2/B2182B/1, 3/D6604D/2, 4/F4A582/6, 5/FDDBC7/9, 6/F7F7F7/12, 7/D1E5F0/7, 8/92C5DE/7, 9/4393C3/3, 10/2166AC/2, 11/053061/1} {
+      \foreach \y in {1, ..., \freq} {
+        \definecolor{tempcolor}{HTML}{\col}
+        \draw[fill = tempcolor] (\x*0.2, \y*0.2) circle (2pt);
+      }
+    }
+
+    \node[below, anchor = north west] at (0, 0) {
+      \begin{minipage}{8em}
+        Estat{\'i}sticas:
+
+        $\bar{y}$, $S^2$, $\hat{\theta}$, $r$,\\ $\text{Freq}(Y \leq y)$, etc.
+      \end{minipage}
+    };
+
+  \end{scope}
+ 
+\end{tikzpicture}
+
+% # To draw each circle.
+% fmt <- "\\draw[fill = {rgb,255: red,%d; green,%d; blue,%d}] (%0.3f, %0.3f) circle (2pt);"
+%
+% # Colors to be used.
+% cols <- RColorBrewer::brewer.pal(n = 11, name = "RdBu")
+% # cols <- rainbow(n = 10)
+%
+% # Generate frequencies for stacked plot.
+% set.seed(123)
+% f <- table(cut(rnorm(100),
+%                seq(-3, 3, length.out = length(cols) + 1))) + 2
+%
+% # Use in \foreach statment.
+% cat(sprintf("%d/%s/%d",
+%             seq_along(cols),
+%             sub("^#", "", cols),
+%             f),
+%     "\n", sep = ", ")
+%
+% # Generate population points.
+% n <- 500
+% pop <- data.frame(x = runif(n, -3, 3),
+%                   y = runif(n, -3, 3),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = f/sum(f),
+%                                replace = TRUE))
+% pop$rgb <- t(col2rgb(pop$col))
+% pop$tikz <- with(pop, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% # Generate sampled points.
+% n <- 50
+% sam <- data.frame(x = runif(n, -0.5, 0.5) + 9,
+%                   y = runif(n, -0.5, 0.5),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = f/sum(f),
+%                                replace = TRUE))
+% sam$rgb <- t(col2rgb(sam$col))
+% sam$tikz <- with(sam, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% # Plot it.
+% plot(y ~ x, data = pop, col = pop$col, asp = 1, pch = 19,
+%      ylim = c(-3, 3), xlim = c(-3, 12))
+% points(y ~ x, data = sam, col = sam$col, pch = 19)
+%
+% # Write in disk.
+% cat(c(pop$tikz, sam$tikz),
+%     sep = "\n",
+%     file = "~/Projects/Tikz/src/population_sample.tex")
+```
+****
+
+![](./src/population_sample.png)
+
+  * [population_sample.pgf](https://github.com/walmes/Tikz/blob/master/src/population_sample.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth']
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+    % This were generated using R language. Check the code below.
+    \input{population_sample.tex}
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+
+    % \draw [help lines, dashed, step = 1,color = gray!20] (-4, -4) grid (12, 4);
+
+    \node[above = 2pt] at (0, 3.00) {\textbf{Popula{\c c}{\~a}o}};
+    \draw[rounded corners = 4pt] (-3.1, -3.1) rectangle (3.1, 3.1);
+
+    \node[above = 2pt] at (9, 0.5) {\textbf{Amostra}};
+    \draw[rounded corners = 4pt] (8.4, -0.6) rectangle (9.6, 0.6);
+
+    \path[->, draw, very thick] (3.1, 0) -- (8, 0) node[midway, above] {Amostragem};
+
+    \path[<->, draw, thick, color = orange] (3.2,  2) to[out = 0, in =  90]
+    node[above, align = center, text = black] {Estat{\'i}stica\\ Descritiva} (9,  1.1);
+
+    \path[<-, draw, thick, color = cyan] (3.2, -2) to[out = 0, in = -90]
+    node[below, align = center, text = black] {Infer{\^e}ncia\\ Estat{\'i}stica} (9, -0.8);
+
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}[xshift = -5.7cm, yshift = -2cm]
+
+    \foreach \x/\col/\freq in {1/67001F/2, 2/B2182B/2, 3/D6604D/5, 4/F4A582/14, 5/FDDBC7/20, 6/F7F7F7/27, 7/D1E5F0/19, 8/92C5DE/20, 9/4393C3/6, 10/2166AC/5, 11/053061/2} {
+      \foreach \y in {1, ..., \freq} {
+        \definecolor{tempcolor}{HTML}{\col}
+        \draw[fill = tempcolor] (\x*0.2, \y*0.2) circle (2pt);
+      }
+    }
+
+    \node[below, anchor = north west] at (0, 0) {
+      \begin{minipage}{8em}
+        Par{\^a}metros:
+
+        $\mu$, $\sigma^2$, $\theta$, $\rho$,\\ $\text{P}(Y \leq y)$, etc.
+      \end{minipage}
+    };
+
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}[xshift = 10cm, yshift = -1cm]
+    \foreach \x/\col/\freq in {1/67001F/1, 2/B2182B/1, 3/D6604D/2, 4/F4A582/6, 5/FDDBC7/9, 6/F7F7F7/12, 7/D1E5F0/7, 8/92C5DE/7, 9/4393C3/3, 10/2166AC/2, 11/053061/1} {
+      \foreach \y in {1, ..., \freq} {
+        \definecolor{tempcolor}{HTML}{\col}
+        \draw[fill = tempcolor] (\x*0.2, \y*0.2) circle (2pt);
+      }
+    }
+
+    \node[below, anchor = north west] at (0, 0) {
+      \begin{minipage}{8em}
+        Estat{\'i}sticas:
+
+        $\bar{y}$, $S^2$, $\hat{\theta}$, $r$,\\ $\text{Freq}(Y \leq y)$, etc.
+      \end{minipage}
+    };
+
+  \end{scope}
+
+\end{tikzpicture}
+
+% # To draw each circle.
+% fmt <- "\\draw[fill = {rgb,255: red,%d; green,%d; blue,%d}] (%0.3f, %0.3f) circle (2pt);"
+%
+% # Colors to be used.
+% cols <- RColorBrewer::brewer.pal(n = 11, name = "RdBu")
+% # cols <- rainbow(n = 10)
+%
+% # Generate frequencies for stacked plot.
+% set.seed(123)
+% f <- table(cut(rnorm(100),
+%                seq(-3, 3, length.out = length(cols) + 1))) + 2
+%
+% # Use in \foreach statment.
+% cat(sprintf("%d/%s/%d",
+%             seq_along(cols),
+%             sub("^#", "", cols),
+%             f),
+%     "\n", sep = ", ")
+%
+% # Generate population points.
+% n <- 500
+% pop <- data.frame(x = runif(n, -3, 3),
+%                   y = runif(n, -3, 3),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = f/sum(f),
+%                                replace = TRUE))
+% pop$rgb <- t(col2rgb(pop$col))
+% pop$tikz <- with(pop, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% # Generate sampled points.
+% n <- 50
+% sam <- data.frame(x = runif(n, -0.5, 0.5) + 9,
+%                   y = runif(n, -0.5, 0.5),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = f/sum(f),
+%                                replace = TRUE))
+% sam$rgb <- t(col2rgb(sam$col))
+% sam$tikz <- with(sam, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% # Plot it.
+% plot(y ~ x, data = pop, col = pop$col, asp = 1, pch = 19,
+%      ylim = c(-3, 3), xlim = c(-3, 12))
+% points(y ~ x, data = sam, col = sam$col, pch = 19)
+%
+% # Write in disk.
+% cat(c(pop$tikz, sam$tikz),
+%     sep = "\n",
+%     file = "~/Projects/Tikz/src/population_sample.tex")
 ```
 ****
 
