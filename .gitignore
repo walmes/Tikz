@@ -1,14 +1,18 @@
-!src/*.png
-!src/*.pgf
-!src/TIKZ_TEMPLATE.pgs
-!.gitignore
-!README.Rmd
-!README.md
-!style.css
-!template.Rmd
+# Files in ./
 child.Rmd
 *.html
 
+# Folders in site/.
 site/themes
 site/public
 site/data
+
+# Files in src/.
+# src/*
+# !src/*.png
+# !src/*.pgf
+# !src/*.R
+# !src/TIKZ_TEMPLATE.pgs
+src/*.tex
+src/*.pdf
+
