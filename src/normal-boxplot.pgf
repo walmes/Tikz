@@ -38,7 +38,7 @@
     \draw[<-] (axis cs: -\perc, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.35)
       node[left] {$z_{25\%} = -\perc$};
     \draw[<-] (axis cs:  \perc, 0) to[out = 90, in = 180] (axis cs: 2*\perc, 0.35)
-      node[right] {$z_{75\%} = -\perc$};
+      node[right] {$z_{75\%} = \perc$};
 
     \draw[<-, shorten <=5pt] (axis cs: -\lms, 0) to[out = 90, in = 0] (axis cs: -2*\perc, 0.25)
       node[left] {$z_{25\%} - 1.5\cdot\text{AIQ} = -\lms$};
@@ -57,7 +57,7 @@
       height=6cm,
       axis x line*=bottom,
       xlabel = ,
-      domain=-4:4, ymin = -2.25, ymax = 2.25]
+      domain=-4:4, ymin = -2.25, ymax = 2.35]
 
     \addplot[draw=none] {x};
     \draw[fill = cyan!20] (axis cs: -\perc, -0.5) rectangle (axis cs: \perc, 0.5);
@@ -72,7 +72,7 @@
     \node[above] at (axis cs:      0, 0.5) {$q_2$};
     \node[above] at (axis cs:  \perc, 0.5) {$q_3$};
 
-    \node (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
+    \node[draw] (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
 
     \draw [decorate, decoration = {brace, amplitude = 5pt}]
       (axis cs: \perc, -0.7) -- (axis cs: -\perc, -0.7)

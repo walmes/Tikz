@@ -1,26 +1,33 @@
-\begin{tikzpicture}[
-  declare function={
-    weibullpdf(\x,\a,\b) = \b*\a*\x^(\a-1)*exp(-\b*\x^(\a));
+﻿\begin{tikzpicture}[
+  declare function = {
+    weibullpdf(\x,\a,\b) = (\b/\a)*(\x/\a)^(\b-1)*exp(-(\x/\a)^(\b));
   }]
 
+  \def\parA{\delta}
+  \def\parB{\beta}
+  \def\va{y}
+
   \begin{axis}[
-    width=9cm, height=6cm,
-    samples=50, smooth, domain=0:5,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none}]
+    width = 9cm, height = 6cm,
+    samples = 50, smooth, domain = 0:5,
+    xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    clip = false]
 
-    \addplot[black] {weibullpdf(x,1,1)};
-    \addlegendentry{$\alpha=1, \beta=1$};
+    \addplot[black, thick] {weibullpdf(x, 1, 1)};
+    \addlegendentry{$\parA = 1, \parB = 1$};
 
-    \addplot[blue] {weibullpdf(x,3,1)};
-    \addlegendentry{$\alpha=3, \beta=1$};
+    \addplot[cyan, thick] {weibullpdf(x, 3, 6)};
+    \addlegendentry{$\parA = 3, \parB = 6$};
 
-    \addplot[red] {weibullpdf(x,3,3)};
-    \addlegendentry{$\alpha=3, \beta=3$};
+    \addplot[orange, thick] {weibullpdf(x, 2, 3)};
+    \addlegendentry{$\parA = 2, \parB = 3$};
 
-    \node at (axis cs: 3.5,  0.6)
-    {$f(x) = \alpha\beta x^{\alpha-1} \text{e}^{-\beta x^{\alpha}}$};
+    \node[anchor = south] at (axis description cs: 0.5, 1.05)
+      {$f(\va) = \displaystyle\frac{\parB}{\parA}\left(
+          \frac{\va}{\parA} \right)^{\parB - 1}
+      \exp\left\{-\left(\frac{\va}{\parA} \right)^{\parB} \right\}$};
   \end{axis}
 \end{tikzpicture}

@@ -1,47 +1,49 @@
-\begin{tikzpicture}[
-  declare function={
+﻿\begin{tikzpicture}[
+  declare function = {
     gamma(\z) =
     (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
     0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
     (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
   },
-  declare function={
+  declare function = {
     beta(\a,\b) = gamma(\a)*gamma(\b)/gamma(\a+\b);
   },
-  declare function={
+  declare function = {
     betapdf(\x,\a,\b) = \x^(\a-1)*(1-\x)^(\b-1)/beta(\a,\b);
   }]
 
+  \def\parA{\alpha}
+  \def\parB{\beta}
+  \def\va{y}
+
   \begin{axis}[
-    width=9cm, height=6cm,
-    samples=30,
-    xlabel=$x$, ylabel=$f(x)$,
-    xlabel style={at={(1,0)}, anchor=north west},
-    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
-    legend style={draw=none, fill=none},
-    domain=0.01:0.99,
-    legend pos=outer north east,
-    legend cell align=left,
-    clip=false]
+    width = 9cm, height = 6cm,
+    samples = 150,
+    xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none},
+    domain = 0.01:0.99,
+    % legend pos = outer east,
+    legend style = {at = {(0.5,-0.3)}, anchor = north},
+    legend cell align = left,
+    clip = false]
 
-    \addplot[smooth] {betapdf(x,1,1)};
-    \addlegendentry{$\alpha=1$, $\phantom{.}\beta=1$};
+    \addplot[smooth, thick, black] {betapdf(x, 5, 5)};
+    \addlegendentry{$\parA = 5.0$, $\parB = 5.0$};
 
-    \addplot[smooth, red] {betapdf(x,5,5)};
-    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=5$};
+    \addplot[smooth, thick, cyan] {betapdf(x, .7, .7)};
+    \addlegendentry{$\parA = 0.7$, $\parB = 0.7$};
 
-    \addplot[smooth, blue] {betapdf(x,.7,.7)};
-    \addlegendentry{$\alpha=.7$, $\beta=.7$};
+    \addplot[smooth, thick, orange] {betapdf(x, .7, 1.2)};
+    \addlegendentry{$\parA = 0.7$, $\parB = 1.2$};
 
-    \addplot[smooth, orange] {betapdf(x,.7,1.2)};
-    \addlegendentry{$\alpha=.7$, $\beta=1.2$};
+    \addplot[smooth, thick, green] {betapdf(x, 5, 2)};
+    \addlegendentry{$\parA = 5.0$, $\parB = 2.0$};
 
-    \addplot[smooth, purple] {betapdf(x,5,2)};
-    \addlegendentry{$\alpha=5$, $\phantom{.}\beta=2$};
-
-    \node[anchor=west] at (axis description cs: 1.05, 0.2)
-    {$f(x) = \dfrac{x^{\alpha-1}\cdot(1-x)^{\beta-1}}{
-        B(\alpha, \beta)}$};
+    \node[anchor = south] at (axis description cs: 0.5, 1.05)
+    {$f(\va) = \dfrac{\va^{\parA - 1}\cdot(1 - \va)^{\parB - 1}}{
+        \mathrm{B}(\parA, \parB)}$};
 
   \end{axis}
 \end{tikzpicture}

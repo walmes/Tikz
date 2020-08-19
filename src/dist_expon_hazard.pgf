@@ -25,7 +25,7 @@
   \begin{axis}[myplot, ylabel = $f(y)$, title={\scriptsize Fun{\c c}{\~a}o de densidade de probabilidade}]
     \addplot[domain = 0.35:5, draw=none, fill=blue!40] {exppdf(x,2)} \closedcycle;
     \addplot[color=orange, thick] {exppdf(x,2)};
-    \addlegendentry{$\lambda = 2$};
+%     \addlegendentry{$\lambda = 2$};
     \addplot[red, mark = *, only marks] coordinates {(0.35, {exppdf(0.35, 2)})};
 
     \draw[dotted] (axis cs: 0, {exppdf(0.35,2)}) -- (axis cs: 0.35, {exppdf(0.35,2)});
@@ -39,7 +39,7 @@
   \begin{axis}[myplot, yshift=-3.2cm, ylabel=$F(y)$, legend pos=south east,
     title={\scriptsize Fun{\c c}{\~a}o de distribui{\c c}{\~a}o}]
     \addplot[color=cyan, thick] {expcdf(x,2)};
-    \addlegendentry{$\lambda=2$};
+%     \addlegendentry{$\lambda=2$};
     \addplot[blue, mark = *, only marks] coordinates {(0.35, {expcdf(0.35, 2)})};
 
     \draw[dotted] (axis cs: 0, {expcdf(0.35,2)}) -- (axis cs: 0.35, {expcdf(0.35,2)});
@@ -54,7 +54,7 @@
     ymin = 0.35, ymax = 0.65,
     title={\scriptsize Fun{\c c}{\~a}o de risco}]
     \addplot[color=magenta, thick] {1/2};
-    \addlegendentry{$\lambda=2$};
+%     \addlegendentry{$\lambda=2$};
   \end{axis}
 
 \end{tikzpicture}
