@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 263 Tikz figures in this gallery.  Most of them were
+There are 266 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -5997,6 +5997,75 @@ ann,right] {testemunhas};
 ```
 ****
 
+![](./src/estatistica-organizacao.png)
+
+  * [estatistica-organizacao.pgf](https://github.com/walmes/Tikz/blob/master/src/estatistica-organizacao.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  >=stealth',
+  edge from parent/.style = {
+    ->, draw},
+  basic/.style = {
+    draw, rectangle, fill = orange!60},
+  boxtitle/.style = {
+    minimum height = 3em, fill = gray!60},
+  description/.style = {
+    minimum height = 6em, text width = 4cm, fill = gray!20},
+  item/.style={
+    fill = cyan, minimum height = 1.8em,
+    text width = 3.7cm, minimum width = 3.7cm},
+  subject/.style = {
+    grow = down, xshift = -1.7cm, solid, anchor = west,
+    edge from parent path = {
+      ($(\tikzparentnode.south west)+(0.2,0)$) |- (\tikzchildnode.west)
+    }
+  },
+  level 1/.append style = {
+    sibling distance = 5cm},
+  level 2/.style = {
+    basic, rounded corners = 3pt, align = center,
+    minimum width = 4.5cm, level distance = 2cm}
+  ]
+
+  \node[level 2, minimum width = 6cm, minimum height = 2em] {Estat{\'i}stica}
+  child {
+    node[level 2, boxtitle] (EstDes) {Estat{\'i}stica Descritiva}
+    child {
+      node[level 2, description] (EstDesObj) {
+        Coleta, organiza{\c c}{\~a}o, tratamento, an{\'a}lise, apresenta{\c c}{\~a}o e interpreta{\c c}{\~a}o de dados.
+      }
+      child [subject, level distance=1.75cm] {node[item] {An{\'a}lise gr{\'a}fica}}
+      child [subject, level distance=2.75cm] {node[item] {Medidas resumo}}
+    }
+  }
+  child {
+    node[level 2, boxtitle] (Prob) {Probabilidades}
+    child {
+      node[level 2, description] (PrbObj) {
+        An{\'a}lise de situa{\c c}{\~o}es que lidam com o acaso para determina{\c c}{\~a}o de probabilidades.
+      }
+      child [subject, level distance=1.75cm] {node[item] {Probabilidades}}
+      child [subject, level distance=2.75cm] {node[item] {Vari{\'a}veis aleat{\'o}rias}}
+      child [subject, level distance=3.75cm] {node[item] {Distribui{\c c}{\~o}es de probabilidade}}
+    }
+  }
+  child {
+    node[level 2, boxtitle] (InfEst) {Infer{\^e}ncia Estat{\'i}stica}
+    child {
+      node[level 2, description] (InfEstObj) {
+        M{\'e}todos para realiza{\c c}{\~a}o de infer{\^e}ncia estat{\'\i}stica a partir de dados observados.
+      }
+      child [subject, level distance=1.75cm] {node[item] {M{\'e}todos de amostragem}}
+      child [subject, level distance=2.75cm] {node[item] {Estima{\c c}{\~a}o}}
+      child [subject, level distance=3.75cm] {node[item] {Testes de hip{\'o}tese}}
+    }
+  };
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/explicacao.png)
 
   * [explicacao.pgf](https://github.com/walmes/Tikz/blob/master/src/explicacao.pgf)
@@ -10395,6 +10464,59 @@ ann,right] {testemunhas};
     \addlegendentry{$\frac{sin(r)}{r}$}
   \end{axis}
 \end{tikzpicture}
+```
+****
+
+![](./src/metodos-amostragem.png)
+
+  * [metodos-amostragem.pgf](https://github.com/walmes/Tikz/blob/master/src/metodos-amostragem.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  edge from parent/.style = {->, draw},
+  >=stealth',
+  basic/.style = {
+    draw, rectangle, fill = gray!60},
+  boxtitle/.style = {
+    minimum height = 2em, fill = gray!60},
+  description/.style = {
+    minimum height = 6em, text width = 4cm, fill = gray!20},
+  item/.style = {
+    fill = cyan, minimum height = 1.5em,
+    text width = 3.7cm, minimum width = 3.7cm},
+  subject/.style = {%
+    grow = down, xshift = -1.7cm, solid, anchor = west,
+    edge from parent path = {
+      ($(\tikzparentnode.south west)+(0.2,0)$) |- (\tikzchildnode.west)
+    }
+  },
+  level 1/.append style = {
+    sibling distance = 5cm},
+  level 2/.style = {basic,
+    rounded corners = 3pt, align = center,
+    minimum width = 4.5cm, level distance = 2cm}
+  ]
+
+  \def\dist{0.7cm}
+  \def\shft{1.0cm}
+
+  \node[level 2, minimum width = 6cm, minimum height = 2em] {M{\'e}todos de amostragem}
+  child {
+    node[level 2, boxtitle, fill = cyan!60] {Probabil{\'i}stica}
+    child [subject, level distance = 0*\dist + \shft] {node[item, fill = cyan!20] {Aleat{\'o}ria simples}}
+    child [subject, level distance = 1*\dist + \shft] {node[item, fill = cyan!20] {Sistem{\'a}tica}}
+    child [subject, level distance = 2*\dist + \shft] {node[item, fill = cyan!20] {Por conglomerados}}
+    child [subject, level distance = 3*\dist + \shft] {node[item, fill = cyan!20] {Estratificada}}
+  }
+  child {
+    node[level 2, boxtitle, fill = orange!60] {N{\~a}o probabil{\'i}stica}
+    child [subject, level distance = 0*\dist + \shft] {node[item, fill = orange!20] {Por conveni{\^e}ncia}}
+    child [subject, level distance = 1*\dist + \shft] {node[item, fill = orange!20] {Intencional}}
+    child [subject, level distance = 2*\dist + \shft] {node[item, fill = orange!20] {Bola de neve}}
+    child [subject, level distance = 3*\dist + \shft] {node[item, fill = orange!20] {Por cotas}}
+  };
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -15944,6 +16066,119 @@ ight:
 ```
 ****
 
+![](./src/sample_distribution.png)
+
+  * [sample_distribution.pgf](https://github.com/walmes/Tikz/blob/master/src/sample_distribution.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth']
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+    % This were generated using R language. Check the code below.
+    \input{sample_distribution.tex}
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+
+%     \draw [help lines, dashed, step = 1,color = gray!20] (-7, -13) grid (6, 3);
+
+    \node[above = 2pt] at (-3, 0) {\textbf{Popula{\c c}{\~a}o}};
+    \draw[rounded corners = 4pt] (-6.1, -12.1) rectangle (0.1, 0.1);
+
+    \foreach \y in {-0.5, -1.5, ..., -11.5} {
+      \draw[rounded corners = 4pt] (3.05, \y - 0.45) rectangle (3.95, \y + 0.45);
+      \path[draw, ->] (0.2, \y) -- ++(2.7, 0);
+    }
+    \foreach \y in {1, 2, ..., 12} {
+      \node[right] (p\y) at (4, -\y + 0.5) {$\hat{p}_{\y}$};
+%       \node[right] (p\y) at (4, -\y + 0.5) {$\bar{y}_{\y}$};
+    }
+
+    \node[above = 2pt] at (3.5, 0) {\textbf{Amostras}};
+
+    \node[above = 0pt] at (1.5, -0.5) {Amostragem};
+    \node (nm) at (3, -12.45) {Estat{\'i}stica amostral};
+    \path[draw, ->] (p12) to[out = 0, in = 30] (nm.north east);
+  \end{scope}
+
+\end{tikzpicture}
+
+% #-----------------------------------------------------------------------
+%
+% # To draw each circle.
+% fmt <- "\\draw[fill = {rgb,255: red,%d; green,%d; blue,%d}] (%0.3f, %0.3f) circle (2pt);"
+%
+% # RColorBrewer::display.brewer.all()
+%
+% # Colors to be used.
+% cols <- RColorBrewer::brewer.pal(n = 11, name = "Spectral")[c(2, 10)]
+% # cols <- colorRampPalette(c("red", "orange", "lightblue", "blue"))(10)
+%
+% # Probabilities.
+% if (length(cols) == 2) {
+%     probs <- c(0.25, 0.75)
+% } else {
+%     probs <- table(cut(rnorm(500),
+%                        seq(-3, 3, length.out = length(cols) + 1))) + 2
+%     probs <- probs/sum(probs)
+% }
+%
+% # Generate population points.
+% n <- 800
+% pop <- data.frame(x = runif(n, -6, 0),
+%                   y = runif(n, -12, 0),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = probs,
+%                                replace = TRUE))
+% pop$rgb <- t(col2rgb(pop$col))
+% pop$tikz <- with(pop, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% #-----------------------------------------------------------------------
+% # Generate sampled points.
+%
+% centers <- data.frame(x = 3.5, y = seq(-0.5, -11.5, by = -1))
+%
+% # Square grid for each sample.
+% w <- 0.3
+% grid <- expand.grid(x = seq(-w, w, length.out = 4),
+%                     y = seq(-w, w, length.out = 4))
+%
+% # Samples.
+% sams <- apply(centers,
+%               MARGIN = 1,
+%               FUN = function(ct) {
+%                   sam <- transform(grid,
+%                                    x = x + ct[1],
+%                                    y = y + ct[2])
+%                   sam$cols <- sample(cols,
+%                                      size = nrow(grid),
+%                                      prob = probs,
+%                                      replace = TRUE)
+%                   sam$rgb <- t(col2rgb(sam$col))
+%                   sam$tikz <- with(sam, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%                   return(sam)
+%               })
+%
+% # Plot it.
+% plot(y ~ x, data = pop, col = pop$col, asp = 1, pch = 19,
+%      ylim = extendrange(pop$y), xlim = c(-3, 12))
+% lapply(sams,
+%        FUN = function(sam) {
+%            points(y ~ x, data = sam, col = sam$col, pch = 19)
+%        })
+%
+% # Write in disk.
+% cat(c(pop$tikz, do.call(rbind, sams)$tikz),
+%     sep = "\n",
+%     file = "~/Projects/Tikz/src/sample_distribution.tex")
+%
+% #-----------------------------------------------------------------------
+```
+****
+
 ![](./src/sampling-plan-1.png)
 
   * [sampling-plan-1.pgf](https://github.com/walmes/Tikz/blob/master/src/sampling-plan-1.pgf)
@@ -16956,7 +17191,7 @@ ight:
       xlabel = $F$, ylabel = $f(F)$]
 
       \def\qtl{0.10}
-      \def\fval{2.538}
+      \def\fval{2.377}
 
       \addplot[domain = \fval:5, draw = none, fill = cyan!50] {fpdf(x, 8, 10)} \closedcycle;
       \addplot[black, thick] {fpdf(x, 8, 10)};
@@ -16971,15 +17206,15 @@ ight:
     every node/.style = {rounded corners}]
 
     \matrix[table, text width = 1.5em] (first) {
-                & $\cdots$ & $7$    & $8$                                      & $\cdots$ \\
+                & $\cdots$ & $9$    & $10$                                     & $\cdots$ \\
       $\vdots$  &          &        &                                          &          \\
+      $7$       &          &        &                                          &          \\
+      $8$       &          &        & \node[black, fill = cyan!50]{$2.377$};   &          \\
       $9$       &          &        &                                          &          \\
-      $10$      &          &        & \node[black, fill = cyan!50]{$2.538$};   &          \\
-      $11$      &          &        &                                          &          \\
       $\vdots$  &          &        &                                          &          \\
     };
 
-    \node[above] (decimal) at (-1.3, 2.25) {$\nu_2 = 8, \nu_1 = 10, \alpha = 0.1$};
+    \node[above] (decimal) at (-1.3, 2.25) {$\nu_1 = 8, \nu_2 = 10, \alpha = 0.1$};
     \path[draw, ->] (-2.35, 2.25) to[out = -120, in = 180] (first-4-1.west);
     \path[draw, ->] (-0.95, 2.25) to[out = -60, in = 90] (first-1-4.north);
     \path[draw, <-] (-3.3, 2.5) to[out = 180, in = 0] (qval);
@@ -17005,9 +17240,9 @@ ight:
 
       \begin{tabular}{rrrrrrrrrrrrrrrrrrr}
         \hline
-        & $\nu_1 = 1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $12$ & $15$ & $20$ & $24$ & $30$ & $40$ & $60$ & $120$ \\
+        & $\nu_2 = 1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $12$ & $15$ & $20$ & $24$ & $30$ & $40$ & $60$ & $120$ \\
         \hline
-        $\nu_2 = 1$ & $39.863$ & $8.526$ & $5.538$ & $4.545$ & $4.060$ & $3.776$ & $3.589$ & $3.458$ & $3.360$ & $3.285$ & $3.177$ & $3.073$ & $2.975$ & $2.927$ & $2.881$ & $2.835$ & $2.791$ & $2.748$ \\
+        $\nu_1 = 1$ & $39.863$ & $8.526$ & $5.538$ & $4.545$ & $4.060$ & $3.776$ & $3.589$ & $3.458$ & $3.360$ & $3.285$ & $3.177$ & $3.073$ & $2.975$ & $2.927$ & $2.881$ & $2.835$ & $2.791$ & $2.748$ \\
         $2$ & $49.500$ & $9.000$ & $5.462$ & $4.325$ & $3.780$ & $3.463$ & $3.257$ & $3.113$ & $3.006$ & $2.924$ & $2.807$ & $2.695$ & $2.589$ & $2.538$ & $2.489$ & $2.440$ & $2.393$ & $2.347$ \\
         $3$ & $53.593$ & $9.162$ & $5.391$ & $4.191$ & $3.619$ & $3.289$ & $3.074$ & $2.924$ & $2.813$ & $2.728$ & $2.606$ & $2.490$ & $2.380$ & $2.327$ & $2.276$ & $2.226$ & $2.177$ & $2.130$ \\
         $4$ & $55.833$ & $9.243$ & $5.343$ & $4.107$ & $3.520$ & $3.181$ & $2.961$ & $2.806$ & $2.693$ & $2.605$ & $2.480$ & $2.361$ & $2.249$ & $2.195$ & $2.142$ & $2.091$ & $2.041$ & $1.992$ \\
@@ -17033,9 +17268,9 @@ ight:
       Pontos percentuais da distribui{\c c}{\~a}o $F$ com {\'a}reas na calda direita para $\alpha = 0.05$. \\
       \begin{tabular}{rrrrrrrrrrrrrrrrrrr}
         \hline
-        & $\nu_1 = 1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $12$ & $15$ & $20$ & $24$ & $30$ & $40$ & $60$ & $120$ \\
+        & $\nu_2 = 1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $12$ & $15$ & $20$ & $24$ & $30$ & $40$ & $60$ & $120$ \\
         \hline
-        $\nu_2 = 1$ & $161.448$ & $18.513$ & $10.128$ & $7.709$ & $6.608$ & $5.987$ & $5.591$ & $5.318$ & $5.117$ & $4.965$ & $4.747$ & $4.543$ & $4.351$ & $4.260$ & $4.171$ & $4.085$ & $4.001$ & $3.920$ \\
+        $\nu_1 = 1$ & $161.448$ & $18.513$ & $10.128$ & $7.709$ & $6.608$ & $5.987$ & $5.591$ & $5.318$ & $5.117$ & $4.965$ & $4.747$ & $4.543$ & $4.351$ & $4.260$ & $4.171$ & $4.085$ & $4.001$ & $3.920$ \\
         $2$ & $199.500$ & $19.000$ & $9.552$ & $6.944$ & $5.786$ & $5.143$ & $4.737$ & $4.459$ & $4.256$ & $4.103$ & $3.885$ & $3.682$ & $3.493$ & $3.403$ & $3.316$ & $3.232$ & $3.150$ & $3.072$ \\
         $3$ & $215.707$ & $19.164$ & $9.277$ & $6.591$ & $5.409$ & $4.757$ & $4.347$ & $4.066$ & $3.863$ & $3.708$ & $3.490$ & $3.287$ & $3.098$ & $3.009$ & $2.922$ & $2.839$ & $2.758$ & $2.680$ \\
         $4$ & $224.583$ & $19.247$ & $9.117$ & $6.388$ & $5.192$ & $4.534$ & $4.120$ & $3.838$ & $3.633$ & $3.478$ & $3.259$ & $3.056$ & $2.866$ & $2.776$ & $2.690$ & $2.606$ & $2.525$ & $2.447$ \\

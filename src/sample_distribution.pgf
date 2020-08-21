@@ -1,0 +1,105 @@
+﻿\begin{tikzpicture}[>=stealth']
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+    % This were generated using R language. Check the code below.
+    \input{sample_distribution.tex}
+  \end{scope}
+
+  %---------------------------------------------------------------------
+  \begin{scope}
+
+%     \draw [help lines, dashed, step = 1,color = gray!20] (-7, -13) grid (6, 3);
+
+    \node[above = 2pt] at (-3, 0) {\textbf{Popula{\c c}{\~a}o}};
+    \draw[rounded corners = 4pt] (-6.1, -12.1) rectangle (0.1, 0.1);
+
+    \foreach \y in {-0.5, -1.5, ..., -11.5} {
+      \draw[rounded corners = 4pt] (3.05, \y - 0.45) rectangle (3.95, \y + 0.45);
+      \path[draw, ->] (0.2, \y) -- ++(2.7, 0);
+    }
+    \foreach \y in {1, 2, ..., 12} {
+      \node[right] (p\y) at (4, -\y + 0.5) {$\hat{p}_{\y}$};
+%       \node[right] (p\y) at (4, -\y + 0.5) {$\bar{y}_{\y}$};
+    }
+
+    \node[above = 2pt] at (3.5, 0) {\textbf{Amostras}};
+
+    \node[above = 0pt] at (1.5, -0.5) {Amostragem};
+    \node (nm) at (3, -12.45) {Estat{\'i}stica amostral};
+    \path[draw, ->] (p12) to[out = 0, in = 30] (nm.north east);
+  \end{scope}
+
+\end{tikzpicture}
+
+% #-----------------------------------------------------------------------
+%
+% # To draw each circle.
+% fmt <- "\\draw[fill = {rgb,255: red,%d; green,%d; blue,%d}] (%0.3f, %0.3f) circle (2pt);"
+%
+% # RColorBrewer::display.brewer.all()
+%
+% # Colors to be used.
+% cols <- RColorBrewer::brewer.pal(n = 11, name = "Spectral")[c(2, 10)]
+% # cols <- colorRampPalette(c("red", "orange", "lightblue", "blue"))(10)
+%
+% # Probabilities.
+% if (length(cols) == 2) {
+%     probs <- c(0.25, 0.75)
+% } else {
+%     probs <- table(cut(rnorm(500),
+%                        seq(-3, 3, length.out = length(cols) + 1))) + 2
+%     probs <- probs/sum(probs)
+% }
+%
+% # Generate population points.
+% n <- 800
+% pop <- data.frame(x = runif(n, -6, 0),
+%                   y = runif(n, -12, 0),
+%                   col = sample(cols,
+%                                size = n,
+%                                prob = probs,
+%                                replace = TRUE))
+% pop$rgb <- t(col2rgb(pop$col))
+% pop$tikz <- with(pop, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%
+% #-----------------------------------------------------------------------
+% # Generate sampled points.
+%
+% centers <- data.frame(x = 3.5, y = seq(-0.5, -11.5, by = -1))
+%
+% # Square grid for each sample.
+% w <- 0.3
+% grid <- expand.grid(x = seq(-w, w, length.out = 4),
+%                     y = seq(-w, w, length.out = 4))
+%
+% # Samples.
+% sams <- apply(centers,
+%               MARGIN = 1,
+%               FUN = function(ct) {
+%                   sam <- transform(grid,
+%                                    x = x + ct[1],
+%                                    y = y + ct[2])
+%                   sam$cols <- sample(cols,
+%                                      size = nrow(grid),
+%                                      prob = probs,
+%                                      replace = TRUE)
+%                   sam$rgb <- t(col2rgb(sam$col))
+%                   sam$tikz <- with(sam, sprintf(fmt, rgb[, 1], rgb[, 2], rgb[, 3], x, y))
+%                   return(sam)
+%               })
+%
+% # Plot it.
+% plot(y ~ x, data = pop, col = pop$col, asp = 1, pch = 19,
+%      ylim = extendrange(pop$y), xlim = c(-3, 12))
+% lapply(sams,
+%        FUN = function(sam) {
+%            points(y ~ x, data = sam, col = sam$col, pch = 19)
+%        })
+%
+% # Write in disk.
+% cat(c(pop$tikz, do.call(rbind, sams)$tikz),
+%     sep = "\n",
+%     file = "~/Projects/Tikz/src/sample_distribution.tex")
+%
+% #-----------------------------------------------------------------------
