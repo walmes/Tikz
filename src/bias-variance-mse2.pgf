@@ -1,0 +1,115 @@
+﻿\begin{tikzpicture}[
+  every path/.style = {draw, > = stealth'},
+  nodetext/.style = {
+    rounded corners = 2pt, fill = white, minimum height = 2em
+  },
+  ]
+
+  \draw (0, 0) -- ++(0, 4) node[nodetext, above] {$\theta$};
+  \draw (1.4065, 0) -- ++(0, 4) node[nodetext, above] {$\text{E}(\hat{\theta})$};
+
+  \def\fac{0.38}
+
+  \foreach \x [count = \y] in {0.825, 1.827, 1.068, 2.016, 2.131, 0.341, 1.306, 2.035, 1.353, 1.163} {
+    \draw[fill = orange] (\x, \fac*\y) circle (2pt);
+    \draw[dashed, yshift =  1pt, magenta] (0, \fac*\y) -- (\x, \fac*\y);
+    \draw[dashed, yshift = -1pt, cyan] (1.4065, \fac*\y) -- (\x, \fac*\y);
+  }
+
+  \path[->] (2.035, \fac*8) to[out = 90, in = 180] ++(1, 1) node[nodetext, right] {$\hat{\theta}_i$};
+
+  \node[nodetext, right] at (3, 2.5) {
+    $\textcolor{magenta}{\text{EQM}(\hat{\theta})} = 
+    \textcolor{cyan}{\text{V}(\hat{\theta})} - \textcolor{red}{\text{B}(\hat{\theta})}^2$};
+
+
+  \path[->, yshift = 1pt, magenta] (1.827 - 0.2, \fac*2) to[out = 90, in = 180] (3, 1.2)
+    node[nodetext, right, text = black] {
+      $\textcolor{magenta}{\text{EQM}(\hat{\theta})} = (1/n) \sum (\hat{\theta}_i - \theta)^2$};
+
+  \path[->, yshift = -1pt, cyan] (1.827 - 0.2, \fac*2) to[out = -90, in = 180] (3, 0.50)
+    node[nodetext, right, text = black] {
+      Vari{\^a}ncia: $\textcolor{cyan}{\text{V}(\hat{\theta})} = 
+      (1/n)\sum (\hat{\theta}_i - \text{E}(\hat{\theta}))^2$};
+
+  \draw[dashed, yshift = -4pt, red] (1.4065, 0) -- (0, 0);
+  \path[->, red] (1.4065/2, -4pt) to[out = -90, in = 180] (3, -0.3)
+    node[nodetext, right, text = black] {
+      V{\'i}cio: $\textcolor{red}{\text{B}(\hat{\theta})} = \theta - \text{E}(\hat{\theta})$};
+
+\end{tikzpicture}%
+
+% # R code.
+% set.seed(123)
+% n <- 10
+% xy <- round(cbind(1.25 + 1 * runif(n, -1, 1),
+%                   0.50 + 1 * runif(n, -1, 1)),
+%             digits = 3)
+% colMeans(xy)
+% u <- apply(xy,
+%            MARGIN = 1,
+%            FUN = function(x) {
+%                paste(x, collapse = "/")
+%            })
+% cat(u, sep = ", ", "\n")
+      })
+% cat(u, sep = ", ", "\n")
+t (1.4065, 0.5468) {$\times$};
+%   \node[text = magenta] at (0, 0) {$\times$};
+% 
+% \end{scope}
+% 
+% 
+% \begin{scope}[shift = {(12, 2.75)}]
+% 
+%   \target
+% 
+%   \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+%     \draw[fill = orange] (\x, \y) circle (2pt);
+%     \draw[dashed, green] (\x, \y) -- (1.4065, 0.5468);
+%   }
+% 
+%   \node[nodetext] at (0, -1) {};
+% 
+%   \node[text = green] at (1.4065, 0.5468) {$\times$};
+%   \node[text = magenta] at (0, 0) {$\times$};
+% 
+% \end{scope}
+% 
+% 
+% \begin{scope}[shift = {(12, -2.75)}]
+% 
+%   \target
+% 
+%   \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+%     \draw[fill = orange] (\x, \y) circle (2pt);
+%   }
+% 
+%   \node[nodetext] at (0, -1) {};
+% 
+%   \node[text = green] at (1.4065, 0.5468) {$\times$};
+%   \node[text = magenta] at (0, 0) {$\times$};
+% 
+%   \draw[dashed, red] (0, 0) -- (1.4065, 0.5468);
+% 
+% \end{scope}
+
+\end{tikzpicture}%
+
+% # R code.
+% set.seed(123)
+% n <- 10
+% xy <- round(cbind(1.25 + 1 * runif(n, -1, 1),
+%                   0.50 + 1 * runif(n, -1, 1)),
+%             digits = 3)
+% colMeans(xy)
+% u <- apply(xy,
+%            MARGIN = 1,
+%            FUN = function(x) {
+%                paste(x, collapse = "/")
+%            })
+% cat(u, sep = ", ", "\n")
+%            FUN = function(x) {
+%                paste(x, collapse = "/")
+%            })
+% cat(u, sep = ", ", "\n")

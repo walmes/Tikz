@@ -1,0 +1,141 @@
+﻿\newcommand{\target}[1]{%
+  \foreach \r in {2.5, 2, 1.5, 1, 0.5, 0.05} {
+    \draw [
+      fill = black,
+      fill opacity = 0.15
+    ] (0, 0) circle (\r cm);
+  }
+}%
+
+\newcommand{\points}[3]{%
+  \foreach \i in {1, 2, ..., 20} {
+    \pgfmathsetmacro{\xcoord}{#1 + rand * #3}
+    \pgfmathsetmacro{\ycoord}{#2 + rand * #3}
+    \draw[fill = orange] (\xcoord, \ycoord) circle (2pt);
+  }
+}%
+
+
+\newcommand{\circlevar}[3]{%
+  \draw[color = green] (#1, #2) circle (#3 cm);
+  \node[text = green] at (#1, #2) {$\times$};
+}%
+
+\def\border{
+  \draw (-2.65, -2.75) -- ++(5.25, 0);
+  \draw (2.75, 2.65) -- ++(0, -5.25);
+}%
+
+\begin{tikzpicture}[
+  labeltext/.style = {
+    draw, minimum width = 5.25cm, minimum height = 1.5em, fill = gray!20,
+  }]
+
+\def\dist{5.5};
+
+\begin{scope}[shift = {(0, 0)}]
+
+  \node[labeltext] at (0, 3) {Sem v{\'i}cio};
+  \node[labeltext, rotate = 90] at (-3, 0) {Alta vari{\^a}ncia};
+  \target
+
+  \points{0}{0}{1}
+
+  \circlevar{0}{0}{1.15}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(\dist, 0)}]
+
+  \node[labeltext] at (0, 3) {Com v{\'i}cio};
+  \target 
+
+  \points{1.25}{0.50}{1}
+
+  \circlevar{1.25}{0.50}{1.15}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(0, -\dist)}]
+
+  \node[labeltext, rotate = 90] at (-3, 0) {Baixa vari{\^a}ncia};
+  \target
+
+  \points{0}{0}{0.5}
+
+  \circlevar{0}{0}{0.65}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(\dist, -\dist)}]
+
+  \target
+
+  \points{1.25}{0.5}{0.5}
+
+  \circlevar{1.25}{0.50}{0.65}
+  \border
+\end{scope}
+
+\end{tikzpicture}%cope}[shift = {(\dist, -\dist)}]
+
+  \target
+
+  \foreach \j in {1, 2, ..., 20} {
+    \pgfmathsetmacro{\xcoord}{1.25 + rand * 0.5}
+    \pgfmathsetmacro{\ycoord}{0.50 + rand * 0.5}
+    \draw[fill = orange] (\xcoord, \ycoord) circle (2pt);
+  }
+
+  \circlevar{1.25}{0.50}{0.75}
+  \border
+\end{scope}
+
+\end{tikzpicture}%scope}[minimum width = 1em, text width = 5.0em, text centered]
+% 
+%   \node[state] (int) at ( 90:5.5) {\emph{Intui{\c c}{\~ a}o e viabilidade}};
+%   \node[state] (val) at (210:5.0) {\emph{Solu{\c c}{\~ a}o e valida{\c c}{\~ a}o}};
+%   \node[state] (aut) at (-30:5.0) {\emph{Automa{\c c}{\~ a}o e escala}};
+% 
+%   \node (con) at (90:3) {Dom{\' i}nio de\\ conhecimento};
+%   \node (est) at (210:3) {Matem{\' a}tica \& Estat{\' i}stica};
+%   \node[text width = 7em] (hac) at (-30:3) {Habilidades de\\ computa{\c c}{\~ a}o};
+% 
+%   \node[color = red] (sof) at (30:2) {Processamento tradicional};
+%   \node[color = red] (pes) at (150:2) {Pesquisa tradicional};
+%   \node[color = red] (mac) at (-90:2) {Zona perigosa};
+% 
+%   \node (ds) at (0:0) {\large Data Science};
+% 
+% \end{scope}
+
+% \begin{scope}[
+%   every node/.style = {
+%     text centered,
+%     font = \footnotesize,
+%     text width = 5em
+%   }]
+% 
+%   \node at ( 50:3.50) {Engenharia};
+%   \node at (130:3.50) {Direito};
+%   \node at ( 70:5.00) {Biologia};
+%   \node at (110:5.00) {Marketing};
+%   \node at ( 60:4.25) {Economia};
+%   \node at (120:4.25) {Comunica{\c c}{\~a}o};
+%   \node at ( 90:4.25) {Gest{\~a}o};
+% 
+%   \node at ( 05:4.0) {Programa{\c c}{\~a}o};
+%   \node at (-05:4.5) {Algor{\'\i}tmos};
+%   \node at (-15:5.0) {Bancos de dados};
+%   \node at (-50:3.5) {Computa{\c c}{\~a}o em n{\'u}vem};
+%   \node at (-60:4.5) {Machine learning};
+% 
+%   \node at (175:4.0) {Visualiza{\c c}{\~a}o};
+%   \node at (185:4.5) {Otimiza{\c c}{\~a}o};
+%   \node at (195:5.0) {Infer{\^e}ncia estat{\'\i}stica};
+%   \node at (230:3.5) {An{\'a}lise multivariada};
+%   \node at (240:4.5) {Modelagem estat{\'\i}stica};
+% 
+% \end{scope}
+
+\end{tikzpicture}%%
