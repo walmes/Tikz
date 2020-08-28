@@ -1,0 +1,40 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+%     xlabel = $t$, ylabel = $f(t)$,
+    samples = 75,
+    domain = -5:5,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south east},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function = {
+    gamma(\z) =
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function = {
+    gammapdf(\x,\a,\b) = (\b^\a)*\x^(\a-1)*exp(-\b*\x)/gamma(\a);
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \def\chisqLeft{10.117}
+  \addplot[smooth, draw = none, domain = 0:\chisqLeft, fill = cyan!40] {gammapdf(x, 19/2, 0.5)} \closedcycle;
+  \path[<->, draw] (axis cs: \chisqLeft, 0) to[out = 90, in = 0]
+    (axis cs: \chisqLeft, 0.05) node[left] {$\chi^2_{0.1/2} = \chisqLeft$};
+
+  \def\chisqRight{30.143}
+  \addplot[smooth, draw = none, domain = \chisqRight:50, fill = orange!40] {gammapdf(x, 19/2, 0.5)} \closedcycle;
+  \path[<->, draw] (axis cs: \chisqRight, 0) to[out = 90, in = 180]
+    (axis cs: \chisqRight, 0.05) node[right] {$\chi^2_{1 - 0.1/2} = \chisqRight$};
+
+  \addplot[smooth, thick, domain = 0:50, color = gray] {gammapdf(x, 19/2, 0.5)}
+    node[pos = 0.38, pin = {right:$\nu = 20 - 1$}] {};
+
+  \end{axis}
+\end{tikzpicture}%

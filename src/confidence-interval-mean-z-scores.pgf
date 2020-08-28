@@ -1,0 +1,39 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+    xlabel = $z$, ylabel = $f(z)$,
+    samples = 75,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south west},
+    legend style = {draw = none, fill = none},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \foreach \zValue/\al/\pos in {1.645/0.05/0.25, 1.960/0.025/0.20, 2.576/0.005/0.15} {
+    \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.15] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.15] {normalpdf(x, 0, 1)} \closedcycle;
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: -\zValue, 0) to[out = 90, in = 0]
+        (axis cs: -2, \pos) node[left] {$-z_{\al} = -\zValue$};
+    }
+    \temp
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: \zValue, 0) to[out = 90, in = 180]
+        (axis cs: 2, \pos) node[right] {$z_{\al} = \zValue$};
+    }
+    \temp
+  }
+
+  \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+
+  \end{axis}
+\end{tikzpicture}%

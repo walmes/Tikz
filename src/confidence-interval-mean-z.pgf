@@ -1,0 +1,40 @@
+﻿\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[
+    samples = 150,
+    width = 9cm, height = 7cm,
+    yticklabels = {,,},
+    xtick = {-4, -3, -2, -1, 0, 1, 2, 3, 4},
+%     xticklabels = {$\mu -4\sigma$, $\mu -3\sigma$, $\mu - 2\sigma$, $\mu -1\sigma$, $\mu$,
+%       $\mu + 1\sigma$, $\mu + 2\sigma$, $\mu + 3\sigma$, $\mu +4\sigma$},
+    xticklabels = {$\bar{y} -4\frac{\sigma}{\sqrt{n}}$, $\bar{y} -3\frac{\sigma}{\sqrt{n}}$, $\bar{y} - 2\frac{\sigma}{\sqrt{n}}$, $\bar{y} -1\frac{\sigma}{\sqrt{n}}$, $\bar{y}$,
+      $\bar{y} + 1\frac{\sigma}{\sqrt{n}}$, $\bar{y} + 2\frac{\sigma}{\sqrt{n}}$, $\bar{y} + 3\frac{\sigma}{\sqrt{n}}$, $\bar{y} +4\frac{\sigma}{\sqrt{n}}$},
+    every x tick label/.append style = {font = \small},
+    xticklabel style = {rotate = 45},
+    ]
+
+    \addplot[smooth, domain = -4:4, draw = none, fill = gray!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-4:-1.65, draw = none, fill = cyan] {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=1.65:4, draw = none, fill = orange] {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, 0, 1)};
+    \addplot [ycomb, samples at={0}, color = green] {normalpdf(x, 0, 1)};
+
+    \path[<->, draw] (axis cs: -1.65,0) to[out = 90, in = 0]
+      (axis description cs: 0.25, 0.35) node[left] {$\overline{y}_{LI}$};
+    \path[<->, draw] (axis cs: 1.65,0) to[out = 90, in = 180]
+      (axis description cs: 0.75, 0.35) node[right] {$\overline{y}_{LS}$};
+
+    \node[fill = white] at (axis cs: 0, 0.15) {$1 - \alpha$};
+    \path[o->, draw] (axis cs: 2, 0.02) to[out = 90, in = 180]
+      (axis description cs: 0.8, 0.2) node[right, fill = orange] {$\alpha/2$};
+    \path[o->, draw] (axis cs: -2, 0.02) to[out = 90, in = 0]
+      (axis description cs: 0.2, 0.2) node[left, fill = cyan] {$\alpha/2$};
+
+  \end{axis}
+
+\end{tikzpicture}%

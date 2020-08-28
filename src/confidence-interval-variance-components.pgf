@@ -1,0 +1,24 @@
+﻿\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}[scale = 2]
+
+    \def\chiLeft{3}
+    \def\chiRight{5.5}
+    \def\sigmasquare{4}
+
+    \draw[|-, dashed] (0, 1) node[below] {$0$} -- (\chiLeft, 1);
+    \draw[|-|, thick] (\chiLeft, 1) -- (\chiRight, 1);
+    \draw[fill = green] (\sigmasquare, 1) circle (1pt);
+    \node[below = 1ex] at (\sigmasquare, 1) {$\sigma^2$};
+    \node[below] at (\chiLeft, 1) {$\dfrac{(n - 1) s^2}{\chi^2_{\alpha/2, n - 1}}$};
+    \node[below] at (\chiRight, 1) {$\dfrac{(n - 1) s^2}{\chi^2_{1 - \alpha/2, n - 1}}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (0, 1) -- (\sigmasquare, 1)
+      node [black, midway, yshift = 1.5em] {$\sigma^2$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (\chiLeft, 1.25) -- (\chiRight, 1.25)
+      node [black, midway, yshift = 1.5em] {$\rho \sigma^2$};
+
+  \end{scope}
+
+\end{tikzpicture}%

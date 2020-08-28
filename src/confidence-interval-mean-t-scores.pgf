@@ -1,0 +1,48 @@
+﻿\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+    xlabel = $t$, ylabel = $f(t)$,
+    samples = 75,
+    domain = -5:5,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south west},
+    legend style = {draw = none, fill = none},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    student(\x,\n)=
+    gamma((\n+1)/2)/(sqrt(\n*pi)*
+    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \foreach \zValue/\al/\pos in {2.145/0.025/0.30} {
+    \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.5] {student(x, 14)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.5] {student(x, 14)} \closedcycle;
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: -\zValue, 0) to[out = 90, in = 0]
+        (axis cs: -\zValue + 0.2, \pos) node[left] {$-t_{\al} = -\zValue$};
+    }
+    \temp
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: \zValue, 0) to[out = 90, in = 180]
+        (axis cs: \zValue - 0.2, \pos) node[right] {$t_{\al} = \zValue$};
+    }
+    \temp
+  }
+
+  \addplot[smooth, thick, domain = -4:4, color = gray] {student(x, 14)}
+    node[pos = 0.54, pin = {right:$\nu = 15 - 1$}] {};
+
+  \end{axis}
+\end{tikzpicture}%

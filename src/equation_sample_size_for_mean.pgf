@@ -1,0 +1,53 @@
+﻿\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=4pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \footnotesize}
+  ]
+
+\begin{scope}
+
+  \node {$\text{A}_{\text{IC}(\mu)} = \displaystyle 2 \cdot
+     \nann{z}{$z$}_{\alpha/2} \cdot \frac{\nann{s}{$\sigma$}}{\sqrt{\nann{n}{$n$}}}$};
+
+   \path[->, draw] (z.north) |- ++(-0.5, 0.5) node[ann, left] {
+     $\uparrow 1 - \alpha \Rightarrow
+     \uparrow z_{\alpha/2} \Rightarrow
+     \uparrow \textcolor{orange}{\text{A}_{\text{IC}(\mu)}}$};
+
+   \path[->, draw] (s.north) |- ++(0.5, 0.5) node[ann, right] {
+     $\uparrow \sigma \Rightarrow
+     \uparrow \textcolor{orange}{\text{A}_{\text{IC}(\mu)}}$};
+
+   \path[->, draw] (n.south) |- ++(0.5, -0.5) node[ann, right] {
+     $\uparrow n \Rightarrow
+     \downarrow \textcolor{cyan}{\text{A}_{\text{IC}(\mu)}}$};
+
+\end{scope}
+
+\begin{scope}[yshift = -3cm]
+
+  \node {$n = \displaystyle \left(\frac{\nann{z}{$z$}_{\alpha/2} \cdot \nann{s}{$\sigma$}}{\nann{e}{$e$}} \right)^2$};
+
+   \path[->, draw] (z.north) |- ++(-0.5, 0.5) node[ann, left] {
+     $\uparrow 1 - \alpha \Rightarrow
+     \uparrow z_{\alpha/2} \Rightarrow
+     \uparrow \textcolor{orange}{n}$};
+
+   \path[->, draw] (s.north) |- ++(0.5, 0.5) node[ann, right] {
+     $\uparrow \sigma \Rightarrow
+     \uparrow \textcolor{orange}{n}$};
+
+   \path[->, draw] (e.south) |- ++(0.5, -0.5) node[ann, right] {
+     $\uparrow e \Rightarrow
+     \downarrow \textcolor{cyan}{n}$};
+
+\end{scope}
+
+\end{tikzpicture}%

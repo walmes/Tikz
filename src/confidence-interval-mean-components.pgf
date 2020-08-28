@@ -1,0 +1,21 @@
+﻿\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}[scale = 2]
+
+    \def\zval{1.65}
+
+    \draw[|-|, thick] (-\zval, 1) -- (\zval, 1);
+    \draw[fill = green] (0, 1) circle (1pt);
+    \node[below = 1ex] at (0, 1) {$\overline{y}$};
+    \node[below] at (-\zval, 1) {$\overline{y} - \textcolor{cyan}{z_{\alpha/2}}\cdot \sigma/\sqrt{n}$};
+    \node[below] at (\zval, 1) {$\overline{y} + \textcolor{orange}{z_{\alpha/2}}\cdot \sigma/\sqrt{n}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (-\zval, 1) -- (0, 1)
+      node [black, midway, yshift = 1.5em] {$e = z_{\alpha/2}\cdot \sigma/\sqrt{n}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (-\zval, 1.5) -- (\zval, 1.5)
+      node [black, midway, yshift = 1.5em] {$2e$};
+
+  \end{scope}
+
+\end{tikzpicture}%
