@@ -1,4 +1,4 @@
-\begin{tikzpicture}[%
+﻿\begin{tikzpicture}[%
   scale = 3,
   thick,
   z = {(0.45, 0.25)},
@@ -45,19 +45,23 @@
   \begin{scope}[]
     \cube{};
     \foreach \i in {0, 3, 5, 6}{ \draw[fill = blue] (v\i) circle (1.5pt); }
-    \foreach \i in {1, 2, 4, 7}{ \draw[fill = orange] (v\i) circle (1.5pt); }
-    \node at (0.25, 1.25, 1) {$2^3 = 8$ em $2^1$ blocos};
+    \node at (0.25, 1.25, 1) {$2^{3 - 1} = 4$, fra{\c c}{\~a}o $1/2$};
   \end{scope}
 
-  \begin{scope}[xshift = 2cm, yshift = 1cm]
+  \begin{scope}[xshift = 2cm, yshift = 1.25cm]
     \coordinate (b1) at (0, 0);
-    \coordinate (b2) at (0, -0.5em);
-    \draw[fill = blue] (b1) circle (1.5pt) node[right = 0.7ex] {Bloco I};
-    \draw[fill = orange] (b2) circle (1.5pt) node[right = 0.7ex] {Bloco II};
+    \draw[fill = blue] (b1) circle (1.5pt) node[right = 0.7ex] {Fra{\c c}{\~a}o principal};
   \end{scope}
 
-  \begin{scope}[xshift = 3cm, yshift= 1.3cm]
+  \begin{scope}[xshift = 2.5cm, yshift= 0.5cm]
     \matrix (B1) at (0, 0) [mtx] {
+      (1) \\ ab \\ ac \\ bc \\
+    };
+    \node[draw, color = blue, fit = (B1-1-1)(B1-4-1)] {};
+  \end{scope}
+
+\end{tikzpicture}%
+(B1) at (0, 0) [mtx] {
       (1) \\ ab \\ ac \\ bc \\
     };
     \matrix (B2) [mtx, below = 1em of B1] {
