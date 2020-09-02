@@ -1,0 +1,51 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 10cm, height = 5cm,
+    samples = 75,
+    ticks = none,
+  }
+} %
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{scope}
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.645}
+      \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: 2, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha/2$};
+      \path[draw, o->] (axis cs: -2, 0.02) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha/2$};
+      \node at (axis cs: 0, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Bilateral\\ $H_0: \theta \neq \theta_0$};
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[yshift = -3.75cm]
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.282}
+      \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: -1.7, 0.03) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha$};
+      \node at (axis cs: 0.25, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} esqueda\\ $H_0: \theta < \theta_0$};
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[yshift = -7.5cm]
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.282}
+      \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: 1.7, 0.03) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha$};
+      \node at (axis cs: -0.25, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta < \theta_0$};
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}%------------------------------------------------------

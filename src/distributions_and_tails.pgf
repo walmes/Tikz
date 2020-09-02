@@ -1,0 +1,44 @@
+﻿\begin{tikzpicture}[
+  declare function = {
+    weibullpdf(\x,\a,\b) = (\b/\a)*(\x/\a)^(\b-1)*exp(-(\x/\a)^(\b));
+  },
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\va{y}
+
+  \begin{axis}[
+    width = 9cm, height = 6cm,
+    samples = 50, smooth, domain = 0:14,
+    xmin = -3, xmax = 15,
+    ymax = 0.45, ymin = -0.1,
+    ticks = none,
+    % xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none}, clip = false]
+
+    \addplot +[mark = none, color = black] coordinates {(6, 0) (6, 0.35)} node[above] {$\theta$};
+
+    \addplot[cyan, thick] {weibullpdf(x, 7, 6)};
+    \addplot[domain = 0:4, fill = cyan, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 7, 6)} \closedcycle;
+    \addplot[domain = 8.5:15, fill = cyan, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 7, 6)} \closedcycle;
+    \addplot [ycomb, samples at={6.5}, cyan] {weibullpdf(x, 7, 6)};
+    \draw[|-|, cyan] (axis cs: 4, -0.02) -- (axis cs: 8.5, -0.02);
+
+    \addplot[orange, thick] {weibullpdf(x, 5, 3)};
+    \addplot[domain = 0:1.5, fill = orange, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 5, 3)} \closedcycle;
+    \addplot[domain = 7.5:15, fill = orange, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 5, 3)} \closedcycle;
+    \addplot [ycomb, samples at={4.25}, orange] {weibullpdf(x, 5, 3)};
+    \draw[|-|, orange] (axis cs: 1.5, -0.04) -- (axis cs: 7.5, -0.04);
+
+    \addplot [smooth, thick, color = magenta, domain = -2:14] {normalpdf(x, 6, 2)};
+    \addplot[domain = -2:2, fill = magenta, fill opacity = 0.5, draw = none, thick] {normalpdf(x, 6, 2)} \closedcycle;
+    \addplot[domain = 10:15, fill = magenta, fill opacity = 0.5, draw = none, thick] {normalpdf(x, 6, 2)} \closedcycle;
+    \addplot [ycomb, samples at={6}, magenta] {normalpdf(x, 6, 2)};
+    \draw[|-|, magenta] (axis cs: 2, -0.06) -- (axis cs: 10, -0.06);
+
+  \end{axis}
+\end{tikzpicture}%------------------------------------------------------

@@ -1,0 +1,52 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {
+    fill opacity = 0.75,
+    text opacity = 1,
+    minimum height = 1.25em,
+    align = center,
+    execute at begin node = \setlength{\baselineskip}{1ex}}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.282}
+
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -4:\zValue, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+
+    \addplot[domain = -2:\zValue, draw = none, fill = yellow, opacity = 0.75] {normalpdf(x, 2, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -2:6, color = gray] {normalpdf(x, 2, 1)};
+
+    \addplot +[mark = none, dashed, black] coordinates {(\zValue, 0) (\zValue, 0.5)};
+    % \addplot +[mark = none] coordinates {(0, 0) (0, 0.5)} node[above] {$\theta_0$};
+    % \addplot +[mark = none] coordinates {(2, 0) (2, 0.5)} node[above] {$\theta$};
+
+    \path[draw, o->] (axis cs: 1.7, 0.05) to[out = -90, in = 180]
+      (axis cs: 2.5, -0.1) node[right, align = left] {$\alpha$: erro tipo I\\ N{\' i}vel de signific{\^a}ncia};
+    \path[draw, o->] (axis cs: 0.7, 0.05) to[out = -90, in = 0]
+      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II\\ Poder do teste};
+
+    \node [mynode, text width = 5em] (text0) at (axis cs: -2, 0.4)
+      {\scriptsize Distribui{\c c}{\~a}o amostral sob a hip{\'o}tese nula.};
+    \node [mynode, text width = 5em] (text1) at (axis cs: 4, 0.4)
+      {\scriptsize Verdadeira distribui{\c c}{\~a}o amostral.};
+    \path[draw, ->] (text0) to[out = -90, in = 180] (axis cs: -1.25, 0.2);
+    \path[draw, ->] (text1) to[out = -90, in = 0] (axis cs: 3.25, 0.2);
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------

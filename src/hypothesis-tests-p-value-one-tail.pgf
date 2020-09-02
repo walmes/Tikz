@@ -1,0 +1,56 @@
+﻿% http://tug.ctan.org/tex-archive/info/symbols/compact/LaTeXSymbols.pdf
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.22,
+    ymax = 0.5,
+    xmax = 6
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em, scale = 0.75}]
+
+  \begin{axis}[myplot, smooth]
+
+    \node[below right, align = left] at (axis description cs: 0.01, 0.97)
+      {Unilateral {\`a} direita\\ $H_0: \theta > \theta_0$};
+
+    \def\zValue{1.645}
+    \def\zStat{1.2}
+
+    \addplot[domain = \zStat:4, draw = none, fill = green, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none,
+      pattern = north east lines, pattern color = magenta] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+
+    \path[<-, draw] (axis cs: \zStat, 0) -- (axis cs: \zStat, 0.4)
+      node[mynode, above, fill = green!75] {Estat{\'i}stica de teste: $u_{\text{obs}}$};
+    \path[draw, dashed] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.2)
+      node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+      node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
+    \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
+      node[right, align = left, fill = green] {$p$-valor\\ $\text{P}(U > u_{\text{obs}})$ };
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -4, 0)
+        node [mynode, midway, yshift = -1.5em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$ (\ding{51})};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[mynode, midway, yshift = -1.5em, fill = magenta] (a1)
+        {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$ (\ding{55})};
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------

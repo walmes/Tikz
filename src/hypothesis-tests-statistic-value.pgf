@@ -1,0 +1,80 @@
+﻿% http://tug.ctan.org/tex-archive/info/symbols/compact/LaTeXSymbols.pdf
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.22, ymax = 0.5,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em, scale = 0.75}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.645}
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:\zValue, draw = none, fill = gray!30, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray]
+      {normalpdf(x, 0, 1)};
+
+    \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
+      {normalpdf(x, \zValue, 1)} coordinate (v2);
+    \addplot [ycomb, samples at = {-\zValue}, color = black, dashed]
+      {normalpdf(x, -\zValue, 1)} coordinate (v1);
+
+    \foreach \zValue [count = \b] in  {-2.25, 1.7, 3} {
+      \edef\temp{\noexpand
+        \path[<-, draw] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.15) coordinate (b\b);
+      }
+      \temp
+    }
+    \foreach \zValue [count = \a] in {-1, 0.25, 1.55} {
+      \edef\temp{\noexpand
+        \path[<-, draw] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.075) coordinate (a\a);
+      }
+      \temp
+    }
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.75em, fill = gray!30]
+        {Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$ (\ding{51})};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[midway, yshift = -0.25em] (c1) {};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[midway, yshift = -0.25em] (c2) {};
+      \node[mynode, fill = magenta] (c0) at (axis cs: 0, -0.12)
+        {Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$ (\ding{55})};
+      \path[draw, ->] (c0) to[out = 180, in = -90] (c1.south);
+      \path[draw, ->] (c0) to[out = 0, in = -90] (c2.south);
+      \node (v0) at (0, 0.45) {Valores cr{\'i}ticos};
+      \path[draw, ->] (v0) to[out = 180, in = 90] (v1.south);
+      \path[draw, ->] (v0) to[out = 0, in = 90] (v2.south);
+    \end{scope}
+
+  \end{axis}
+
+  % For some unknown reason, \ding{} didn't work inside those foreach statment.
+  \foreach \a in {1, 2, 3} {
+    \node[mynode, above, fill = gray] at (a\a) {$H_0$ \ding{51}};
+  }
+
+  \foreach \b in {1, 2, 3} {
+    \node[mynode, above, fill = magenta] at (b\b) {$H_0$ \ding{55}};
+  }
+
+\end{tikzpicture}%------------------------------------------------------

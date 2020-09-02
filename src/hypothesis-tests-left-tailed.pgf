@@ -1,0 +1,40 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.282}
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:4, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+    \path[draw, o->] (axis cs: -1.7, 0.03) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha$};
+    \node at (axis cs: 0.25, 0.1) {$1 - \alpha$};
+    \node[below right, align=left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} esqueda\\ $H_0: \theta < \theta_0$};
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.25em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[mynode, midway, yshift = -1.25em, fill = magenta] (a1) {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$};
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------

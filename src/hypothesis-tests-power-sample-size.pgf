@@ -1,0 +1,38 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 3cm,
+    samples = 50,
+    ticks = none,
+    xmin = -4.5, xmax = 6.5,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
+    \begin{scope}[yshift = 1.6*\y cm]
+      \begin{axis}[myplot, smooth]
+        \addplot[domain = \zValue:4*\v, draw = none, fill = magenta, opacity = 0.75]
+          {normalpdf(x, 0, \v)} \closedcycle;
+        \addplot[domain = -4*\v:\zValue, draw = none, fill = gray!30, opacity = 0.75]
+          {normalpdf(x, 0, \v)} \closedcycle;
+        \addplot[smooth, thick, domain = -4*\v:4*\v, color = gray]
+          {normalpdf(x, 0, \v)};
+        \addplot[domain = 2-4*\v:\zValue, draw = none, fill = yellow, opacity = 0.75]
+          {normalpdf(x, 2, \v)} \closedcycle;
+        \addplot[smooth, thick, domain = 2-4*\v:2+4*\v, color = gray]
+          {normalpdf(x, 2, \v)};
+        \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
+          {normalpdf(x, \zValue, \v)};
+      \end{axis}
+    \end{scope}
+  }
+
+  \draw[->] (-0.2, 1.5) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
+
+\end{tikzpicture}%------------------------------------------------------
