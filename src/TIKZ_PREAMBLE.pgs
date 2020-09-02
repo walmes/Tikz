@@ -66,6 +66,7 @@
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
 
+% \usepackage{fontawesome}
 % \usepackage{palatino}
 % \usepackage{eulervm}
 % \usepackage[condensed, math]{iwona}
@@ -79,6 +80,8 @@
 \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
 
 \usepackage[T1]{fontenc}
+
+\usepackage{pifont}
 
 % \usepackage[none]{ubuntu}
 % \usepackage[light]{ubuntu}
