@@ -1,0 +1,78 @@
+﻿\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.12, ymax = 0.65,
+    xmax = 5.5, xmin = -4.5,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.645}
+    \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Bilateral\\ $H_0: \theta \neq \theta_0$};
+
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:\zValue, draw = none, fill = gray!30, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray]
+      {normalpdf(x, 0, 1)};
+    \addplot +[mark = none, dashed, black] coordinates {(0, 0) (0, 0.40)}
+      node[above] {$\theta_0$};
+
+    \def\xsh{1}
+    \addplot[domain = \xsh-4:\xsh-\zValue, draw = none, fill = cyan, opacity = 0.75]
+      {normalpdf(x, \xsh, 1)} \closedcycle;
+    \addplot[domain = \xsh+\zValue:\xsh+4, draw = none, fill = cyan, opacity = 0.75]
+      {normalpdf(x, \xsh, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = \xsh-4:\xsh+4, color = gray]
+      {normalpdf(x, \xsh, 1)};
+    \addplot +[mark = none, dashed, black] coordinates {(\xsh, 0) (\xsh, 0.40)}
+      node[above] {$\hat{\theta}$};
+
+    \draw[|-|, cyan] (axis cs: \xsh - \zValue, 0.5) -- (axis cs: \xsh + \zValue, 0.5)
+      node[midway, above] {$\text{IC}_{1 - \alpha}(\theta)$};
+    \node[right, align = left, scale = 0.75] at (\xsh + \zValue, 0.5) {
+      Se $\theta_0 \in \text{IC}_{1 - \alpha}(\theta)$\\ ent{\~a}o n{\~a}o rejeitar\\ $H_0$ ao n{\'i}vel $\alpha$.};
+
+    \draw[cyan, dashed] (axis cs: \xsh - \zValue, 0.5) -- (axis cs: \xsh - \zValue, 0);
+    \draw[cyan, dashed] (axis cs: \xsh + \zValue, 0.5) -- (axis cs: \xsh + \zValue, 0);
+
+    % \path[draw, o->] (axis cs: 2, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.2)
+    %   node[right, draw, fill = white] {$\alpha/2$};
+    % \path[draw, o->] (axis cs: -2, 0.02) to[out = 90, in = 0] (axis cs: -3, 0.2)
+    %   node[left, draw, fill = white] {$\alpha/2$};
+    % \node[draw, fill = white] at (axis cs: 0, 0.1) {$1 - \alpha$};
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.25em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$};
+      % \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      %   (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+      %   node[midway, yshift = -0.25em] (a1) {};
+      % \draw [decorate, decoration = {brace, amplitude = 5pt}]
+      %   (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+      %   node[midway, yshift = -0.25em] (a2) {};
+      % \node[mynode, fill = magenta] (a0) at (axis cs: 0, -0.15)
+      %   {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$};
+      % \path[draw, ->] (a0) to[out = 180, in = -90] (a1.south);
+      % \path[draw, ->] (a0) to[out = 0, in = -90] (a2.south);
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
