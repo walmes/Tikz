@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 266 Tikz figures in this gallery.  Most of them were
+There are 294 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -330,6 +330,328 @@ Some useful tutorials or galleries:
       Tasmania entry to NEM}] at (axis cs:5,190) {};
   \end{axis}
 \end{tikzpicture}
+```
+****
+
+![](./src/bias-variance-mse.png)
+
+  * [bias-variance-mse.pgf](https://github.com/walmes/Tikz/blob/master/src/bias-variance-mse.pgf)
+
+```tex
+\newcommand{\target}[1]{%
+  \foreach \r in {2.5, 2, 1.5, 1, 0.5, 0.05} {
+    \draw [
+      fill = black,
+      fill opacity = 0.05
+    ] (0, 0) circle (\r cm);
+  }
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {draw, > = stealth'},
+  nodetext/.style = {
+    draw, rounded corners = 2pt, fill = white,
+  },
+  labeltext/.style = {
+    draw, minimum width = 5.25cm, minimum height = 1.5em, fill = gray!20,
+  }]
+
+\def\dist{5.5};
+
+\begin{scope}[shift = {(0, 0)}, scale = 1.25]
+
+  \target
+
+  \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+    \draw[fill = orange] (\x, \y) circle (2pt);
+  }
+
+  \node[text = cyan] (mean) at (1.4065, 0.5468) {$\times$};
+  \node[text = magenta] (theta) at (0, 0) {$\times$};
+
+  \path[->] (mean) to[out = 90, in = 180] ++(1, 1) node[nodetext, right] {$\text{E}(\hat{\theta)}$};
+  \path[->] (theta) to[out = 90, in = 0] ++(-1, 1) node[nodetext, left] {$\theta$};
+  \path[->] (1.163, 1.409) to[out = 90, in = 180] ++(1, 1) node[nodetext, right] {$\hat{\theta}_i$};
+
+  \node[nodetext] at (0, -3) {$\textcolor{magenta}{\text{EQM}(\hat{\theta})} = \textcolor{cyan}{\text{V}(\hat{\theta})} - \textcolor{red}{\text{B}(\hat{\theta})}^2$};
+
+\end{scope}
+
+\begin{scope}[shift = {(7, 0)}]
+
+  \target
+
+  \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+    \draw[fill = orange] (\x, \y) circle (2pt);
+    \draw[dashed, magenta] (\x, \y) -- (0, 0);
+  }
+
+  \node[nodetext] at (0, -1) {$\textcolor{magenta}{\text{EQM}(\hat{\theta})} = 1/n\sum (\hat{\theta}_i - \theta)^2$};
+
+  \node[text = cyan] at (1.4065, 0.5468) {$\times$};
+  \node[text = magenta] at (0, 0) {$\times$};
+
+\end{scope}
+
+\begin{scope}[shift = {(12, 2.75)}]
+
+  \target
+
+  \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+    \draw[fill = orange] (\x, \y) circle (2pt);
+    \draw[dashed, cyan] (\x, \y) -- (1.4065, 0.5468);
+  }
+
+  \node[nodetext] at (0, -1) {Vari{\^a}ncia: $\textcolor{cyan}{\text{V}(\hat{\theta})} = 1/n\sum (\hat{\theta}_i - \text{E}(\hat{\theta}))^2$};
+
+  \node[text = cyan] at (1.4065, 0.5468) {$\times$};
+  \node[text = magenta] at (0, 0) {$\times$};
+
+\end{scope}
+
+\begin{scope}[shift = {(12, -2.75)}]
+
+  \target
+
+  \foreach \x/\y in {0.825/1.414, 1.827/0.407, 1.068/0.855, 2.016/0.645, 2.131/-0.294, 0.341/1.3, 1.306/-0.008, 2.035/-0.416, 1.353/0.156, 1.163/1.409} {
+    \draw[fill = orange] (\x, \y) circle (2pt);
+  }
+
+  \node[nodetext] at (0, -1) {V{\'i}cio: $\textcolor{red}{\text{B}(\hat{\theta})} = \text{E}(\hat{\theta}) - \theta$};
+
+  \node[text = cyan] at (1.4065, 0.5468) {$\times$};
+  \node[text = magenta] at (0, 0) {$\times$};
+
+  \draw[dashed, red] (0, 0) -- (1.4065, 0.5468);
+
+\end{scope}
+
+\end{tikzpicture}%
+
+% # R code.
+% set.seed(123)
+% n <- 10
+% xy <- round(cbind(1.25 + 1 * runif(n, -1, 1),
+%                   0.50 + 1 * runif(n, -1, 1)),
+%             digits = 3)
+% colMeans(xy)
+% u <- apply(xy,
+%            MARGIN = 1,
+%            FUN = function(x) {
+%                paste(x, collapse = "/")
+%            })
+% cat(u, sep = ", ", "\n")
+```
+****
+
+![](./src/bias-variance-mse2.png)
+
+  * [bias-variance-mse2.pgf](https://github.com/walmes/Tikz/blob/master/src/bias-variance-mse2.pgf)
+
+```tex
+\begin{tikzpicture}[
+  every path/.style = {draw, > = stealth'},
+  nodetext/.style = {
+    rounded corners = 2pt, fill = white, minimum height = 2em
+  },
+  ]
+
+  \draw (0, 0) -- ++(0, 4) node[nodetext, above] {$\theta$};
+  \draw (1.4065, 0) -- ++(0, 4) node[nodetext, above] {$\text{E}(\hat{\theta})$};
+
+  \def\fac{0.38}
+
+  \foreach \x [count = \y] in {0.825, 1.827, 1.068, 2.016, 2.131, 0.341, 1.306, 2.035, 1.353, 1.163} {
+    \draw[fill = orange] (\x, \fac*\y) circle (2pt);
+    \draw[dashed, yshift =  1pt, magenta] (0, \fac*\y) -- (\x, \fac*\y);
+    \draw[dashed, yshift = -1pt, cyan] (1.4065, \fac*\y) -- (\x, \fac*\y);
+  }
+
+  \path[->] (2.035, \fac*8) to[out = 90, in = 180] ++(1, 1) node[nodetext, right] {$\hat{\theta}_i$};
+
+  \node[nodetext, right] at (3, 2.5) {
+    $\textcolor{magenta}{\text{EQM}(\hat{\theta})} =
+    \textcolor{cyan}{\text{V}(\hat{\theta})} - \textcolor{red}{\text{B}(\hat{\theta})}^2$};
+
+
+  \path[->, yshift = 1pt, magenta] (1.827 - 0.2, \fac*2) to[out = 90, in = 180] (3, 1.2)
+    node[nodetext, right, text = black] {
+      $\textcolor{magenta}{\text{EQM}(\hat{\theta})} = (1/n) \sum (\hat{\theta}_i - \theta)^2$};
+
+  \path[->, yshift = -1pt, cyan] (1.827 - 0.2, \fac*2) to[out = -90, in = 180] (3, 0.50)
+    node[nodetext, right, text = black] {
+      Vari{\^a}ncia: $\textcolor{cyan}{\text{V}(\hat{\theta})} =
+      (1/n)\sum (\hat{\theta}_i - \text{E}(\hat{\theta}))^2$};
+
+  \draw[dashed, yshift = -4pt, red] (1.4065, 0) -- (0, 0);
+  \path[->, red] (1.4065/2, -4pt) to[out = -90, in = 180] (3, -0.3)
+    node[nodetext, right, text = black] {
+      V{\'i}cio: $\textcolor{red}{\text{B}(\hat{\theta})} = \text{E}(\hat{\theta}) - \theta$};
+
+\end{tikzpicture}%
+
+% # R code.
+% set.seed(123)
+% n <- 10
+% xy <- round(cbind(1.25 + 1 * runif(n, -1, 1),
+%                   0.50 + 1 * runif(n, -1, 1)),
+%             digits = 3)
+% colMeans(xy)
+% u <- apply(xy,
+%            MARGIN = 1,
+%            FUN = function(x) {
+%                paste(x, collapse = "/")
+%            })
+% cat(u, sep = ", ", "\n")
+```
+****
+
+![](./src/bias-variance.png)
+
+  * [bias-variance.pgf](https://github.com/walmes/Tikz/blob/master/src/bias-variance.pgf)
+
+```tex
+\newcommand{\target}[1]{%
+  \foreach \r in {2.5, 2, 1.5, 1, 0.5, 0.05} {
+    \draw [
+      fill = black,
+      fill opacity = 0.15
+    ] (0, 0) circle (\r cm);
+  }
+}%
+
+\newcommand{\points}[3]{%
+  \foreach \i in {1, 2, ..., 20} {
+    \pgfmathsetmacro{\xcoord}{#1 + rand * #3}
+    \pgfmathsetmacro{\ycoord}{#2 + rand * #3}
+    \draw[fill = orange] (\xcoord, \ycoord) circle (2pt);
+  }
+}%
+
+
+\newcommand{\circlevar}[3]{%
+  \draw[color = green] (#1, #2) circle (#3 cm);
+  \node[text = green] at (#1, #2) {$\times$};
+}%
+
+\def\border{
+  \draw (-2.65, -2.75) -- ++(5.25, 0);
+  \draw (2.75, 2.65) -- ++(0, -5.25);
+}%
+
+\begin{tikzpicture}[
+  labeltext/.style = {
+    draw, minimum width = 5.25cm, minimum height = 1.5em, fill = gray!20,
+  }]
+
+\def\dist{5.5};
+
+\begin{scope}[shift = {(0, 0)}]
+
+  \node[labeltext] at (0, 3) {Sem v{\'i}cio};
+  \node[labeltext, rotate = 90] at (-3, 0) {Alta vari{\^a}ncia};
+  \target
+
+  \points{0}{0}{1}
+
+  \circlevar{0}{0}{1.15}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(\dist, 0)}]
+
+  \node[labeltext] at (0, 3) {Com v{\'i}cio};
+  \target 
+
+  \points{1.25}{0.50}{1}
+
+  \circlevar{1.25}{0.50}{1.15}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(0, -\dist)}]
+
+  \node[labeltext, rotate = 90] at (-3, 0) {Baixa vari{\^a}ncia};
+  \target
+
+  \points{0}{0}{0.5}
+
+  \circlevar{0}{0}{0.65}
+  \border
+\end{scope}
+
+\begin{scope}[shift = {(\dist, -\dist)}]
+
+  \target
+
+  \points{1.25}{0.5}{0.5}
+
+  \circlevar{1.25}{0.50}{0.65}
+  \border
+\end{scope}
+
+\end{tikzpicture}%cope}[shift = {(\dist, -\dist)}]
+
+  \target
+
+  \foreach \j in {1, 2, ..., 20} {
+    \pgfmathsetmacro{\xcoord}{1.25 + rand * 0.5}
+    \pgfmathsetmacro{\ycoord}{0.50 + rand * 0.5}
+    \draw[fill = orange] (\xcoord, \ycoord) circle (2pt);
+  }
+
+  \circlevar{1.25}{0.50}{0.75}
+  \border
+\end{scope}
+
+\end{tikzpicture}%scope}[minimum width = 1em, text width = 5.0em, text centered]
+% 
+%   \node[state] (int) at ( 90:5.5) {\emph{Intui{\c c}{\~ a}o e viabilidade}};
+%   \node[state] (val) at (210:5.0) {\emph{Solu{\c c}{\~ a}o e valida{\c c}{\~ a}o}};
+%   \node[state] (aut) at (-30:5.0) {\emph{Automa{\c c}{\~ a}o e escala}};
+% 
+%   \node (con) at (90:3) {Dom{\' i}nio de\\ conhecimento};
+%   \node (est) at (210:3) {Matem{\' a}tica \& Estat{\' i}stica};
+%   \node[text width = 7em] (hac) at (-30:3) {Habilidades de\\ computa{\c c}{\~ a}o};
+% 
+%   \node[color = red] (sof) at (30:2) {Processamento tradicional};
+%   \node[color = red] (pes) at (150:2) {Pesquisa tradicional};
+%   \node[color = red] (mac) at (-90:2) {Zona perigosa};
+% 
+%   \node (ds) at (0:0) {\large Data Science};
+% 
+% \end{scope}
+
+% \begin{scope}[
+%   every node/.style = {
+%     text centered,
+%     font = \footnotesize,
+%     text width = 5em
+%   }]
+% 
+%   \node at ( 50:3.50) {Engenharia};
+%   \node at (130:3.50) {Direito};
+%   \node at ( 70:5.00) {Biologia};
+%   \node at (110:5.00) {Marketing};
+%   \node at ( 60:4.25) {Economia};
+%   \node at (120:4.25) {Comunica{\c c}{\~a}o};
+%   \node at ( 90:4.25) {Gest{\~a}o};
+% 
+%   \node at ( 05:4.0) {Programa{\c c}{\~a}o};
+%   \node at (-05:4.5) {Algor{\'\i}tmos};
+%   \node at (-15:5.0) {Bancos de dados};
+%   \node at (-50:3.5) {Computa{\c c}{\~a}o em n{\'u}vem};
+%   \node at (-60:4.5) {Machine learning};
+% 
+%   \node at (175:4.0) {Visualiza{\c c}{\~a}o};
+%   \node at (185:4.5) {Otimiza{\c c}{\~a}o};
+%   \node at (195:5.0) {Infer{\^e}ncia estat{\'\i}stica};
+%   \node at (230:3.5) {An{\'a}lise multivariada};
+%   \node at (240:4.5) {Modelagem estat{\'\i}stica};
+% 
+% \end{scope}
+
+\end{tikzpicture}%%
 ```
 ****
 
@@ -1329,6 +1651,266 @@ axis}
 ```
 ****
 
+![](./src/confidence-interval-mean-components.png)
+
+  * [confidence-interval-mean-components.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-mean-components.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}[scale = 2]
+
+    \def\zval{1.65}
+
+    \draw[|-|, thick] (-\zval, 1) -- (\zval, 1);
+    \draw[fill = green] (0, 1) circle (1pt);
+    \node[below = 1ex] at (0, 1) {$\overline{y}$};
+    \node[below] at (-\zval, 1) {$\overline{y} - \textcolor{cyan}{z_{\alpha/2}}\cdot \sigma/\sqrt{n}$};
+    \node[below] at (\zval, 1) {$\overline{y} + \textcolor{orange}{z_{\alpha/2}}\cdot \sigma/\sqrt{n}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (-\zval, 1) -- (0, 1)
+      node [black, midway, yshift = 1.5em] {$e = z_{\alpha/2}\cdot \sigma/\sqrt{n}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (-\zval, 1.5) -- (\zval, 1.5)
+      node [black, midway, yshift = 1.5em] {$2e$};
+
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/confidence-interval-mean-t-scores.png)
+
+  * [confidence-interval-mean-t-scores.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-mean-t-scores.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+    xlabel = $t$, ylabel = $f(t)$,
+    samples = 75,
+    domain = -5:5,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south west},
+    legend style = {draw = none, fill = none},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    gamma(\z)=
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function={
+    student(\x,\n)=
+    gamma((\n+1)/2)/(sqrt(\n*pi)*
+    gamma(\n/2))*((1+(\x*\x)/\n)^(-(\n+1)/2));
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \foreach \zValue/\al/\pos in {2.145/0.025/0.30} {
+    \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.5] {student(x, 14)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.5] {student(x, 14)} \closedcycle;
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: -\zValue, 0) to[out = 90, in = 0]
+        (axis cs: -\zValue + 0.2, \pos) node[left] {$-t_{\al} = -\zValue$};
+    }
+    \temp
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: \zValue, 0) to[out = 90, in = 180]
+        (axis cs: \zValue - 0.2, \pos) node[right] {$t_{\al} = \zValue$};
+    }
+    \temp
+  }
+
+  \addplot[smooth, thick, domain = -4:4, color = gray] {student(x, 14)}
+    node[pos = 0.54, pin = {right:$\nu = 15 - 1$}] {};
+
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
+![](./src/confidence-interval-mean-z-scores.png)
+
+  * [confidence-interval-mean-z-scores.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-mean-z-scores.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+    xlabel = $z$, ylabel = $f(z)$,
+    samples = 75,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south west},
+    legend style = {draw = none, fill = none},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \foreach \zValue/\al/\pos in {1.645/0.05/0.25, 1.960/0.025/0.20, 2.576/0.005/0.15} {
+    \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.15] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.15] {normalpdf(x, 0, 1)} \closedcycle;
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: -\zValue, 0) to[out = 90, in = 0]
+        (axis cs: -2, \pos) node[left] {$-z_{\al} = -\zValue$};
+    }
+    \temp
+    \edef\temp{\noexpand
+      \path[<->, draw] (axis cs: \zValue, 0) to[out = 90, in = 180]
+        (axis cs: 2, \pos) node[right] {$z_{\al} = \zValue$};
+    }
+    \temp
+  }
+
+  \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
+![](./src/confidence-interval-mean-z.png)
+
+  * [confidence-interval-mean-z.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-mean-z.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{axis}[
+    samples = 150,
+    width = 9cm, height = 7cm,
+    yticklabels = {,,},
+    xtick = {-4, -3, -2, -1, 0, 1, 2, 3, 4},
+%     xticklabels = {$\mu -4\sigma$, $\mu -3\sigma$, $\mu - 2\sigma$, $\mu -1\sigma$, $\mu$,
+%       $\mu + 1\sigma$, $\mu + 2\sigma$, $\mu + 3\sigma$, $\mu +4\sigma$},
+    xticklabels = {$\bar{y} -4\frac{\sigma}{\sqrt{n}}$, $\bar{y} -3\frac{\sigma}{\sqrt{n}}$, $\bar{y} - 2\frac{\sigma}{\sqrt{n}}$, $\bar{y} -1\frac{\sigma}{\sqrt{n}}$, $\bar{y}$,
+      $\bar{y} + 1\frac{\sigma}{\sqrt{n}}$, $\bar{y} + 2\frac{\sigma}{\sqrt{n}}$, $\bar{y} + 3\frac{\sigma}{\sqrt{n}}$, $\bar{y} +4\frac{\sigma}{\sqrt{n}}$},
+    every x tick label/.append style = {font = \small},
+    xticklabel style = {rotate = 45},
+    ]
+
+    \addplot[smooth, domain = -4:4, draw = none, fill = gray!10] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, domain=-4:-1.65, draw = none, fill = cyan] {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, domain=1.65:4, draw = none, fill = orange] {normalpdf(x,0,1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4] {normalpdf(x, 0, 1)};
+    \addplot [ycomb, samples at={0}, color = green] {normalpdf(x, 0, 1)};
+
+    \path[<->, draw] (axis cs: -1.65,0) to[out = 90, in = 0]
+      (axis description cs: 0.25, 0.35) node[left] {$\overline{y}_{LI}$};
+    \path[<->, draw] (axis cs: 1.65,0) to[out = 90, in = 180]
+      (axis description cs: 0.75, 0.35) node[right] {$\overline{y}_{LS}$};
+
+    \node[fill = white] at (axis cs: 0, 0.15) {$1 - \alpha$};
+    \path[o->, draw] (axis cs: 2, 0.02) to[out = 90, in = 180]
+      (axis description cs: 0.8, 0.2) node[right, fill = orange] {$\alpha/2$};
+    \path[o->, draw] (axis cs: -2, 0.02) to[out = 90, in = 0]
+      (axis description cs: 0.2, 0.2) node[left, fill = cyan] {$\alpha/2$};
+
+  \end{axis}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/confidence-interval-variance-chi-scores.png)
+
+  * [confidence-interval-variance-chi-scores.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-variance-chi-scores.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style={
+    width = 12cm, height = 6cm,
+%     xlabel = $t$, ylabel = $f(t)$,
+    samples = 75,
+    domain = -5:5,
+    xlabel style = {at = {(1,0)}, anchor = west},
+    ylabel style = {rotate = -90, at = {(0, 1)}, anchor = south east},
+  }
+}
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function = {
+    gamma(\z) =
+    (2.506628274631*sqrt(1/\z)+0.20888568*(1/\z)^(1.5)+
+    0.00870357*(1/\z)^(2.5)-(174.2106599*(1/\z)^(3.5))/25920-
+    (715.6423511*(1/\z)^(4.5))/1244160)*exp((-ln(1/\z)-1)*\z);
+  },
+  declare function = {
+    gammapdf(\x,\a,\b) = (\b^\a)*\x^(\a-1)*exp(-\b*\x)/gamma(\a);
+  }]
+
+  \begin{axis}[myplot, smooth]
+
+  \def\chisqLeft{10.117}
+  \addplot[smooth, draw = none, domain = 0:\chisqLeft, fill = cyan!40] {gammapdf(x, 19/2, 0.5)} \closedcycle;
+  \path[<->, draw] (axis cs: \chisqLeft, 0) to[out = 90, in = 0]
+    (axis cs: \chisqLeft, 0.05) node[left] {$\chi^2_{0.1/2} = \chisqLeft$};
+
+  \def\chisqRight{30.143}
+  \addplot[smooth, draw = none, domain = \chisqRight:50, fill = orange!40] {gammapdf(x, 19/2, 0.5)} \closedcycle;
+  \path[<->, draw] (axis cs: \chisqRight, 0) to[out = 90, in = 180]
+    (axis cs: \chisqRight, 0.05) node[right] {$\chi^2_{1 - 0.1/2} = \chisqRight$};
+
+  \addplot[smooth, thick, domain = 0:50, color = gray] {gammapdf(x, 19/2, 0.5)}
+    node[pos = 0.38, pin = {right:$\nu = 20 - 1$}] {};
+
+  \end{axis}
+\end{tikzpicture}%
+```
+****
+
+![](./src/confidence-interval-variance-components.png)
+
+  * [confidence-interval-variance-components.pgf](https://github.com/walmes/Tikz/blob/master/src/confidence-interval-variance-components.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}[scale = 2]
+
+    \def\chiLeft{3}
+    \def\chiRight{5.5}
+    \def\sigmasquare{4}
+
+    \draw[|-, dashed] (0, 1) node[below] {$0$} -- (\chiLeft, 1);
+    \draw[|-|, thick] (\chiLeft, 1) -- (\chiRight, 1);
+    \draw[fill = green] (\sigmasquare, 1) circle (1pt);
+    \node[below = 1ex] at (\sigmasquare, 1) {$\sigma^2$};
+    \node[below] at (\chiLeft, 1) {$\dfrac{(n - 1) s^2}{\chi^2_{\alpha/2, n - 1}}$};
+    \node[below] at (\chiRight, 1) {$\dfrac{(n - 1) s^2}{\chi^2_{1 - \alpha/2, n - 1}}$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (0, 1) -- (\sigmasquare, 1)
+      node [black, midway, yshift = 1.5em] {$\sigma^2$};
+
+    \draw [yshift = 1ex, decorate, decoration = {brace, amplitude = 5pt}] (\chiLeft, 1.25) -- (\chiRight, 1.25)
+      node [black, midway, yshift = 1.5em] {$\rho \sigma^2$};
+
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/confundimento.png)
 
   * [confundimento.pgf](https://github.com/walmes/Tikz/blob/master/src/confundimento.pgf)
@@ -1468,6 +2050,46 @@ axis}
   \node[above=of X] {$3^2,\, p=3$};
 
 \end{tikzpicture}
+```
+****
+
+![](./src/consistency-of-estimator.png)
+
+  * [consistency-of-estimator.pgf](https://github.com/walmes/Tikz/blob/master/src/consistency-of-estimator.pgf)
+
+```tex
+% https://tex.stackexchange.com/questions/243521/how-can-i-rotate-a-function
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((\x-#1)^2)/(2*#2^2))}%
+}%
+\begin{tikzpicture}[
+  scale = 0.5,
+  >=stealth',
+  node distance = 4mm,
+  domain = -3:3,
+  samples = 60]
+
+  \begin{scope}
+    \foreach \var [count = \pos] in {0.8, 0.6, 0.4, 0.3, 0.2, 0.15} {
+      \draw[draw = orange, fill = orange!50, thick, smooth, domain = -4*\var:4*\var]
+        plot ({gauss(0, \var) + 2.2*\pos - 1.75}, 1 + \x - 0.14*\pos);
+    }
+    \draw[dashed] (-0.25, 0) node[left] {$\theta$} -- +(15, 0);
+    \draw[->] (-0.1, -3) -- +(15, 0) node[below] {$n$};
+    \draw[->] (0, -3.1) -- (0, 4) node[left] {$\hat{\theta}_1$};
+  \end{scope}
+
+  \begin{scope}[yshift = -8cm]
+    \foreach \var [count = \pos] in {0.6, 0.5, 0.4, 0.3, 0.2, 0.15} {
+      \draw[draw = blue, fill = blue!50, thick, smooth, domain = -5*\var:5*\var]
+        plot ({gauss(0, 1.5*\var) + 2.2*\pos - 1.75}, \x);
+    }
+    \draw[dashed] (-0.25, 0) node[left] {$\theta$} -- +(15, 0);
+    \draw[->] (-0.1, -3) -- +(15, 0) node[below] {$n$};
+    \draw[->] (0, -3.1) -- (0, 4) node[left] {$\hat{\theta}_2$};
+  \end{scope}
+
+\end{tikzpicture}%------------------------------------------------------
 ```
 ****
 
@@ -2336,6 +2958,74 @@ axis}
 ```
 ****
 
+![](./src/cubos-fatoriais-2a3-pontos-centrais-valores.png)
+
+  * [cubos-fatoriais-2a3-pontos-centrais-valores.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-2a3-pontos-centrais-valores.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  node distance = 4ex,
+  scale = 3,
+  thick,
+  > = latex,
+  z = {(0.45, 0.25)},
+  edge/.style = {
+    draw, thick, -, black},
+  textbox/.style = {
+    fill = white, draw, rectangle, thin, rounded corners = 2pt},
+  ]
+
+  \def\cube{
+
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    \coordinate (v8) at (0.5, 0.5, 0.5);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge, very thin] (v0) -- (v4) -- (v5);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge, very thin] (v4) -- (v6);
+    \draw[edge] (v1) -- (v5) -- (v7);
+
+    % Points.
+    \foreach \i in {0, 1, ..., 8}{
+      \draw[fill = black] (v\i) circle (0.8pt);
+    }
+
+  } % \cube
+
+  \begin{scope}[xshift = 2.2cm, ->]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {C};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {B};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+    % Montgomery · Design and Analysis of Experiments (8th Edition), page 246, Example 6.1.
+    \foreach \i/\y in {
+      0/1154, 1/2089, 2/1319, 3/1617,
+      4/1234, 5/2138, 6/1277, 7/1589}{
+      \node[textbox] at (v\i) {\y};
+    }
+    \node[textbox, xshift = 3.5cm, align = left]
+      (pc) at (v8) {1754\\ 1620\\ 1810\\ 1513};
+    \draw[->, dashed] (v8) -- (pc);
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/cubos-fatoriais-2a3-pontos-centrais.png)
 
   * [cubos-fatoriais-2a3-pontos-centrais.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-2a3-pontos-centrais.pgf)
@@ -2937,6 +3627,84 @@ ift = -2.5cm]
 ![](./src/cubos-fatoriais-confundimento-2a3-em-2-blocos.png)
 
   * [cubos-fatoriais-confundimento-2a3-em-2-blocos.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-confundimento-2a3-em-2-blocos.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  scale = 3,
+  thick,
+  z = {(0.45, 0.25)},
+  edge/.style = {draw, thick, -, black},
+  mtx/.style = {
+%     matrix of math nodes,
+    matrix of nodes,
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1em,
+      align = center,
+    }
+  },
+  ]
+
+  \def\dist{0.1}
+  \def\cube{
+    % Vertices.
+    \coordinate (v0) at (0, 0, 0);
+    \coordinate (v1) at (0, 1, 0);
+    \coordinate (v2) at (1, 0, 0);
+    \coordinate (v3) at (1, 1, 0);
+    \coordinate (v4) at (0, 0, 1);
+    \coordinate (v5) at (0, 1, 1);
+    \coordinate (v6) at (1, 0, 1);
+    \coordinate (v7) at (1, 1, 1);
+
+    % Edges.
+    \draw[edge] (v0) -- (v1) -- (v3) -- (v2) -- (v0);
+    \draw[edge] (v0) -- (v4) -- (v5) -- (v1);
+    \draw[edge] (v2) -- (v6) -- (v7) -- (v3);
+    \draw[edge] (v4) -- (v6);
+    \draw[edge] (v5) -- (v7);
+
+  } % \cube
+
+  \begin{scope}[xshift = 1.7cm, ->, > = latex]
+    \draw (0, 0, 0) -- +(0.3, 0, 0) node[right] {A};
+    \draw (0, 0, 0) -- +(0, 0.3, 0) node[above] {B};
+    \draw (0, 0, 0) -- +(0, 0, 0.45) node[above, anchor = -150] {C};
+  \end{scope}
+
+  \begin{scope}[]
+    \cube{};
+    \foreach \i in {0, 3, 5, 6}{ \draw[fill = blue] (v\i) circle (1.5pt); }
+    \foreach \i in {1, 2, 4, 7}{ \draw[fill = orange] (v\i) circle (1.5pt); }
+    \node at (0.25, 1.25, 1) {$2^3 = 8$ em $2^1$ blocos};
+  \end{scope}
+
+  \begin{scope}[xshift = 2cm, yshift = 1cm]
+    \coordinate (b1) at (0, 0);
+    \coordinate (b2) at (0, -0.5em);
+    \draw[fill = blue] (b1) circle (1.5pt) node[right = 0.7ex] {Bloco I};
+    \draw[fill = orange] (b2) circle (1.5pt) node[right = 0.7ex] {Bloco II};
+  \end{scope}
+
+  \begin{scope}[xshift = 3cm, yshift= 1.3cm]
+    \matrix (B1) at (0, 0) [mtx] {
+      (1) \\ ab \\ ac \\ bc \\
+    };
+    \matrix (B2) [mtx, below = 1em of B1] {
+      a \\ b \\ c \\ abc \\
+    };
+    \node[draw, color = blue, fit = (B1-1-1)(B1-4-1)] {};
+    \node[draw, color = orange, fit = (B2-1-1)(B2-4-1)] {};
+  \end{scope}
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/cubos-fatoriais-confundimento.png)
+
+  * [cubos-fatoriais-confundimento.pgf](https://github.com/walmes/Tikz/blob/master/src/cubos-fatoriais-confundimento.pgf)
 
 ```tex
 \begin{tikzpicture}[%
@@ -3666,6 +4434,119 @@ ift = -2.5cm]
   rounded corners = 3pt] at (0.06, -2.72) {DES};
 
   \draw[white] circle (5);
+
+\end{tikzpicture}%
+```
+****
+
+![](./src/des-ufla.png)
+
+  * [des-ufla.pgf](https://github.com/walmes/Tikz/blob/master/src/des-ufla.pgf)
+
+```tex
+\begin{tikzpicture}%
+
+  % 00793c % Verde UFLA.
+  % 224271 % Azul UFLA.
+  \definecolor{ufla_green}{HTML}{00793C}
+  \definecolor{ufla_blue}{HTML}{224271}
+
+  \begin{scope}[
+    xshift = 3.43cm,
+    yshift = 2.0cm,
+    scale = .5,
+    auto = left,
+    every node/.style = {circle, fill = black!20}
+    ]
+
+    \def\theangle{60}
+
+    % \foreach \x in {1, ..., 6} {
+    % \node[fill = ufla_green] (n\x) at (\x * \theangle:7.5) {};
+    % }
+
+    \foreach \x in {1, ..., 6} {
+      \coordinate (n\x) at (\x * \theangle:7.5);
+      \draw[color = ufla_blue, fill = ufla_green]
+      (n\x) circle [radius = 0.9em];
+    }
+
+    \foreach \a/\b in {
+      n1/n2,
+      n1/n3,
+      n1/n4,
+      n5/n1,
+      n6/n1,
+      n2/n3,
+      n2/n4,
+      n2/n5,
+      n6/n2,
+      n3/n4,
+      n3/n5,
+      n3/n6,
+      n4/n5,
+      n4/n6,
+      n5/n6} {
+      \path[
+      draw = ufla_blue,
+      shorten <= 0.6em,
+      shorten >= 0.6em] (\a) edge[bend right= 15] (\b);
+    }
+
+    % \draw circle [radius = 7.5cm];
+    % \draw (-4, 0) -- (4, 0);
+    % \draw (0, -4) -- (0, 4);
+
+  \end{scope}
+
+  \begin{scope}
+
+    \begin{axis}[
+      domain   = -3:3,
+      domain y = -3:3,
+      view = {-40}{12},
+      % xlabel=$\beta_0$,
+      % ylabel=$\beta_1$,
+      % zlabel={$SSE(\beta_0, \beta_1)$},
+      zmin = -0,
+      xticklabels = \empty,
+      yticklabels = \empty,
+      zticklabels = \empty,
+      axis lines = none,
+      declare function = {mu1 = 0;},
+      declare function = {mu2 = 0;},
+      declare function = {sigma1 = 0.5;},
+      declare function = {sigma2 = 1;},
+      declare function = {
+        bivar(\ma,\sa,\mb,\sb)=
+        1/(2*pi*\sa*\sb)*exp(-((x-\ma)^2/\sa^2+(y-\mb)^2/\sb^2))/2;
+      }
+      ]
+
+      \addplot3 [
+      surf,
+      samples = 50,
+      % z buffer = sort,
+      % z buffer=auto,
+      % opacity = 0.75,
+      faceted color = ufla_blue,
+      colormap = {blueblack}{
+        color = (ufla_blue)
+        color = (ufla_green!50!white)
+        color = (ufla_green)},
+      % miter limit = 1,
+      ] {bivar(mu1, sigma1, mu2, sigma2)};
+
+      % \addplot3[
+      % contour gnuplot = {number = 9, labels = false, draw color = ufla_blue, contour dir=z}
+      % ] {bivar(mu1, sigma1, mu2, sigma2)};
+
+      % \draw (axis cs:-3,  0, 0) -- (axis cs: 3, 0, 0);
+      % \draw (axis cs: 0, -3, 0) -- (axis cs: 0, 3, 0);
+
+    \end{axis}
+
+  \end{scope}
 
 \end{tikzpicture}%
 ```
@@ -5208,6 +6089,58 @@ ift = -2.5cm]
 ```
 ****
 
+![](./src/distributions_and_tails.png)
+
+  * [distributions_and_tails.pgf](https://github.com/walmes/Tikz/blob/master/src/distributions_and_tails.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function = {
+    weibullpdf(\x,\a,\b) = (\b/\a)*(\x/\a)^(\b-1)*exp(-(\x/\a)^(\b));
+  },
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \def\va{y}
+
+  \begin{axis}[
+    width = 9cm, height = 6cm,
+    samples = 50, smooth, domain = 0:14,
+    xmin = -3, xmax = 15,
+    ymax = 0.45, ymin = -0.1,
+    ticks = none,
+    % xlabel = $\va$, ylabel = $f(\va)$,
+    % xlabel style = {at = {(1,0)}, anchor = north west},
+    % ylabel style = {rotate = -90, at = {(0,1)}, anchor = south east},
+    legend style = {draw = none, fill = none}, clip = false]
+
+    \addplot +[mark = none, color = black] coordinates {(6, 0) (6, 0.35)} node[above] {$\theta$};
+
+    \addplot[cyan, thick] {weibullpdf(x, 7, 6)};
+    \addplot[domain = 0:4, fill = cyan, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 7, 6)} \closedcycle;
+    \addplot[domain = 8.5:15, fill = cyan, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 7, 6)} \closedcycle;
+    \addplot [ycomb, samples at={6.5}, cyan] {weibullpdf(x, 7, 6)};
+    \draw[|-|, cyan] (axis cs: 4, -0.02) -- (axis cs: 8.5, -0.02);
+
+    \addplot[orange, thick] {weibullpdf(x, 5, 3)};
+    \addplot[domain = 0:1.5, fill = orange, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 5, 3)} \closedcycle;
+    \addplot[domain = 7.5:15, fill = orange, fill opacity = 0.5, draw = none, thick] {weibullpdf(x, 5, 3)} \closedcycle;
+    \addplot [ycomb, samples at={4.25}, orange] {weibullpdf(x, 5, 3)};
+    \draw[|-|, orange] (axis cs: 1.5, -0.04) -- (axis cs: 7.5, -0.04);
+
+    \addplot [smooth, thick, color = magenta, domain = -2:14] {normalpdf(x, 6, 2)};
+    \addplot[domain = -2:2, fill = magenta, fill opacity = 0.5, draw = none, thick] {normalpdf(x, 6, 2)} \closedcycle;
+    \addplot[domain = 10:15, fill = magenta, fill opacity = 0.5, draw = none, thick] {normalpdf(x, 6, 2)} \closedcycle;
+    \addplot [ycomb, samples at={6}, magenta] {normalpdf(x, 6, 2)};
+    \draw[|-|, magenta] (axis cs: 2, -0.06) -- (axis cs: 10, -0.06);
+
+  \end{axis}
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
 ![](./src/efeito_manejo.png)
 
   * [efeito_manejo.pgf](https://github.com/walmes/Tikz/blob/master/src/efeito_manejo.pgf)
@@ -5936,6 +6869,67 @@ ann,right] {testemunhas};
   {Erro aleat\'orio $E(\epsilon) = 0$,\\ $V(\epsilon) = \sigma^2$};
 
 \end{tikzpicture}
+```
+****
+
+![](./src/equation_sample_size_for_mean.png)
+
+  * [equation_sample_size_for_mean.pgf](https://github.com/walmes/Tikz/blob/master/src/equation_sample_size_for_mean.pgf)
+
+```tex
+\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=4pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \footnotesize}
+  ]
+
+\begin{scope}
+
+  \node {$\text{A}_{\text{IC}(\mu)} = \displaystyle 2 \cdot
+     \nann{z}{$z$}_{\alpha/2} \cdot \frac{\nann{s}{$\sigma$}}{\sqrt{\nann{n}{$n$}}}$};
+
+   \path[->, draw] (z.north) |- ++(-0.5, 0.5) node[ann, left] {
+     $\uparrow 1 - \alpha \Rightarrow
+     \uparrow z_{\alpha/2} \Rightarrow
+     \uparrow \textcolor{orange}{\text{A}_{\text{IC}(\mu)}}$};
+
+   \path[->, draw] (s.north) |- ++(0.5, 0.5) node[ann, right] {
+     $\uparrow \sigma \Rightarrow
+     \uparrow \textcolor{orange}{\text{A}_{\text{IC}(\mu)}}$};
+
+   \path[->, draw] (n.south) |- ++(0.5, -0.5) node[ann, right] {
+     $\uparrow n \Rightarrow
+     \downarrow \textcolor{cyan}{\text{A}_{\text{IC}(\mu)}}$};
+
+\end{scope}
+
+\begin{scope}[yshift = -3cm]
+
+  \node {$n = \displaystyle \left(\frac{\nann{z}{$z$}_{\alpha/2} \cdot \nann{s}{$\sigma$}}{\nann{e}{$e$}} \right)^2$};
+
+   \path[->, draw] (z.north) |- ++(-0.5, 0.5) node[ann, left] {
+     $\uparrow 1 - \alpha \Rightarrow
+     \uparrow z_{\alpha/2} \Rightarrow
+     \uparrow \textcolor{orange}{n}$};
+
+   \path[->, draw] (s.north) |- ++(0.5, 0.5) node[ann, right] {
+     $\uparrow \sigma \Rightarrow
+     \uparrow \textcolor{orange}{n}$};
+
+   \path[->, draw] (e.south) |- ++(0.5, -0.5) node[ann, right] {
+     $\uparrow e \Rightarrow
+     \downarrow \textcolor{cyan}{n}$};
+
+\end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -7915,6 +8909,274 @@ ann,right] {testemunhas};
 ```
 ****
 
+![](./src/fatorial-duplo-projecoes.png)
+
+  * [fatorial-duplo-projecoes.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial-duplo-projecoes.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  mtx/.style = {
+    matrix of math nodes,
+    nodes in empty cells,
+    left delimiter = {[},
+    right delimiter = {]},
+    every node/.style = {
+      anchor = base,
+      text width = 2em,
+      text height = 1.2ex,
+      align = right,
+      anchor = base east
+    }
+  },
+]
+
+% ATTENTION: auxiliar code at `fatorial-duplo.R`.
+
+\begin{scope}
+
+  \matrix (Hto0) at (0, 0) [mtx] {
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  1/6 & 1/6 & 1/6 & 1/6 & 1/6 & 1/6 \\ 
+  };
+  \node[left=1em of Hto0] (Xequal) {$H_{\mu} = X_{\mu} (X_{\mu}^\top X_{\mu})^{-1} X_{\mu}^\top = $};
+
+  \matrix (Hto01) [mtx, below = 1em of Hto0] {
+  1/2 & . & . & 1/2 & . & . \\ 
+  . & 1/2 & . & . & 1/2 & . \\ 
+  . & . & 1/2 & . & . & 1/2 \\ 
+  1/2 & . & . & 1/2 & . & . \\ 
+  . & 1/2 & . & . & 1/2 & . \\ 
+  . & . & 1/2 & . & . & 1/2 \\ 
+  };
+  \node[left=1em of Hto01] (Xequal) {$H_{\mu:\alpha} = X_{\mu:\alpha} (X_{\mu:\alpha}^\top X_{\mu:\alpha})^{-1} X_{\mu:\alpha}^\top = $};
+
+  \matrix (Hto02) [mtx, below = 1em of Hto01] {
+  2/3 & 1/6 & 1/6 & 1/3 & -1/6 & -1/6 \\ 
+  1/6 & 2/3 & 1/6 & -1/6 & 1/3 & -1/6 \\ 
+  1/6 & 1/6 & 2/3 & -1/6 & -1/6 & 1/3 \\ 
+  1/3 & -1/6 & -1/6 & 2/3 & 1/6 & 1/6 \\ 
+  -1/6 & 1/3 & -1/6 & 1/6 & 2/3 & 1/6 \\ 
+  -1/6 & -1/6 & 1/3 & 1/6 & 1/6 & 2/3 \\ 
+  };
+  \node[left=1em of Hto02] (Xequal) {$H_{\mu:\beta} = X_{\mu:\beta} (X_{\mu:\beta}^\top X_{\mu:\beta})^{-1} X_{\mu:\beta}^\top = $};
+
+  \matrix (Hto03) [mtx, below = 1em of Hto02] {
+  2/3 & 1/6 & 1/6 & 1/3 & -1/6 & -1/6 \\ 
+  1/6 & 2/3 & 1/6 & -1/6 & 1/3 & -1/6 \\ 
+  1/6 & 1/6 & 2/3 & -1/6 & -1/6 & 1/3 \\ 
+  1/3 & -1/6 & -1/6 & 2/3 & 1/6 & 1/6 \\ 
+  -1/6 & 1/3 & -1/6 & 1/6 & 2/3 & 1/6 \\ 
+  -1/6 & -1/6 & 1/3 & 1/6 & 1/6 & 2/3 \\ 
+  };
+  \node[left=1em of Hto03] (Xequal) {$H_{\mu:\gamma} = X_{\mu:\gamma} (X_{\mu:\gamma}^\top X_{\mu:\gamma})^{-1} X_{\mu:\gamma}^\top = $};
+
+
+  \node (Halpha) at (6, 0) {$H_{\alpha} = H_{\mu:\alpha} - H_{\mu} = $};
+
+  \matrix (Hto1) at (0, 0) [mtx, right = 2em of Hto01] {
+  2/3 & 1/6 & 1/6 & 1/3 & -1/6 & -1/6 \\ 
+  1/6 & 2/3 & 1/6 & -1/6 & 1/3 & -1/6 \\ 
+  1/6 & 1/6 & 2/3 & -1/6 & -1/6 & 1/3 \\ 
+  1/3 & -1/6 & -1/6 & 2/3 & 1/6 & 1/6 \\ 
+  -1/6 & 1/3 & -1/6 & 1/6 & 2/3 & 1/6 \\ 
+  -1/6 & -1/6 & 1/3 & 1/6 & 1/6 & 2/3 \\ 
+  };
+
+\end{scope}
+
+\end{tikzpicture}%
+6 & 2/3 & 1/6 & 1/6 \\ 
+  -1/6 & 1/3 & -1/6 & 1/6 & 2/3 & 1/6 \\ 
+  -1/6 & -1/6 & 1/3 & 1/6 & 1/6 & 2/3 \\ 
+  };
+
+
+
+
+%   \node[right=1em of X] (Xarrow) {$\Rightarrow X = $};
+% 
+%   \node[above=5em of Xequal, anchor = south west, align = left] {
+%     \textbf{Contraste tratamento}\\
+%     $\theta_1 = 0$ para $\theta = \alpha, \beta$.
+%   };
+
+%   % Efeitos.
+%   \node[txtup] at (X-1-1.north) {$\mu$};
+%   \node[txtup] at (X-1-2.north) {$\alpha_1$};
+%   \node[txtup] at (X-1-3.north) {$\alpha_2$};
+%   \node[txtup] at (X-1-4.north) {$\alpha_3$};
+%   \node[txtup] at (X-1-5.north) {$\beta_1$};
+%   \node[txtup] at (X-1-6.north) {$\beta_2$};
+%   \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+%   \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+%   \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+%   \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+%   \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+%   \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+% 
+%   % Restricoes.
+%   \draw (X-6-2.south) |- +(0.25, -1em) node[right] {$\alpha_1 = 0$};
+%   \draw (X-6-5.south) |- +(0.25, -1em) node[right] {$\beta_1 = 0$};
+% 
+%   % Colunas de efeitos.
+%   \begin{scope}[on background layer]
+%   \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+%   \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+%   \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+%   \end{scope}
+% 
+%   \matrix (XX) [mtx, right = 1em of Xarrow] {
+%   1 & . & . & . & . & . \\ 
+%   1 & 1 & . & . & . & . \\ 
+%   1 & . & 1 & . & . & . \\ 
+%   1 & . & . & 1 & . & . \\ 
+%   1 & 1 & . & 1 & 1 & . \\ 
+%   1 & . & 1 & 1 & . & 1 \\ 
+%   };
+% 
+%   % Efeitos.
+%   \node[txtup] at (XX-1-1.north) {$\mu$};
+%   \node[txtup] at (XX-1-2.north) {$\alpha_2$};
+%   \node[txtup] at (XX-1-3.north) {$\alpha_3$};
+%   \node[txtup] at (XX-1-4.north) {$\beta_2$};
+%   \node[txtup] at (XX-1-5.north) {$\gamma_{22}$};
+%   \node[txtup] at (XX-1-6.north) {$\gamma_{32}$};
+% 
+%   % Colunas de efeitos.
+%   \begin{scope}[on background layer]
+%   \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+%   \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+%   \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+%   \end{scope}
+% 
+%   \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+% 
+%   \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+%   \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+%   \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+
+
+\end{tikzpicture}%
+ 
+  1 & -1 & -1 & 1 & -1 & -1 \\ 
+  1 & 1 & . & -1 & -1 & . \\ 
+  1 & . & 1 & -1 & . & -1 \\ 
+  1 & -1 & -1 & -1 & 1 & 1 \\ 
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_1$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-4.north) {$\beta_1$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{11}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{21}$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+  \end{scope}
+
+  \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+
+  \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+
+\begin{scope}[yshift = -14cm]
+
+  \matrix (X) at (0, 0) [mtx] {
+    1 & 1 & . & . & 1 & . & 1 & . & . & . & . & . \\
+    1 & . & 1 & . & 1 & . & . & 1 & . & . & . & . \\
+    1 & . & . & 1 & 1 & . & . & . & 1 & . & . & . \\
+    1 & 1 & . & . & . & 1 & . & . & . & 1 & . & . \\
+    1 & . & 1 & . & . & 1 & . & . & . & . & 1 & . \\
+    1 & . & . & 1 & . & 1 & . & . & . & . & . & 1 \\
+  };
+
+  \node[left=1em of X] (Xequal) {$X = $};
+  \node[right=1em of X] (Xarrow) {$\Rightarrow X = $};
+
+  \node[above=5em of Xequal, anchor = south west, align = left] {
+    \textbf{Contraste de Helmert}\\
+    $(u - 1) \theta_u = -\displaystyle\sum_{i = 1}^{u - 1} \theta_i$ para $\theta = \alpha, \beta$
+    sendo $u = 2, \ldots, k$ e $k$ {\' e} o n{\' u}mero de n{\' i}veis.
+  };
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] (alpha1) at (X-1-2.north) {$\alpha_1$};
+  \node[txtup] (alpha2) at (X-1-3.north) {$\alpha_2$};
+  \node[txtup] at (X-1-4.north) {$\alpha_3$};
+  \node[txtup] (beta1) at (X-1-5.north) {$\beta_1$};
+  \node[txtup] at (X-1-6.north) {$\beta_2$};
+  \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+  \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+  \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+  \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+  \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+  \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+
+  % Restricoes.
+  \draw (X-6-2.south) |- +(0.25, -4.0em) node[right] {$-\alpha_1 = \alpha_2$};
+  \draw (X-6-3.south) |- +(0.25, -2.5em) node[right] {$-(\alpha_1 + \alpha_2) = 2\alpha_3$};
+  \draw (X-6-5.south) |- +(0.25, -1.0em) node[right] {$-\beta_1 = \beta_2$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+  \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+  \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+  \end{scope}
+
+  \matrix (XX) [mtx, right = 1em of Xarrow] {
+    1 & -1 & -1 & -1 & 1 & 1 \\
+    1 & 1 & -1 & -1 & -1 & 1 \\
+    1 & . & 2 & -1 & . & -2 \\
+    1 & -1 & -1 & 1 & -1 & -1 \\
+    1 & 1 & -1 & 1 & 1 & -1 \\
+    1 & . & 2 & 1 & . & 2 \\
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_1$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-4.north) {$\beta_1$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{11}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{21}$};
+
+  % Colunas de efeitos.
+  \begin{scope}[on background layer]
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+  \end{scope}
+
+  \draw ($(XX-6-1.west)+(0, -.40)$) |- +(0, -0.1) -- ($(XX-6-1.east)+(0, -.50)$) node[right] {$X_{\mu}$} -- +(0, 0.1);
+
+  \draw ($(XX-6-1.west)+(0, -.80)$) |- +(0, -0.1) -- ($(XX-6-3.east)+(0, -.90)$) node[right] {$X_{\mu:\alpha}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.2)$) |- +(0, -0.1) -- ($(XX-6-4.east)+(0, -1.3)$) node[right] {$X_{\mu:\beta}$} -- +(0, 0.1);
+  \draw ($(XX-6-1.west)+(0, -1.6)$) |- +(0, -0.1) -- ($(XX-6-6.east)+(0, -1.7)$) node[right] {$X_{\mu:\gamma}$} -- +(0, 0.1);
+
+\end{scope}
+
+\end{tikzpicture}%
+```
+****
+
 ![](./src/fatorial-duplo.png)
 
   * [fatorial-duplo.pgf](https://github.com/walmes/Tikz/blob/master/src/fatorial-duplo.pgf)
@@ -9298,6 +10560,549 @@ ann,right] {testemunhas};
 ```
 ****
 
+![](./src/hypothesis-tests-bilateral.png)
+
+  * [hypothesis-tests-bilateral.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-bilateral.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.645}
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:\zValue, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+    \path[draw, o->] (axis cs: 2, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha/2$};
+    \path[draw, o->] (axis cs: -2, 0.02) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha/2$};
+    \node at (axis cs: 0, 0.1) {$1 - \alpha$};
+    \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Bilateral\\ $H_0: \theta \neq \theta_0$};
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.25em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[midway, yshift = -0.25em] (a1) {};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[midway, yshift = -0.25em] (a2) {};
+      \node[mynode, fill = magenta] (a0) at (axis cs: 0, -0.15)
+        {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$};
+      \path[draw, ->] (a0) to[out = 180, in = -90] (a1.south);
+      \path[draw, ->] (a0) to[out = 0, in = -90] (a2.south);
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-left-tailed.png)
+
+  * [hypothesis-tests-left-tailed.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-left-tailed.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.282}
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:4, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+    \path[draw, o->] (axis cs: -1.7, 0.03) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha$};
+    \node at (axis cs: 0.25, 0.1) {$1 - \alpha$};
+    \node[below right, align=left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} esqueda\\ $H_0: \theta < \theta_0$};
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.25em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[mynode, midway, yshift = -1.25em, fill = magenta] (a1) {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$};
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-p-value-one-tail.png)
+
+  * [hypothesis-tests-p-value-one-tail.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-p-value-one-tail.pgf)
+
+```tex
+% http://tug.ctan.org/tex-archive/info/symbols/compact/LaTeXSymbols.pdf
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.22,
+    ymax = 0.5,
+    xmax = 6
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em, scale = 0.75}]
+
+  \begin{axis}[myplot, smooth]
+
+    \node[below right, align = left] at (axis description cs: 0.01, 0.97)
+      {Unilateral {\`a} direita\\ $H_0: \theta > \theta_0$};
+
+    \def\zValue{1.645}
+    \def\zStat{1.2}
+
+    \addplot[domain = \zStat:4, draw = none, fill = green, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none,
+      pattern = north east lines, pattern color = magenta] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+
+    \path[<-, draw] (axis cs: \zStat, 0) -- (axis cs: \zStat, 0.4)
+      node[mynode, above, fill = green!75] {Estat{\'i}stica de teste: $u_{\text{obs}}$};
+    \path[draw, dashed] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.2)
+      node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+      node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
+    \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
+      node[right, align = left, fill = green] {$p$-valor\\ $\text{P}(U > u_{\text{obs}})$ };
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -4, 0)
+        node [mynode, midway, yshift = -1.5em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$ (\ding{51})};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[mynode, midway, yshift = -1.5em, fill = magenta] (a1)
+        {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$ (\ding{55})};
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-p-value-two-tails.png)
+
+  * [hypothesis-tests-p-value-two-tails.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-p-value-two-tails.pgf)
+
+```tex
+% http://tug.ctan.org/tex-archive/info/symbols/compact/LaTeXSymbols.pdf
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.22, ymax = 0.5, xmax = 6
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em, scale = 0.75}]
+
+  \begin{axis}[myplot, smooth]
+
+    \node[below right, align = left] at (axis description cs: 0.01, 0.97)
+      {Bilateral\\ $H_0: \theta \neq \theta_0$};
+
+    \def\zValue{1.645}
+    \def\zStat{1.2}
+    \addplot[domain = \zStat:4, draw = none, fill = green, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none,
+      pattern = north east lines, pattern color = magenta] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -4:-\zValue, draw = none,
+      pattern = north west lines, pattern color = magenta] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+
+    \path[<-, draw] (axis cs: \zStat, 0) -- (axis cs: \zStat, 0.4)
+      node[mynode, above, fill = green!75] {Estat{\'i}stica de teste: $u_{\text{obs}}$};
+    \path[draw, dashed] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.2)
+      node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
+    \path[draw, dashed] (axis cs: -\zValue, 0) -- (axis cs: -\zValue, 0.2)
+      node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+      node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
+    \path[->, draw, shorten <=2pt] (axis cs: -\zStat, 0.3) -- (axis cs: -4, 0.3)
+      node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
+    \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
+      node[right, align = left, fill = green] {$p$-valor\\ $2\times \text{P}(U > u_{\text{obs}})$ };
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.5em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$ (\ding{51})};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[midway, yshift = -0.25em] (c1) {};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[midway, yshift = -0.25em] (c2) {};
+      \node[mynode, fill = magenta] (c0) at (axis cs: 0, -0.12)
+        {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$ (\ding{55})};
+      \path[draw, ->] (c0) to[out = 180, in = -90] (c1.south);
+      \path[draw, ->] (c0) to[out = 0, in = -90] (c2.south);
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-power-sample-size.png)
+
+  * [hypothesis-tests-power-sample-size.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-power-sample-size.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 3cm,
+    samples = 50,
+    ticks = none,
+    xmin = -4.5, xmax = 6.5,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
+    \begin{scope}[yshift = 1.6*\y cm]
+      \begin{axis}[myplot, smooth]
+        \addplot[domain = \zValue:4*\v, draw = none, fill = magenta, opacity = 0.75]
+          {normalpdf(x, 0, \v)} \closedcycle;
+        \addplot[domain = -4*\v:\zValue, draw = none, fill = gray!30, opacity = 0.75]
+          {normalpdf(x, 0, \v)} \closedcycle;
+        \addplot[smooth, thick, domain = -4*\v:4*\v, color = gray]
+          {normalpdf(x, 0, \v)};
+        \addplot[domain = 2-4*\v:\zValue, draw = none, fill = yellow, opacity = 0.75]
+          {normalpdf(x, 2, \v)} \closedcycle;
+        \addplot[smooth, thick, domain = 2-4*\v:2+4*\v, color = gray]
+          {normalpdf(x, 2, \v)};
+        \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
+          {normalpdf(x, \zValue, \v)};
+      \end{axis}
+    \end{scope}
+  }
+
+  \draw[->] (-0.2, 1.5) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-right-tailed.png)
+
+  * [hypothesis-tests-right-tailed.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-right-tailed.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style ={rounded corners},
+  declare function ={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.282}
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -4:\zValue, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+    \path[draw, o->] (axis cs: 1.7, 0.03) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha$};
+    \node at (axis cs: -0.25, 0.1) {$1 - \alpha$};
+    \node[below right, align=left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta > \theta_0$};
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -4, 0)
+        node [mynode, midway, yshift = -1.25em, fill = gray!30]
+        {\scriptsize Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[mynode, midway, yshift = -1.25em, fill = magenta] (a1) {\scriptsize Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$};
+    \end{scope}
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-statistic-value.png)
+
+  * [hypothesis-tests-statistic-value.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-statistic-value.pgf)
+
+```tex
+% http://tug.ctan.org/tex-archive/info/symbols/compact/LaTeXSymbols.pdf
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.22, ymax = 0.5,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners = 2pt},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {fill opacity = 0.75, text opacity = 1, minimum height = 1.25em, scale = 0.75}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.645}
+    \addplot[domain = -4:-\zValue, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -\zValue:\zValue, draw = none, fill = gray!30, opacity = 0.75]
+      {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray]
+      {normalpdf(x, 0, 1)};
+
+    \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
+      {normalpdf(x, \zValue, 1)} coordinate (v2);
+    \addplot [ycomb, samples at = {-\zValue}, color = black, dashed]
+      {normalpdf(x, -\zValue, 1)} coordinate (v1);
+
+    \foreach \zValue [count = \b] in  {-2.25, 1.7, 3} {
+      \edef\temp{\noexpand
+        \path[<-, draw] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.15) coordinate (b\b);
+      }
+      \temp
+    }
+    \foreach \zValue [count = \a] in {-1, 0.25, 1.55} {
+      \edef\temp{\noexpand
+        \path[<-, draw] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.075) coordinate (a\a);
+      }
+      \temp
+    }
+
+    \begin{scope}[yshift = -0.2em]
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: \zValue, 0) -- (axis cs: -\zValue, 0)
+        node [mynode, midway, yshift = -1.75em, fill = gray!30]
+        {Regi{\~a}o de n{\~a}o rejei{\c c}{\~a}o de $H_0$ (\ding{51})};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: -\zValue, 0) -- (axis cs: -4, 0)
+        node[midway, yshift = -0.25em] (c1) {};
+      \draw [decorate, decoration = {brace, amplitude = 5pt}]
+        (axis cs: 4, 0) -- (axis cs: \zValue, 0)
+        node[midway, yshift = -0.25em] (c2) {};
+      \node[mynode, fill = magenta] (c0) at (axis cs: 0, -0.12)
+        {Regi{\~a}o de rejei{\c c}{\~a}o de $H_0$ (\ding{55})};
+      \path[draw, ->] (c0) to[out = 180, in = -90] (c1.south);
+      \path[draw, ->] (c0) to[out = 0, in = -90] (c2.south);
+      \node (v0) at (0, 0.45) {Valores cr{\'i}ticos};
+      \path[draw, ->] (v0) to[out = 180, in = 90] (v1.south);
+      \path[draw, ->] (v0) to[out = 0, in = 90] (v2.south);
+    \end{scope}
+
+  \end{axis}
+
+  % For some unknown reason, \ding{} didn't work inside those foreach statment.
+  \foreach \a in {1, 2, 3} {
+    \node[mynode, above, fill = gray] at (a\a) {$H_0$ \ding{51}};
+  }
+
+  \foreach \b in {1, 2, 3} {
+    \node[mynode, above, fill = magenta] at (b\b) {$H_0$ \ding{55}};
+  }
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-types-of-erros.png)
+
+  * [hypothesis-tests-types-of-erros.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-types-of-erros.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 12cm, height = 8cm,
+    samples = 75,
+    ticks = none,
+    ymin = -0.25,
+  }
+}%
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {
+    fill opacity = 0.75,
+    text opacity = 1,
+    minimum height = 1.25em,
+    align = center,
+    execute at begin node = \setlength{\baselineskip}{1ex}}]
+
+  \begin{axis}[myplot, smooth]
+
+    \def\zValue{1.282}
+
+    \addplot[domain = \zValue:4, draw = none, fill = magenta, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[domain = -4:\zValue, draw = none, fill = gray!30, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x, 0, 1)};
+
+    \addplot[domain = -2:\zValue, draw = none, fill = yellow, opacity = 0.75] {normalpdf(x, 2, 1)} \closedcycle;
+    \addplot[smooth, thick, domain = -2:6, color = gray] {normalpdf(x, 2, 1)};
+
+    \addplot +[mark = none, dashed, black] coordinates {(\zValue, 0) (\zValue, 0.5)};
+    % \addplot +[mark = none] coordinates {(0, 0) (0, 0.5)} node[above] {$\theta_0$};
+    % \addplot +[mark = none] coordinates {(2, 0) (2, 0.5)} node[above] {$\theta$};
+
+    \path[draw, o->] (axis cs: 1.7, 0.05) to[out = -90, in = 180]
+      (axis cs: 2.5, -0.1) node[right, align = left] {$\alpha$: erro tipo I\\ N{\' i}vel de signific{\^a}ncia};
+    \path[draw, o->] (axis cs: 0.7, 0.05) to[out = -90, in = 0]
+      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II\\ Poder do teste};
+
+    \node [mynode, text width = 5em] (text0) at (axis cs: -2, 0.4)
+      {\scriptsize Distribui{\c c}{\~a}o amostral sob a hip{\'o}tese nula.};
+    \node [mynode, text width = 5em] (text1) at (axis cs: 4, 0.4)
+      {\scriptsize Verdadeira distribui{\c c}{\~a}o amostral.};
+    \path[draw, ->] (text0) to[out = -90, in = 180] (axis cs: -1.25, 0.2);
+    \path[draw, ->] (text1) to[out = -90, in = 0] (axis cs: 3.25, 0.2);
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
+![](./src/hypothesis-tests-types.png)
+
+  * [hypothesis-tests-types.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-types.pgf)
+
+```tex
+\pgfplotsset{
+  myplot/.style = {
+    width = 10cm, height = 5cm,
+    samples = 75,
+    ticks = none,
+  }
+} %
+
+\begin{tikzpicture}[>=stealth,
+  every node/.style={rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  }]
+
+  \begin{scope}
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.645}
+      \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: 2, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha/2$};
+      \path[draw, o->] (axis cs: -2, 0.02) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha/2$};
+      \node at (axis cs: 0, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Bilateral\\ $H_0: \theta \neq \theta_0$};
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[yshift = -3.75cm]
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.282}
+      \addplot[domain = -4:-\zValue, draw = none, fill = cyan, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: -1.7, 0.03) to[out = 90, in = 0] (axis cs: -3, 0.2) node[left] {$\alpha$};
+      \node at (axis cs: 0.25, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} esqueda\\ $H_0: \theta < \theta_0$};
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[yshift = -7.5cm]
+    \begin{axis}[myplot, smooth]
+      \def\zValue{1.282}
+      \addplot[domain = \zValue:4, draw = none, fill = orange, opacity = 0.75] {normalpdf(x, 0, 1)} \closedcycle;
+      \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
+      \path[draw, o->] (axis cs: 1.7, 0.03) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha$};
+      \node at (axis cs: -0.25, 0.1) {$1 - \alpha$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta < \theta_0$};
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
 ![](./src/ibs.png)
 
   * [ibs.pgf](https://github.com/walmes/Tikz/blob/master/src/ibs.pgf)
@@ -10447,6 +12252,39 @@ ann,right] {testemunhas};
 ```
 ****
 
+![](./src/mean-square-error-of-estimators.png)
+
+  * [mean-square-error-of-estimators.pgf](https://github.com/walmes/Tikz/blob/master/src/mean-square-error-of-estimators.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[
+    width = 8cm, height = 6cm,
+    ymax = 0.6,
+    domain = -6:6,
+    samples = 150,
+    ticks = none,
+    ]
+
+    \addplot [smooth, thick, orange] {normalpdf(x, 1, 1)}
+      node[pos = 0.65, pin = {right:$\hat{\theta}_1$}] {};
+    \addplot [smooth, thick, blue] {normalpdf(x, 0, 2)}
+      node[pos = 0.3, pin = {135:$\hat{\theta}_2$}] {};
+    \addplot +[mark = none] coordinates {(0, 0) (0, 0.5)} node[above] {$\theta$};
+    \addplot +[mark = none, thick, blue] coordinates {(0, 0) (0, 0.2)};
+    \addplot +[mark = none, thick, orange] coordinates {(1, 0) (1, 0.4)};
+
+  \end{axis}
+\end{tikzpicture}
+```
+****
+
 ![](./src/mesh_3d.png)
 
   * [mesh_3d.pgf](https://github.com/walmes/Tikz/blob/master/src/mesh_3d.pgf)
@@ -11149,6 +12987,76 @@ ann,right] {testemunhas};
     function{1.85-1*(x-\bo/\bt)**2}
     node[below, color=black] {$\vartheta_a$};
   \node[above] at (1, 1.85) {$\vartheta_p$};
+\end{tikzpicture}
+```
+****
+
+![](./src/modelo_liberacao.png)
+
+  * [modelo_liberacao.pgf](https://github.com/walmes/Tikz/blob/master/src/modelo_liberacao.pgf)
+
+```tex
+\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+
+\begin{scope}
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick, smooth] plot[id=x, domain=2:13]
+        function{5.5*(1-exp(-0.7*(x-2)/2))+0.4*(x-2)} node[right] {P total};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=2:13]
+        function{5.5*(1-exp(-0.7*(x-2)/2))} node[right] {P f\'{a}cil};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=2:13]
+        function{0.4*(x-2)} node[right] {P dif\'{i}cil};
+  \draw[|<->|] (10,3.2) -- ++(1,0) node[below] {$D$} -- ++(0,0.4);
+  \node[below] at (2,0) {$t_0$};
+  \draw[->, dashed] (4,2.75) -- (4,0) node[below] {$t_0+V$};
+  \draw[->, dashed] (13,5.5) -- (0,5.5) node[left] {$A$};
+  \draw[->, dashed] (4,2.75) -- (0,2.75) node[left] {$\frac{A}{2}$};
+  \draw[|<->|] (0,-1) -- (2,-1) node[midway, below] {nula};
+  \draw[|<-] (2,-1) -- (9,-1) node[midway, below] {r\'{a}pida};
+  \draw[|<-] (7,-1.2) -- (14,-1.2) node[midway, above] {lenta};
+\end{scope}
+
+\begin{scope}[xshift = 20cm]
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick, smooth] plot[id=x, domain=-0.1:13]
+        function{6/(1+(3/x)**4)+0.3*x} node[right] {P total};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=0:13]
+        function{6/(1+(3/x)**4)} node[right] {1 regime};
+  \draw[color=green!30!black, thick, smooth, dashed] plot[id=x, domain=0:13]
+        function{0.3*x} node[right] {2 regime};
+  \draw[color=green!30!black, thick, smooth, dotted] plot[id=x, domain=3:4.2]
+        function{2*(x-1.5)} node[right] {};
+  \draw[|<->|] (10,3) -- ++(1,0) node[below] {$D$} -- ++(0,0.4);
+  \draw[|<->|] (3,3) -- ++(1,0) node[right] {\small $f'(V)=\frac{CA}{4V}$} -- ++(0,2);
+  \draw[<->, dashed] (0,3) node[left] {$\frac{A}{2}$} -- (3,3)
+        -- (3,0) node[below] {$V$};
+  \draw[->, dashed] (13,6) -- (0,6) node[left] {$A$};
+%   \path[<-] (3,3) edge[bend left=20] node[at end, above] {$f'(V)$} +(-1.5,1);
+\end{scope}
+
+\begin{scope}[xshift = 40cm]
+  \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
+  \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
+  \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
+  \draw[color=green!30!black, thick] plot[id=x, domain=0:5.5]
+        function{2.5+1.1*x};
+  \node[left] at (0,2.5) {$A$};
+  \draw[->, dashed] (5.5,8.55) -- (5.5,0) node[below] {$Tr$};
+  \draw[|<->|] (2.5,5.25) -- ++(1,0) node[below] {$Q_1$} -- ++(0,1.1);
+  \draw[color=green!30!black, thick] plot[id=x, domain=5.5:13]
+        function{2.5+1.1*5.5+0.3*(x-5.5)};
+  \draw[|<->|] (8.5,9.45) -- ++(1,0) node[midway, below] {$Q_1-Q_2$} -- ++(0,0.3);
+  \draw[|<->|] (0,-1) -- (5.5,-1) node[midway, below] {intermedi{\'a}ria};
+  \draw[|<-] (5.5,-1) -- (14,-1) node[midway, below] {lenta};
+  \draw[|<->|] (-1,0) -- (-1,2.5) node[midway, above, rotate=90] {imediato};
+\end{scope}
+
+\end{tikzpicture}
+{imediato};
 \end{tikzpicture}
 ```
 ****
@@ -16099,8 +18007,13 @@ ight:
     \node[above = 2pt] at (3.5, 0) {\textbf{Amostras}};
 
     \node[above = 0pt] at (1.5, -0.5) {Amostragem};
-    \node (nm) at (3, -12.45) {Estat{\'i}stica amostral};
-    \path[draw, ->] (p12) to[out = 0, in = 30] (nm.north east);
+%     \node (nm) at (3, -12.45) {Estat{\'i}stica amostral};
+%     \path[draw, ->] (p12) to[out = 0, in = 30] (nm.north east);
+
+    \draw[rounded corners = 4pt, fill = white, opacity = 0.75, dashed] (0.15, -12) rectangle (4.65, -1);
+    \node[right, text width = 5em, fill = white, text = red] at (0.5, -6.5)
+      {Isso n{\~a}o {\'e}\\ feito na pr{\'a}tica.};
+
   \end{scope}
 
 \end{tikzpicture}
@@ -18773,6 +20686,37 @@ ight:
   \node[anchor=base] (vg) at (1,0.8)
     {$\eta(x) = \theta_r+\displaystyle\frac{\theta_s-\theta_r}{
         (1+(\theta_a x)^{\theta_n})^{\theta_m}}$};
+\end{tikzpicture}
+```
+****
+
+![](./src/variance-of-estimators.png)
+
+  * [variance-of-estimators.pgf](https://github.com/walmes/Tikz/blob/master/src/variance-of-estimators.pgf)
+
+```tex
+\begin{tikzpicture}[
+  declare function = {
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  hplot/.style={ycomb, mark=o, dashed}]
+
+  \begin{axis}[
+    width = 8cm, height = 6cm,
+    ymax = 0.6,
+    domain = -6:6,
+    samples = 150,
+    ticks = none,
+    ]
+
+    \addplot [smooth, thick, orange] {normalpdf(x, 0, 1)}
+      node[pos = 0.55, pin = {right:$\hat{\theta}_1$}] {};
+    \addplot [smooth, thick, blue] {normalpdf(x, 0, 2)}
+      node[pos = 0.7, pin = {45:$\hat{\theta}_2$}] {};
+    \addplot +[mark = none] coordinates {(0, 0) (0, 0.5)} node[above] {$\theta$};
+
+  \end{axis}
 \end{tikzpicture}
 ```
 ****
