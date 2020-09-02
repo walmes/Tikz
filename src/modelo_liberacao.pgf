@@ -1,4 +1,6 @@
-\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+﻿\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+
+\begin{scope}
   \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
   \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
   \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
@@ -16,9 +18,9 @@
   \draw[|<->|] (0,-1) -- (2,-1) node[midway, below] {nula};
   \draw[|<-] (2,-1) -- (9,-1) node[midway, below] {r\'{a}pida};
   \draw[|<-] (7,-1.2) -- (14,-1.2) node[midway, above] {lenta};
-\end{tikzpicture}
+\end{scope}
 
-\begin{tikzpicture}[domain=0:14, scale=0.7, >=latex]
+\begin{scope}[xshift = 20cm]
   \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
   \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
   \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
@@ -35,10 +37,10 @@
   \draw[<->, dashed] (0,3) node[left] {$\frac{A}{2}$} -- (3,3)
         -- (3,0) node[below] {$V$};
   \draw[->, dashed] (13,6) -- (0,6) node[left] {$A$};
-%  \path[<-] (3,3) edge[bend left=20] node[at end, above] {$f'(V)$} +(-1.5,1);
-\end{tikzpicture}
+%   \path[<-] (3,3) edge[bend left=20] node[at end, above] {$f'(V)$} +(-1.5,1);
+\end{scope}
 
-\begin{tikzpicture}[domain=0:8, scale=0.7, >=latex]
+\begin{scope}[xshift = 40cm]
   \draw[very thin,color=gray!30] (-2.1,-2.1) grid (16.1,12.1);
   \draw[->, line width=1pt] (-0.2,0) -- (14.2,0) node[below right] {$t$};
   \draw[->, line width=1pt] (0,-0.2) -- (0,11) node[left] {$f(t)$};
@@ -50,7 +52,11 @@
   \draw[color=green!30!black, thick] plot[id=x, domain=5.5:13]
         function{2.5+1.1*5.5+0.3*(x-5.5)};
   \draw[|<->|] (8.5,9.45) -- ++(1,0) node[midway, below] {$Q_1-Q_2$} -- ++(0,0.3);
-  \draw[|<->|] (0,-1) -- (5.5,-1) node[midway, below] {intermediÃÂ¡ria};
+  \draw[|<->|] (0,-1) -- (5.5,-1) node[midway, below] {intermedi{\'a}ria};
   \draw[|<-] (5.5,-1) -- (14,-1) node[midway, below] {lenta};
   \draw[|<->|] (-1,0) -- (-1,2.5) node[midway, above, rotate=90] {imediato};
+\end{scope}
+
+\end{tikzpicture}
+{imediato};
 \end{tikzpicture}
