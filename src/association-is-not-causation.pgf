@@ -1,0 +1,44 @@
+﻿\begin{tikzpicture}[%
+  auto, > = stealth',
+  node distance = 0.0ex and 3em,
+  pil/.style = {->},
+  punkt/.style = {
+    rectangle,
+    rounded corners = 3pt,
+    draw = black,
+    text width = 8em,
+    minimum height = 4em,
+    text centered}
+  ]
+
+\begin{scope}[xshift = 3.5cm]
+  \node[punkt, fill = gray!10] (t0) {Aumento da temperatura};
+  \node[punkt, fill = gray!10, right = of t0] (t1) {Aumento de banhistas};
+  \node[punkt, fill = cyan!30, below right = of t1] (t2) {Aumento das vendas de sorvete ($Y_1$)};
+  \node[punkt, fill = orange!30, above right = of t1] (t3) {Aumento dos ataques de tubar{\~a}o ($Y_2$)};
+  \path[pil] (t0) edge (t1)
+    (t1) edge (t2)
+    (t1) edge (t3);
+   \path[pil, <->, dashed] (t2) edge (t3);
+\end{scope}
+
+\end{tikzpicture}%
+kt, below right = of t3] (y3) {\respostas};
+  \node[punkt, above right = of t3] (x3) {\covariaveis};
+  \path[pil] (t3) edge (y3);
+  \path[pil] (t3) edge (x3);
+  \path[pil, dashed] (x3) edge (y3);
+  \node[fit = (t3)(x3)(y3), above, yshift = 1em] (fit3) {\rede{} 2};
+\end{scope}
+
+\begin{scope}[xshift = 3.25cm, yshift = -3cm]
+  \node[punkt] (y2) {\respostas};
+  \node[punkt, left = of y2] (t2) {\tratamentos};
+  \node[punkt, below left = 1.75em and -2em of y2] (x2) {\covariaveis};
+  \path[pil] (t2) edge (y2);
+  \path[pil] (x2) edge (y2);
+  \path[pil] (t2) edge (x2);
+  \node[fit = (t2)(x2)(y2), above, yshift = 1em] (fit2) {\rede{} 3};
+\end{scope}
+
+\end{tikzpicture}%

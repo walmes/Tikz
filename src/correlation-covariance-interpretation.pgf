@@ -1,0 +1,131 @@
+﻿\begin{filecontents*}{galton.dat}
+     x      y
+1.9042 1.9618
+1.6095 1.4159
+1.6750 1.3323
+1.5793 1.5033
+1.7846 1.6441
+1.6580 1.7589
+1.8022 2.0789
+1.8168 1.5724
+1.5277 1.7982
+2.2290 2.3234
+1.8467 1.8012
+1.2815 1.3210
+1.5189 1.5609
+1.3392 1.2647
+1.4282 1.4376
+2.3150 2.1893
+1.0115 0.9544
+2.1810 2.2179
+0.9433 0.5742
+2.2594 1.9946
+2.2742 2.4213
+1.5422 1.8452
+1.4814 1.7540
+2.0522 2.0247
+2.0164 1.8147
+1.3238 1.6789
+2.3727 2.0102
+1.6782 1.8770
+1.7112 1.7508
+1.4119 1.4921
+1.3997 1.3480
+1.8825 1.8111
+1.4035 1.7164
+1.9845 1.9546
+1.2613 1.4185
+2.0998 2.3210
+1.6218 1.8376
+1.9008 1.9458
+1.1555 1.2630
+1.3793 1.3378
+1.6014 1.7404
+1.4219 1.8182
+1.5087 1.3820
+1.7182 1.6391
+1.8483 1.7016
+1.7815 1.6210
+2.0682 2.0595
+1.6333 1.9390
+1.8845 1.8987
+2.1268 2.2169
+\end{filecontents*}
+
+\begin{tikzpicture}[>=stealth,
+  font = \small,
+  proj/.style = {thick, solid},
+  mynode/.style = {draw, rounded corners = 2pt, fill = white},
+  compare/.style = {mynode, scale = 0.75, draw = gray!30},
+  ]
+
+  \begin{axis}[
+    unit vector ratio*=1 1 1, % Para ter iso nos eixos.
+    width = 9cm,
+%     grid = major,
+%     grid style = {dashed, gray!30},
+    xlabel = $y_1$,
+    ylabel = $y_2$,
+%     xtick = {0.5, 0.75, ..., 3},
+%     ytick = {0.5, 0.75, ..., 3},
+%     xticklabels = \empty,
+%     yticklabels = \empty,
+    ticks = none,
+    xmin = 0.15, xmax = 3,
+    ymin = 0.15, ymax = 3,
+    domain = 1.1:2.5,
+    ]
+
+    \def\mediaYa{1.705}
+    \def\mediaYb{1.726}
+
+    \addplot[only marks, mark=*, fill = gray, very thin, mark size = 1.5pt] table {galton.dat};
+
+    \draw[green] (\mediaYa, 2.5) -- (\mediaYa, 0.7) node[mynode, below] {$\bar{y_1}$};
+    \draw[magenta] (2.4, \mediaYb) -- (0.7, \mediaYb) node[mynode, left] {$\bar{y_2}$};
+
+  \node[compare, anchor = south west] at (rel axis cs: 0.05, 0.05)
+    {$\textcolor{blue}{y_{1} < \bar{y}_1}\, \& \, \textcolor{blue}{y_{2} < \bar{y}_2}$};
+  \node[compare, anchor = north west] at (rel axis cs: 0.05, 0.95)
+    {$\textcolor{blue}{y_{1} < \bar{y}_1}\, \& \, \textcolor{orange}{y_{2} > \bar{y}_2}$};
+  \node[compare, anchor = north east] at (rel axis cs: 0.95, 0.95)
+    {$\textcolor{orange}{y_{1} > \bar{y}_1}\, \& \, \textcolor{orange}{y_{2} > \bar{y}_2}$};
+  \node[compare, anchor = south east] at (rel axis cs: 0.95, 0.05)
+    {$\textcolor{orange}{y_{1} > \bar{y}_1}\, \& \, \textcolor{blue}{y_{2} < \bar{y}_2}$};
+
+\draw[proj, color = orange] (1.816800, 1.572400) -- (1.705134, 1.572400);
+\draw[proj, color = blue] (1.011500, 0.954400) -- (1.705134, 0.954400);
+\draw[proj, color = orange] (2.372700, 2.010200) -- (1.705134, 2.010200);
+\draw[proj, color = blue] (1.421900, 1.818200) -- (1.705134, 1.818200);
+\draw[proj, color = blue] (1.816800, 1.572400) -- (1.816800, 1.726882);
+\draw[proj, color = blue] (1.011500, 0.954400) -- (1.011500, 1.726882);
+\draw[proj, color = orange] (2.372700, 2.010200) -- (2.372700, 1.726882);
+\draw[proj, color = orange] (1.421900, 1.818200) -- (1.421900, 1.726882);
+
+  \end{axis}
+
+\end{tikzpicture}
+
+% txt <- "     x      y
+% 1.9042 1.9618
+% ...
+% 2.1268 2.2169"
+%
+% tb <- read.table(textConnection(txt), header = TRUE)
+% closeAllConnections()
+% 
+% str(tb)
+% colMeans(tb)
+% 
+% plot(y ~ x, data = tb, asp = 1)
+% abline(v = mean(tb$x), h = mean(tb$y))
+% # loc <- with(tb, identify(x, y))
+% # dput(loc)
+% loc <- c(8L, 17L, 27L, 42L)
+% 
+% fmt <- "\\draw[proj, color = %s] (%f, %f) -- (%f, %f);"
+% draw <- with(tb[loc, ], {
+%     c(sprintf(fmt, ifelse(x < mean(x), "blue", "orange"), x, y, mean(tb$x), y), 
+%       sprintf(fmt, ifelse(y < mean(y), "blue", "orange"), x, y, x, mean(tb$y)))
+% })
+% cat(draw, sep = "\n")

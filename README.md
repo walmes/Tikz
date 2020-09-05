@@ -19,7 +19,7 @@ interesting exposition of Tikz features is done in
 manual is available at
 <http://linorg.usp.br/CTAN/graphics/pgf/base/doc/pgfmanual.pdf>.
 
-There are 295 Tikz figures in this gallery.  Most of them were
+There are 298 Tikz figures in this gallery.  Most of them were
 done to teach statistics, inspired by content on the web or done from
 the scratch.  Also, a lot were caught in the web and copied with few
 modifications (I run tests on it).
@@ -244,6 +244,58 @@ Some useful tutorials or galleries:
     }]
   \end{axis}
 \end{tikzpicture} 
+```
+****
+
+![](./src/association-is-not-causation.png)
+
+  * [association-is-not-causation.pgf](https://github.com/walmes/Tikz/blob/master/src/association-is-not-causation.pgf)
+
+```tex
+\begin{tikzpicture}[%
+  auto, > = stealth',
+  node distance = 0.0ex and 3em,
+  pil/.style = {->},
+  punkt/.style = {
+    rectangle,
+    rounded corners = 3pt,
+    draw = black,
+    text width = 8em,
+    minimum height = 4em,
+    text centered}
+  ]
+
+\begin{scope}[xshift = 3.5cm]
+  \node[punkt, fill = gray!10] (t0) {Aumento da temperatura};
+  \node[punkt, fill = gray!10, right = of t0] (t1) {Aumento de banhistas};
+  \node[punkt, fill = cyan!30, below right = of t1] (t2) {Aumento das vendas de sorvete ($Y_1$)};
+  \node[punkt, fill = orange!30, above right = of t1] (t3) {Aumento dos ataques de tubar{\~a}o ($Y_2$)};
+  \path[pil] (t0) edge (t1)
+    (t1) edge (t2)
+    (t1) edge (t3);
+   \path[pil, <->, dashed] (t2) edge (t3);
+\end{scope}
+
+\end{tikzpicture}%
+kt, below right = of t3] (y3) {\respostas};
+  \node[punkt, above right = of t3] (x3) {\covariaveis};
+  \path[pil] (t3) edge (y3);
+  \path[pil] (t3) edge (x3);
+  \path[pil, dashed] (x3) edge (y3);
+  \node[fit = (t3)(x3)(y3), above, yshift = 1em] (fit3) {\rede{} 2};
+\end{scope}
+
+\begin{scope}[xshift = 3.25cm, yshift = -3cm]
+  \node[punkt] (y2) {\respostas};
+  \node[punkt, left = of y2] (t2) {\tratamentos};
+  \node[punkt, below left = 1.75em and -2em of y2] (x2) {\covariaveis};
+  \path[pil] (t2) edge (y2);
+  \path[pil] (x2) edge (y2);
+  \path[pil] (t2) edge (x2);
+  \node[fit = (t2)(x2)(y2), above, yshift = 1em] (fit2) {\rede{} 3};
+\end{scope}
+
+\end{tikzpicture}%
 ```
 ****
 
@@ -2153,6 +2205,145 @@ axis}
   \path (t2) edge node[right = 1ex] {T2 vs T3} (t3);
 
 \end{tikzpicture}%
+```
+****
+
+![](./src/correlation-covariance-interpretation.png)
+
+  * [correlation-covariance-interpretation.pgf](https://github.com/walmes/Tikz/blob/master/src/correlation-covariance-interpretation.pgf)
+
+```tex
+\begin{filecontents*}{galton.dat}
+     x      y
+1.9042 1.9618
+1.6095 1.4159
+1.6750 1.3323
+1.5793 1.5033
+1.7846 1.6441
+1.6580 1.7589
+1.8022 2.0789
+1.8168 1.5724
+1.5277 1.7982
+2.2290 2.3234
+1.8467 1.8012
+1.2815 1.3210
+1.5189 1.5609
+1.3392 1.2647
+1.4282 1.4376
+2.3150 2.1893
+1.0115 0.9544
+2.1810 2.2179
+0.9433 0.5742
+2.2594 1.9946
+2.2742 2.4213
+1.5422 1.8452
+1.4814 1.7540
+2.0522 2.0247
+2.0164 1.8147
+1.3238 1.6789
+2.3727 2.0102
+1.6782 1.8770
+1.7112 1.7508
+1.4119 1.4921
+1.3997 1.3480
+1.8825 1.8111
+1.4035 1.7164
+1.9845 1.9546
+1.2613 1.4185
+2.0998 2.3210
+1.6218 1.8376
+1.9008 1.9458
+1.1555 1.2630
+1.3793 1.3378
+1.6014 1.7404
+1.4219 1.8182
+1.5087 1.3820
+1.7182 1.6391
+1.8483 1.7016
+1.7815 1.6210
+2.0682 2.0595
+1.6333 1.9390
+1.8845 1.8987
+2.1268 2.2169
+\end{filecontents*}
+
+\begin{tikzpicture}[>=stealth,
+  font = \small,
+  proj/.style = {thick, solid},
+  mynode/.style = {draw, rounded corners = 2pt, fill = white},
+  compare/.style = {mynode, scale = 0.75, draw = gray!30},
+  ]
+
+  \begin{axis}[
+    unit vector ratio*=1 1 1, % Para ter iso nos eixos.
+    width = 9cm,
+%     grid = major,
+%     grid style = {dashed, gray!30},
+    xlabel = $y_1$,
+    ylabel = $y_2$,
+%     xtick = {0.5, 0.75, ..., 3},
+%     ytick = {0.5, 0.75, ..., 3},
+%     xticklabels = \empty,
+%     yticklabels = \empty,
+    ticks = none,
+    xmin = 0.15, xmax = 3,
+    ymin = 0.15, ymax = 3,
+    domain = 1.1:2.5,
+    ]
+
+    \def\mediaYa{1.705}
+    \def\mediaYb{1.726}
+
+    \addplot[only marks, mark=*, fill = gray, very thin, mark size = 1.5pt] table {galton.dat};
+
+    \draw[green] (\mediaYa, 2.5) -- (\mediaYa, 0.7) node[mynode, below] {$\bar{y_1}$};
+    \draw[magenta] (2.4, \mediaYb) -- (0.7, \mediaYb) node[mynode, left] {$\bar{y_2}$};
+
+  \node[compare, anchor = south west] at (rel axis cs: 0.05, 0.05)
+    {$\textcolor{blue}{y_{1} < \bar{y}_1}\, \& \, \textcolor{blue}{y_{2} < \bar{y}_2}$};
+  \node[compare, anchor = north west] at (rel axis cs: 0.05, 0.95)
+    {$\textcolor{blue}{y_{1} < \bar{y}_1}\, \& \, \textcolor{orange}{y_{2} > \bar{y}_2}$};
+  \node[compare, anchor = north east] at (rel axis cs: 0.95, 0.95)
+    {$\textcolor{orange}{y_{1} > \bar{y}_1}\, \& \, \textcolor{orange}{y_{2} > \bar{y}_2}$};
+  \node[compare, anchor = south east] at (rel axis cs: 0.95, 0.05)
+    {$\textcolor{orange}{y_{1} > \bar{y}_1}\, \& \, \textcolor{blue}{y_{2} < \bar{y}_2}$};
+
+\draw[proj, color = orange] (1.816800, 1.572400) -- (1.705134, 1.572400);
+\draw[proj, color = blue] (1.011500, 0.954400) -- (1.705134, 0.954400);
+\draw[proj, color = orange] (2.372700, 2.010200) -- (1.705134, 2.010200);
+\draw[proj, color = blue] (1.421900, 1.818200) -- (1.705134, 1.818200);
+\draw[proj, color = blue] (1.816800, 1.572400) -- (1.816800, 1.726882);
+\draw[proj, color = blue] (1.011500, 0.954400) -- (1.011500, 1.726882);
+\draw[proj, color = orange] (2.372700, 2.010200) -- (2.372700, 1.726882);
+\draw[proj, color = orange] (1.421900, 1.818200) -- (1.421900, 1.726882);
+
+  \end{axis}
+
+\end{tikzpicture}
+
+% txt <- "     x      y
+% 1.9042 1.9618
+% ...
+% 2.1268 2.2169"
+%
+% tb <- read.table(textConnection(txt), header = TRUE)
+% closeAllConnections()
+% 
+% str(tb)
+% colMeans(tb)
+% 
+% plot(y ~ x, data = tb, asp = 1)
+% abline(v = mean(tb$x), h = mean(tb$y))
+% # loc <- with(tb, identify(x, y))
+% # dput(loc)
+% loc <- c(8L, 17L, 27L, 42L)
+% 
+% fmt <- "\\draw[proj, color = %s] (%f, %f) -- (%f, %f);"
+% draw <- with(tb[loc, ], {
+%     c(sprintf(fmt, ifelse(x < mean(x), "blue", "orange"), x, y, mean(tb$x), y), 
+%       sprintf(fmt, ifelse(y < mean(y), "blue", "orange"), x, y, x, mean(tb$y)))
+% })
+% cat(draw, sep = "\n")
 ```
 ****
 
@@ -10564,6 +10755,48 @@ ann,right] {testemunhas};
 ```
 ****
 
+![](./src/hypothesis-test-intuition.png)
+
+  * [hypothesis-test-intuition.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-test-intuition.pgf)
+
+```tex
+\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {draw = none, solid, fill = orange!40, rounded corners = 2pt}]
+
+  \begin{axis}[
+    samples = 150,
+    xlabel = $\hat{p}$,
+    width = 9cm, height = 7cm,
+    yticklabels = {,,},
+    ymax = 12.5,
+    ]
+
+    \addplot[smooth, thick, domain = 0:1, draw = none, fill = magenta!10] {normalpdf(x, 0.5, 0.05)};
+    \addplot[smooth, thick, domain = 0:1] {normalpdf(x, 0.5, 0.05)};
+
+    \addplot +[<-, mark = none, black] coordinates {(0.5, 0) (0.5, 10)}
+      node[mynode, fill = cyan!40, above] {$p_0 = 0,\!5$};
+
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.54, 0) (0.54, 8.25)}
+      node[mynode, above] {$\hat{p} = 0,\!54$};
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.65, 0) (0.65, 4)}
+      node[mynode, above] {$\hat{p} = 0,\!65$};
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.92, 0) (0.92, 2)}
+      node[mynode, above] {$\hat{p} = 0,\!92$};
+
+    \node[below right] at (rel axis cs: 0.025, 0.975) {$n = 100$};
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
+```
+****
+
 ![](./src/hypothesis-tests-bilateral.png)
 
   * [hypothesis-tests-bilateral.pgf](https://github.com/walmes/Tikz/blob/master/src/hypothesis-tests-bilateral.pgf)
@@ -10797,7 +11030,7 @@ ann,right] {testemunhas};
       node[mynode, above, fill = green!75] {Estat{\'i}stica de teste: $u_{\text{obs}}$};
     \path[draw, dashed] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.2)
       node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
-    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat + 1, 0.3) -- (axis cs: 5, 0.3)
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
     \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
       node[right, align = left, fill = green] {$p$-valor\\ $\text{P}(U > u_{\text{obs}})$ };
@@ -10862,9 +11095,9 @@ ann,right] {testemunhas};
       node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
     \path[draw, dashed] (axis cs: -\zValue, 0) -- (axis cs: -\zValue, 0.2)
       node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
-    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat + 1, 0.3) -- (axis cs: 4.5, 0.3)
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
-    \path[->, draw, shorten <=2pt] (axis cs: -\zStat, 0.3) -- (axis cs: -4, 0.3)
+    \path[->, draw, shorten <=2pt] (axis cs: -\zStat - 1, 0.3) -- (axis cs: -4.5, 0.3)
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
     \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
       node[right, align = left, fill = green] {$p$-valor\\ $2\times \text{P}(U > u_{\text{obs}})$ };
@@ -10899,10 +11132,11 @@ ann,right] {testemunhas};
 ```tex
 \pgfplotsset{
   myplot/.style = {
-    width = 12cm, height = 3cm,
+    width = 12cm, height = 3.5cm,
     samples = 50,
     ticks = none,
     xmin = -4.5, xmax = 6.5,
+    ymax = 0.9,
   }
 }%
 
@@ -10913,8 +11147,9 @@ ann,right] {testemunhas};
     (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
   }]
 
-  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
-    \begin{scope}[yshift = 1.6*\y cm]
+%   \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
+  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82} {
+    \begin{scope}[yshift = 2*\y cm]
       \begin{axis}[myplot, smooth]
         \addplot[domain = \zValue:4*\v, draw = none, fill = magenta, opacity = 0.75]
           {normalpdf(x, 0, \v)} \closedcycle;
@@ -10927,12 +11162,12 @@ ann,right] {testemunhas};
         \addplot[smooth, thick, domain = 2-4*\v:2+4*\v, color = gray]
           {normalpdf(x, 2, \v)};
         \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
-          {normalpdf(x, \zValue, \v)};
+          {normalpdf(x, \zValue, 0.5)};
       \end{axis}
     \end{scope}
   }
 
-  \draw[->] (-0.2, 1.5) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
+  \draw[->] (-0.2, 1.75) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
 
 \end{tikzpicture}%------------------------------------------------------
 ```
@@ -11119,7 +11354,7 @@ ann,right] {testemunhas};
     \path[draw, o->] (axis cs: 1.7, 0.05) to[out = -90, in = 180]
       (axis cs: 2.5, -0.1) node[right, align = left] {$\alpha$: erro tipo I\\ N{\' i}vel de signific{\^a}ncia};
     \path[draw, o->] (axis cs: 0.7, 0.05) to[out = -90, in = 0]
-      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II\\ Poder do teste};
+      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II};
 
     \node [mynode, text width = 5em] (text0) at (axis cs: -2, 0.4)
       {\scriptsize Distribui{\c c}{\~a}o amostral sob a hip{\'o}tese nula.};
@@ -11130,7 +11365,7 @@ ann,right] {testemunhas};
 
   \end{axis}
 
-\end{tikzpicture}%------------------------------------------------------
+\end{tikzpicture}%-----------------------------------------------------------------------
 ```
 ****
 
@@ -11185,7 +11420,7 @@ ann,right] {testemunhas};
       \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
       \path[draw, o->] (axis cs: 1.7, 0.03) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha$};
       \node at (axis cs: -0.25, 0.1) {$1 - \alpha$};
-      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta < \theta_0$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta > \theta_0$};
     \end{axis}
   \end{scope}
 

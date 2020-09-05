@@ -1,0 +1,34 @@
+﻿\begin{tikzpicture}[>=stealth,
+  every node/.style = {rounded corners},
+  declare function={
+    normalpdf(\x,\mu,\sigma)=
+    (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
+  },
+  mynode/.style = {draw = none, solid, fill = orange!40, rounded corners = 2pt}]
+
+  \begin{axis}[
+    samples = 150,
+    xlabel = $\hat{p}$,
+    width = 9cm, height = 7cm,
+    yticklabels = {,,},
+    ymax = 12.5,
+    ]
+
+    \addplot[smooth, thick, domain = 0:1, draw = none, fill = magenta!10] {normalpdf(x, 0.5, 0.05)};
+    \addplot[smooth, thick, domain = 0:1] {normalpdf(x, 0.5, 0.05)};
+
+    \addplot +[<-, mark = none, black] coordinates {(0.5, 0) (0.5, 10)}
+      node[mynode, fill = cyan!40, above] {$p_0 = 0,\!5$};
+
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.54, 0) (0.54, 8.25)}
+      node[mynode, above] {$\hat{p} = 0,\!54$};
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.65, 0) (0.65, 4)}
+      node[mynode, above] {$\hat{p} = 0,\!65$};
+    \addplot +[<-, mark = none, dashed, black] coordinates {(0.92, 0) (0.92, 2)}
+      node[mynode, above] {$\hat{p} = 0,\!92$};
+
+    \node[below right] at (rel axis cs: 0.025, 0.975) {$n = 100$};
+
+  \end{axis}
+
+\end{tikzpicture}%------------------------------------------------------
