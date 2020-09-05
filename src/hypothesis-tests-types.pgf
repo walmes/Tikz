@@ -44,7 +44,7 @@
       \addplot[smooth, thick, domain = -4:4, color = gray] {normalpdf(x,0,1)};
       \path[draw, o->] (axis cs: 1.7, 0.03) to[out = 90, in = 180] (axis cs: 3, 0.2) node[right] {$\alpha$};
       \node at (axis cs: -0.25, 0.1) {$1 - \alpha$};
-      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta < \theta_0$};
+      \node[below right, align = left] at (axis description cs: 0.01, 0.97) {Unilateral {\`a} direita\\ $H_0: \theta > \theta_0$};
     \end{axis}
   \end{scope}
 

@@ -35,7 +35,7 @@
       node[mynode, above, fill = green!75] {Estat{\'i}stica de teste: $u_{\text{obs}}$};
     \path[draw, dashed] (axis cs: \zValue, 0) -- (axis cs: \zValue, 0.2)
       node[mynode, above, fill = gray] {Valor cr{\'i}tico: $u_{\text{crt}}$};
-    \path[->, draw, shorten <=2pt] (axis cs: \zStat, 0.3) -- (axis cs: 4, 0.3)
+    \path[->, draw, shorten <=2pt] (axis cs: \zStat + 1, 0.3) -- (axis cs: 5, 0.3)
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
     \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
       node[right, align = left, fill = green] {$p$-valor\\ $\text{P}(U > u_{\text{obs}})$ };

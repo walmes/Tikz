@@ -1,9 +1,10 @@
 ﻿\pgfplotsset{
   myplot/.style = {
-    width = 12cm, height = 3cm,
+    width = 12cm, height = 3.5cm,
     samples = 50,
     ticks = none,
     xmin = -4.5, xmax = 6.5,
+    ymax = 0.9,
   }
 }%
 
@@ -14,8 +15,9 @@
     (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
   }]
 
-  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
-    \begin{scope}[yshift = 1.6*\y cm]
+%   \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82, 0.25/0.41} {
+  \foreach \v/\zValue [count = \y] in {1/1.64, 0.75/1.23, 0.5/0.82} {
+    \begin{scope}[yshift = 2*\y cm]
       \begin{axis}[myplot, smooth]
         \addplot[domain = \zValue:4*\v, draw = none, fill = magenta, opacity = 0.75]
           {normalpdf(x, 0, \v)} \closedcycle;
@@ -28,11 +30,11 @@
         \addplot[smooth, thick, domain = 2-4*\v:2+4*\v, color = gray]
           {normalpdf(x, 2, \v)};
         \addplot [ycomb, samples at = {\zValue}, color = black, dashed]
-          {normalpdf(x, \zValue, \v)};
+          {normalpdf(x, \zValue, 0.5)};
       \end{axis}
     \end{scope}
   }
 
-  \draw[->] (-0.2, 1.5) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
+  \draw[->] (-0.2, 1.75) -- +(0, 6.5) node [above, midway, rotate = 90] {Tamanho da amostra ($n$)};
 
 \end{tikzpicture}%------------------------------------------------------

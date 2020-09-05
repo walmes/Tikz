@@ -38,7 +38,7 @@
     \path[draw, o->] (axis cs: 1.7, 0.05) to[out = -90, in = 180]
       (axis cs: 2.5, -0.1) node[right, align = left] {$\alpha$: erro tipo I\\ N{\' i}vel de signific{\^a}ncia};
     \path[draw, o->] (axis cs: 0.7, 0.05) to[out = -90, in = 0]
-      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II\\ Poder do teste};
+      (axis cs: -0.0, -0.1) node[left, align = left] {$\beta$: erro tipo II};
 
     \node [mynode, text width = 5em] (text0) at (axis cs: -2, 0.4)
       {\scriptsize Distribui{\c c}{\~a}o amostral sob a hip{\'o}tese nula.};
@@ -49,4 +49,4 @@
 
   \end{axis}
 
-\end{tikzpicture}%------------------------------------------------------
+\end{tikzpicture}%-----------------------------------------------------------------------
