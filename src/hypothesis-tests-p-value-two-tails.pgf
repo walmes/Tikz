@@ -40,7 +40,7 @@
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
     \path[->, draw, shorten <=2pt] (axis cs: -\zStat - 1, 0.3) -- (axis cs: -4.5, 0.3)
       node[mynode, above, midway] {Evid{\^e}ncia contra $H_0$};
-    \path[draw, o->] (axis cs: 1.9, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
+    \path[draw, o->] (axis cs: 1.45, 0.02) to[out = 90, in = 180] (axis cs: 3, 0.15)
       node[right, align = left, fill = green] {$p$-valor\\ $2\times \text{P}(U > u_{\text{obs}})$ };
 
     \begin{scope}[yshift = -0.2em]

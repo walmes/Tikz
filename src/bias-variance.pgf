@@ -91,7 +91,7 @@
   \border
 \end{scope}
 
-\end{tikzpicture}%scope}[minimum width = 1em, text width = 5.0em, text centered]
+\end{tikzpicture}%%cope}[minimum width = 1em, text width = 5.0em, text centered]
 % 
 %   \node[state] (int) at ( 90:5.5) {\emph{Intui{\c c}{\~ a}o e viabilidade}};
 %   \node[state] (val) at (210:5.0) {\emph{Solu{\c c}{\~ a}o e valida{\c c}{\~ a}o}};

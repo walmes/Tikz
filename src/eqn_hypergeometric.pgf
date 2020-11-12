@@ -23,8 +23,4 @@
   \path[->, draw] (a1.north) |- ++(0.5, -1) node[ann, right] {Arranjos com bolas brancas};
   \path[->, draw] (a2.south) |- ++(0.5, 0.5) node[ann,right] {Arranjos com bolas pretas};
   \path[->, draw] (a3.north) |- ++(0.5, -0.5) node[ann,right] {Arranjos com todas as bolas};
-\end{tikzpicture}%
-
-ann,right] {testemunhas};
-
-\end{tikzpicture}
+\end{tikzpicture}%------------------------------------------------------------------------------
