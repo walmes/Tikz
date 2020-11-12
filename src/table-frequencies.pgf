@@ -1,0 +1,86 @@
+﻿\begin{tikzpicture}[%
+  >=stealth',
+  mtx/.style = {
+    matrix of math nodes,
+    minimum width = 1.75em,
+    minimum height = 1.25em,
+  },
+  hltr/.style = {opacity = 0.2, rounded corners = 2pt, inner sep = -1pt},
+  txtup/.style = {rotate = 90, right},
+  txtbt/.style = {yshift = -1ex}
+]
+
+  \matrix (X) at (0, 0) [mtx, nodes = {anchor = east}] {
+    f_{11} & f_{12} & f_{13} & f_{1.}\\
+    f_{21} & f_{22} & f_{23} & f_{2.}\\
+    f_{31} & f_{32} & f_{33} & f_{3.}\\
+    f_{41} & f_{42} & f_{43} & f_{4.}\\
+    f_{.1} & f_{.2} & f_{.3} & f_{..}\\
+  };
+
+  \node[hltr, fill = orange, fit = (X-1-1)(X-4-3)] {};
+  \node[hltr, fill = purple, fit = (X-5-1)(X-5-3)] {};
+  \node[hltr, fill = cyan,   fit = (X-1-4)(X-4-4)] {};
+  \node[hltr, fill = gray,   fit = (X-5-4)(X-5-4)] {};
+
+  \path[<-] (-2,  2.0) node {Freq. da combina{\c c}{\~a}o} edge[out = -90, in = 180] (X-1-1);
+  \path[<-] ( 2,  2.0) node {Freq. marginal} edge[out = -90, in = 0] (X-1-4);
+  \path[<-] (-2, -2.0) node {Freq. marginal} edge[out = 90, in = 180] (X-5-1);
+  \path[<-] ( 2, -2.0) node {Freq. total} edge[out = 90, in = 0] (X-5-4);
+
+\end{tikzpicture}%
+
+} & 0 & 1 & \textcolor{red}{0} & 1 & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{0} & 0 & 1 \\ 
+  };
+
+  \node[left=1ex of X] {$X = $};
+  \node[right=1ex of X] {$=$};
+
+  % Efeitos.
+  \node[txtup] at (X-1-1.north) {$\mu$};
+  \node[txtup] at (X-1-2.north) {$\alpha_1$};
+  \node[txtup] at (X-1-3.north) {$\alpha_2$};
+  \node[txtup] at (X-1-4.north) {$\alpha_3$};
+  \node[txtup] at (X-1-5.north) {$\beta_1$};
+  \node[txtup] at (X-1-6.north) {$\beta_2$};
+  \node[txtup] at (X-1-7.north) {$\gamma_{11}$};
+  \node[txtup] at (X-1-8.north) {$\gamma_{21}$};
+  \node[txtup] at (X-1-9.north) {$\gamma_{31}$};
+  \node[txtup] at (X-1-10.north) {$\gamma_{12}$};
+  \node[txtup] at (X-1-11.north) {$\gamma_{22}$};
+  \node[txtup] at (X-1-12.north) {$\gamma_{32}$};
+
+  % Colunas de efeitos.
+  \node[hltr, fill = orange, fit = (X-1-2)(X-6-4)] {};
+  \node[hltr, fill = purple, fit = (X-1-5)(X-6-6)] {};
+  \node[hltr, fill = gray,   fit = (X-1-7)(X-6-12)] {};
+
+  \matrix (XX) [mtx, right = 5ex of X, nodes = {anchor = east}] {
+  1 & 0 & 0 & 0 & 0 & 0 \\ 
+  1 & 1 & 0 & 0 & 0 & 0 \\ 
+  1 & 0 & 1 & 0 & 0 & 0 \\ 
+  1 & 0 & 0 & 1 & 0 & 0 \\ 
+  1 & 1 & 0 & 1 & 1 & 0 \\ 
+  1 & 0 & 1 & 1 & 0 & 1 \\ 
+  };
+
+  % Efeitos.
+  \node[txtup] at (XX-1-1.north) {$\mu$};
+  \node[txtup] at (XX-1-2.north) {$\alpha_2$};
+  \node[txtup] at (XX-1-3.north) {$\alpha_3$};
+  \node[txtup] at (XX-1-4.north) {$\beta_2$};
+  \node[txtup] at (XX-1-5.north) {$\gamma_{22}$};
+  \node[txtup] at (XX-1-6.north) {$\gamma_{32}$};
+
+  % Colunas de efeitos.
+  \node[hltr, fill = orange, fit = (XX-1-2)(XX-6-3)] {};
+  \node[hltr, fill = purple, fit = (XX-1-4)(XX-6-4)] {};
+  \node[hltr, fill = gray,   fit = (XX-1-5)(XX-6-6)] {};
+
+  \draw ($(XX-6-1.west)+(0, -.60)$) -- ($(XX-6-1.east)+(0, -.60)$) node[right] {$X_{\mu}$};
+  \draw ($(XX-6-1.west)+(0, -1.0)$) -- ($(XX-6-3.east)+(0, -1.0)$) node[right] {$X_{\mu:\alpha}$};
+  \draw ($(XX-6-1.west)+(0, -1.4)$) -- ($(XX-6-4.east)+(0, -1.4)$) node[right] {$X_{\mu:\beta}$};
+  \draw ($(XX-6-1.west)+(0, -1.8)$) -- ($(XX-6-6.east)+(0, -1.8)$) node[right] {$X_{\mu:\gamma}$};
+
+\end{tikzpicture}%
+

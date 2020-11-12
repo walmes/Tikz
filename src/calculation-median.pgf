@@ -1,0 +1,46 @@
+﻿\begin{tikzpicture}[>=stealth']%
+
+  \begin{scope}
+
+    \foreach \x in {1, 2, ..., 11}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 4em of y1.west, anchor = west] {$n$ {\'i}mpar};
+
+    \node [above = 1em of y6, align = center] (md1)
+      {mediana\\ $y_{((n + 1)/2)} = y_{(6)}$};
+    \draw (y6) -- (md1);
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y6.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {$1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y11.south) -- (y6.south) 
+      node [black, midway, yshift = -1.1em] {$2$\textordfeminine{} metade};
+
+  \end{scope}
+
+  \begin{scope}[yshift = -4cm]
+
+    \foreach \x in {1, 2, ..., 12}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 4em of y1.west, anchor = west] {$n$ par};
+
+    \node (y67) at ($(y6)!0.5!(y7)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y67, align = center] (md1)
+      {mediana\\ $(y_{(n/2)} + y_{(n/2 + 1))/2}= (y_{(6)} + y_{(7)})/2$};
+ 
+    \draw (y6) -- (md1);
+    \draw (y7) -- (md1);
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y6.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {$1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y12.south) -- (y7.south) 
+      node [black, midway, yshift = -1.1em] {$2$\textordfeminine{} metade};
+
+  \end{scope}
+
+\end{tikzpicture}%

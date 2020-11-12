@@ -1,0 +1,109 @@
+﻿\begin{tikzpicture}[>=stealth']%
+
+  \begin{scope}
+
+    \foreach \x in {1, 2, ..., 12}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 2em of y2.west, anchor = east] {$n$ m{\'u}ltiplo de $4$};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y6.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y12.south) -- (y7.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $2$\textordfeminine{} metade};
+
+    \node (y34) at ($(y3)!0.5!(y4)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y34, align = center] (q1) {$q_1$};
+    \draw (y3) -- (q1) -- (y4);
+
+    \node (y67) at ($(y6)!0.5!(y7)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y67, align = center] (q2) {$q_2$};
+    \draw (y6) -- (q2) -- (y7);
+
+    \node (y910) at ($(y9)!0.5!(y10)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y910, align = center] (q3) {$q_3$};
+    \draw (y9) -- (q3) -- (y10);
+
+  \end{scope}
+
+  \begin{scope}[yshift = -2.5cm]
+
+    \foreach \x in {1, 2, ..., 11}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 2em of y2.west, anchor = east] {$n + 1$ m{\'u}ltiplo de 4};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y6.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y11.south) -- (y6.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $2$\textordfeminine{} metade};
+
+    \node (y34) at ($(y3)!0.5!(y4)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y34, align = center] (q1) {$q_1$};
+    \draw (y3) -- (q1) -- (y4);
+
+    \node [above = 1em of y6, align = center] (q2) {$q_2$};
+    \draw (y6) -- (q2);
+
+    \node (y89) at ($(y8)!0.5!(y9)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y89, align = center] (q3) {$q_3$};
+    \draw (y8) -- (q3) -- (y9);
+
+  \end{scope}
+
+  \begin{scope}[yshift = -5cm]
+
+    \foreach \x in {1, 2, ..., 10}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 2em of y2.west, anchor = east] {$n$ m{\'u}ltiplo de 2};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y5.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y10.south) -- (y6.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $2$\textordfeminine{} metade};
+
+    \node [above = 1em of y3, align = center] (q1) {$q_1$};
+    \draw (y3) -- (q1);
+
+    \node (y56) at ($(y5)!0.5!(y6)$) {$\phantom{y_{(a)}}$};
+    \node [above = 1em of y56, align = center] (q2) {$q_2$};
+    \draw (y5) -- (q2) -- (y6);
+
+    \node [above = 1em of y8, align = center] (q3) {$q_3$};
+    \draw (y8) -- (q3);
+
+  \end{scope}
+
+  \begin{scope}[yshift = -7.5cm]
+
+    \foreach \x in {1, 2, ..., 9}{
+      \node (y\x) at (\x, 0) {$y_{(\x)}$};
+    }
+
+    \node [above = 2em of y2.west, anchor = east] {$n + 1$ m{\'u}ltiplo de 2};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y5.south) -- (y1.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $1$\textordfeminine{} metade};
+
+    \draw [decorate, decoration = {brace, amplitude = 4pt}] (y9.south) -- (y5.south) 
+      node [black, midway, yshift = -1.1em] {\scriptsize $2$\textordfeminine{} metade};
+
+    \node [above = 1em of y3, align = center] (q1) {$q_1$};
+    \draw (y3) -- (q1);
+
+    \node [above = 1em of y5, align = center] (q2) {$q_2$};
+    \draw (y5) -- (q2);
+
+    \node [above = 1em of y7, align = center] (q3) {$q_3$};
+    \draw (y7) -- (q3);
+
+  \end{scope}
+
+\end{tikzpicture}%

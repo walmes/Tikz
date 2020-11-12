@@ -1,0 +1,51 @@
+﻿\tikzset{
+  % style to apply some styles to each segment of a path
+  on each segment/.style = {
+    decorate,
+    decoration = {
+      show path construction,
+      moveto code = {},
+      lineto code = {
+        \path [#1] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+      curveto code = {
+        \path [#1] (\tikzinputsegmentfirst) .. controls
+          (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb) ..
+          (\tikzinputsegmentlast);
+      },
+      closepath code = {
+        \path [#1] (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+    },
+  },
+  % style to add an arrow in the middle of a path
+  mid arrow/.style = {
+    postaction = {decorate,
+      decoration = {
+        markings, mark = at position .475 with {\arrow[#1, scale = 1.5, rotate = 180]{stealth}}
+      }
+    }
+  },
+}%
+\begin{tikzpicture}[mynode/.style = {scale = 0.8}, textnode/.style = {align = center}]
+
+  \coordinate (a1) at (90:3cm);
+  \coordinate (a2) at (210:3cm);
+  \coordinate (a3) at (330:3cm);
+
+  \path[draw, postaction = {on each segment = {mid arrow = red}}] 
+    (a1) -- 
+    node[mynode, textnode, midway, rotate = 60, above] {Teoria\\ \footnotesize{Explica{\c c}{\~a}o da natureza}} (a2) -- 
+    node[mynode, midway, below] {Infer{\^e}ncia Estat{\'i}stica} (a3) -- 
+    node[textnode, mynode, midway, rotate = -60, above]
+     {Observa{\c c}{\~a}o\\ \footnotesize{Experimento/Amostragem}} (a1);
+
+  \path[draw, gray!50, postaction = {on each segment = {mid arrow = red!50}}] 
+    (a1) node[textnode, midway, shift = {(30:3.25cm)}, rotate = -60, mynode]
+    {Estat{\'i}stica\\ Descritiva} to[out = 0, in = 60] (a3) ;
+
+  \node[textnode, above] at (a1) {\textbf{Natureza}\\ (fen{\^o}meno)};
+  \node[left] at (a2) {\textbf{Modelo}};
+  \node[right] at (a3) {\textbf{Dados}};
+
+\end{tikzpicture}%-------------------------------------------------------------------------------

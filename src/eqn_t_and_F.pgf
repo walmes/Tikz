@@ -1,0 +1,30 @@
+﻿\tikzstyle{every picture}+=[remember picture]%
+\newcommand{\nann}[2]{%
+  \tikz[baseline] {%
+    \node[anchor=base, inner sep=0pt, outer sep=0pt] (#1) {#2};%
+  }%
+}%
+
+\begin{tikzpicture}[
+  every path/.style = {rounded corners, shorten <=-2pt, >=stealth},
+  every node/.style = {rounded corners = false},
+  ann/.style = {font = \footnotesize, align = left}
+  ]
+
+  \node {
+    $
+      t^2 = \displaystyle\frac{
+        \overset{\nann{a1}{$\phantom{0}$}}{\hat{\sigma}_{h}^2}}{
+        \underset{\nann{a2}{$\phantom{0}$}}{s^2}} \overset{H_0}{\sim} \underset{\nann{a3}{$\phantom{0}$}}{F_{1, n - 1}}
+    $
+  };
+
+  \path[->, draw] (a1) -- ++(0, 1) node[ann, above] {
+    Estimador da vari{\^a}ncia sob $H_0$.\\ Fornece evid{\^e}ncia contra $H_0$.};
+  \path[->, draw] (a2) -- ++(0, -1) node[ann, below] {
+    Estimador puro da vari{\^a}ncia.\\ N{\~a}o depende de $H_0$.};
+  \path[->, draw] (a3) |- ++(0.5, -0.35) node[ann, right] {
+    Raz{\~a}o de\\ estimadores\\ independentes\\ de $\sigma^2$.};
+
+
+\end{tikzpicture}%------------------------------------------------------------------------------

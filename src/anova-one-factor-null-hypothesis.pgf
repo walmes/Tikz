@@ -1,0 +1,108 @@
+﻿%% http://tex.stackexchange.com/questions/17638/pgfplots-foreach-equivalent-to-tikzs-with-multiple-variables-separated-by-a-sla
+
+\tikzset{ 
+  declare function = {
+    normal(\m,\s) = 1/(2*\s*sqrt(pi))*exp(-(x-\m)^2/(2*\s^2));
+  },
+  > = stealth,
+  cx/.style = {font = \footnotesize},
+  halves/.style = {samples = 30, fill opacity = 0.5, draw = none}
+}%
+
+\pgfplotsset{
+  width = 10cm,
+  height = 6cm,
+  xlabel = Popula{\c c}{\~o}es ($i$),
+%   ylabel = Vari\'{a}vel resposta ($Y$),
+  ymin = -3,
+  ymax = 3,
+  xmin = -0.25,
+  xmax = 4.75,
+  samples = 50,
+  % domain = -0:4,
+  clip = false,
+  x label style = {rotate = 180},
+  xtick = \empty,
+  xticklabels = \empty,
+  yticklabels = \empty,
+%   extra x ticks = {1, 2, 3, 4},
+%   extra x tick labels = {$i = 1$, $i = 2$, $i = 3$, $i = 4$},
+%   x tick label style = {rotate = 90, anchor = east},
+  extra tick style = {grid = major},
+  my plot/.code args = {#1/#2}{%
+    \addplot[domain = -\fromto:\fromto]
+      ({#1 + \hscale * normal(0, \stderr)}, x + #2)
+      node[pos = 0.67, pin = {[scale = 0.8, rotate = 90]45:$Y_{#1}$}] {};
+    \addplot[halves, domain = -\fromto:\fromto, fill = cyan]
+      ({#1 + \hscale * normal(0, \stderr)}, x + #2);
+    \addplot[samples at = {#2}]
+      ({#1 + \hscale * normal(#2, \stderr)}, x) -- (axis cs: #1, #2);
+    \node[rotate = 90, below] at (axis cs: #1, #2) {$\mu_{#1}$};
+  }
+}%
+
+\begin{tikzpicture}[rotate = -90]
+
+\def\hscale{-1}%
+\def\stderr{0.5}%
+\def\fromto{2}%
+
+\newcommand*\pgfplotsinvokeforeachmacro[1]{%
+  \expandafter\pgfplotsinvokeforeach\expandafter{#1}}%
+
+\begin{scope}
+  \newcommand*{\ListXYvalues}{1/0, 2/0, 3/0, 4/0}%
+  \begin{axis}[smooth]
+    \node[cx, rotate = 90, anchor = north west] (eq)
+      at (rel axis cs: 0.02, 0.01)
+      {$Y_i \sim \textrm{N}(\mu_i, \sigma^2)$};
+    \node[cx, rotate = 90, anchor = south west] at (rel axis cs: 0.98, 0.01)
+      {$H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$};
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot = {#1}}
+    }
+  \end{axis}
+\end{scope}
+
+\begin{scope}[yshift = 5.5cm]
+  \newcommand*{\ListXYvalues}{1/-0.5, 2/0.5, 3/-0.8, 4/0.4}%
+  \begin{axis}[smooth]
+    \node[cx, rotate = 90, anchor = north west] (eq)
+      at (rel axis cs: 0.02, 0.01)
+      {$Y_i \sim \textrm{N}(\mu_i, \sigma^2)$};
+    \node[cx, rotate = 90, anchor = south west] at (rel axis cs: 0.98, 0.01)
+      {$H_a: \exists\, \mu_i \neq \mu_j$};
+    \pgfplotsinvokeforeachmacro\ListXYvalues{
+      \pgfplotsset{my plot = {#1}}
+    }
+%     \addplot[domain = -\fromto:\fromto, dashed]
+%       ({2 + \hscale * normal(0, \stderr)}, x);
+    \pgfplotsinvokeforeach {1, ..., 4} {
+      \addplot[domain = -\fromto:\fromto, dashed]
+        ({#1 + \hscale * normal(0, \stderr)}, x);
+    }
+  \end{axis}
+\end{scope}
+
+% \begin{scope}[yshift = 11cm]
+%   \def\hscale{-0.7}%
+%   \def\stderr{0.3}%
+%   \def\fromto{1.5}%
+%   \newcommand*{\ListXYvalues}{1/-0.5, 2/1.2, 3/-1.2, 4/0}%
+%   \begin{axis}[smooth, xmax = 4.5]
+%     \node[cx, rotate = 90, anchor = north west] (eq)
+%       at (rel axis cs: 0.02, 0.01)
+%       {$Y_i \sim \textrm{N}(\mu_i, \sigma^2)$};
+% %     \node[cx, rotate = 90, anchor = south west] at (rel axis cs: 0.98, 0.01)
+% %       {$H_a: \exists\, \mu_i \neq \mu_j$};
+%     \pgfplotsinvokeforeachmacro\ListXYvalues{
+%       \pgfplotsset{my plot = {#1}}
+%     }
+% %     \pgfplotsinvokeforeach {1, ..., 4} {
+% %       \addplot[domain = -\fromto:\fromto, dashed]
+% %         ({#1 + \hscale * normal(0, \stderr)}, x);
+% %     }
+%   \end{axis}
+% \end{scope}
+
+\end{tikzpicture}%-------------------------------------------------------------------

@@ -1,0 +1,44 @@
+﻿\begin{tikzpicture}[>=stealth']
+
+  \begin{scope}e
+    \coordinate (arrowstart) at (-0.5, 0);
+    \node (arrowend) at (7.75, 0) {$y$};
+    \draw[->] (arrowstart) -- (arrowend);
+
+    \foreach \x in {0, 1, ..., 7}{
+      \draw (\x, -0.10) -- (\x, 0.10);
+      \node[below] (y\x) at (\x, -0.10) {$y_{\x}$};
+    }
+
+    \foreach \x in {0.67, 1.84, 2.2, 2.22, 2.27, 2.52, 2.77, 2.89, 5.07, 5.09, 5.9, 6.28, 6.51, 6.81, 6.96, 7.64, 8.89, 9.27, 9.75}{
+      \draw[fill = cyan, fill opacity = 0.5] (\x/1.5, 0.2) circle [radius = 3pt];
+    }
+
+  \draw [decorate, decoration = {brace, amplitude = 4pt}] (0.67/1.5, 0.5) -- (9.75/1.5, 0.5) 
+    node [black, midway, yshift = 1.1em] {Amplitude amostral};
+
+  \draw [decorate, decoration = {brace, amplitude = 4pt}] (y4.south) -- (y3.south) 
+    node [black, midway, yshift = -1.1em] {Amplitude de classe};
+
+  \draw [decorate, decoration = {brace, amplitude = 4pt}] (7, -1.5) -- (0, -1.5) 
+    node [black, midway, yshift = -1.1em] {Amplitude de classes total};
+
+  \node (rot) at (7.25, -1.1) {Limite de classe};
+  \draw[->] (y6) edge[out=-90, in = 90] (rot);
+
+  \end{scope}
+
+\begin{scope}[xshift= 12cm]
+\node {
+  \begin{minipage}{5cm}
+  Nota{\c c}{\~ a}o\\
+\begin{tabular}{|c|c|c|}
+  $a < y \leq b$ & $(a, b]$ & $a \vlongdash b$\\
+  $a \leq y < b$ & $[a, b)$ & $a \longdashv b$\\
+\end{tabular}
+  \end{minipage}
+};
+
+\end{scope}
+
+\end{tikzpicture}%
