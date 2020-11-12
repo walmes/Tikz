@@ -98,6 +98,7 @@
 \usepackage{multirow}
 \usepackage{eurosym}
 \usepackage{amsfonts, amssymb, amsxtra, amsmath, amsbsy} % Não usar empheq.
+\usepackage{fdsymbol} % \longleftfootline and \longrightfootline, \vlongdash e \longdashv
 % \usepackage{siunitx} % Tem conflito com o pgfcalendar e o calendar.
 % \usepackage{textcomp}
 % \usepackage{chemmacros} % Macros para fórmulas químicas
