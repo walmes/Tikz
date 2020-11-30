@@ -1,0 +1,28 @@
+﻿\begin{tikzpicture}[
+  declare function={
+    poispf(\k,\l) = exp(-\l)*(\l^\k)/(\k!);
+  },
+  hplot/.style={ycomb, mark=o}]
+
+  \begin{axis}[
+    width=8cm, height=8cm,
+%     xlabel=$x$, ylabel=$p(x)$,
+    yticklabels = {}, xticklabels = {},
+    xlabel style={at={(1,0)}, anchor=north west},
+    ylabel style={rotate=-90, at={(0,1)}, anchor=south east},
+    legend style={draw=none, fill=none, font=\footnotesize},
+    legend cell align=left,
+    samples at={0,1,...,50},
+    yticklabel style={
+      /pgf/number format/fixed,
+      /pgf/number format/fixed zerofill,
+      % /pgf/number format/precision=2
+    }]
+
+    \addplot[hplot, black] {poispf(x, 5)};
+    \addplot[hplot, red] {poispf(x, 10)};
+    \addplot[hplot, blue] {poispf(x, 20)};
+    \addplot[hplot, green] {poispf(x, 30)};
+
+  \end{axis}
+\end{tikzpicture}%
