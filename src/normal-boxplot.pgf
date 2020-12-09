@@ -17,11 +17,11 @@
     (2*3.1415*\sigma^2)^(-0.5)*exp(-(\x-\mu)^2/(2*\sigma^2));
   }]
 
-  \def\perc{0.6744898}
+  \def\perc{0.67449}
   \def\aiq{1.34898}
-  \def\lms{2.697959}
-  \def\prob{0.3488302}
-  \def\doubleprob{0.6976603}
+  \def\lms{2.69796}
+  \def\prob{0.003488}
+  \def\doubleprob{0.006977}
 
   \begin{axis}[myplot, height=6cm]
 
@@ -72,7 +72,7 @@
     \node[above] at (axis cs:      0, 0.5) {$q_2$};
     \node[above] at (axis cs:  \perc, 0.5) {$q_3$};
 
-    \node[draw] (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob}\% = \doubleprob\%$};
+    \node[draw] (areas) at (axis cs: 0, 2) {$\text{P}(Z > |\lms|) = 2\cdot\textcolor{red}{\prob} = \doubleprob$};
 
     \draw [decorate, decoration = {brace, amplitude = 5pt}]
       (axis cs: \perc, -0.7) -- (axis cs: -\perc, -0.7)
@@ -96,4 +96,4 @@
 
   \end{scope}
 
-\end{tikzpicture}%
+\end{tikzpicture}%---------------------------------------------------------------------------------------------------
