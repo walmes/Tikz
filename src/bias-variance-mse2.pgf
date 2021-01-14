@@ -20,7 +20,7 @@
 
   \node[nodetext, right] at (3, 2.5) {
     $\textcolor{magenta}{\text{EQM}(\hat{\theta})} =
-    \textcolor{cyan}{\text{V}(\hat{\theta})} - \textcolor{red}{\text{B}(\hat{\theta})}^2$};
+    \textcolor{cyan}{\text{V}(\hat{\theta})} + \textcolor{red}{\text{B}(\hat{\theta})}^2$};
 
 
   \path[->, yshift = 1pt, magenta] (1.827 - 0.2, \fac*2) to[out = 90, in = 180] (3, 1.2)
