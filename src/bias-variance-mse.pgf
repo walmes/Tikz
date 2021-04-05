@@ -33,7 +33,7 @@
   \path[->] (theta) to[out = 90, in = 0] ++(-1, 1) node[nodetext, left] {$\theta$};
   \path[->] (1.163, 1.409) to[out = 90, in = 180] ++(1, 1) node[nodetext, right] {$\hat{\theta}_i$};
 
-  \node[nodetext] at (0, -3) {$\textcolor{magenta}{\text{EQM}(\hat{\theta})} = \textcolor{cyan}{\text{V}(\hat{\theta})} - \textcolor{red}{\text{B}(\hat{\theta})}^2$};
+  \node[nodetext] at (0, -3) {$\textcolor{magenta}{\text{EQM}(\hat{\theta})} = \textcolor{cyan}{\text{V}(\hat{\theta})} + \textcolor{red}{\text{B}(\hat{\theta})}^2$};
 
 \end{scope}
 
