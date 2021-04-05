@@ -1,0 +1,49 @@
+﻿\tikzset{
+  level 1/.style={level distance=3.5cm, sibling distance=5.5cm},
+  level 2/.style={level distance=3.9cm, sibling distance=2.7cm},
+  bag/.style={text width=7em, text centered, anchor=west,
+    fill=gray!50, rounded corners, minimum height=3em},
+  end/.style={circle, minimum width=3pt, fill, inner sep=0pt,
+    anchor=west}
+}
+
+\begin{tikzpicture}[grow=right, sloped]
+  \node[bag] {Popola{\c c}{\~ a}o\\ $10000$}
+  child {
+    node[bag, fill = blue!30] {N{\~a}o doentes\\ $9800$}
+    child {
+%       node[end, label=right:{$$}] {}
+      node[bag, fill = blue!50] {Negativos (n{\~a}o doentes)\\ $7840$}
+      edge from parent
+      node[above] {$\Pr(-|D^c) = 0.8$}
+      node[below] {\textcolor{orange}{Especificidade}}
+    }
+    child {
+%       node[end, label=right:{$\Pr(S\cap D^c)= ?$}] {}
+      node[bag, fill = red!70] {Positivos (n{\~a}o doentes)\\ $1960$}
+      edge from parent
+      node[above] {$\Pr(+|D^c) = 0.2$}
+    }
+    edge from parent 
+    node[above] {$\Pr(D^c) = 0.98$}
+  }
+  child {
+    node[bag, fill = red!30] {Doentes\\ $200$}        
+    child {
+%       node[end, label=right:{$$}] {}
+      node[bag, fill = blue!50] {Negativos (doentes)\\ $20$}
+      edge from parent
+      node[above] {$\Pr(-|D) = 0.1$}
+    }
+    child {
+%       node[end, label=right:{$\Pr(S\cap D) = 0.02\cdot 0.9$}] {}
+      node[bag, fill = red!70] {Positivos (doentes)\\ $180$}        
+      edge from parent
+      node[above] {$\Pr(+|D) = 0.9$}
+      node[below] {\textcolor{magenta}{Sensibilidade}}
+    }
+    edge from parent         
+    node[above] {$\Pr(D) = 0.02$}
+    node[below] {\textcolor{cyan}{Preval{\^e}ncia}}
+  };
+\end{tikzpicture}
