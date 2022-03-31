@@ -5694,7 +5694,7 @@ ift = -2.5cm]
     node[pos=0.6, pin={45:$\mu=0,\sigma^2=2$}] {};
     \addplot [smooth, red] {normalpdf(x,-2,1)}
     node[pos=0.25, pin={[text centered, text width=8ex]
-      200:$\mu=-1$, $\sigma^2=1$}] {};
+      200:$\mu=-2$, $\sigma^2=1$}] {};
 
     \addplot [hplot, samples at={0}] {normalpdf(x,0,1)};
     \addplot [hplot, samples at={0}, blue] {normalpdf(x,0,2)};
