@@ -26,7 +26,7 @@ colnames(prob) <- sprintf("$%0.2f$", cen)
 prob
 
 sink("table-standard-normal.tex")
-print.xtable(xtable(prob, align = rep("r", ncol(qtl) + 1)),
+print.xtable(xtable(prob, align = rep("r", ncol(prob) + 1)),
              floating = FALSE,
              sanitize.text.function = identity,
              sanitize.colnames.function = identity,
@@ -46,8 +46,13 @@ alp <- c(
 )
 length(alp)
 
-a <- alp[1:10]
-a <- alp[11:20]
+alp <- c(
+    0.20, 0.10, 0.05, 0.025, 0.010, 0.005, 0.0025, 0.0010
+)
+length(alp)
+
+# a <- alp[1:10]
+# a <- alp[11:20]
 a <- alp
 
 qtl <- outer(df,
@@ -81,6 +86,10 @@ alp <- c(
     0.025, 0.02, 0.01, 0.005
 )
 
+alp <- c(
+    0.20, 0.10, 0.05, 0.025, 0.010, 0.005, 0.0025, 0.0010
+)
+
 qtl <- outer(df,
               alp,
               FUN = function(d, a) {
@@ -102,9 +111,12 @@ sink()
 #-----------------------------------------------------------------------
 # F de Snedecor.
 
-df1 <- c(seq(1, 10, by = 1), c(12, 15, 20, 24, 30, 40, 60, 120))
-df2 <- df1
-alp <- c(0.10, 0.05, 0.025, 0.01, 0.005)
+# df1 <- c(seq(1, 10, by = 1), c(12, 15, 20, 24, 30, 40, 60, 120))
+# df2 <- df1
+df1 <- c(seq(1, 40, by = 1))
+df2 <- 1:12
+# alp <- c(0.10, 0.05, 0.01)
+alp <- c(0.05)
 
 qtl_list <-
     lapply(alp,
@@ -141,6 +153,106 @@ rownames(qtl)
 qtl <- cbind("$\\phantom{0}$" = rownames(qtl), as.data.frame(qtl))
 
 sink("table-f-snedecor.tex")
+print.xtable(xtable(qtl, align = rep("r", ncol(qtl) + 1)),
+             floating = FALSE,
+             include.rownames = FALSE,
+             sanitize.text.function = identity,
+             sanitize.colnames.function = identity,
+             sanitize.rownames.function = identity)
+sink()
+
+#-----------------------------------------------------------------------
+# Tukey.
+
+nmeans <- seq(2, 15, by = 1)
+# df <- c(seq(2, 40, by = 1), 60, 120)
+df <- c(seq(2, 20, by = 1), 24, 30, 40, 60, 120)
+alp <- c(0.10, 0.05, 0.01)
+a <- 0.1
+
+# Confere.
+qtukey(0.95, df = 10, nmeans = 2)/sqrt(2)
+qt(0.975, df = 10)
+
+qtl_list <-
+    lapply(alp,
+           FUN = function(a) {
+               qtl <- outer(nmeans,
+                            df,
+                            FUN = function(num, den) {
+                                sprintf("$%0.3f$",
+                                        qtukey(a,
+                                               nmeans = num,
+                                               df = den,
+                                               lower.tail = FALSE))
+                            }) |> t()
+               colnames(qtl) <- sprintf("$%d$", nmeans)
+               rownames(qtl) <- sprintf("$%d$", df)
+               u <- qtl[1,, drop = FALSE]
+               u[1, ] <- ""
+               u[1, 1] <- sprintf("$\\alpha = %s$", round(a, 4))
+               colnames(u) <- colnames(qtl)
+               rownames(u) <- NULL
+               qtl <- rbind(u, qtl)
+               qtl
+           })
+
+# qtl_list[[1]]
+
+qtl <- do.call(rbind, args = qtl_list)
+rownames(qtl)
+
+qtl <- cbind("$\\phantom{0}$" = rownames(qtl), as.data.frame(qtl))
+
+sink("table-q-tukey.tex")
+print.xtable(xtable(qtl, align = rep("r", ncol(qtl) + 1)),
+             floating = FALSE,
+             include.rownames = FALSE,
+             sanitize.text.function = identity,
+             sanitize.colnames.function = identity,
+             sanitize.rownames.function = identity)
+sink()
+
+#-----------------------------------------------------------------------
+# Teste de Duncan.
+
+nmeans <- seq(2, 15, by = 1)
+# df <- c(seq(2, 40, by = 1), 60, 120)
+df <- c(seq(2, 20, by = 1), 24, 30, 40, 60, 120)
+alp <- c(0.10, 0.05, 0.01)
+a <- 0.1
+
+qtl_list <-
+    lapply(alp,
+           FUN = function(a) {
+               qtl <- outer(nmeans,
+                            df,
+                            FUN = function(num, den) {
+                                sprintf("$%0.3f$",
+                                        qtukey((1 - a)^(num - 1),
+                                               nmeans = num,
+                                               df = den,
+                                               lower.tail = TRUE))
+                            }) |> t()
+               colnames(qtl) <- sprintf("$%d$", nmeans)
+               rownames(qtl) <- sprintf("$%d$", df)
+               u <- qtl[1,, drop = FALSE]
+               u[1, ] <- ""
+               u[1, 1] <- sprintf("$\\alpha = %s$", round(a, 4))
+               colnames(u) <- colnames(qtl)
+               rownames(u) <- NULL
+               qtl <- rbind(u, qtl)
+               qtl
+           })
+
+# qtl_list[[2]]
+
+qtl <- do.call(rbind, args = qtl_list)
+rownames(qtl)
+
+qtl <- cbind("$\\phantom{0}$" = rownames(qtl), as.data.frame(qtl))
+
+sink("table-z-duncan.tex")
 print.xtable(xtable(qtl, align = rep("r", ncol(qtl) + 1)),
              floating = FALSE,
              include.rownames = FALSE,

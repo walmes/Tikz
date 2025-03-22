@@ -1,0 +1,35 @@
+﻿% Adapted from: https://tex.stackexchange.com/questions/522517/annotate-math-equation-with-text-on-arrows-around-the-equation
+\tikzstyle{every picture}+=[remember picture]%
+\begin{tikzpicture}[
+  >=stealth, 
+  shorten <=0.4ex, 
+  nodes={align=left, inner ysep=1pt},
+  <-,
+]
+
+\node {
+$\displaystyle\int\limits
+  _{\tikzmarknode{a}{a}}
+  ^{\tikzmarknode{b}{b}}\tikzmarknode{f}{f}(\tikzmarknode{x1}{x})
+  \,\tikzmarknode{d}{\mathrm{d}}\tikzmarknode{x2}{x}
+$
+};
+
+  \draw ([xshift=-0.3ex]b.west|-x2) -- ++ (-1.5em,0) node[left] (l) {\textbf{Integral}};
+  \draw (a.south) -- ++ (0,-4.5em) node[anchor=north west,align=left,xshift=-1.2ex]
+    (u) {\textbf{Lower Limit}\\ Lower bound of integration};
+  \draw (b.north) -- ++ (0,4.5em) node[anchor=south west,align=left,xshift=-1.2ex]
+    (o) {\textbf{Upper Limit}\\ Upper bound of integration};
+  \path (x1.north) ++ (0,2.5em) node[anchor=south west,xshift=-1.2ex] (il)
+    {\textbf{Integrand}\\ Function to be integrated};
+  \draw (x1.north) |- ([xshift=0.3ex]il.south east);
+  \path (d.south) ++ (0,-2.5em) node[anchor=north west] (diff)
+    {\textbf{Differential}};
+  \draw (d.south) |- ([xshift=0.3ex]diff.south east);
+  \draw ([xshift=0.3ex]x2.east) -- ++ (1.5em,0) node[right]  (r)
+   {\textbf{Integration Variable}\\ The integrand is integrated with respect to $x$};
+  \path let \p1=($(o.north)-(u.south)$),\p2=($(r.east)-(x2.east)$),
+   \p3=($(a.west)-(l.west)$),\n1={\x2-\x3} in 
+  \pgfextra{\xdef\tmpvspace{\y1}\xdef\tmphspace{\n1}};
+
+\end{tikzpicture}

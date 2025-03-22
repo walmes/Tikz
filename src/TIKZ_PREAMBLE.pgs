@@ -67,15 +67,15 @@
 \usepackage[utf8]{inputenc}
 
 % \usepackage{fontawesome}
-% \usepackage{palatino}
+\usepackage{palatino}
 % \usepackage{eulervm}
 % \usepackage[condensed, math]{iwona}
 % \usepackage[scaled=0.8]{beramono}
-\usepackage{inconsolata}
+% \usepackage{inconsolata}
 % \usepackage[sfdefault,condensed]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
 
-\usepackage[math, light]{iwona}
-\usepackage[sfdefault,light]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
+% \usepackage[math, light]{iwona}
+% \usepackage[sfdefault,light]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
 \usepackage[T1]{fontenc}
 \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
 
@@ -117,6 +117,7 @@
 \usepgfplotslibrary{groupplots}
 \usetikzlibrary{
   arrows,
+  arrows.meta,
   positioning,
   matrix,
   calc,
@@ -135,7 +136,9 @@
   intersections,
   calendar,
   plotmarks,
-  spy}
+  spy,
+  tikzmark,
+  }
 
 \pagestyle{empty}
 
