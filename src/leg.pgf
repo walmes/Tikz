@@ -1,4 +1,4 @@
-\def\outercircle{(0,0) circle (5cm)}%
+﻿\def\outercircle{(0,0) circle (5cm)}%
 \def\innercircle{(-0.4,0.4) circle (4.2cm)}%
 \def\leg{%
   \node[font=\fontsize{165}{144}\selectfont, color=white]
